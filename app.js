@@ -139,9 +139,10 @@ function renderMenu(){
       let chips='';
       meals.forEach((m,idx)=>{
         const r=recipeById(m.recipeId);
+        const name=r?r.name:(m.note||'(àpat lliure)');
         chips+='<div class="meal-chip" draggable="true" data-key="'+key+'" data-idx="'+idx+'" data-id="open-meal">'
-          +'<span class="t">'+esc(r?r.name:'(recepta eliminada)')+'</span>'
-          +'<span class="s">👥 '+m.diners+'</span>'
+          +'<span class="t">'+esc(name)+'</span>'
+          +'<span class="s">👥 '+m.diners+(r?'':' · 📝')+'</span>'
           +'<button class="x" data-del-key="'+key+'" data-del-idx="'+idx+'" title="Elimina">✕</button></div>';
       });
       html+='<td class="slot'+(meals.length?'':' empty')+'" data-drop-key="'+key+'">'+chips
@@ -181,13 +182,12 @@ function updateShopStatus(){
 
 /* picker d'àpat */
 function addMealFlow(key){
-  if(!S.recipes.length){
-    toast('Primer crea una recepta 🙂');
-    switchTab('recipes');
-    return;
-  }
-  openModal('<h2>Afegeix àpat</h2><input id="pickerSearch" placeholder="Cerca recepta…">'
-    +'<div id="pickerList" style="max-height:52vh;overflow-y:auto;margin-top:10px"></div>');
+  openModal('<h2>Afegeix àpat</h2>'
+    +'<button class="btn" id="pickerFree" style="width:100%;margin-bottom:12px;border-style:dashed">📝 Àpat lliure (sense recepta)…</button>'
+    +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:46vh;overflow-y:auto;margin-top:10px"></div>'
+      :'<p class="muted">Encara no hi ha receptes. Pots afegir un àpat lliure o crear-ne una a la pestanya Receptes.</p>'));
+  $('#pickerFree').onclick=()=>openFreeMeal(key,null);
+  if(!S.recipes.length)return;
   const list=$('#pickerList');
   function draw(f){
     f=(f||'').toLowerCase();
@@ -212,9 +212,36 @@ function addMealFlow(key){
   });
 }
 
-/* editar àpat existent */
+/* àpat lliure (sense recepta): crear o editar */
+function openFreeMeal(key,idx){
+  const editing=idx!=null?(S.menu[key]||[])[idx]:null;
+  openModal('<h2>'+(editing?'Edita àpat lliure':'Àpat lliure')+'</h2>'
+    +'<label>Què es menjarà? (ex. Sopar fora, Restes d\'arròs, Amanida gran…)</label>'
+    +'<input id="freeNote" maxlength="60" value="'+esc(editing?editing.note||'':'')+'" placeholder="Sopar fora…">'
+    +'<div class="row" style="margin-top:8px"><div style="width:120px"><label>Comensals</label>'
+    +'<input type="number" min="1" max="12" id="freeDiners" value="'+(editing?editing.diners:S.diners)+'"></div></div>'
+    +'<div class="modal-foot"><span class="muted tiny">No genera ingredients a la llista de compra</span>'
+    +'<div style="display:flex;gap:8px">'
+    +(editing?'<button class="btn btn-danger btn-sm" id="freeDel">Elimina</button>':'')
+    +'<button class="btn btn-primary" id="freeOk">D\'acord</button></div></div>');
+  $('#freeNote').focus();
+  $('#freeOk').onclick=()=>{
+    const note=$('#freeNote').value.trim();
+    if(!note){alert('Escriu què es menjarà (ex. «Sopar fora»).');return;}
+    const diners=Math.max(1,parseInt($('#freeDiners').value,10)||S.diners);
+    if(editing){editing.note=note;editing.diners=diners;save();renderMenu();}
+    else pushMeal(key,{recipeId:null,note:note,diners:diners});
+    closeModal();
+  };
+  $('#freeNote').addEventListener('keydown',e=>{if(e.key==='Enter')$('#freeOk').click();});
+  const del=$('#freeDel');
+  if(del)del.onclick=()=>{removeMeal(key,idx);closeModal();};
+}
+
+/* editar àpat existent (recepta o lliure) */
 function openMealEditor(key,idx){
   const m=(S.menu[key]||[])[idx];if(!m)return;
+  if(!m.recipeId){openFreeMeal(key,idx);return;}
   const r=recipeById(m.recipeId);
   openModal('<h2>'+(r?esc(r.name):'Àpat')+'</h2>'
     +'<label>Comensals d\'aquest àpat</label>'
@@ -291,7 +318,7 @@ $('#printMenuBtn').onclick=()=>{
     let cells='';
     for(let i=0;i<7;i++){
       const key=iso(new Date(weekStart.getTime()+i*86400000))+'|'+sl.id;
-      const txt=(S.menu[key]||[]).map(m=>{const r=recipeById(m.recipeId);return r?(r.name+' (×'+m.diners+')'):'—';}).join('<br>')||'—';
+      const txt=(S.menu[key]||[]).map(m=>{const r=recipeById(m.recipeId);return r?(r.name+' (×'+m.diners+')'):('📝 '+esc(m.note||'Àpat')+' (×'+m.diners+')');}).join('<br>')||'—';
       cells+='<td style="border:1px solid #999;padding:4px 6px;font-size:12px">'+txt+'</td>';
     }
     rows+='<tr><td style="border:1px solid #999;padding:4px 6px;font-weight:bold">'+sl.l+'</td>'+cells+'</tr>';
@@ -436,8 +463,8 @@ function collectMenuIngredients(){
   const map=new Map(); /* key name|unit -> {qty total, recipes[]} */
   Object.keys(S.menu).forEach(key=>{
     (S.menu[key]||[]).forEach(meal=>{
-      const factor=meal.diners/(recipeById(meal.recipeId)?.servings||meal.diners||2);
-      const r=recipeById(meal.recipeId);if(!r)return;
+      const r=recipeById(meal.recipeId);if(!r)return; /* àpats lliures: res a comprar */
+      const factor=meal.diners/(r.servings||meal.diners||2);
       r.ingredients.forEach(ing=>{
         const k=(ing.name.trim().toLowerCase())+'|'+(ing.unit||'');
         const cur=map.get(k)||{name:ing.name.trim(),unit:ing.unit||'',qty:0,from:new Set()};

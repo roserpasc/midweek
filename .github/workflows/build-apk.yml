@@ -11,6 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -19,21 +28,77 @@ jobs:
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
 
-      - name: Build TWA / APK
+      - name: Build TWA / APK (no interactiu)
+        env:
+          BUBBLEWRAP_JDK: /usr/lib/jvm/temurin-17-jdk-amd64
+          ANDROID_HOME: /usr/local/lib/android/sdk
         run: |
-          # inicialitzar amb el manifest de la PWA (sense interactiu)
-          bubblewrap init --manifest https://roserpasc.github.io/midweek/manifest.json --directory=. --skipPwaValidation
-          # signing key determinista per a CI
-          bubblewrap updateConfig --appVersionName "1.0.0" --appVersionCode 1 --directory=.
-          bubblewrap build --skipPwaValidation --manifest https://roserpasc.github.io/midweek/manifest.json --directory=.
+          set -e
+          bubblewrap init --manifest https://roserpasc.github.io/midweek/manifest.json \
+            --directory=. --skipPwaValidation \
+            < /dev/null || true
+          # si init no ha generat twa-manifest.json (per prompt), el creem a mà
+          if [ ! -f twa-manifest.json ]; then
+            cat > twa-manifest.json <<'EOF'
+          {
+            "packageId": "ca.midweek.app",
+            "host": "roserpasc.github.io",
+            "name": "Midweek",
+            "launcherName": "Midweek",
+            "display": "standalone",
+            "themeColor": "#5E8772",
+            "themeColorDark": "#26312B",
+            "navigationColor": "#5E8772",
+            "navigationColorDark": "#26312B",
+            "navigationDividerColor": "#5E8772",
+            "navigationDividerColorDark": "#26312B",
+            "backgroundColor": "#F2F5F1",
+            "enableNotifications": false,
+            "startUrl": "/midweek/",
+            "iconUrl": "https://roserpasc.github.io/midweek/icons/icon-maskable.png",
+            "maskableIconUrl": "https://roserpasc.github.io/midweek/icons/icon-maskable.png",
+            "splashScreenFadeOutDuration": 300,
+            "signingKey": { "path": "./android.keystore", "alias": "android" },
+            "appVersionName": "1.0.0",
+            "appVersionCode": 1,
+            "shortcuts": [],
+            "generatorApp": "Bubblewrap",
+            "webManifestUrl": "https://roserpasc.github.io/midweek/manifest.json",
+            "fallbackType": "customtabs",
+            "features": {},
+            "alphaDependencies": { "enabled": false },
+            "enableSiteSettingsShortcut": true,
+            "isChromeOSOnly": false,
+            "isMetaQuest": false,
+            "fullScopeUrl": "https://roserpasc.github.io/midweek/",
+            "minSdkVersion": 19,
+            "orientation": "portrait",
+            "fingerprints": [],
+            "additionalTrustedOrigins": [],
+            "retainedBundles": []
+          }
+          EOF
+          fi
+          # signing key: generar si no existeix (password determinista de demo; per publicar a Play Store cal canviar-la)
+          if [ ! -f android.keystore ]; then
+            bubblewrap doctor || true
+            printf "midweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\ny\n" | bubblewrap create --skipVersionUpgrade --directory=. || \
+            keytool -genkeypair -v -keystore android.keystore -alias android \
+              -keyalg RSA -keysize 2048 -validity 10950 \
+              -storepass midweek123 -keypass midweek123 \
+              -dname "CN=Midweek, OU=Midweek, O=Midweek, L=Barcelona, S=Catalunya, C=ES"
+          fi
+          bubblewrap build --skipPwaValidation --directory=. --manifest https://roserpasc.github.io/midweek/manifest.json
 
-      - name: Rename artifact
+      - name: Collect APK
         run: |
           mkdir -p out
-          find . -name "app-release-signed.apk" -exec cp {} out/midweek.apk \;
+          find . -maxdepth 2 -name "*.apk" -exec cp {} out/ \;
           ls -la out/
+          # també el keystore per poder firmar futures versions
+          if [ -f android.keystore ]; then cp android.keystore out/; fi
 
       - uses: actions/upload-artifact@v4
         with:
           name: midweek-apk
-          path: out/midweek.apk
+          path: out/
