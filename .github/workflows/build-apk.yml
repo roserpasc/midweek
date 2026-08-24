@@ -97,7 +97,10 @@ jobs:
           fi
 
       - name: Build APK
-        run: bubblewrap build --skipPwaValidation --directory=.
+        run: |
+          # respondre 'n' a la pregunta de regeneracio (el projecte es correcte)
+          printf 'n
+' | bubblewrap build --skipPwaValidation --directory=. ||           bubblewrap build --skipPwaValidation --directory=.
 
       - name: Collect APK
         run: |
