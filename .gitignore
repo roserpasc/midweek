@@ -1,0 +1,10 @@
+config.js
+_cdp*
+_run*
+_shot*
+*.keystore
+*.jks
+twa-manifest.json
+android/
+app-release-unsigned.apk
+node_modules/

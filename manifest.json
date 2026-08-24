@@ -1,0 +1,17 @@
+{
+  "name": "Midweek — Menú setmanal i compres",
+  "short_name": "Midweek",
+  "description": "Planificador de menú setmanal, receptes, llista de la compra i escaneig de tiquets per a dos.",
+  "lang": "ca",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F5F1",
+  "theme_color": "#5E8772",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

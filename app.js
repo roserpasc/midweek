@@ -1,0 +1,575 @@
+'use strict';
+/* ============================================================
+   Midweek — planificador de menú setmanal per a parelles
+   Fitxer 1/2: estat, persistència, menú, receptes, llista compra
+   ============================================================ */
+
+/* ---------------- constants & helpers ---------------- */
+const DAYS=['dl','dt','dc','dj','dv','ds','dg'];
+const DAY_LONG={dl:'dilluns',dt:'dimarts',dc:'dimecres',dj:'dijous',dv:'divendres',ds:'dissabte',dg:'diumenge'};
+const SLOTS=[{id:'esmorzar',l:'Esmorzar'},{id:'dinars',l:'Dinar'},{id:'sopars',l:'Sopar'}];
+
+function mondayOf(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x;}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function todayIso(){return iso(new Date());}
+function fmtDate(d){return d.toLocaleDateString('ca-ES',{day:'numeric',month:'short'});}
+function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function eur(n){return (Number(n)||0).toLocaleString('ca-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+function parseNum(s){if(typeof s==='number')return isFinite(s)?s:null;const n=parseFloat(String(s==null?'':s).replace(',','.'));return isNaN(n)?null:n;}
+function debounce(fn,ms){let t;return function(...a){clearTimeout(t);t=setTimeout(()=>fn.apply(this,a),ms);};}
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+function byId(arr,id){return arr.find(x=>x.id===id);}
+
+function download(name,text,mime){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([text],{type:mime||'application/json'}));
+  a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+}
+
+/* toast */
+function toast(msg,ms){
+  const el=document.createElement('div');el.className='toast';el.textContent=msg;
+  $('#toastSlot').appendChild(el);
+  setTimeout(()=>el.remove(),ms||2600);
+}
+
+/* modal */
+function openModal(html){
+  $('#modalBox').innerHTML=html;
+  $('#modalBg').classList.remove('hidden');
+}
+function closeModal(){$('#modalBg').classList.add('hidden');$('#modalBox').innerHTML='';}
+$('#modalBg')?.addEventListener('click',e=>{if(e.target.id==='modalBg')closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ---------------- estat + persistència ---------------- */
+const LS_KEY='midweek_v1';
+function defaultState(){
+  return {
+    version:1,
+    people:[
+      {id:uid(),name:'Roser',color:'#5E8772'},
+      {id:uid(),name:'Paolo',color:'#C77D46'}
+    ],
+    diners:2,
+    categories:['Fruita i verdura','Carn i peix','Làctics i ous','Pa i fornats','Despensa','Begudes','Congelats','Neteja','Altres'],
+    recipes:[],
+    menu:{},                 /* "YYYY-MM-DD|slot" -> [{recipeId,diners}] */
+    shopping:{items:[],stale:false},
+    receipts:[],             /* {id,date,store,payerId,total,items:[{name,qty,unit,price}],photo} */
+    settlements:[],          /* {date,fromId,toId,amount} */
+    settings:{apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},
+    ui:{tab:'menu',weekStart:null},
+    seedDone:false
+  };
+}
+let S;
+try{
+  const raw=localStorage.getItem(LS_KEY);
+  S=raw?Object.assign(defaultState(),JSON.parse(raw)):defaultState();
+}catch(e){console.error('load',e);S=defaultState();}
+S.shopping=S.shopping&&Array.isArray(S.shopping.items)?S.shopping:{items:[],stale:false};
+S.settings=Object.assign({apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},S.settings);
+
+function save(){
+  try{
+    localStorage.setItem(LS_KEY,JSON.stringify(S));
+    flashSync(true);
+  }catch(e){console.error(e);flashSync(false);}
+}
+let flashT;
+function flashSync(ok){
+  const dot=$('#syncDot'),lab=$('#syncLabel');
+  if(!dot)return;
+  dot.classList.toggle('err',!ok);
+  lab.textContent=ok?'Desat ✓':'Error!';
+  clearTimeout(flashT);
+  flashT=setTimeout(()=>{dot.classList.remove('err');lab.textContent='Local';},1400);
+}
+
+const recipeById=id=>byId(S.recipes,id);
+const personById=id=>byId(S.people,id);
+
+/* ---------------- pestanyes ---------------- */
+$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  S.ui.tab=b.dataset.tab;save();renderTabs();
+}));
+function switchTab(t){S.ui.tab=t;renderTabs();}
+function renderTabs(){
+  $$('nav.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===S.ui.tab));
+  ['menu','recipes','shop','receipts','settings'].forEach(t=>{
+    const el=document.getElementById('tab-'+t);
+    if(el)el.classList.toggle('hidden',S.ui.tab!==t);
+  });
+  updateShopBadge();
+}
+function updateShopBadge(){
+  const n=S.shopping.items.filter(i=>!i.done).length;
+  $('#tabShopCount').textContent=n?(' '+n):'';
+}
+
+/* ============================================================
+   MENÚ SETMANAL
+   ============================================================ */
+let weekStart=(S.ui.weekStart?new Date(S.ui.weekStart):mondayOf(new Date()));
+
+function renderWeekBar(){
+  const end=new Date(weekStart.getTime()+6*86400000);
+  $('#weekLabel').textContent=fmtDate(weekStart)+' – '+fmtDate(end);
+  $('#dinersVal').textContent=S.diners;
+}
+
+function renderMenu(){
+  const tbl=$('#menuTable'),t=todayIso();
+  let html='<tr><th style="width:74px"></th>'+DAYS.map((d,i)=>{
+    const dt=new Date(weekStart.getTime()+i*86400000);
+    const today=iso(dt)===t;
+    return '<th class="'+(today?'today-col':'')+'">'+DAY_LONG[d]
+      +'<br><span class="muted tiny" style="font-weight:400">'+fmtDate(dt)+'</span>'
+      +(today?' 📍':'')+'</th>';
+  }).join('')+'</tr>';
+  for(const sl of SLOTS){
+    html+='<tr><th style="text-align:left;font-size:14px">'+sl.l+'</th>';
+    for(let i=0;i<7;i++){
+      const key=iso(new Date(weekStart.getTime()+i*86400000))+'|'+sl.id;
+      const meals=S.menu[key]||[];
+      let chips='';
+      meals.forEach((m,idx)=>{
+        const r=recipeById(m.recipeId);
+        chips+='<div class="meal-chip" draggable="true" data-key="'+key+'" data-idx="'+idx+'" data-id="open-meal">'
+          +'<span class="t">'+esc(r?r.name:'(recepta eliminada)')+'</span>'
+          +'<span class="s">👥 '+m.diners+'</span>'
+          +'<button class="x" data-del-key="'+key+'" data-del-idx="'+idx+'" title="Elimina">✕</button></div>';
+      });
+      html+='<td class="slot'+(meals.length?'':' empty')+'" data-drop-key="'+key+'">'+chips
+        +'<button class="add-meal" data-add-key="'+key+'" title="Afegeix àpat">+</button></td>';
+    }
+    html+='</tr>';
+  }
+  tbl.innerHTML=html;
+}
+
+function pushMeal(key,meal){
+  (S.menu[key]=S.menu[key]||[]).push(meal);
+  save();renderMenu();markStale();
+}
+function removeMeal(key,idx){
+  const arr=S.menu[key]||[];
+  arr.splice(idx,1);
+  if(!arr.length)delete S.menu[key];
+  save();renderMenu();markStale();
+}
+function markStale(){
+  if(S.shopping.items.length){
+    S.shopping.stale=true;save();
+    updateShopStatus();
+  }
+}
+function updateShopStatus(){
+  const el=$('#shopStatus');if(!el)return;
+  if(S.shopping.stale&&S.shopping.items.length){
+    el.textContent='⚠ El menú ha canviat — «Actualitza quantitats»';
+    el.style.color='var(--danger)';
+  }else if(S.shopping.items.length){
+    el.textContent='✓ sincronitzada amb el menú';
+    el.style.color='var(--accent)';
+  }else{el.textContent='';}
+}
+
+/* picker d'àpat */
+function addMealFlow(key){
+  if(!S.recipes.length){
+    toast('Primer crea una recepta 🙂');
+    switchTab('recipes');
+    return;
+  }
+  openModal('<h2>Afegeix àpat</h2><input id="pickerSearch" placeholder="Cerca recepta…">'
+    +'<div id="pickerList" style="max-height:52vh;overflow-y:auto;margin-top:10px"></div>');
+  const list=$('#pickerList');
+  function draw(f){
+    f=(f||'').toLowerCase();
+    const rs=S.recipes.filter(r=>!f||r.name.toLowerCase().indexOf(f)>=0
+      ||r.ingredients.some(i=>i.name.toLowerCase().indexOf(f)>=0));
+    list.innerHTML=rs.map(r=>
+      '<div class="shop-item"><div style="flex:1"><b>'+esc(r.name)+'</b>'
+      +'<div class="muted tiny">'+r.servings+' racions · '+r.ingredients.length+' ingredients'
+      +(r.category?' · '+esc(r.category):'')+'</div></div>'
+      +'<div style="display:flex;gap:6px;align-items:center"><span class="muted tiny">👥</span>'
+      +'<input type="number" min="1" max="12" value="'+S.diners+'" style="width:58px;padding:4px" data-diners-input>'
+      +'<button class="btn btn-primary btn-sm" data-pick="'+r.id+'">Afegeix</button></div></div>'
+    ).join('')||'<p class="empty-hint">Cap resultat.</p>';
+  }
+  draw();
+  $('#pickerSearch').oninput=debounce(e=>draw(e.target.value),120);
+  list.addEventListener('click',e=>{
+    const b=e.target.closest('[data-pick]');if(!b)return;
+    const diners=Math.max(1,parseInt(b.closest('.shop-item').querySelector('[data-diners-input]').value,10)||S.diners);
+    pushMeal(key,{recipeId:b.dataset.pick,diners:diners});
+    closeModal();
+  });
+}
+
+/* editar àpat existent */
+function openMealEditor(key,idx){
+  const m=(S.menu[key]||[])[idx];if(!m)return;
+  const r=recipeById(m.recipeId);
+  openModal('<h2>'+(r?esc(r.name):'Àpat')+'</h2>'
+    +'<label>Comensals d\'aquest àpat</label>'
+    +'<input type="number" min="1" max="12" id="mealDiners" value="'+m.diners+'" style="max-width:110px">'
+    +'<details class="steps"><summary>Ingredients ('+(r?r.ingredients.length:0)+')</summary>'
+    +(r?'<ul>'+r.ingredients.map(i=>'<li>'+esc(i.qty||'')+' '+esc(i.unit||'')+' '+esc(i.name)+'</li>').join('')+'</ul>':'')
+    +(r&&r.steps?'<ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
+    +'</details>'
+    +'<div class="modal-foot"><button class="btn btn-danger btn-sm" id="mealDel">Elimina àpat</button>'
+    +'<button class="btn btn-primary" id="mealOk">D\'acord</button></div>');
+  $('#mealOk').onclick=()=>{m.diners=Math.max(1,parseInt($('#mealDiners').value,10)||2);save();renderMenu();markStale();closeModal();};
+  $('#mealDel').onclick=()=>{removeMeal(key,idx);closeModal();};
+}
+
+/* events taula menú (delegació) */
+$('#menuTable').addEventListener('click',e=>{
+  const del=e.target.closest('[data-del-key]');
+  if(del){removeMeal(del.dataset.delKey,+del.dataset.delIdx);return;}
+  const add=e.target.closest('[data-add-key]');
+  if(add){addMealFlow(add.dataset.addKey);return;}
+  const chip=e.target.closest('.meal-chip');
+  if(chip&&!e.target.closest('.x'))openMealEditor(chip.dataset.key,+chip.dataset.idx);
+});
+
+/* drag & drop global */
+let dragData=null;
+document.addEventListener('dragstart',e=>{
+  const chip=e.target.closest?e.target.closest('.meal-chip'):null;
+  const rc=e.target.closest?e.target.closest('.recipe-card'):null;
+  if(chip)dragData={type:'move',key:chip.dataset.key,idx:+chip.dataset.idx};
+  else if(rc){dragData={type:'new',recipeId:rc.dataset.id};rc.classList.add('dragging');}
+});
+document.addEventListener('dragend',()=>{$$('.recipe-card.dragging').forEach(x=>x.classList.remove('dragging'));});
+document.addEventListener('dragover',e=>{
+  const slot=e.target.closest?e.target.closest('.slot'):null;
+  if(slot&&dragData){e.preventDefault();slot.classList.add('dragover');}
+});
+document.addEventListener('dragleave',e=>{
+  const s=e.target.closest?e.target.closest('.slot'):null;
+  if(s)s.classList.remove('dragover');
+});
+document.addEventListener('drop',e=>{
+  const slot=e.target.closest?e.target.closest('.slot'):null;
+  if(!slot||!dragData)return;
+  e.preventDefault();slot.classList.remove('dragover');
+  const key=slot.dataset.dropKey;
+  if(dragData.type==='new'){
+    pushMeal(key,{recipeId:dragData.recipeId,diners:S.diners});
+  }else if(dragData.type==='move'&&dragData.key!==key){
+    const arr=S.menu[dragData.key]||[];
+    const m=arr.splice(dragData.idx,1)[0];
+    if(arr&&!arr.length)delete S.menu[dragData.key];
+    (S.menu[key]=S.menu[key]||[]).push(m);
+    save();renderMenu();markStale();
+  }
+  dragData=null;
+});
+
+/* navegació setmanal */
+$('#prevWeek').onclick=()=>{weekStart=new Date(weekStart.getTime()-7*86400000);S.ui.weekStart=iso(weekStart);save();renderWeekBar();renderMenu();};
+$('#nextWeek').onclick=()=>{weekStart=new Date(weekStart.getTime()+7*86400000);S.ui.weekStart=iso(weekStart);save();renderWeekBar();renderMenu();};
+$('#todayWeek').onclick=()=>{weekStart=mondayOf(new Date());S.ui.weekStart=iso(weekStart);save();renderWeekBar();renderMenu();};
+$('#dinersBtn').onclick=()=>{
+  openModal('<h2>Comensals per defecte</h2><p class="muted">S\'aplica quan afegeixes receptes al menú.</p>'
+    +'<input type="number" min="1" max="12" id="dinersInput" value="'+S.diners+'" style="max-width:120px">'
+    +'<div class="modal-foot"><span></span><button class="btn btn-primary" id="dinersOk">D\'acord</button></div>');
+  $('#dinersOk').onclick=()=>{S.diners=Math.max(1,parseInt($('#dinersInput').value,10)||2);save();renderWeekBar();closeModal();};
+};
+
+/* imprimir menú */
+$('#printMenuBtn').onclick=()=>{
+  let rows='';
+  for(const sl of SLOTS){
+    let cells='';
+    for(let i=0;i<7;i++){
+      const key=iso(new Date(weekStart.getTime()+i*86400000))+'|'+sl.id;
+      const txt=(S.menu[key]||[]).map(m=>{const r=recipeById(m.recipeId);return r?(r.name+' (×'+m.diners+')'):'—';}).join('<br>')||'—';
+      cells+='<td style="border:1px solid #999;padding:4px 6px;font-size:12px">'+txt+'</td>';
+    }
+    rows+='<tr><td style="border:1px solid #999;padding:4px 6px;font-weight:bold">'+sl.l+'</td>'+cells+'</tr>';
+  }
+  $('#printArea').innerHTML='<h2>Midweek — Menú '+fmtDate(weekStart)+' – '+fmtDate(new Date(weekStart.getTime()+6*86400000))+'</h2>'
+    +'<table style="border-collapse:collapse;min-width:90%"><tr><th></th>'+DAYS.map(d=>'<th style="padding:4px 6px">'+DAY_LONG[d]+'</th>').join('')+'</tr>'+rows+'</table>';
+  window.print();
+};
+
+/* ============================================================
+   RECEPTES
+   ============================================================ */
+function renderRecipeFilters(){
+  const sel=$('#recipeCatFilter');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">Totes les categories</option>'
+    +S.categories.map(c=>'<option'+(c===cur?' selected':'')+' value="'+esc(c)+'">'+esc(c)+'</option>').join('');
+}
+function renderRecipes(){
+  renderRecipeFilters();
+  const q=($('#recipeSearch').value||'').toLowerCase();
+  const catF=$('#recipeCatFilter').value;
+  const list=S.recipes.filter(r=>{
+    if(catF&&r.category!==catF)return false;
+    if(!q)return true;
+    return r.name.toLowerCase().indexOf(q)>=0||r.ingredients.some(i=>i.name.toLowerCase().indexOf(q)>=0);
+  });
+  $('#recipesEmpty').classList.toggle('hidden',S.recipes.length>0);
+  $('#recipesGrid').innerHTML=list.map(r=>
+    '<div class="recipe-card" draggable="true" data-id="'+r.id+'">'
+    +'<h3>'+esc(r.name)+'</h3>'
+    +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
+    +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+'</div>'
+    +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
+    +(r.ingredients.length>4?' …':'')+'</div>'
+    +'<div class="recipe-actions">'
+    +'<button class="btn btn-sm" data-view="'+r.id+'">Veure</button>'
+    +'<button class="btn btn-sm" data-edit="'+r.id+'">Edita</button>'
+    +'<button class="btn btn-sm btn-danger" data-del="'+r.id+'">✕</button>'
+    +'</div></div>'
+  ).join('');
+}
+
+$('#recipesGrid').addEventListener('click',e=>{
+  const v=e.target.closest('[data-view]');
+  if(v){viewRecipe(v.dataset.view);return;}
+  const ed=e.target.closest('[data-edit]');
+  if(ed){openRecipeModal(ed.dataset.edit);return;}
+  const dl=e.target.closest('[data-del]');
+  if(dl){
+    const r=recipeById(dl.dataset.del);
+    if(r&&confirm('Eliminar la recepta «'+r.name+'»? També desapareixerà del menú.')){
+      S.recipes=S.recipes.filter(x=>x.id!==r.id);
+      Object.keys(S.menu).forEach(k=>{S.menu[k]=(S.menu[k]||[]).filter(m=>m.recipeId!==r.id);if(!S.menu[k].length)delete S.menu[k];});
+      save();renderRecipes();renderMenu();markStale();
+    }
+  }
+});
+$('#recipeSearch').oninput=debounce(renderRecipes,150);
+$('#recipeCatFilter').onchange=renderRecipes;
+
+function viewRecipe(id){
+  const r=recipeById(id);if(!r)return;
+  openModal('<h2>'+esc(r.name)+'</h2>'
+    +'<div class="meta" style="margin-bottom:10px"><span class="tag cat">'+esc(r.category||'Altres')+'</span>'
+    +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+'</div>'
+    +'<h3>Ingredients</h3><ul>'+r.ingredients.map(i=>'<li>'+esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))+'</li>').join('')+'</ul>'
+    +(r.steps&&r.steps.length?'<h3>Preparació</h3><ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
+    +'<div class="modal-foot"><button class="btn btn-sm" id="dupR">Duplica</button><button class="btn btn-primary" id="okR">Tanca</button></div>');
+  $('#okR').onclick=closeModal;
+  $('#dupR').onclick=()=>{
+    const c=JSON.parse(JSON.stringify(r));c.id=uid();c.name=r.name+' (còpia)';
+    S.recipes.push(c);save();renderRecipes();closeModal();toast('Recepta duplicada');
+  };
+}
+
+function openRecipeModal(id,onSaved){
+  const r=id?recipeById(id):null;
+  const cats=S.categories;
+  openModal('<h2>'+(r?'Edita recepta':'Recepta nova')+'</h2>'
+    +'<div class="row"><div class="grow"><label>Nom</label><input id="rName" value="'+esc(r?r.name:'')+'"></div>'
+    +'<div style="width:110px"><label>Racions</label><input type="number" min="1" max="12" id="rServ" value="'+(r?r.servings:S.diners)+'"></div>'
+    +'<div style="width:100px"><label>Minuts</label><input type="number" min="0" id="rTime" value="'+(r&&r.time?r.time:'')+'"></div></div>'
+    +'<div class="row" style="margin-top:8px"><div style="min-width:220px"><label>Categoria</label>'
+    +'<select id="rCat">'+cats.map(c=>'<option'+(r&&r.category===c?' selected':'')+'>'+esc(c)+'</option>').join('')+'</select></div></div>'
+    +'<h3 style="margin-top:14px">Ingredients</h3>'
+    +'<div id="ingRows"></div>'
+    +'<button class="btn btn-sm" id="addIng">+ ingredient</button>'
+    +'<details class="steps"><summary>Passos de preparació (opcional)</summary>'
+    +'<textarea id="rSteps" rows="5" style="width:100%;margin-top:8px" placeholder="Un pas per línia…">'+esc(r?(r.steps||[]).join('\n'):'')+'</textarea></details>'
+    +'<div class="modal-foot"><span class="muted tiny">Arrossegable al menú un cop desada</span>'
+    +'<div style="display:flex;gap:8px"><button class="btn" id="rCancel">Cancel·la</button>'
+    +'<button class="btn btn-primary" id="rSave">Desa</button></div></div>');
+
+  const rows=$('#ingRows');
+  function addIngRow(ing){
+    const div=document.createElement('div');
+    div.className='frow ing-row';
+    div.innerHTML='<input placeholder="Ingredient" value="'+esc(ing?ing.name:'')+'" data-f="name">'
+      +'<input placeholder="Qty" value="'+esc(ing&&ing.qty!=null?ing.qty:'')+'" data-f="qty" inputmode="decimal">'
+      +'<select data-f="unit">'+['','g','kg','ml','l','unitats','cdsp','cspt','llauna','paquet'].map(u=>'<option'+(ing&&ing.unit===u?' selected':'')+'>'+u+'</option>').join('')+'</select>'
+      +'<button class="del-ing" title="Elimina" style="color:var(--danger);background:none;border:none;font-size:15px">✕</button>';
+    div.querySelector('.del-ing').onclick=()=>div.remove();
+    rows.appendChild(div);
+  }
+  if(!r||!r.ingredients.length)addIngRow(null);else r.ingredients.forEach(addIngRow);
+  $('#addIng').onclick=()=>addIngRow(null);
+
+  $('#rCancel').onclick=closeModal;
+  $('#rSave').onclick=()=>{
+    const name=$('#rName').value.trim();
+    if(!name){alert('Posa-li un nom a la recepta.');return;}
+    const ingredients=$$('#ingRows .ing-row').map(row=>({
+      name:row.querySelector('[data-f=name]').value.trim(),
+      qty:parseNum(row.querySelector('[data-f=qty]').value),
+      unit:row.querySelector('[data-f=unit]').value
+    })).filter(i=>i.name);
+    if(!ingredients.length){alert('Afegeix com a mínim un ingredient.');return;}
+    const steps=$('#rSteps').value.split('\n').map(x=>x.trim()).filter(Boolean);
+    const data={
+      name:name,
+      servings:Math.max(1,parseInt($('#rServ').value,10)||2),
+      time:parseInt($('#rTime').value,10)||null,
+      category:$('#rCat').value,
+      ingredients:ingredients,
+      steps:steps
+    };
+    if(r)Object.assign(r,data);
+    else S.recipes.push(Object.assign({id:uid()},data));
+    save();renderRecipes();closeModal();
+    toast(r?'Recepta actualitzada ✓':'Recepta creada ✓');
+    if(onSaved)onSaved();
+  };
+}
+$('#newRecipeBtn').onclick=()=>openRecipeModal(null);
+
+/* ============================================================
+   LLISTA DE LA COMPRA
+   ============================================================ */
+/* acumula ingredients de totes les receptes del menú sencer */
+function collectMenuIngredients(){
+  const map=new Map(); /* key name|unit -> {qty total, recipes[]} */
+  Object.keys(S.menu).forEach(key=>{
+    (S.menu[key]||[]).forEach(meal=>{
+      const factor=meal.diners/(recipeById(meal.recipeId)?.servings||meal.diners||2);
+      const r=recipeById(meal.recipeId);if(!r)return;
+      r.ingredients.forEach(ing=>{
+        const k=(ing.name.trim().toLowerCase())+'|'+(ing.unit||'');
+        const cur=map.get(k)||{name:ing.name.trim(),unit:ing.unit||'',qty:0,from:new Set()};
+        const q=(typeof ing.qty==='number'&&isFinite(ing.qty))?ing.qty*factor:0;
+        cur.qty+=q;
+        cur.from.add(r.name);
+        map.set(k,cur);
+      });
+    });
+  });
+  return Array.from(map.values());
+}
+
+function regenerateShoppingList(){
+  const prev=new Map(S.shopping.items.map(i=>[i.name.toLowerCase()+'|'+(i.unit||''),i]));
+  const collected=collectMenuIngredients();
+  const items=[];
+  collected.forEach(c=>{
+    const key=c.name.toLowerCase()+'|'+c.unit;
+    const old=prev.get(key);
+    const cat=guessCategory(c.name);
+    items.push({
+      id:old?old.id:uid(),
+      name:c.name,unit:c.unit,
+      qty:roundQty(c.qty),
+      category:old?old.category:cat,
+      done:old?old.done:false,
+      from:Array.from(c.from)
+    });
+  });
+  /* mantén els extra manuals que ja no venen del menú */
+  S.shopping.items.forEach(o=>{
+    if(o.extra){
+      const still=items.some(i=>i.id===o.id);
+      if(!still)items.push(o);
+    }
+  });
+  S.shopping.items=items;
+  S.shopping.stale=false;
+  save();renderShopping();updateShopBadge();updateShopStatus();
+  toast('Llista generada: '+items.length+' productes');
+}
+function roundQty(q){
+  if(!q)return null;
+  if(q>=100)return Math.round(q);
+  if(q>=10)return Math.round(q*2)/2;
+  return Math.round(q*4)/4;
+}
+function guessCategory(name){
+  const n=name.toLowerCase();
+  const rules=[
+    [/tomàquet|enciam|ceb|pastanaga|patata|plàtan|poma|pera|tarong|llimona|albercoc|cirera|maduix|espina|bleda|carbass|pebrot|allo|ceba|fruit|verdur|mongeta verda|api|porr|all|iogurt grenc/i,'Fruita i verdura'],
+    [/pollastre|vedella|porc|llom|bacallà|salmó|tonyina|lluç|gamb|musclo|carn|peix|truita fuma|hamburgues|botifar|pernil|fuet|xicra/i,'Carn i peix'],
+    [/llet|mantega|formatge|iogurt|ou|kefir|nata|mozzarella|ratatouille|parmesà/i,'Làctics i ous'],
+    [/pa|croissant|baguet|magdalena|brio|xocolata|galeta|farina|pasta espagueti|macarró|arròs|quinoa|cuscús|llegum|llentia|cigron|fesol sec|café|cafè|sucre|oli|vinagre|sal|espècia|llauna|tomàquet triturat|mel|crema de/i,'Despensa'],
+    [/aigua|suc|refresc|vi |vi$|cervesa|cava|tònica|beguda/i,'Begudes'],
+    [/congel|gelat|pèsol congel|verdura congel|pizza congel/i,'Congelats'],
+    [/paper|detergent|netej|estropall|lavavajilles|rentadora|aixeta|esponja|llençol|gel hidro/i,'Neteja'],
+  ];
+  for(const [re,cat] of rules)if(re.test(n))return cat;
+  return 'Altres';
+}
+
+function renderShopping(){
+  const wrap=$('#shopList');
+  const items=S.shopping.items;
+  $('#shopEmpty').classList.toggle('hidden',items.length>0);
+  updateShopStatus();
+  const cats=S.categories.filter(c=>items.some(i=>(i.category||'Altres')===c));
+  const otherItems=items.filter(i=>!cats.includes(i.category||'Altres'));
+  const groups=[...cats.map(c=>[c,items.filter(i=>(i.category||'Altres')===c)]),...(otherItems.length?[['Altres',otherItems]]:[])];
+  wrap.innerHTML=groups.map(([cat,list])=>{
+    list.sort((a,b)=>(a.done-b.done)||a.name.localeCompare(b.name));
+    return '<div style="break-inside:avoid;margin-bottom:14px"><h3 style="margin:0 0 4px">'+esc(cat)+'</h3>'
+      +list.map(i=>
+        '<div class="shop-item'+(i.done?' done':'')+'" data-id="'+i.id+'">'
+        +'<input type="checkbox"'+(i.done?' checked':'')+' data-check="'+i.id+'">'
+        +'<label data-check="'+i.id+'">'+esc(i.name)
+        +(i.from&&i.from.length?' <span class="src-note">('+esc(i.from.join(', '))+')</span>':'')
+        +(i.extra?' <span class="src-note">· extra</span>':'')+'</label>'
+        +(i.qty?'<span class="qty-badge">'+fmtQty(i)+(i.unit?' '+esc(i.unit):'')+'</span>':'')
+        +'<button class="del-shop" data-delshop="'+i.id+'" title="Elimina" style="color:var(--danger);background:none;border:none;font-size:13px;padding:2px 4px">✕</button>'
+        +'</div>').join('')
+      +'</div>';
+  }).join('');
+}
+function fmtQty(i){return String(i.qty).replace('.',',');}
+
+$('#shopList').addEventListener('click',e=>{
+  const chk=e.target.closest('[data-check]');
+  if(chk){
+    const it=byId(S.shopping.items,chk.dataset.check);
+    it.done=!it.done;save();renderShopping();updateShopBadge();return;
+  }
+  const del=e.target.closest('[data-delshop]');
+  if(del){
+    S.shopping.items=S.shopping.items.filter(i=>i.id!==del.dataset.delshop);
+    save();renderShopping();updateShopBadge();
+  }
+});
+$('#genShopBtn').onclick=regenerateShoppingList;
+$('#clearShopBtn').onclick=()=>{
+  if(confirm('Buidar tota la llista de la compra?')){
+    S.shopping={items:[],stale:false};save();renderShopping();updateShopBadge();
+  }
+};
+$('#updateQtyBtn').onclick=regenerateShoppingList;
+$('#printShopBtn').onclick=()=>{
+  const items=S.shopping.items;
+  if(!items.length){toast('La llista és buida.');return;}
+  $('#printArea').innerHTML='<h2>Midweek — Llista de la compra</h2><ul style="font-size:14px;line-height:1.9">'
+    +items.map(i=>'<li'+(i.done?' style="opacity:.45;text-decoration:line-through"':'')+'>'
+      +(i.qty?'<b>'+fmtQty(i)+(i.unit?' '+esc(i.unit):'')+'</b> ':'')+esc(i.name)
+      +(i.from&&i.from.length?' <small>('+esc(i.from.join(', '))+')</small>':'')+'</li>').join('')+'</ul>';
+  window.print();
+};
+$('#toReceiptBtn').onclick=()=>{
+  const pending=S.shopping.items.filter(i=>!i.done);
+  if(!pending.length){toast('Marca primer els productes que has comprat.');switchTab('receipts');return;}
+  startDraftFromCart(pending);
+};
+
+/* extra manual */
+function fillExtraCat(){
+  const sel=$('#extraCat');
+  sel.innerHTML=S.categories.map(c=>'<option>'+esc(c)+'</option>').join('');
+}
+$('#addExtraBtn').onclick=()=>{
+  const name=$('#extraName').value.trim();
+  if(!name)return;
+  S.shopping.items.push({id:uid(),name:name,qty:null,unit:'',category:$('#extraCat').value,done:false,extra:true,from:[]});
+  $('#extraName').value='';save();renderShopping();updateShopBadge();
+  toast('Afegit a la llista');
+};
+$('#extraName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#addExtraBtn').click();});

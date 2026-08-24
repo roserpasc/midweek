@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5E8772">
+<title>Midweek · Menú setmanal per a dos</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="app">
+  <h1>🥕 Midweek<span class="dot">.</span></h1>
+  <nav class="tabs" id="tabs">
+    <button data-tab="menu" class="active">Menú</button>
+    <button data-tab="recipes">Receptes</button>
+    <button data-tab="shop">Compra<span id="tabShopCount"></span></button>
+    <button data-tab="receipts">Compres &amp; Tiquets</button>
+    <button data-tab="settings">Opcions</button>
+  </nav>
+  <div class="spacer"></div>
+  <div class="syncwrap"><div id="syncDot"></div><span id="syncLabel">Local</span></div>
+</header>
+
+<main>
+
+<!-- ================= MENÚ ================= -->
+<section id="tab-menu">
+  <div class="weekbar">
+    <button class="btn-sm" id="prevWeek">‹</button>
+    <span class="pill">Setmana del <b id="weekLabel"></b></span>
+    <button class="btn-sm" id="nextWeek">›</button>
+    <button class="btn-sm" id="todayWeek">Avui</button>
+    <div class="spacer"></div>
+    <span class="muted">Comensals:</span>
+    <button class="pill" id="dinersBtn" title="Nombre de persones per defecte del menú">👥 <b id="dinersVal">2</b></button>
+    <button class="btn-primary btn-sm" id="genShopBtn">Generar llista de compra</button>
+    <button class="btn-sm" id="printMenuBtn">🖨 Imprimir menú</button>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table class="menu" id="menuTable"></table>
+    <p class="muted hint-line">Arrossega receptes des de Receptes, o clica el + de cada àpat. Clica una pastilla per editar-la.</p>
+  </div>
+</section>
+
+<!-- ================= RECEPTES ================= -->
+<section id="tab-recipes" class="hidden">
+  <div class="toolbar">
+    <input id="recipeSearch" placeholder="Cerca recepta o ingredient…" style="max-width:380px">
+    <select id="recipeCatFilter" style="max-width:200px"><option value="">Totes les categories</option></select>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="newRecipeBtn">+ Recepta nova</button>
+  </div>
+  <div class="recipes-grid" id="recipesGrid"></div>
+  <p class="empty-hint hidden" id="recipesEmpty">Encara no hi ha receptes — clica «+ Recepta nova».</p>
+</section>
+
+<!-- ================= COMPRA ================= -->
+<section id="tab-shop" class="hidden">
+  <div class="toolbar">
+    <h2 style="margin:0">Llista de la compra</h2>
+    <span class="muted" id="shopStatus"></span>
+    <div class="spacer"></div>
+    <button class="btn-sm" id="updateQtyBtn">Actualitza quantitats</button>
+    <button class="btn-sm btn-danger" id="clearShopBtn">Buida</button>
+    <button class="btn-sm" id="printShopBtn">🖨 Imprimir</button>
+    <button class="btn-primary btn-sm" id="toReceiptBtn">Registrar compra →</button>
+  </div>
+  <div class="card">
+    <div class="extra-add">
+      <input id="extraName" placeholder="Afegeix un producte extra (ex. paper higiènic)…">
+      <select id="extraCat" style="max-width:180px"></select>
+      <button class="btn-primary" id="addExtraBtn">Afegeix</button>
+    </div>
+    <hr class="sep">
+    <div class="shop-cols" id="shopList"></div>
+    <p class="empty-hint hidden" id="shopEmpty">La llista és buida. Genera-la des del Menú o afegeix productes extra.</p>
+  </div>
+</section>
+
+<!-- ================= TIQUETS ================= -->
+<section id="tab-receipts" class="hidden">
+  <div class="grid-2">
+    <div>
+      <div class="card scan-box">
+        <h2 style="margin-top:0">📸 Escaneja un tiquet</h2>
+        <p>Fes una foto del tiquet o puja-la. La IA n'extreu articles i preus; tu ho revises abans de desar.</p>
+        <div class="row center">
+          <label class="btn btn-primary file-btn">📷 Fer foto<input type="file" accept="image/*" capture="environment" id="cameraInput"></label>
+          <label class="btn btn-primary file-btn">🖼 Pujar imatge<input type="file" accept="image/*" id="fileInput"></label>
+          <button id="pasteBtn" class="btn btn-sm">📋 Enganxa (Ctrl+V)</button>
+        </div>
+        <p class="muted tiny">Cal una clau d'OpenRouter (pestanya Opcions). La imatge només s'envia al proveïdor d'IA que triis.</p>
+        <div class="progress-bar hidden" id="scanProgress"><div></div></div>
+      </div>
+
+      <div class="card" id="draftCard">
+        <div class="toolbar">
+          <h2 style="margin:0">Esborrany de compra</h2>
+          <span class="status-tag st-pending hidden" id="draftStatus"></span>
+          <div class="spacer"></div>
+          <span class="big-total" id="draftTotal">0,00 €</span>
+        </div>
+        <div id="aiBannerSlot"></div>
+        <div id="draftPhotoSlot"></div>
+        <div class="row" style="margin:10px 0">
+          <div><label>Data</label><input type="date" id="draftDate"></div>
+          <div class="grow"><label>Tenda</label><input id="draftStore" placeholder="ex. Mercadona"></div>
+          <div><label>Pagat per</label><select id="draftPayer"></select></div>
+        </div>
+        <table class="items"><tbody id="draftTable"></tbody></table>
+        <button class="btn btn-sm" id="addDraftItemBtn">+ línia</button>
+        <div class="modal-foot">
+          <span class="muted tiny" id="draftHint"></span>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-danger btn-sm" id="discardDraftBtn">Descarta</button>
+            <button class="btn btn-primary" id="saveReceiptBtn">✓ Desa la compra</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="receiptsList"></div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Qui sou?</h2>
+        <div class="people-row" id="peopleRow"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn btn-sm" id="addPersonBtn">+ persona</button>
+          <span class="muted tiny">El color identifica cada persona als repartiments</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Balanç</h2>
+        <div id="balanceBody"><p class="empty-hint">Sense compres encara.</p></div>
+        <p class="muted tiny">Verd = t'han de tornar · Vermell = has de pagar</p>
+        <button class="btn btn-sm" id="settleBtn" style="margin-top:6px">Liquidar comptes</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPCIONS ================= -->
+<section id="tab-settings" class="hidden">
+  <div class="card" style="max-width:680px">
+    <h2>IA per escanejar tiquets</h2>
+    <p class="muted">Les fotos dels tiquets s'envien a un model de visió via OpenRouter per extreure'n articles, preus i total. La clau es guarda només en aquest navegador.</p>
+    <div class="row">
+      <div class="grow"><label>Clau d'API OpenRouter (sk-or-…)</label>
+        <input type="password" id="apiKeyInput" placeholder="sk-or-v1-…" autocomplete="off">
+      </div>
+      <div style="min-width:250px"><label>Model de visió</label>
+        <select id="modelSelect">
+          <option value="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free">Nemotron 3 Nano Omni 30B — gratuït (recomanat)</option>
+          <option value="google/gemma-4-26b-a4b-it:free">Gemma 4 26B — gratuït</option>
+          <option value="google/gemini-2.5-flash">Gemini 2.5 Flash (ràpid, de pagament)</option>
+          <option value="google/gemini-2.5-pro">Gemini 2.5 Pro (precís, de pagament)</option>
+          <option value="openai/gpt-4o-mini">GPT-4o mini (de pagament)</option>
+        </select>
+      </div>
+      <div style="align-self:end"><button class="btn" id="testKeyBtn">Prova</button></div>
+    </div>
+    <div id="keyTestResult" class="muted" style="margin-top:8px"></div>
+    <hr class="sep">
+    <h3>Categories de productes</h3>
+    <div class="chip-list" id="catChips"></div>
+    <div class="row" style="margin-top:10px">
+      <input id="newCatInput" placeholder="Nova categoria…" style="max-width:230px">
+      <button class="btn btn-sm" id="addCatBtn">Afegeix categoria</button>
+    </div>
+    <hr class="sep">
+    <h3>Dades</h3>
+    <div class="row">
+      <button class="btn" id="exportBtn">Exportar JSON</button>
+      <label class="btn file-btn-outline">Importar JSON<input type="file" accept=".json,application/json" id="importFile"></label>
+      <button class="btn btn-danger" id="wipeBtn">Esborra-ho tot</button>
+    </div>
+    <p class="muted" style="margin-top:10px" id="storageInfo"></p>
+  </div>
+</section>
+
+</main>
+
+<div id="printArea"></div>
+
+<div class="modal-bg hidden" id="modalBg">
+  <div class="modal" id="modalBox"></div>
+</div>
+<div id="toastSlot"></div>
+
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="receipts.js"></script>
+</body>
+</html>
