@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    paths:
+      - 'manifest.json'
+      - 'twa-manifest.json'
+      - '.github/workflows/build-apk.yml'
 
 jobs:
   build:
@@ -11,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Java 17
+      - name: Setup Java 17 (temurin)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -20,24 +24,29 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
 
-      - name: Build TWA / APK (no interactiu)
+      - name: Preparar configuracio de Bubblewrap (sense prompts)
         env:
-          BUBBLEWRAP_JDK: /usr/lib/jvm/temurin-17-jdk-amd64
-          ANDROID_HOME: /usr/local/lib/android/sdk
+          JAVA_HOME: ${{ env.JAVA_HOME || '/usr/lib/jvm/temurin-17-jdk-amd64' }}
         run: |
           set -e
-          bubblewrap init --manifest https://roserpasc.github.io/midweek/manifest.json \
-            --directory=. --skipPwaValidation \
-            < /dev/null || true
-          # si init no ha generat twa-manifest.json (per prompt), el creem a mà
+          JDK="$(dirname "$(dirname "$(readlink -f "$(which java)")")")"
+          echo "JDK detectat: $JDK"
+          mkdir -p ~/.bubblewrap
+          # aixo evita TOTS els prompts d'instal·lacio de JDK/SDK
+          cat > ~/.bubblewrap/config.json <<EOF
+          {
+            "jdkPath": "$JDK",
+            "androidSdkPath": "$ANDROID_HOME"
+          }
+          EOF
+          cat ~/.bubblewrap/config.json
+
+      - name: Generar twa-manifest.json i keystore si no existeixen
+        run: |
+          set -e
           if [ ! -f twa-manifest.json ]; then
             cat > twa-manifest.json <<'EOF'
           {
@@ -79,24 +88,22 @@ jobs:
           }
           EOF
           fi
-          # signing key: generar si no existeix (password determinista de demo; per publicar a Play Store cal canviar-la)
           if [ ! -f android.keystore ]; then
-            bubblewrap doctor || true
-            printf "midweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\nmidweek123\ny\n" | bubblewrap create --skipVersionUpgrade --directory=. || \
+            # keystore determinista per a demo (NO per a Play Store en produccio)
             keytool -genkeypair -v -keystore android.keystore -alias android \
               -keyalg RSA -keysize 2048 -validity 10950 \
               -storepass midweek123 -keypass midweek123 \
               -dname "CN=Midweek, OU=Midweek, O=Midweek, L=Barcelona, S=Catalunya, C=ES"
           fi
-          bubblewrap build --skipPwaValidation --directory=. --manifest https://roserpasc.github.io/midweek/manifest.json
+
+      - name: Build APK
+        run: bubblewrap build --skipPwaValidation --directory=.
 
       - name: Collect APK
         run: |
           mkdir -p out
           find . -maxdepth 2 -name "*.apk" -exec cp {} out/ \;
           ls -la out/
-          # també el keystore per poder firmar futures versions
-          if [ -f android.keystore ]; then cp android.keystore out/; fi
 
       - uses: actions/upload-artifact@v4
         with:
