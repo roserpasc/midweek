@@ -1,0 +1,39 @@
+name: Build Android APK (TWA)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Build TWA / APK
+        run: |
+          # inicialitzar amb el manifest de la PWA (sense interactiu)
+          bubblewrap init --manifest https://roserpasc.github.io/midweek/manifest.json --directory=. --skipPwaValidation
+          # signing key determinista per a CI
+          bubblewrap updateConfig --appVersionName "1.0.0" --appVersionCode 1 --directory=.
+          bubblewrap build --skipPwaValidation --manifest https://roserpasc.github.io/midweek/manifest.json --directory=.
+
+      - name: Rename artifact
+        run: |
+          mkdir -p out
+          find . -name "app-release-signed.apk" -exec cp {} out/midweek.apk \;
+          ls -la out/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: midweek-apk
+          path: out/midweek.apk
