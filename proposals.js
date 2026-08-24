@@ -120,12 +120,6 @@ function generateProposal(modeKey){
 
   for(let di=0;di<7;di++){
     for(const slot of slots){
-      /* cap de setmana: un dinar i un sopar fora (lliures) per defecte? no —
-         només proposem; l'usuari editarà. Dissabte i diumenge esmorzar = lliure */
-      if(slot==='esmorzar'&&(di===5||di===6)){
-        setFree(newMenu,days[di],slot,pickFree(mode,'esmorzar'));
-        continue;
-      }
       newMenu[days[di]+'|'+slot]=[pick(slot,di)];
     }
   }

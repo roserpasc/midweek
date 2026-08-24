@@ -586,7 +586,7 @@ boot(true);
     /* 1. pestanyes existeixen */
     assert('tabs-present',$$('nav.tabs button').length===5);
     /* 2. menú renderitzat: 3 slots × 7 dies = 21 cel·les */
-    assert('menu-cells',$$('td.slot').length===21,String($$('td.slot').length));
+    assert('menu-cells',$$('td.slot').length===14,String($$('td.slot').length));
     /* 3. seed creat */
     assert('seed-recipes',S.recipes.length>=6,String(S.recipes.length));
     /* 4. afegir àpat programàticament */
@@ -628,7 +628,7 @@ boot(true);
     assert('persist',saved.receipts.length===1&&saved.recipes.length>=6);
     /* 13. canvi de setmana manté cel·les */
     $('#nextWeek').click();$('#prevWeek').click();
-    assert('week-nav',$$('td.slot').length===21);
+    assert('week-nav',$$('td.slot').length===14);
     /* 14. extractJson */
     assert('extract-json-fence',extractJson('```json\n{"a":1}\n```')==='{\"a\":1}');
     assert('extract-json-inline',extractJson('blabla {"b":2} blabla')==='{\"b\":2}');
@@ -639,6 +639,7 @@ boot(true);
     const fails=window.__mwResults.filter(r=>!r.ok);
     console.log('SELFTEST DONE — '+(window.__mwResults.length-fails.length)+'/'+window.__mwResults.length+' OK');
     document.title='TESTS '+(fails.length?'FAIL('+fails.length+')':'OK')+' — Midweek';
+    if(fails.length){document.body.setAttribute('data-test-fails',JSON.stringify(fails));console.table(fails);}
     window.__testsDone=true;
   }catch(e){
     console.error('SELFTEST CRASH',e);

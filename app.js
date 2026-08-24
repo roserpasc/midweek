@@ -7,7 +7,7 @@
 /* ---------------- constants & helpers ---------------- */
 const DAYS=['dl','dt','dc','dj','dv','ds','dg'];
 const DAY_LONG={dl:'dilluns',dt:'dimarts',dc:'dimecres',dj:'dijous',dv:'divendres',ds:'dissabte',dg:'diumenge'};
-const SLOTS=[{id:'esmorzar',l:'Esmorzar'},{id:'dinars',l:'Dinar'},{id:'sopars',l:'Sopar'}];
+const SLOTS=[{id:'dinars',l:'Dinar'},{id:'sopars',l:'Sopar'}];
 
 function mondayOf(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x;}
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
