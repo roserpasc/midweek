@@ -97,10 +97,11 @@ jobs:
           fi
 
       - name: Build APK
+        shell: bash
         run: |
-          # respondre 'n' a la pregunta de regeneracio (el projecte es correcte)
-          printf 'n
-' | bubblewrap build --skipPwaValidation --directory=. ||           bubblewrap build --skipPwaValidation --directory=.
+          # inquirer (bubblewrap) exigeix TTY: usem `script` com a pseudo-terminal
+          printf 'n\n' | script -qec "bubblewrap build --skipPwaValidation --directory=." /dev/null
+          ls -la *.apk || true
 
       - name: Collect APK
         run: |
