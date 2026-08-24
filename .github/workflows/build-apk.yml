@@ -99,9 +99,9 @@ jobs:
       - name: Build APK
         shell: bash
         run: |
-          # inquirer (bubblewrap) exigeix TTY: usem `script` com a pseudo-terminal.
-          # respostes: 'n' (no regenerar) + password del keystore (x2 si pregunta alias)
-          printf 'n\nmidweek123\nmidweek123\nmidweek123\n' | script -qec "bubblewrap build --skipPwaValidation --directory=." /dev/null
+          # inquirer exigeix TTY (script) i respostes amb temps per aparèixer els prompts:
+          # 'n' (regenerar?) → password keystore → password alias
+          ( sleep 12; printf 'n\n'; sleep 4; printf 'midweek123\n'; sleep 4; printf 'midweek123\n'; sleep 240 ) | script -qec "bubblewrap build --skipPwaValidation --directory=." /dev/null
           ls -la *.apk || true
 
       - name: Collect APK
