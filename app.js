@@ -537,24 +537,127 @@ $('#newRecipeBtn').onclick=()=>openRecipeModal(null);
    LLISTA DE LA COMPRA
    ============================================================ */
 /* acumula ingredients de totes les receptes del menú sencer */
+
+/* ================= MOTOR DE LLISTA v2 =================
+   1) Agrupació per ALIMENT BASE: "tomàquet triturat", "tomàquets cherry" i "2 tomàquets"
+      es fusionen en una sola entrada "Tomàquets" amb les variants com a nota.
+   2) Despensa (ingredients que sempre hi ha a casa): no generen ítem; surten
+      en UNA sola línia al final de la llista. */
+
+const PANTRY_DEFAULT=["sal","sucre","oli","pebre","orenga","alfàbrega","llorer","farina","pebre vermell","clau","vinagre"];
+function pantryList(){
+  if(!S.settings.pantry||!Array.isArray(S.settings.pantry)||!S.settings.pantry.length)
+    S.settings.pantry=PANTRY_DEFAULT.slice();
+  return S.settings.pantry;
+}
+/* arrel d'aliment: treu plurals, articles, qualifiers i mapatja sinònims a base canònica */
+const FOOD_BASE=[
+  /* [regex sobre el nom sencer en minúscula, nom base canònic] — ordre MATTER: primer els específics */
+  [/tom[aà]quet[s]?\s+(triturat|frit|ratllat|concentrat|sec|cherry|pera|de penjar)/,'tomàquet'],
+  [/tom[aà]quet|tomassada/,'tomàquet'],
+  [/ceba\s*(de figuera|tendra|dolça|morada|roja)?/,'ceba'],
+  [/all(s|i)?\s*(fresc|tendr|sec|en pols)?/,'all'],
+  [/patat(a|es)|patata/,'patata'],
+  [/pastanag(a|ues)/,'pastanaga'],
+  [/pebrot(s)?\s*(vermell|verd|choricero|piquillo)?/,'pebrot'],
+  [/carbass(o|ó|ons)/,'carbassó'],
+  [/alberg[ií]ni(a|es)/,'albergínia'],
+  [/espinac(s)?/,'espinacs'],
+  [/bled(es|a)/,'bledes'],
+  [/enciam(s)?/,'enciam'],
+  [/ruca|rúcula/,'ruca'],
+  [/porro(s)?/,'porro'],
+  [/api/,'api'],
+  [/carxof(a|es)/,'carxofa'],
+  [/bolets|champiny[oó]ns|xampinyons|rossinyols|trompetes|camagrocs|cames de perdiu/,'bolets'],
+  [/monget(es|a|es)\s*(verdes|tendres)?|jud[ií]es verdes/,'mongetes tendres'],
+  [/monget(es|a|es)\s*(blanques|negres|roges|seques)?/,'mongetes seques'],
+  [/p[èe]sol(s)?/,'pèsols'],
+  [/llent(i|í)(es|a)s?/,'llenties'],
+  [/cigron(s)?/,'cigrons'],
+  [/fesol(s)?/,'fesols'],
+  [/arr[oò]z?|arr[oò]s/,'arròs'],
+  [/esparguetis|macarrons|fideus|tallarins|noodles|penne|pasta\b/,'pasta'],
+  [/pa\b|pan\b|molla|brioix|baguet/,'pa'],
+  [/llet\b(entera|semidesnatada|desnatada|de coco)?/,'llet'],
+  [/mantega/,'mantega'],
+  [/formatge\s*(fresc|de cabra|blau|crema|ratllat|manxego|parmesà|mozzarella|mató)?|parmesà|mozzarella|mascarpone/,'formatge'],
+  [/iou?rt?|iogurt|yogur/,'iogurt'],
+  [/ou(s)?\b|ous/,'ous'],
+  [/nata/,'nata'],
+  [/pollastre|pit de pollastre|muslos de pollastre|aletes de pollastre/,'pollastre'],
+  [/conill/,'conill'],
+  [/vedella|ternera|carn picada|hamburguesa/,'vedella'],
+  [/porc|llom|xoriço|botifarra|pernil|bacó|panceta|costel·la|xulleta/,'carn de porc'],
+  [/xai|corder/,'xai'],
+  [/bacallà/,'bacallà'],
+  [/salm[oó]/,'salmó'],
+  [/tonyina|bon[ií]tol/,'tonyina'],
+  [/lluç|merluça|pescadilla/,'lluç'],
+  [/gamb(es|a)|llagostins|gambes/,'gambes i llagostins'],
+  [/muscle(s)?|mejillones/,'muscles'],
+  [/clo[iï]ss(es|a)/,'cloïsses'],
+  [/calamar(s)?|s[ií]pia|pop\b/,'calamar i sípia'],
+  [/sardin(es|a)|seitons|anxov(es|a)/,'sardines'],
+  [/rape|llenguado|llobarro|dorada|verat|jurel|truita|galera|gamba blanca/,'peix blanc i blau'],
+  [/ametl·la|ametlla|avellana|nou\b|nous|pinyons|pistatx|llavors/,'fruits secs'],
+  [/panses|prunes seques|orejones|figues seques|d[aà]tils/,'fruita seca'],
+  [/oli d'?oliva|oli de gira-sol|^oli$|oli vegetal/,'oli'],
+  [/vinagre/,'vinagre'],
+  [/sucre\s*(blanc|morè|glas)?|^sucre$/,'sucre'],
+  [/farina\b/,'farina'],
+  [/sal\b/,'sal'],
+  [/pebre vermell|paprika/,'pebre vermell'],
+  [/pebre\b( negre| blanc)?/,'pebre'],
+  [/orenga|farigola|roman[ií]|julivert|alf[aà]brega|llorer|anet|com[ií]|safr[aà]|cura[cç]ao|herbes/,'herbes i espècies'],
+  [/caldo|brou|fumet/,'brou'],
+  [/vi blanc|vi negre|vi ranci|xerès|cava|cervesa/,'begudes alcohòliques'],
+  [/aigua/,'aigua'],
+];
+function foodBase(rawName){
+  const n=String(rawName||'').toLowerCase().trim();
+  for(const [re,base] of FOOD_BASE){ if(re.test(n)) return base; }
+  /* sense regla: retalla qualifiers freqüents i retorna el substantiu principal */
+  const cleaned=n.replace(/\b(fresc|fresca|frescos|fresques|picat|picada|trossejat|ratllat|pelat|en\s+\w+|de\s+la\s+casa|extra)\b/g,'').trim();
+  const first=cleaned.split(/[\s,]+/).slice(0,2).join(' ');
+  return first||cleaned||n;
+}
+function isPantryItem(name){
+  const base=foodBase(name);
+  return pantryList().some(p=>{
+    const pb=p.toLowerCase().trim();
+    return base===pb||base.indexOf(pb)>=0||pb.indexOf(base)>=0&&base.length>3;
+  });
+}
+
 function collectMenuIngredients(){
-  const map=new Map(); /* key name|unit -> {qty total, recipes[]} */
+  const map=new Map(); /* key base|unit -> {qty total, variants[], recipes[]} */
   Object.keys(S.menu).forEach(key=>{
     (S.menu[key]||[]).forEach(meal=>{
       const r=recipeById(meal.recipeId);if(!r)return; /* àpats lliures: res a comprar */
       const factor=meal.diners/(r.servings||meal.diners||2);
       r.ingredients.forEach(ing=>{
-        const k=(ing.name.trim().toLowerCase())+'|'+(ing.unit||'');
-        const cur=map.get(k)||{name:ing.name.trim(),unit:ing.unit||'',qty:0,from:new Set()};
+        const rawName=ing.name.trim();
+        if(isPantryItem(rawName))return; /* despesa: va a la línia final, no és ítem */
+        const base=foodBase(rawName);
+        const unit=(ing.unit||'').trim();
+        const k=base+'|'+unit;
+        const cur=map.get(k)||{name:capFirst(base),unit:unit,qty:0,variants:new Map(),from:new Set()};
         const q=(typeof ing.qty==='number'&&isFinite(ing.qty))?ing.qty*factor:0;
         cur.qty+=q;
+        if(rawName.toLowerCase()!==base.toLowerCase())cur.variants.set(rawName.toLowerCase(),rawName);
         cur.from.add(r.name);
         map.set(k,cur);
       });
     });
   });
-  return Array.from(map.values());
+  /* nota de variants: fins a 3 noms originals diferents */
+  return Array.from(map.values()).map(c=>({
+    name:c.name,unit:c.unit,qty:c.qty,from:c.from,
+    note:Array.from(c.variants.values()).slice(0,3)
+  }));
 }
+function capFirst(x){return x?x.charAt(0).toUpperCase()+x.slice(1):x;}
 
 function regenerateShoppingList(){
   const prev=new Map(S.shopping.items.map(i=>[i.name.toLowerCase()+'|'+(i.unit||''),i]));
@@ -570,9 +673,19 @@ function regenerateShoppingList(){
       qty:roundQty(c.qty),
       category:old?old.category:cat,
       done:old?old.done:false,
-      from:Array.from(c.from)
+      from:Array.from(c.from),
+      note:c.note||[]
     });
   });
+  /* recompte de despensa (no són ítems): per a la línia final */
+  const pantryUsed=new Set();
+  Object.keys(S.menu).forEach(key=>{
+    (S.menu[key]||[]).forEach(meal=>{
+      const r=recipeById(meal.recipeId);if(!r)return;
+      (r.ingredients||[]).forEach(ing=>{ if(isPantryItem(ing.name)) pantryUsed.add(foodBase(ing.name)); });
+    });
+  });
+  S.shopping.pantry=[...pantryUsed];
   /* mantén els extra manuals que ja no venen del menú */
   S.shopping.items.forEach(o=>{
     if(o.extra){
@@ -621,6 +734,7 @@ function renderShopping(){
         '<div class="shop-item'+(i.done?' done':'')+'" data-id="'+i.id+'">'
         +'<input type="checkbox"'+(i.done?' checked':'')+' data-check="'+i.id+'">'
         +'<label data-check="'+i.id+'">'+esc(i.name)
+        +(i.note&&i.note.length?' <span class="src-note">('+esc(i.note.join(' · '))+')</span>':'')
         +(i.from&&i.from.length?' <span class="src-note">('+esc(i.from.join(', '))+')</span>':'')
         +(i.extra?' <span class="src-note">· extra</span>':'')+'</label>'
         +(i.qty?'<span class="qty-badge">'+fmtQty(i)+(i.unit?' '+esc(i.unit):'')+'</span>':'')
@@ -628,6 +742,11 @@ function renderShopping(){
         +'</div>').join('')
       +'</div>';
   }).join('');
+  const pan=(S.shopping.pantry||[]).filter(Boolean);
+  if(pan.length){
+    wrap.innerHTML+='<div class="pantry-line"><b>No cal comprar (despensa):</b> '
+      +esc(capFirst(pan.join(' · ')))+'</div>';
+  }
 }
 function fmtQty(i){return String(i.qty).replace('.',',');}
 
