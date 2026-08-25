@@ -419,9 +419,11 @@ function renderRecipes(){
   $('#recipesEmpty').classList.toggle('hidden',S.recipes.length>0);
   $('#recipesGrid').innerHTML=list.map(r=>
     '<div class="recipe-card" draggable="true" data-id="'+r.id+'">'
+    +(r.image?'<img class="card-thumb" src="'+esc(r.image)+'" alt="" loading="lazy">':'')
     +'<h3>'+esc(r.name)+'</h3>'
     +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
-    +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+'</div>'
+    +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
+    +(r.book==='CORPUS'?'<span class="tag book-chip">🏛️ CORPUS</span>':r.book==='ARGUIÑANO'?'<span class="tag book-chip">📖 ARGUIÑANO</span>':r.book==='GASTROTECA'?'<span class="tag book-chip">🌿 GASTROTECA</span>':'')+'</div>'
     +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
     +(r.ingredients.length>4?' …':'')+'</div>'
     +'<div class="recipe-actions">'
@@ -450,13 +452,19 @@ $('#recipesGrid').addEventListener('click',e=>{
 $('#recipeSearch').oninput=debounce(renderRecipes,150);
 $('#recipeCatFilter').onchange=renderRecipes;
 
+const BOOK_LABEL={CORPUS:'🏛️ CORPUS',ARGUIÑANO:'📖 ARGUIÑANO',GASTROTECA:'🌿 GASTROTECA'};
 function viewRecipe(id){
   const r=recipeById(id);if(!r)return;
+  const bookChip=r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':(r.source?'<span class="tag">'+esc(String(r.source).split('·')[0].trim())+'</span>':'');
   openModal('<h2>'+esc(r.name)+'</h2>'
-    +'<div class="meta" style="margin-bottom:10px"><span class="tag cat">'+esc(r.category||'Altres')+'</span>'
-    +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+'</div>'
+    +(r.image?'<img class="recipe-photo" src="'+esc(r.image)+'" alt="'+esc(r.name)+'" loading="lazy">':'')
+    +'<div class="meta" style="margin:10px 0"><span class="tag cat">'+esc(r.category||'Altres')+'</span>'
+    +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+bookChip+'</div>'
     +'<h3>Ingredients</h3><ul>'+r.ingredients.map(i=>'<li>'+esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))+'</li>').join('')+'</ul>'
     +(r.steps&&r.steps.length?'<h3>Preparació</h3><ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
+    +(r.advice?'<div class="ai-banner"><span>💡</span><div>'+esc(r.advice)+'</div></div>':'')
+    +(r.youtube?'<a class="btn btn-youtube" href="'+esc(r.youtube)+'" target="_blank" rel="noopener">▶ Veure el vídeo a YouTube</a>':'')
+    +(r.url?'<a class="muted tiny" style="display:block;margin-top:6px" href="'+esc(r.url)+'" target="_blank" rel="noopener">Font original ↗</a>':'')
     +'<div class="modal-foot"><button class="btn btn-sm" id="dupR">Duplica</button><button class="btn btn-primary" id="okR">Tanca</button></div>');
   $('#okR').onclick=closeModal;
   $('#dupR').onclick=()=>{
