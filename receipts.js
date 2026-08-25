@@ -550,6 +550,7 @@ function seed(){
    ============================================================ */
 function boot(doSeed){
   if(doSeed)seed();
+  try{if(typeof migrateCorpusCategories==='function')migrateCorpusCategories();}catch(e){}
   /* deep-link opcional: ?tab=receipts */
   try{
     const q=new URLSearchParams(location.search).get('tab');

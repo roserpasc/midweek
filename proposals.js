@@ -67,6 +67,13 @@ function recipeTraits(r){
 }
 
 
+/* plat d'arròs o pasta (per a les regles de freqüència) */
+function isRiceDish(r){
+  if(!r)return false;
+  const n=(r.name+' '+r.ingredients.map(i=>i.name).join(' ')).toLowerCase();
+  return /arròs|arros|rossejat|fideu|pasta|espaguet|macarr|noodles|cuscús/.test(n);
+}
+
 /* emoji orientatiu del plat (segons ingredients) */
 function dishEmoji(r){
   if(!r)return '📝';
@@ -109,7 +116,7 @@ function generateProposal(modeKey){
   /* 2. distribució: dinar = plat principal; sopar = més lleuger */
   const newMenu={};
   const usedCount={}; /* evita repetir la mateixa recepta >2 cops/setmana */
-  const counters={fish:0,legume:0,red:0,comfort:0,veggieDays:new Set()};
+  const counters={fish:0,legume:0,red:0,comfort:0,riceDays:[],veggieDays:new Set()};
   const pick=(slot,dayIdx)=>{
     /* candidats ordenats: score + bonus de diversitat */
     const q=mode.quotas;
@@ -127,6 +134,14 @@ function generateProposal(modeKey){
         if(x.t.veggie||x.t.fish)s+=1;
       }
       if(slot==='dinars'){ if(x.t.legume||x.t.fish)s+=0.5; }
+      /* --- Arròs/pasta: màxim 2 dies i MAI consecutius (qualsevol mode) --- */
+      if(isRiceDish(x.r)){
+        const rd=counters.riceDays;
+        if(rd.length>=2)s-=1000;
+        const yesterday=(dayIdx>0)&&rd.indexOf(dayIdx-1)>=0;
+        if(yesterday)s-=1000;
+        if(rd.length===1&&!yesterday)s+=0.5;
+      }
       if(q){
         /* --- Límits d'experts (AESAN/FESNAD/Harvard T.H. Chan): ---
            peix 2-3 cops/setmana (MAI més de 3), llegums >=2/setmana,
@@ -142,6 +157,7 @@ function generateProposal(modeKey){
     }).map(x=>x||{x:pool[0],jitter:-999,s:-1e9}).sort((a,b)=>(b.s+b.jitter)-(a.s+a.jitter));
     const chosen=cands[0].x;
     usedCount[chosen.r.id]=(usedCount[chosen.r.id]||0)+1;
+    if(isRiceDish(chosen.r)&&!counters.riceDays.includes(dayIdx))counters.riceDays.push(dayIdx);
     if(chosen.t.fish)counters.fish++;
     if(chosen.t.legume)counters.legume++;
     if(chosen.t.redMeat)counters.red++;
