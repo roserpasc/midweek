@@ -72,18 +72,18 @@ function dishEmoji(r){
   if(!r)return '📝';
   const n=(r.name+' '+r.ingredients.map(i=>i.name).join(' ')).toLowerCase();
   const t=recipeTraits(r);
+  if(/truita|ou dur|ous batuts|\bou\b/.test(n))return '🍳';
+  if(t.fish)return '🐟';
+  if(t.legume&&!t.veggie)return '🫘';
   if(/arròs|arros/.test(n))return '🥘';
   if(/pasta|espaguet|macarr|fideu/.test(n))return '🍝';
   if(/amanida|enciam/.test(n))return '🥗';
   if(/sopa|crema/.test(n))return '🍲';
-  if(/truita|ou|ous/.test(n))return '🍳';
-  if(t.fish)return '🐟';
-  if(t.legume)return '🫘';
   if(/pollastre|carn|vedella|porc|llom/.test(n))return '🍗';
   if(/iogurt|fruita|mel|nous/.test(n))return '🥣';
   if(/pizza|empanada|coca/.test(n))return '🍕';
   if(/entrepà|entrapa|sandwich|pa /.test(n))return '🥪';
-  return '🍽️';
+  return t.legume?'🫘':(t.veggie?'🥗':'🍽️');
 }
 
 /* genera una proposta de setmana sencera sobre el menú actual */
@@ -116,12 +116,14 @@ function generateProposal(modeKey){
     const cands=pool.map(x=>{
       let s=x.score;
       const n=usedCount[x.r.id]||0;
-      if(n>=2)s-=100;                       /* màxim 2 cops per setmana */
-      if(slot==='sopars'){                  /* sopars més lleugers i NO repetir el dinar del mateix dia */
+      if(n>=3)s-=100;                       /* màxim 3 cops per setmana */
+      /* sopar mai igual al dinar del mateix dia (exclusió dura) */
+      const lunchArr=newMenu[days[dayIdx]+'|dinars']||[];
+      const isLunchTwin=lunchArr.length&&lunchArr[0].recipeId===x.r.id;
+      if(slot==='sopars'){
+        if(isLunchTwin)return null;
         if(x.t.comfort)s-=1.5;
         if(x.t.veggie||x.t.fish)s+=1;
-        const lunchArr=newMenu[days[dayIdx]+'|dinars']||[];
-        if(lunchArr.length&&lunchArr[0].recipeId===x.r.id)s-=50;
       }
       if(slot==='dinars'){ if(x.t.legume||x.t.fish)s+=0.5; }
       if(q){
@@ -130,13 +132,13 @@ function generateProposal(modeKey){
            carn vermella/embotit <=1/setmana, plats "comfort" <=4/setmana */
         if(q.fishMax!=null&&x.t.fish&&counters.fish>=q.fishMax)s-=200;
         if(q.redMax!=null&&x.t.redMeat&&counters.red>=q.redMax)s-=200;
-        if(q.comfortMax!=null&&x.t.comfort&&counters.comfort>=q.comfortMax)s-=80;
+        if(q.comfortMax!=null&&x.t.comfort&&counters.comfort>=q.comfortMax)s-=200;
         if(q.fish&&counters.fish<q.fish&&x.t.fish)s+=2.5;      /* encara no n'hi ha prou */
         if(q.legume&&counters.legume<q.legume&&x.t.legume)s+=2.5;
         if(q.veggieDays&&counters.veggieDays.size<q.veggieDays&&x.t.veggie)s+=1.5;
       }
       return {x:x,jitter:Math.random()*0.9,s:s};
-    }).sort((a,b)=>(b.s+b.jitter)-(a.s+a.jitter));
+    }).map(x=>x||{x:pool[0],jitter:-999,s:-1e9}).sort((a,b)=>(b.s+b.jitter)-(a.s+a.jitter));
     const chosen=cands[0].x;
     usedCount[chosen.r.id]=(usedCount[chosen.r.id]||0)+1;
     if(chosen.t.fish)counters.fish++;
