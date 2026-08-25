@@ -26,7 +26,7 @@ const PROPOSAL_MODES = {
     weights: { comfort: 0, quick: 0, veggie: 2.5, legume: 2, fish: 2, reuse: 0 },
     maxTime: null,
     /* regles de quota que el generador intentarà complir */
-    quotas: { fish: 2, legume: 2, veggiePerDay: 1 },
+    quotas: { fish: 2, fishMax: 3, legume: 2, redMax: 1, comfortMax: 4, veggieDays: 5 },
     freeIdeas: {
       esmorzar: ['Iogurt grec amb fruita i nous', 'Torrada integral amb alvocat', 'Café, fruita i un grapat de fruits secs', 'Iogurt amb llavors i mel'],
       dinars: ['Amanida completa amb tonyina', 'Arròs integral amb verdures i peix', 'Llenties amb verdures', 'Sopa de verdures amb pollastre', 'Salmon al forn amb amanida'],
@@ -66,6 +66,26 @@ function recipeTraits(r){
   };
 }
 
+
+/* emoji orientatiu del plat (segons ingredients) */
+function dishEmoji(r){
+  if(!r)return '📝';
+  const n=(r.name+' '+r.ingredients.map(i=>i.name).join(' ')).toLowerCase();
+  const t=recipeTraits(r);
+  if(/arròs|arros/.test(n))return '🥘';
+  if(/pasta|espaguet|macarr|fideu/.test(n))return '🍝';
+  if(/amanida|enciam/.test(n))return '🥗';
+  if(/sopa|crema/.test(n))return '🍲';
+  if(/truita|ou|ous/.test(n))return '🍳';
+  if(t.fish)return '🐟';
+  if(t.legume)return '🫘';
+  if(/pollastre|carn|vedella|porc|llom/.test(n))return '🍗';
+  if(/iogurt|fruita|mel|nous/.test(n))return '🥣';
+  if(/pizza|empanada|coca/.test(n))return '🍕';
+  if(/entrepà|entrapa|sandwich|pa /.test(n))return '🥪';
+  return '🍽️';
+}
+
 /* genera una proposta de setmana sencera sobre el menú actual */
 function generateProposal(modeKey){
   const mode=PROPOSAL_MODES[modeKey];
@@ -89,9 +109,10 @@ function generateProposal(modeKey){
   /* 2. distribució: dinar = plat principal; sopar = més lleuger */
   const newMenu={};
   const usedCount={}; /* evita repetir la mateixa recepta >2 cops/setmana */
-  const counters={fish:0,legume:0,veggieDays:new Set()};
+  const counters={fish:0,legume:0,red:0,comfort:0,veggieDays:new Set()};
   const pick=(slot,dayIdx)=>{
     /* candidats ordenats: score + bonus de diversitat */
+    const q=mode.quotas;
     const cands=pool.map(x=>{
       let s=x.score;
       const n=usedCount[x.r.id]||0;
@@ -103,10 +124,16 @@ function generateProposal(modeKey){
         if(lunchArr.length&&lunchArr[0].recipeId===x.r.id)s-=50;
       }
       if(slot==='dinars'){ if(x.t.legume||x.t.fish)s+=0.5; }
-      /* quotes saludables: si a mitja setmana no hi ha hagut peix/llegum, bonifica */
-      if(mode.quotas&&dayIdx>=3){
-        if(mode.quotas.fish&&counters.fish<mode.quotas.fish&&x.t.fish)s+=3;
-        if(mode.quotas.legume&&counters.legume<mode.quotas.legume&&x.t.legume)s+=3;
+      if(q){
+        /* --- Límits d'experts (AESAN/FESNAD/Harvard T.H. Chan): ---
+           peix 2-3 cops/setmana (MAI més de 3), llegums >=2/setmana,
+           carn vermella/embotit <=1/setmana, plats "comfort" <=4/setmana */
+        if(q.fishMax!=null&&x.t.fish&&counters.fish>=q.fishMax)s-=200;
+        if(q.redMax!=null&&x.t.redMeat&&counters.red>=q.redMax)s-=200;
+        if(q.comfortMax!=null&&x.t.comfort&&counters.comfort>=q.comfortMax)s-=80;
+        if(q.fish&&counters.fish<q.fish&&x.t.fish)s+=2.5;      /* encara no n'hi ha prou */
+        if(q.legume&&counters.legume<q.legume&&x.t.legume)s+=2.5;
+        if(q.veggieDays&&counters.veggieDays.size<q.veggieDays&&x.t.veggie)s+=1.5;
       }
       return {x:x,jitter:Math.random()*0.9,s:s};
     }).sort((a,b)=>(b.s+b.jitter)-(a.s+a.jitter));
@@ -114,6 +141,8 @@ function generateProposal(modeKey){
     usedCount[chosen.r.id]=(usedCount[chosen.r.id]||0)+1;
     if(chosen.t.fish)counters.fish++;
     if(chosen.t.legume)counters.legume++;
+    if(chosen.t.redMeat)counters.red++;
+    if(chosen.t.comfort)counters.comfort++;
     if(chosen.t.veggie)counters.veggieDays.add(dayIdx);
     return {recipeId:chosen.r.id,diners:S.diners};
   };
@@ -140,10 +169,13 @@ function showProposalSummary(mode,counters){
   const q=mode.quotas;
   let quotaHtml='';
   if(q){
-    const fishOk=counters.fish>=q.fish?'✅':'⚠️';
+    const fishOk=(counters.fish>=q.fish&&counters.fish<=q.fishMax)?'✅':(counters.fish>q.fishMax?'❌ massa':'⚠️');
     const legOk=counters.legume>=q.legume?'✅':'⚠️';
-    quotaHtml='<div class="ai-banner"><span>🥗</span><div>Comprovació mediterrània: peix <b>'+counters.fish+'/setmana</b> '+fishOk
-      +' · llegums <b>'+counters.legume+'/setmana</b> '+legOk
+    const redOk=counters.red<=(q.redMax||9)?'✅':'❌';
+    quotaHtml='<div class="ai-banner"><span>🥗</span><div>Comprovació mediterrània (guies AESAN·FESNAD): '
+      +'peix <b>'+counters.fish+'/setmana</b> '+fishOk+' (ideal 2-3)'
+      +' · llegums <b>'+counters.legume+'</b> '+legOk+' ( mínim 2)'
+      +' · carn vermella <b>'+counters.red+'</b> '+redOk+' (màxim 1)'
       +'<br><span class="tiny muted">'+esc(mode.desc)+'</span></div></div>';
   }
   openModal('<h2>✨ Proposta «'+esc(mode.label)+'» generada</h2>'

@@ -140,8 +140,9 @@ function renderMenu(){
       meals.forEach((m,idx)=>{
         const r=recipeById(m.recipeId);
         const name=r?r.name:(m.note||'(àpat lliure)');
+        const emo=window.dishEmoji?dishEmoji(r):'🍽️';
         chips+='<div class="meal-chip" draggable="true" data-key="'+key+'" data-idx="'+idx+'" data-id="open-meal">'
-          +'<span class="t">'+esc(name)+'</span>'
+          +'<span class="t">'+emo+' '+esc(name)+'</span>'
           +'<span class="s">👥 '+m.diners+(r?'':' · 📝')+'</span>'
           +'<button class="x" data-del-key="'+key+'" data-del-idx="'+idx+'" title="Elimina">✕</button></div>';
       });
@@ -309,6 +310,18 @@ $('#dinersBtn').onclick=()=>{
     +'<input type="number" min="1" max="12" id="dinersInput" value="'+S.diners+'" style="max-width:120px">'
     +'<div class="modal-foot"><span></span><button class="btn btn-primary" id="dinersOk">D\'acord</button></div>');
   $('#dinersOk').onclick=()=>{S.diners=Math.max(1,parseInt($('#dinersInput').value,10)||2);save();renderWeekBar();closeModal();};
+};
+
+/* buidar el menu de la setmana visible */
+$('#clearMenuBtn').onclick=()=>{
+  const mon=mondayOf(weekStart);
+  const days=[...Array(7)].map((_,i)=>iso(new Date(mon.getTime()+i*86400000)));
+  const n=days.reduce((a,d)=>a+['dinars','sopars'].reduce((b,sl)=>b+((S.menu[d+'|'+sl]||[]).length),0),0);
+  if(!n){toast('Aquesta setmana ja està buida.');return;}
+  if(!confirm('Esborrar els '+n+' àpats de la setmana del '+fmtDate(mon)+'?'))return;
+  days.forEach(d=>{delete S.menu[d+'|dinars'];delete S.menu[d+'|sopars'];});
+  save();renderMenu();markStale();
+  toast('Setmana esborrada ('+n+' àpats)');
 };
 
 /* imprimir menú */
