@@ -181,27 +181,84 @@ function updateShopStatus(){
   }else{el.textContent='';}
 }
 
+/* etiqueta ràpida d'una recepta per als filtres del picker */
+function quickTag(r){
+  const t=recipeTraits(r);
+  if(r.time&&r.time<=20)return '⚡ ràpid';
+  if(t.legume)return '🫘 llegums';
+  if(t.fish)return '🐟 peix';
+  if(/pollastre|conill|ànec|gallina|gall |capó|perdiu/.test((r.name+' '+r.ingredients.map(i=>i.name).join(' ')).toLowerCase()))return '🍗 pollastre/conill';
+  if(t.veggie&&!t.fish&&!t.redMeat&&r.ingredients.every(i=>!/carn|pollastre|peix|tonyina|llom|pernil|bacallà/i.test(i.name)))return '🥬 verdures';
+  return null;
+}
+
 /* picker d'àpat */
 function addMealFlow(key){
   openModal('<h2>Afegeix àpat</h2>'
-    +'<button class="btn" id="pickerFree" style="width:100%;margin-bottom:12px;border-style:dashed">📝 Àpat lliure (sense recepta)…</button>'
-    +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:46vh;overflow-y:auto;margin-top:10px"></div>'
+    +'<div class="row" style="margin-bottom:10px">'
+    +'<button class="btn btn-sm" id="pickerFree" style="border-style:dashed">📝 Àpat lliure</button>'
+    +'<button class="btn btn-sm btn-primary" id="pickerRandom">🎲 Afegeix un àpat aleatori</button>'
+    +'</div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="tagFilters">'
+    +'<button class="btn btn-sm tag-filter" data-tag="__all">Totes</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__rice">🍚 arròs/pasta</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__quick">⚡ ràpid</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__corpus">🏛️ tradicional</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__healthy">🥗 saludable</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__poultry">🍗 pollastre/conill</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__veg">🥬 verdures</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__fish">🐟 peix</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__legume">🫘 llegums</button>'
+    +'</div>'
+    +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:44vh;overflow-y:auto;margin-top:10px"></div>'
       :'<p class="muted">Encara no hi ha receptes. Pots afegir un àpat lliure o crear-ne una a la pestanya Receptes.</p>'));
   $('#pickerFree').onclick=()=>openFreeMeal(key,null);
+  $('#pickerRandom').onclick=()=>{
+    if(!S.recipes.length){toast('Encara no hi ha receptes.');return;}
+    /* aleatori amb sentit: evita repetir la recepta ja posada al mateix dia (altre àpat) */
+    const day=key.split('|')[0], slot=key.split('|')[1];
+    const other=(S.menu[day+'|'+(slot==='dinars'?'sopars':'dinars')]||[])[0];
+    let pool=S.recipes.filter(r=>!other||r.id!==other.recipeId);
+    if(!pool.length)pool=S.recipes;
+    const r=pool[Math.floor(Math.random()*pool.length)];
+    pushMeal(key,{recipeId:r.id,diners:S.diners});
+    closeModal();
+    toast('🎲 '+r.name);
+  };
+  let activeTag='__all';
+  $$('#tagFilters .tag-filter').forEach(b=>b.onclick=()=>{
+    activeTag=b.dataset.tag;
+    $$('#tagFilters .tag-filter').forEach(x=>x.style.background=(x===b)?'var(--verd-clar)':'');
+    draw($('#pickerSearch')?$('#pickerSearch').value:'');
+  });
+  const first=$('#tagFilters .tag-filter');if(first)first.style.background='var(--verd-clar)';
   if(!S.recipes.length)return;
   const list=$('#pickerList');
+  const TAGS={__quick:'⚡ ràpid',__poultry:'🍗 pollastre/conill',__veg:'🥬 verdures',__fish:'🐟 peix',__legume:'🫘 llegums'};
+  function matchTag(r){
+    if(activeTag==='__all')return true;
+    if(activeTag==='__rice')return /arròs|arros|rossejat|fideu|pasta|espaguet|macarr/i.test(r.name+' '+r.ingredients.map(i=>i.name).join(' '));
+    if(activeTag==='__corpus')return !!(r.source&&String(r.source).indexOf('Corpus')===0);
+    if(activeTag==='__healthy')return ['peix i marisc','llegums','verdures','amanides','sopes','Aus i conill'===r.category?'':'x'].filter(x=>x).includes(r.category)||['🐟 peix','🫘 llegums','🥬 verdures'].includes(quickTag(r))||(r.bankCategory&&/peix|llegum|verdur|amanid/.test(r.bankCategory));
+    const t=TAGS[activeTag];
+    return t&&quickTag(r)===t;
+  }
   function draw(f){
     f=(f||'').toLowerCase();
-    const rs=S.recipes.filter(r=>!f||r.name.toLowerCase().indexOf(f)>=0
-      ||r.ingredients.some(i=>i.name.toLowerCase().indexOf(f)>=0));
-    list.innerHTML=rs.map(r=>
-      '<div class="shop-item"><div style="flex:1"><b>'+esc(r.name)+'</b>'
-      +'<div class="muted tiny">'+r.servings+' racions · '+r.ingredients.length+' ingredients'
+    const rs=S.recipes.filter(r=>{
+      const okText=!f||r.name.toLowerCase().indexOf(f)>=0
+        ||r.ingredients.some(i=>i.name.toLowerCase().indexOf(f)>=0);
+      return okText&&matchTag(r);
+    });
+    list.innerHTML=rs.slice(0,60).map(r=>{
+      const tag=quickTag(r);
+      return '<div class="shop-item"><div style="flex:1"><b>'+esc(r.name)+'</b>'
+      +'<div class="muted tiny">'+(tag?tag+' · ':'')+r.servings+' racions'+(r.time?' · '+r.time+' min':'')
       +(r.category?' · '+esc(r.category):'')+'</div></div>'
       +'<div style="display:flex;gap:6px;align-items:center"><span class="muted tiny">👥</span>'
       +'<input type="number" min="1" max="12" value="'+S.diners+'" style="width:58px;padding:4px" data-diners-input>'
-      +'<button class="btn btn-primary btn-sm" data-pick="'+r.id+'">Afegeix</button></div></div>'
-    ).join('')||'<p class="empty-hint">Cap resultat.</p>';
+      +'<button class="btn btn-primary btn-sm" data-pick="'+r.id+'">Afegeix</button></div></div>';
+    }).join('')+(rs.length>60?'<p class="empty-hint">…i '+(rs.length-60)+' més. Afiltra o cerca.</p>':null)||'<p class="empty-hint">Cap resultat.</p>';
   }
   draw();
   $('#pickerSearch').oninput=debounce(e=>draw(e.target.value),120);
