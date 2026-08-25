@@ -60,6 +60,36 @@ function importTraditionalBank(){
   return added;
 }
 
+/* migració v2 (català): si les receptes importades d'un book coincideixen 1:1 amb el banc
+   (mateixa quantitat => mateix ordre d'importació), se'n substitueix el contingut pel banc
+   actual (traduït), mantenint l'ID per no trencar menú ni llista de la compra.
+   Si no coincideixen (import parcial), no es toca res: l'usuari té el botó Restaura+Importa. */
+function migrateBankContent(){
+  if(S.migratedCatV2)return 0;
+  let fixed=0;
+  ['CORPUS','GASTROTECA','ARGUIÑANO'].forEach(book=>{
+    const imported=S.recipes.filter(r=>r.book===book);
+    const bank=TRADITIONAL_BANK.filter(t=>t.book===book);
+    if(!imported.length||imported.length!==bank.length)return; /* alineament no garantit */
+    for(let i=0;i<bank.length;i++){
+      const r=imported[i], t=bank[i];
+      if(r.name===t.name&&r.steps&&r.steps.length)continue;
+      r.name=t.name;
+      r.category=bankCat(t.category);r.bankCategory=t.category;
+      r.servings=t.servings||4;r.time=t.time||null;
+      r.ingredients=(t.ingredients||[]).map(x=>({name:x.name,qty:x.qty,unit:x.unit||''}));
+      r.steps=(t.steps||[]).slice(0,14);
+      if(r.steps.length&&!r.steps[r.steps.length-1])r.steps.pop();
+      r.advice=t.advice||null;r.image=t.image||null;r.youtube=t.youtube||null;r.url=t.url||null;
+      fixed++;
+    }
+  });
+  S.migratedCatV2=true;
+  if(fixed){save();renderRecipes();}
+  return fixed;
+}
+window.addEventListener('load',()=>{try{migrateBankContent();}catch(e){}});
+
 /* migració: receptes ja importades abans del fix d'etiquetes */
 function migrateCorpusCategories(){
   let fixed=0;

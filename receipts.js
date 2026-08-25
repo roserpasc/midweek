@@ -479,7 +479,16 @@ $('#addCatBtn').onclick=()=>{
 };
 $('#importBankBtn').onclick=()=>{
   const n=importTraditionalBank();
-  toast(n?('Importades '+n+' receptes noves del Corpus ✓'):'Ja tens totes les receptes del Corpus.');
+  toast(n?('Importades '+n+' receptes ✓'):'Ja tens tota la biblioteca.');
+};
+/* Restaura biblioteca: esborra TOTES les receptes de biblioteca (Corpus/Arguiñano/Gastroteca)
+   i reimporta el banc actual net. No toca menús, llista de la compra ni tiquets.
+   Les receptes del menú que referenciïn una de biblioteca queden com a àpat sense fitxa. */
+$('#restoreBankBtn').onclick=()=>{
+  if(!confirm('Això esborrarà les '+S.recipes.filter(r=>r.book).length+' receptes de biblioteca i les tornarà a importar traduïdes i amb fotos. Els àpats del menú es mantindran però si obres la seva fitxa caldrà tornar-los a assignar. Continuar?'))return;
+  S.recipes=S.recipes.filter(r=>!r.book);
+  const n=importTraditionalBank();
+  toast('Biblioteca restaurada: '+n+' receptes ✓');
 };
 $('#exportBtn').onclick=()=>download('midweek-export-'+todayIso()+'.json',JSON.stringify(S,null,2));
 $('#importFile').addEventListener('change',async e=>{
