@@ -477,6 +477,10 @@ $('#addCatBtn').onclick=()=>{
   if(v&&!S.categories.includes(v)){S.categories.push(v);save();renderCatChips();fillExtraCat();}
   $('#newCatInput').value='';
 };
+$('#importBankBtn').onclick=()=>{
+  const n=importTraditionalBank();
+  toast(n?('Importades '+n+' receptes noves del Corpus ✓'):'Ja tens totes les receptes del Corpus.');
+};
 $('#exportBtn').onclick=()=>download('midweek-export-'+todayIso()+'.json',JSON.stringify(S,null,2));
 $('#importFile').addEventListener('change',async e=>{
   const f=e.target.files[0];if(!f)return;

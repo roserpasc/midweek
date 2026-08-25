@@ -116,7 +116,8 @@ function generateProposal(modeKey){
     const cands=pool.map(x=>{
       let s=x.score;
       const n=usedCount[x.r.id]||0;
-      if(n>=3)s-=100;                       /* màxim 3 cops per setmana */
+      const maxUse=(pool.length>=14)?1:(pool.length>=8?2:3);
+      if(n>=maxUse)s-=(maxUse===1)?1000:100; /* varietat: 1 cop/setm si hi ha prou receptes */
       /* sopar mai igual al dinar del mateix dia (exclusió dura) */
       const lunchArr=newMenu[days[dayIdx]+'|dinars']||[];
       const isLunchTwin=lunchArr.length&&lunchArr[0].recipeId===x.r.id;
