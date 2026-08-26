@@ -8,24 +8,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alberg ínies"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets madurs"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "formatge ratllat"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "all"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
    }
   ],
   "steps": [
@@ -42,24 +62,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alberg ínies"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "carn de vedella picada"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "carn de porc picada"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba trinxada fina"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous durs"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pa ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un raig de llet"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "formatge ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
    }
   ],
   "steps": [
@@ -77,24 +132,19 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls"
+   },
+   {
+    "qty": 15.0,
+    "unit": "cl",
+    "name": "oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -113,58 +163,63 @@
   "ingredients": [
    {
     "qty": 4.0,
-    "unit": "rodanxes",
-    "name": "Rodanxes"
+    "unit": "",
+    "name": "rodanxes de botifarra blanca"
    },
    {
     "qty": 4.0,
-    "unit": "rodanxes",
-    "name": "Rodanxes"
+    "unit": "",
+    "name": "rodanxes de botifarra negra"
    },
    {
     "qty": 4.0,
-    "unit": "rodanxes",
-    "name": "Rodanxes"
+    "unit": "",
+    "name": "rodanxes de catalana"
    },
    {
     "qty": 4.0,
-    "unit": "talls",
-    "name": "Talls"
+    "unit": "",
+    "name": "talls de pernil"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 manat de raves"
+    "name": "manat de raves"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "2 tomàquets verds tallats a grill"
+    "name": "tom àquets verds tallats a grill"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "2 cebes tendres tallades a tires"
+    "name": "cebes tendres tallades a tires"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 pebrot vermell tallat a rodanxes"
+    "name": "pebrot vermell tallat a rodanxes"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 enciam"
+    "name": "enciam"
    },
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "4 ous durs"
+    "name": "ous durs"
    },
    {
     "qty": 8.0,
-    "unit": "filets",
-    "name": "Filets"
+    "unit": "",
+    "name": "filets d'anxova"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "olives verdes i negres"
    },
    {
     "qty": null,
@@ -197,24 +252,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "arengades"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "naps"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "patates"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "col d’hivern"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "mongetes bullides"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "olives negres"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Unes tires de pebrot verd en vinagre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Vinagre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Vinagreta"
    }
   ],
   "steps": [
@@ -231,24 +321,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "patates"
+   },
+   {
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bacallà esqueixat i dessalat"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "tom àquets d’amanir tallats a rodanxes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba tallada a tires"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "olives arbequines"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot tallat a tires"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -266,24 +376,64 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 300.0,
+    "unit": "g",
+    "name": "bolets variats"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "llenties cuites"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "pinyons torrats"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "tom àquet"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "poma"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Cebollí"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Farigola"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Vinagre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -306,24 +456,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 600.0,
+    "unit": "g",
+    "name": "faves tendres i petites"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un ramet i fulles de menta"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pernil salat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Enciam"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Vinagreta"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -341,24 +501,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 100.0,
+    "unit": "g",
+    "name": "ametlles amb pela"
+   },
+   {
+    "qty": 125.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 10.0,
+    "unit": "cl",
+    "name": "aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -377,23 +537,38 @@
   "ingredients": [
    {
     "qty": null,
+    "unit": "kg",
+    "name": "arròs"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 8.0,
+    "unit": "cullerades",
+    "name": "grans de salsa de tomàquet"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pl àtans"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -411,24 +586,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bacallà esqueixat dessalat"
+   },
+   {
+    "qty": 400.0,
+    "unit": "g",
+    "name": "arròs"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pebrots verds"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "tom àquets madurs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "all"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -446,24 +656,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Halal"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "arròs"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
+    "qty": 125.0,
+    "unit": "g",
+    "name": "sucre"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "branca de canyella"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pela de llimona"
    }
   ],
   "steps": [
@@ -481,24 +696,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "arròs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "llamàntol trossejat"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tomàquets madurs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell dolç"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copeta vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Julivert trinxat"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "½ l de brou de peix"
    }
   ],
   "steps": [
@@ -516,29 +766,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "20 galeres"
+    "qty": 300.0,
+    "unit": "g",
+    "name": "arròs del Delta de l'Ebre, tipus bomba"
    },
    {
-    "qty": null,
+    "qty": 20.0,
     "unit": "",
-    "name": "1 ceba de Figueres"
+    "name": "galeres"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 pebrot verd"
+    "name": "ceba de Figueres"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 pebrot vermell"
+    "name": "pebrot verd"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 sípia"
+    "name": "pebrot vermell"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "s ípia"
    },
    {
     "qty": null,
@@ -558,12 +813,12 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Per fer la picada"
+    "name": "· Per fer la picada"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "2 alls"
+    "name": "alls"
    },
    {
     "qty": null,
@@ -571,19 +826,34 @@
     "name": "Julivert"
    },
    {
-    "qty": 1,
+    "qty": null,
     "unit": "",
-    "name": "Grapat d'ametlles"
-   },
-   {
-    "qty": 1,
-    "unit": "",
-    "name": "Grapat d'avellanes"
+    "name": "Un grapat d'ametlles"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "1 llesqueta de pa fregit"
+    "name": "Un grapat d'avellanes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "llesqueta de pa fregit"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "nyora fregida"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Polpa de nyora"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Safrà"
    }
   ],
   "steps": [
@@ -603,24 +873,74 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "arròs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "conill tallat a trossos"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "costella de porc a trossos petits"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 2.0,
+    "unit": "grans",
+    "name": "alls picats"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tomàquets madurs ratllats"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "¼ l d'aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Uns brins de safrà"
+   },
+   {
+    "qty": 1.0,
+    "unit": "gra",
+    "name": "all"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -637,49 +957,104 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 calamar tallat"
+    "qty": 360.0,
+    "unit": "g",
+    "name": "arròs"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 sípia neta i tallada"
+    "qty": 150.0,
+    "unit": "g",
+    "name": "carn de pollastre tallada a daus"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "8 gambes"
+    "qty": 150.0,
+    "unit": "g",
+    "name": "carn magra tallada a daus"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "12 musclos"
+    "qty": 150.0,
+    "unit": "g",
+    "name": "salsitxes"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 ceba"
+    "name": "calamar tallat"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 pebrot vermell"
+    "name": "s ípia neta i tallada"
    },
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "1 pebrot verd"
+    "name": "gambes"
    },
    {
-    "qty": null,
+    "qty": 12.0,
     "unit": "",
-    "name": "2 tomàquets madurs"
+    "name": "musclos"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot vermell"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot verd"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "aigua"
    },
    {
     "qty": null,
     "unit": "",
     "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Brins de safrà"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "gra d'all"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -696,24 +1071,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 800.0,
+    "unit": "g",
+    "name": "bacallà dessalat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Samfaina"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -731,24 +1111,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "bolets barrejats"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "botifarra blanca tallada a rodanxes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "botifarra negra tallada a rodanxes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -767,24 +1172,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 6.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "clares d'ou"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "ametllons"
+   },
+   {
+    "qty": 400.0,
+    "unit": "g",
+    "name": "sucre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -802,24 +1207,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 1.5,
+    "unit": "kg",
+    "name": "bledes"
+   },
+   {
+    "qty": 150.0,
+    "unit": "g",
+    "name": "cansalada"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -836,24 +1246,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 600.0,
+    "unit": "g",
+    "name": "botifarra"
+   },
+   {
+    "qty": 8.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "peres pelades i partides a quarts"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Llard"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sucre"
    }
   ],
   "steps": [
@@ -870,24 +1280,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "½ kg de patates"
+   },
+   {
+    "qty": 1.0,
+    "unit": "llauna",
+    "name": "tonyina en oli d'oliva verge extra"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous durs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "tassa maionesa"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pebrots vermells escalivats"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "olives negres"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -905,24 +1335,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 200.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 6.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 12.0,
+    "unit": "cl",
+    "name": "aigua"
+   },
+   {
+    "qty": null,
+    "unit": "kg",
+    "name": "nata muntada"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sucre de llustre"
    }
   ],
   "steps": [
@@ -939,24 +1379,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bacallà dessalat"
+   },
+   {
+    "qty": 10.0,
+    "unit": "cl",
+    "name": "llet"
+   },
+   {
+    "qty": 30.0,
+    "unit": "cl",
+    "name": "oli d'oliva verge extra"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "patata"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Llorer"
    }
   ],
   "steps": [
@@ -976,22 +1431,32 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "br òquil"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1011,22 +1476,52 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Ossos de vedella"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pollastre o gallina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Vedella"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Cebes"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pastanagues"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Branca d’api"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Nap"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Porros"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -1046,22 +1541,47 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Gallina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Ossos de pollastre escaldats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Ceba"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Porros"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pastanagues"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Api"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Naps"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1081,22 +1601,32 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Espines i cap de peix blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Cebes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pastanagues"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Porros"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Api"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1114,24 +1644,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 250.0,
+    "unit": "g",
+    "name": "bacallà dessalat"
+   },
+   {
+    "qty": 125.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 80.0,
+    "unit": "g",
+    "name": "mantega"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "o 4 ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "All"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -1148,24 +1703,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 500.0,
+    "unit": "g",
+    "name": "moniatos"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "farina de força"
+   },
+   {
+    "qty": 1.0,
+    "unit": "cullerada",
+    "name": "saïm"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "poc de llevat premsat"
+   },
+   {
+    "qty": 0.5,
+    "unit": "",
+    "name": "tass ó d'aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sucre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Mel"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -1190,23 +1770,38 @@
   "ingredients": [
    {
     "qty": null,
+    "unit": "kg",
+    "name": "carbassó"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls picats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ou"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "sobre de gasosa"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -1224,30 +1819,45 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 125.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 80.0,
+    "unit": "g",
+    "name": "mantega"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un pessic de sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sucre"
+   },
+   {
+    "qty": null,
+    "unit": "l",
+    "name": "aigua"
    }
   ],
   "steps": [
    "Variacions:\nEs poden farcir de crema."
   ],
-  "servings": 4
+  "servings": 8217
  },
  {
   "name": "Cabrit amb moixernons",
@@ -1258,24 +1868,64 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "cabrit trossejat"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "moixernons frescos"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba tallada a la juliana"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cabeces d'all trinxades"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot vermell tallat a daus petits"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "got de vi ranci"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ou"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Llard o oli"
    }
   ],
   "steps": [
@@ -1293,24 +1943,64 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "cabrit trossejat"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes tallades a la juliana"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs tallats a quarts"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copa de vi ranci"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls sense pelar"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pebre"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "branca de canyella"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Farigola"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Llard"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1328,24 +2018,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "calamars grans sense potes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -1363,24 +2058,74 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "calamars mitjans"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "carn de porc picada"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "tom àquets ratllats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ou dur"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un raig de vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un grapadet d'ametlles"
    }
   ],
   "steps": [
@@ -1397,24 +2142,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "col d'hivern"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "retalls de carn de porc tallats a daus"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "retalls de carn de vedella tallats a daus"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Salsa beixamel"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Formatge ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra o mantega"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1432,24 +2207,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "espinacs"
+   },
+   {
+    "qty": 16.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "plaques de canelons"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "pernil salat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un grapadet de pinyons"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Un grapadet de panses remullades"
+   },
+   {
+    "qty": 25.0,
+    "unit": "g",
+    "name": "formatge ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Mantega"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Salsa beixamel"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1467,39 +2272,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 16.0,
     "unit": "",
-    "name": "16 plaques de canelons"
+    "name": "plaques de canelons"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "2 fetges de pollastre"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "cap de llomillo"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 ceba"
+    "qty": 100.0,
+    "unit": "g",
+    "name": "jarret de vedella"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "pollastre"
    },
    {
     "qty": 2.0,
-    "unit": "grans",
-    "name": "Grans"
+    "unit": "",
+    "name": "fetges de pollastre"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 tomàquet"
+    "name": "ceba"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "1 got de vi blanc"
+    "name": "grans d'all"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 branca de canyella"
+    "name": "tom àquet"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "got de vi blanc"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "branca de canyella"
    },
    {
     "qty": null,
@@ -1525,6 +2345,16 @@
     "qty": null,
     "unit": "",
     "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1541,24 +2371,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "potes de vedella"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "cap de vedella cuit"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
+   },
+   {
+    "qty": 15.0,
+    "unit": "g",
+    "name": "pinyons"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copa de vi ranci"
    }
   ],
   "steps": [
@@ -1576,24 +2451,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 600.0,
+    "unit": "g",
+    "name": "bacallà dessalat"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "patates tallades a daus"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "cargols bullits"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous durs"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets ratllats"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "alls picats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Allioli negat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -1610,24 +2520,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 2.0,
+    "unit": "kg",
+    "name": "cargols"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -1644,24 +2554,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 150.0,
+    "unit": "g",
+    "name": "ametlles crues amb pell"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ou"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "rovell d'ou"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pell de llimona ratllada"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 150.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 5.0,
+    "unit": "cl",
+    "name": "aigua"
+   },
+   {
+    "qty": 1.0,
+    "unit": "cullerada",
+    "name": "llevat en pols"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Unes gotes d'anís"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Canyella"
    }
   ],
   "steps": [
@@ -1684,24 +2624,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "carxofes"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "medallons de foie d'ànec"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal Maldon"
    }
   ],
   "steps": [
@@ -1718,24 +2663,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cervells de vedella"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba petita tallada a tires fines"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Farigola"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1753,24 +2723,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 800.0,
+    "unit": "g",
+    "name": "cigrons bullits"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous durs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "got de vi ranci"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Brou de bullir els cigrons"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "· Per fer la picada:"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Un grapadet d'ametlles"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "galeta"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "All"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -1787,24 +2792,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 300.0,
+    "unit": "g",
+    "name": "cigrons bullits"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "espinacs"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls trinxats"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "cansalada tallada a daus petits"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Brou de la cocció dels cigrons"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1821,24 +2851,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 300.0,
+    "unit": "g",
+    "name": "cigrons bullits"
+   },
+   {
+    "qty": 12.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "gambes"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "tom àquets"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Brou de la cocció dels cigrons"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Allioli negat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Julivert"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
    }
   ],
   "steps": [
@@ -1855,24 +2915,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 110.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "llardons"
+   },
+   {
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "farina"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "llevat premsat"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pinyons"
+   },
+   {
+    "qty": 20.0,
+    "unit": "cl",
+    "name": "oli d'oliva verge extra"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copa d'anís dolç"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -1890,24 +2975,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 150.0,
+    "unit": "cl",
+    "name": "aigua"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "llevat premsat"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "pebrots escalivats"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alberg ínies escalivades"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs trinxats"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "arengades"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -1925,24 +3040,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 250.0,
+    "unit": "g",
+    "name": "farina de força"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "fruites confitades (meló, taronja, cireres, etc.)"
+   },
+   {
+    "qty": 75.0,
+    "unit": "g",
+    "name": "llet"
+   },
+   {
+    "qty": 55.0,
+    "unit": "g",
+    "name": "mantega tova"
+   },
+   {
+    "qty": 55.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 25.0,
+    "unit": "g",
+    "name": "pinyons"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "llevat premsat"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 0.5,
+    "unit": "",
+    "name": "copa d’anís"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pell de llimona ratllada"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sucre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra o mantega"
    }
   ],
   "steps": [
@@ -1959,24 +3119,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "o 5 tomàquets"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pebrots verds"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Una nou de llevat premsat"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un tassonet d'aigua tèbia"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre bord (opcional)"
    }
   ],
   "steps": [
@@ -1999,24 +3189,64 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 150.0,
+    "unit": "g",
+    "name": "galeres ovades"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Cuetes de llagostins de Sant Carles de la Ràpita"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Surimi"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Mig enciam"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tartaletes de pasta trencada neutra (50 g/u.)"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Per elaborar la salsa rosa:"
+   },
+   {
+    "qty": 100.0,
+    "unit": "cl",
+    "name": "maionesa"
+   },
+   {
+    "qty": 50.0,
+    "unit": "cl",
+    "name": "quètxup"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un raig de whisky"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Suc de taronja"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Per decorar:"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Ous de caviar"
    }
   ],
   "steps": [
@@ -2038,24 +3268,74 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "colomins"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "cansalada viada tallada a tires"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "pernil magre tallat a bocinets"
+   },
+   {
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "cebes de platillo (les petites)"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets madurs, pelats i trinxats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "cullerada",
+    "name": "farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Llorer"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "branca de canyella"
+   },
+   {
+    "qty": 0.5,
+    "unit": "",
+    "name": "copa de vi ranci"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Unes gotes d'aiguardent"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2073,24 +3353,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "barra de pa sec"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sucre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Canyella en pols"
    }
   ],
   "steps": [
@@ -2108,24 +3398,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 6.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cal çots"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "all porro petit"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "patata petita"
+   },
+   {
+    "qty": 200.0,
+    "unit": "ml",
+    "name": "brou de carn"
+   },
+   {
+    "qty": 200.0,
+    "unit": "ml",
+    "name": "crema de llet"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "mantega"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Salsa romesco"
    }
   ],
   "steps": [
@@ -2148,24 +3453,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
    },
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "Halal"
+    "name": "rovells d’ou"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Vegà"
+    "name": "branca de canyella"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "tros de pell de llimona"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 40.0,
+    "unit": "g",
+    "name": "midó"
    }
   ],
   "steps": [
@@ -2183,24 +3498,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.5,
+    "unit": "kg",
+    "name": "espinacs (poden ser congelats)"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "gambes pelades"
+   },
+   {
+    "qty": 300.0,
+    "unit": "g",
+    "name": "pinyons"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "nata líquida"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "all"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ratllada de tòfona"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre negre"
    }
   ],
   "steps": [
@@ -2222,24 +3562,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 100.0,
+    "unit": "g",
+    "name": "bolets de temporada (rovellons, camagrocs, llenegues, ceps i gírgoles)"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "gambes pelades"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "all"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "copa de conyac"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per a la pasta de les creps:"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
+   },
+   {
+    "qty": 5.0,
+    "unit": "",
+    "name": "ous sencers i un rovell"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 110.0,
+    "unit": "g",
+    "name": "mantega"
+   },
+   {
+    "qty": 275.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un pessic de sal"
    }
   ],
   "steps": [
@@ -2263,22 +3648,37 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Farciment de canelons"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Patates"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Ou"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Farina"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2296,24 +3696,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 0.25,
+    "unit": "kg",
+    "name": "pernil salat tallat a quadrats petits"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "ceba trinxada fina"
+   },
+   {
+    "qty": 120.0,
+    "unit": "g",
+    "name": "mantega"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Nou moscada"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Ou batut"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pa ratllat"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Farina"
    }
   ],
   "steps": [
@@ -2331,24 +3766,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous durs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Salsa beixamel espessa"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Ou batut"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pa ratllat"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -2366,24 +3811,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "bacallà esqueixat i dessalat"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "tom àquets tallats a daus"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba tallada a tires"
+   },
+   {
+    "qty": 600.0,
+    "unit": "g",
+    "name": "mongetes bullides"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Olives negres sense pinyol"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous durs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -2401,24 +3871,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 500.0,
+    "unit": "g",
+    "name": "patates"
+   },
+   {
+    "qty": 300.0,
+    "unit": "g",
+    "name": "pastanagues"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "mongeta tendra"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous durs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Maionesa"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2436,39 +3926,84 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 0.25,
     "unit": "",
-    "name": "1/4 de gallina"
+    "name": "gallina"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "cansalada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ossos de vedella"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "jarret de vedella"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "2 ossos de vedella"
+    "name": "Menuts de gallina o de pollastre (pedrers, ales, etc.)"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 porro"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "careta de porc"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 pastanaga"
+    "qty": 500.0,
+    "unit": "g",
+    "name": "patates"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 nap"
+    "name": "porro"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 botifarra negra"
+    "name": "pastanaga"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "nap"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "bledes"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "arròs"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "fideus gruixuts"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "botifarra negra"
    },
    {
     "qty": null,
     "unit": "",
     "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2486,24 +4021,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 800.0,
+    "unit": "g",
+    "name": "espardenyes netes"
+   },
+   {
+    "qty": 400.0,
+    "unit": "g",
+    "name": "tomàquet rallat"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli"
    }
   ],
   "steps": [
@@ -2521,24 +4066,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "espatlles de corder de 900 g"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes tallades a trossos grans"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls sencers"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "tom àquets tallats a quarts"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copa de vi ranci"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "fulla de llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Romaní"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Timó"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2556,24 +4136,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 500.0,
+    "unit": "g",
+    "name": "bacallà esqueixat i dessalat"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "tom àquets madurs trinxats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Olives negres"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
    }
   ],
   "steps": [
@@ -2591,24 +4181,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "vedella tallada a daus"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pastanagues"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "branca d'api"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "nap petit"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un raig de vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Herbes: llorer, farigola"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre negre en gra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre molt"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -2626,24 +4261,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "1/4 kg de faves desgranades"
+   },
+   {
+    "qty": 4.0,
+    "unit": "talls",
+    "name": "cansalada viada tallada"
+   },
+   {
+    "qty": 1.0,
+    "unit": "tros",
+    "name": "bull"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba tendra trinxada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls tendres trinxats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ramell menta fresca"
+   },
+   {
+    "qty": 1.0,
+    "unit": "fulla",
+    "name": "llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2661,24 +4331,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bacallà dessalat"
+   },
+   {
+    "qty": 600.0,
+    "unit": "g",
+    "name": "fesols (mongetes bullides)"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "tom àquets madurs trinxats"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls trinxats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre roig"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -2696,24 +4381,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "fideus del número 2"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Halal"
+    "name": "ceba trinxada"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "Vegà"
+    "name": "tom àquets trinxats"
    },
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "alls a làmines"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "gambes"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "escamarlans"
+   },
+   {
+    "qty": 800.0,
+    "unit": "g",
+    "name": "sípia"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell dolç"
+   },
+   {
+    "qty": 80.0,
+    "unit": "cl",
+    "name": "aigua"
    }
   ],
   "steps": [
@@ -2731,24 +4441,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 300.0,
+    "unit": "g",
+    "name": "fideus"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "pop"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes tallades a la juliana"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets ratllats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un grapadet d'ametlles"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -2766,24 +4521,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 320.0,
+    "unit": "g",
+    "name": "fideus prims del número 2"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "qty": 60.0,
+    "unit": "cl",
+    "name": "brou de peix vermell"
    }
   ],
   "steps": [
@@ -2801,24 +4556,74 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "vedella tallada a bistecs petits"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "moixernons secs"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets trinxats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Una copa de vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Un raig de brandi"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Farina"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un grapadet d'ametlles"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -2835,24 +4640,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 800.0,
+    "unit": "g",
+    "name": "supremes de gall de Sant Pere"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "porros tallats a rodanxes fines"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba tallada a la juliana"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets madurs tallats a daus"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls picats"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "patates a rodanxes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Brou de peix"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -2870,24 +4700,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "talls de tonyina"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot verd tallat a tires"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "patates esbocinades"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "nyores"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un grapadet d'ametlles i avellanes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "llesca de pa torrat"
    }
   ],
   "steps": [
@@ -2904,24 +4759,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 300.0,
+    "unit": "g",
+    "name": "llenties"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "talls de cansalada viada tallada a daus petits"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "costella de porc tallada a daus"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets trinxats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "cabe ça d'alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un manat d'herbes (farigola, llorer, orenga)"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -2938,24 +4823,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 600.0,
+    "unit": "g",
+    "name": "ametles crues pelades"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Halal"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "sucre"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Vegà"
+    "name": "escor ça de llimona"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "branca de canyella"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "farina d'arròs"
+   },
+   {
+    "qty": 1.0,
+    "unit": "l",
+    "name": "aigua"
    }
   ],
   "steps": [
@@ -2976,24 +4871,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 320.0,
+    "unit": "g",
+    "name": "macarrons"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "tom àquets madurs trinxats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls trinxats"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "carn picada"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "formatge ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -3010,24 +4935,19 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "rovell d'ou"
+   },
+   {
+    "qty": 15.0,
+    "unit": "cl",
+    "name": "oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3045,19 +4965,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "2 cebes trinxades"
+    "qty": 250.0,
+    "unit": "g",
+    "name": "carn de porc picada"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "4 tomàquets rallats"
+    "qty": 250.0,
+    "unit": "g",
+    "name": "carn de vedella picada"
    },
    {
-    "qty": null,
+    "qty": 500.0,
+    "unit": "g",
+    "name": "sípia tallada a daus"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "pèsols bullits"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "1 ou"
+    "name": "cebes trinxades"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets rallats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ou"
    },
    {
     "qty": null,
@@ -3115,24 +5055,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 ceba trinxada"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "lluç"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "4 tomàquets"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "rap"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 llesca de pa remullat amb llet"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "orada"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 gra d'all picat"
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "llesca de pa remullat amb llet"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "gra d'all picat"
    },
    {
     "qty": null,
@@ -3140,9 +5095,9 @@
     "name": "Julivert"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 ou"
+    "name": "ou"
    },
    {
     "qty": null,
@@ -3150,9 +5105,9 @@
     "name": "Farina"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 got de vi blanc sec"
+    "name": "got de vi blanc sec"
    },
    {
     "qty": null,
@@ -3173,6 +5128,21 @@
     "qty": null,
     "unit": "",
     "name": "Oli d'oliva verge extra"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 25.0,
+    "unit": "g",
+    "name": "avellanes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "gra d'all"
    }
   ],
   "steps": [
@@ -3189,24 +5159,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 600.0,
+    "unit": "g",
+    "name": "mongetes bullides"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "moixernons secs"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls trinxats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert trinxat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Un grapadet de pinyons"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "all"
    }
   ],
   "steps": [
@@ -3224,24 +5219,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 800.0,
+    "unit": "g",
+    "name": "mongetes bullides"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "botifarres de perol"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tires de cansalada viada tallada a tires"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3259,24 +5259,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "musclos grans"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "tom àquets madurs trinxats"
+   },
+   {
+    "qty": 0.5,
+    "unit": "",
+    "name": "got de vi blanc"
+   },
+   {
+    "qty": 1.0,
+    "unit": "cullerada",
+    "name": "farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "· Per fer la picada:"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Uns brins de safrà"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Julivert"
    }
   ],
   "steps": [
@@ -3294,24 +5319,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "mongetes bullides"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Halal"
+    "qty": 300.0,
+    "unit": "g",
+    "name": "patates tallades a trossos regulars"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "bledes tallades a tires"
    },
    {
-    "qty": null,
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "tronxos de carxofa bullits"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "grans d'all picat"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "fulla de llorer"
    }
   ],
   "steps": [
@@ -3329,24 +5369,69 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ossos d'espinada"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "cansalada"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "sagí"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "faves sense tavella"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "mongetes verdes tallades petites"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "pèsols"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "patates tallades a daus petits"
+   },
+   {
+    "qty": 20.0,
+    "unit": "g",
+    "name": "fideus gruixuts"
+   },
+   {
+    "qty": 25.0,
+    "unit": "g",
+    "name": "arròs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Fulles d'enciam tallades"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -3364,24 +5449,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 0.25,
+    "unit": "",
+    "name": "got d'anís"
+   },
+   {
+    "qty": 0.25,
+    "unit": "",
+    "name": "got de moscatell"
+   },
+   {
+    "qty": 150.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 500.0,
+    "unit": "g",
+    "name": "farina"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "matafaluga"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "polsim de canyella"
+   },
+   {
+    "qty": 0.5,
+    "unit": "culleradeta",
+    "name": "coriandre"
+   },
+   {
+    "qty": 0.5,
+    "unit": "culleradeta",
+    "name": "llevat premsat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -3400,22 +5520,22 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Pa"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Tomàquets madurs"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3433,24 +5553,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 600.0,
+    "unit": "g",
+    "name": "pinyons"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Per fer la massa de massapà:"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
+    "qty": 500.0,
+    "unit": "g",
+    "name": "ametlla en pols"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "qty": 500.0,
+    "unit": "g",
+    "name": "sucre"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "moniato cuit"
+   },
+   {
+    "qty": 75.0,
+    "unit": "g",
+    "name": "clara d’ou"
    }
   ],
   "steps": [
@@ -3468,24 +5603,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "trossos de 15 x 5 cm de pasta fullada"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot verd escalivat"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "pebrot vermell escalivat"
+   },
+   {
+    "qty": 12.0,
+    "unit": "",
+    "name": "filets d'anxova"
+   },
+   {
+    "qty": 8.0,
+    "unit": "",
+    "name": "tom àquets cirerol"
+   },
+   {
+    "qty": 1.0,
+    "unit": "dl",
+    "name": "tomàquet ratllat"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Mesclum"
+   },
+   {
+    "qty": 1.0,
+    "unit": "dl",
+    "name": "oli de julivert"
+   },
+   {
+    "qty": 1.0,
+    "unit": "dl",
+    "name": "oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3502,24 +5672,39 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "patates"
+   },
+   {
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bolets (fredolics, carreretes, etc.)"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "cansalada tallada a bocins"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls trinxats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3536,24 +5721,59 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "patates mitjanes"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "carn de vedella picada"
+   },
+   {
+    "qty": 100.0,
+    "unit": "g",
+    "name": "carn de porc picada"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ceba trinxada"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "grans d’all trinxats"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "ous durs trinxats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "got de vi ranci"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Per fer la picada: Oli. Safrà. Julivert"
    }
   ],
   "steps": [
@@ -3571,24 +5791,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "peix sencer (400 g en brut per persona)"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes tallades a la juliana"
+   },
+   {
+    "qty": 0.5,
+    "unit": "kg",
+    "name": "patates tallades a rodanxes"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "tom àquets madurs tallats a quarts"
+   },
+   {
+    "qty": 0.5,
+    "unit": "",
+    "name": "copa de vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3607,24 +5847,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 5.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 300.0,
+    "unit": "g",
+    "name": "sucre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pell de llimona ratllada"
+   },
+   {
+    "qty": 200.0,
+    "unit": "g",
+    "name": "farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Mantega"
    }
   ],
   "steps": [
@@ -3641,29 +5886,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 pollastre trossejat"
+    "name": "pollastre trossejat"
    },
    {
-    "qty": null,
+    "qty": 12.0,
     "unit": "",
-    "name": "12 escamarlans"
+    "name": "escamarlans"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "2 cebes trinxades"
+    "name": "cebes trinxades"
    },
    {
-    "qty": null,
+    "qty": 3.0,
     "unit": "",
-    "name": "3 tomàquets ratllats"
+    "name": "tom àquets ratllats"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 raig de brandi"
+    "name": "raig de brandi"
    },
    {
     "qty": null,
@@ -3693,17 +5938,17 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Per fer la picada:"
+    "name": "· Per fer la picada:"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 grapat d'ametlles"
+    "name": "grapat d'ametlles"
    },
    {
-    "qty": null,
+    "qty": 2.0,
     "unit": "",
-    "name": "2 galetes"
+    "name": "galetes"
    },
    {
     "qty": null,
@@ -3714,6 +5959,11 @@
     "qty": null,
     "unit": "",
     "name": "Julivert"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Una mica de vi ranci"
    }
   ],
   "steps": [
@@ -3731,34 +5981,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "8 pomes"
+    "name": "pomes"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 llimona"
+    "qty": 400.0,
+    "unit": "g",
+    "name": "carn picada"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 galeta"
+    "qty": 200.0,
+    "unit": "g",
+    "name": "sucre"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "1 ou"
+    "qty": 50.0,
+    "unit": "g",
+    "name": "farina"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 branca de canyella"
+    "name": "llimona"
    },
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "1 raig de moscatell"
+    "name": "galeta"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "ou"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "branca de canyella"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "raig de moscatell"
    },
    {
     "qty": null,
@@ -3786,9 +6051,14 @@
     "name": "Per fer la picada:"
    },
    {
+    "qty": 1.0,
+    "unit": "",
+    "name": "galeta"
+   },
+   {
     "qty": null,
     "unit": "",
-    "name": "1 galeta"
+    "name": "Un grapadet d'ametlles i pinyons"
    }
   ],
   "steps": [
@@ -3816,24 +6086,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 800.0,
+    "unit": "g",
+    "name": "pop trossejat"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes tallades a la juliana"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "tom àquets rallats"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "patata"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "copa de vi blanc"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -3851,24 +6146,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "popets"
+   },
+   {
+    "qty": 4.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes tallades gruixudes"
+   },
+   {
+    "qty": 3.0,
+    "unit": "",
+    "name": "alls llaminats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Un raig de vi blanc o ranci"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -3886,24 +6206,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 50.0,
+    "unit": "g",
+    "name": "panses"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Halal"
+    "qty": 50.0,
+    "unit": "g",
+    "name": "ametlles torrades"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegà"
+    "qty": 50.0,
+    "unit": "g",
+    "name": "avellanes torrades"
    },
    {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "qty": 50.0,
+    "unit": "g",
+    "name": "figues seques"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "nous pelades"
    }
   ],
   "steps": [
@@ -3922,24 +6247,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cua de rap d'1 kg"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "cebes tallades a rodanxes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Pebre vermell"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -3956,24 +6286,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "bolets"
+   },
+   {
+    "qty": 3.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "patates"
+   },
+   {
+    "qty": 8.0,
+    "unit": "",
+    "name": "ous"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "All i julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Oli d'oliva verge extra"
    }
   ],
   "steps": [
@@ -3999,24 +6339,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
-    "unit": "",
-    "name": "Aptes per a celíacs"
+    "qty": 1.0,
+    "unit": "l",
+    "name": "llet"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "mantega"
+   },
+   {
+    "qty": 50.0,
+    "unit": "g",
+    "name": "farina"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Nou moscada"
    }
   ],
   "steps": [
@@ -4036,22 +6386,52 @@
    {
     "qty": null,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "Mitja cabeça d'alls escalivats"
+   },
+   {
+    "qty": 6.0,
+    "unit": "",
+    "name": "tom àquets escalivats"
+   },
+   {
+    "qty": 2.0,
+    "unit": "",
+    "name": "pebrots del romesco escaldats"
+   },
+   {
+    "qty": 0.5,
+    "unit": "culleradeta",
+    "name": "pebre vermell dolç"
+   },
+   {
+    "qty": 15.0,
+    "unit": "g",
+    "name": "ametlles torrades"
+   },
+   {
+    "qty": 15.0,
+    "unit": "g",
+    "name": "avellanes torrades"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Vinagre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -4069,24 +6449,54 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "sardines"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes tallades a la juliana"
+   },
+   {
+    "qty": 5.0,
+    "unit": "",
+    "name": "alls aixafats"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Orenga"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell dolç"
+   },
+   {
+    "qty": 1.0,
+    "unit": "culleradeta",
+    "name": "pebre vermell picant"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
+   },
+   {
+    "qty": 2.5,
+    "unit": "dl",
+    "name": "oli d'oliva verge extra"
+   },
+   {
+    "qty": 1.0,
+    "unit": "dl",
+    "name": "vinagre"
    }
   ],
   "steps": [
@@ -4104,24 +6514,29 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 5.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "alls"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Unes llesques de pa sec"
+   },
+   {
+    "qty": 1.5,
+    "unit": "l",
+    "name": "aigua"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Un raig d'oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -4139,24 +6554,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "carbassa tallada"
+   },
+   {
+    "qty": 150.0,
+    "unit": "g",
+    "name": "arròs"
+   },
+   {
+    "qty": 2.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "cebes"
+   },
+   {
+    "qty": 1.0,
+    "unit": "",
+    "name": "fulla de llorer"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Pebre"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -4174,24 +6609,34 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "col d'hivern"
+   },
+   {
+    "qty": 1.0,
+    "unit": "kg",
+    "name": "patates"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "talls de cansalada viada"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Oli d'oliva verge extra"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -4209,24 +6654,44 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 8.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ous"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "cansalada viada"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "botifarra blanca"
+   },
+   {
+    "qty": 250.0,
+    "unit": "g",
+    "name": "botifarra negra"
+   },
+   {
+    "qty": 8.0,
+    "unit": "",
+    "name": "alls tendres tallats a rodanxes"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Julivert"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Oli"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Sal"
    }
   ],
   "steps": [
@@ -4244,24 +6709,24 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "½ kg de patates"
+   },
+   {
+    "qty": null,
+    "unit": "l",
+    "name": "llet"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Vegetarià"
+    "name": "Aigua"
    }
   ],
   "steps": [
@@ -4279,24 +6744,49 @@
   "youtube": null,
   "ingredients": [
    {
-    "qty": null,
+    "qty": 400.0,
+    "unit": "g",
+    "name": "xulles (cansalada) tallades a tires"
+   },
+   {
+    "qty": 1.0,
     "unit": "",
-    "name": "Aptes per a celíacs"
+    "name": "ceba"
+   },
+   {
+    "qty": 4.0,
+    "unit": "",
+    "name": "grans d'all"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Halal"
+    "name": "Sal"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegà"
+    "name": "Pebre"
    },
    {
     "qty": null,
     "unit": "",
-    "name": "Vegetarià"
+    "name": "Farigola"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Sajolida"
+   },
+   {
+    "qty": 800.0,
+    "unit": "g",
+    "name": "fesols bullits (mongetes bullides)"
+   },
+   {
+    "qty": null,
+    "unit": "",
+    "name": "Oli"
    }
   ],
   "steps": [
