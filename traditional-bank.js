@@ -39,7 +39,7 @@ function importTraditionalBank(){
     }
     const steps=(t.steps||[]).slice(0,14);
     if(steps.length&&!steps[steps.length-1])steps.pop();
-    S.recipes.push({
+    const nr={
       id:uid(),name:t.name,category:bankCat(t.category),time:t.time,
       servings:t.servings||4,ingredients:(t.ingredients||[]).map(i=>({name:i.name,qty:i.qty,unit:i.unit||''})),
       steps:steps,
@@ -49,7 +49,9 @@ function importTraditionalBank(){
       url:t.url||null,
       book:t.book||'CORPUS',
       source:t.source,bankCategory:t.category
-    });
+    };
+    nr.tags=computeTags(nr);
+    S.recipes.push(nr);
     added++;
   });
   /* assegura que les categories noves existeixin al sistema */

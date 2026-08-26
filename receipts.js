@@ -558,7 +558,8 @@ function seed(){
    BOOT
    ============================================================ */
 function boot(doSeed){
-  if(doSeed)seed();
+  if(doSeed)seed();
+  try{S.recipes.forEach(ensureTags);}catch(e){}
   try{if(typeof migrateCorpusCategories==='function')migrateCorpusCategories();}catch(e){}
   /* deep-link opcional: ?tab=receipts */
   try{

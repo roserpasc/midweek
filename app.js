@@ -90,6 +90,45 @@ function flashSync(ok){
   flashT=setTimeout(()=>{dot.classList.remove('err');lab.textContent='Local';},1400);
 }
 
+/* ============ ETIQUETES MÚLTIPLES DERIVADES DELS INGREDIENTS ============ */
+const TAG_RULES=[
+  {id:'🐟 Peix i marisc', re:/bacall[aà]|salm[oó]|tonyina|bon[ií]tol|llu[cç]|merlu[çz]|pescadill|rape|llenguado|llobarro|dorada|verat|jurel|sardin|seit[oó]|anxov|truita|gall de mar|galera|llam[aà]ntol|escamarlan|gamb|llagost[ií]n|muscle|clo[iï]ss|calamar|s[ií]pia|pop\b|popet|cigala|navall|berberec|marisc|peix|arengada/i},
+  {id:'🍗 Aus i conill', re:/pollastre|conill|\baus\b|[àa]nec|guatlla|gall dindi|perdiu|gallina|pavo/i},
+  {id:'🍖 Carn', re:/vedella|ternera|porc\b|llom\b|xai|corder|botifarr|pernil|fuet|salsitx|xori[cç]|morcilla|panceta|cansalada|bac[oó]\b|costell|xulleta|hamburgues|carn\b|capipota|cua de bou|cervell|fetge|ronyon|callos|llardons|sobrassada/i},
+  {id:'🫘 Llegums', re:/cigron|llenti|fesol\b|fesols|monget(es|a) (blanqu|negre|roge|sequ)|jud[ií]a blanca|fava\b|faves\b|p[eè]sol(s)?\b/i},
+  {id:'🥬 Verdures', re:/tom[aà]quet|ceb(a|es|olla)|all(s|\b)|pastanag|patat|pebrot|carbass[oó]?|alberg[ií]ni|espinac|bleda|enciam|escarol|end[ií]via|carxof|esp[aà]rrec|br[oò]quil|col\b|coliflor|porro|mongeta verda|jud[ií]a verde|champiny[oó]|xampiny[oó]|bolet|moixernon|cogombr|remolatx|api\b|cal[cç]ot|samfaina|escalivad|pisto|trinxat/i},
+  {id:'🍝 Arròs i pasta', re:/arr[oò]s|espaguet|macarr[oó]|fideu|tallar[ií]n|canelon|lasany|cusc[uú]s|quinoa|pasta\b/i},
+  {id:'🥔 Tubercles i cereals', re:/patat|moniato|trumfa|polenta|mill\b/i},
+  {id:'🥚 Ous', re:/\bou(s)?\b|yema|clara de/i},
+  {id:'🍰 Dolç', re:/sucre|xocolat|cacau|mel\b|canela|gelat[ií]|nata muntada|mascarpone|galeta|confitura|alm[ií]bar|van[ií]l|crema catalana/i},
+  {id:'🌶️ Picant', re:/cayena|xili|chili|pebrot picant|harissa|tabasc|\bpicant/i},
+];
+const HEALTHY_FISH=/bacall[aà]|salm[oó]|tonyina|llu[cç]|merlu[çz]|rape|sardin|gamb|muscle|clo[iï]ss|peix|marisc/i;
+const HEALTHY_FAT=/frit|arrebossat|panxeta|bacon|cansalada|foie|crema de llet|nata\b|xocolat|brandy|licor/i;
+const FRIED=/bunyol|croquet|frit|arrebossat|past[ií]s|carbonara|fullada|brisé/i;
+
+function computeTags(r){
+  const ings=(r.ingredients||[]).map(i=>String(i.name||'').toLowerCase()).join(' · ');
+  const hay=(r.name||'')+' '+ings;
+  const tags=[];
+  TAG_RULES.forEach(t=>{ if(t.re.test(hay)) tags.push(t.id); });
+  if(!tags.includes('🍰 Dolç')&&/postres|dol[cç]/i.test(r.category||'')) tags.push('🍰 Dolç');
+  const isDessert=tags.includes('🍰 Dolç');
+  const isFried=FRIED.test(r.name||'');
+  const isSauce=/salsa|alioli|alliol|beixamel|maionesa|romesco/i.test(r.name||'');
+  const lean=HEALTHY_FISH.test(ings)||tags.includes('🫘 Llegums')||tags.includes('🥬 Verdures');
+  const heavyFat=HEALTHY_FAT.test(ings);
+  if(!isDessert&&!isFried&&!isSauce&&lean&&!heavyFat) tags.push('🥗 Saludable');
+  const meaty=tags.some(t=>['🍖 Carn','🍗 Aus i conill','🐟 Peix i marisc'].includes(t));
+  if(!meaty&&!isDessert&&!isSauce) tags.push('🌱 Vegetarià');
+  if(r.time&&parseFloat(r.time)<=25) tags.push('⚡ Ràpid');
+  return tags;
+}
+function ensureTags(r){
+  if(!Array.isArray(r.tags)||!r.tags.length) r.tags=computeTags(r);
+  return r.tags;
+}
+
 const recipeById=id=>byId(S.recipes,id);
 const personById=id=>byId(S.people,id);
 
@@ -201,14 +240,17 @@ function addMealFlow(key){
     +'</div>'
     +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="tagFilters">'
     +'<button class="btn btn-sm tag-filter" data-tag="__all">Totes</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__rice">🍚 arròs/pasta</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__healthy">🥗 saludable</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__fish">🐟 peix i marisc</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__meat">🍖 carn</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__poultry">🍗 aus i conill</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__legume">🫘 llegums</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__veg">🥬 verdures</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__rice">🍝 arròs i pasta</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__vegatarian">🌱 vegetarià</button>'
     +'<button class="btn btn-sm tag-filter" data-tag="__quick">⚡ ràpid</button>'
     +'<button class="btn btn-sm tag-filter" data-tag="__corpus">🏛️ tradicional</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__healthy">🥗 saludable</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__poultry">🍗 pollastre/conill</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__veg">🥬 verdures</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__fish">🐟 peix</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__legume">🫘 llegums</button>'
+    +'<button class="btn btn-sm tag-filter" data-tag="__sweet">🍰 dolç</button>'
     +'</div>'
     +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:44vh;overflow-y:auto;margin-top:10px"></div>'
       :'<p class="muted">Encara no hi ha receptes. Pots afegir un àpat lliure o crear-ne una a la pestanya Receptes.</p>'));
@@ -234,14 +276,60 @@ function addMealFlow(key){
   const first=$('#tagFilters .tag-filter');if(first)first.style.background='var(--verd-clar)';
   if(!S.recipes.length)return;
   const list=$('#pickerList');
-  const TAGS={__quick:'⚡ ràpid',__poultry:'🍗 pollastre/conill',__veg:'🥬 verdures',__fish:'🐟 peix',__legume:'🫘 llegums'};
+  
+/* ============ ETIQUETES MÚLTIPLES DERIVADES DELS INGREDIENTS ============ */
+const TAG_RULES=[
+  {id:'🐟 Peix i marisc', re:/bacall[aà]|salm[oó]|tonyina|bon[ií]tol|llu[cç]|merlu[çz]|pescadill|rape|llenguado|llobarro|dorada|verat|jurel|sardin|seit[oó]|anxov|truita|gall de mar|galera|llam[aà]ntol|escamarlan|gamb|llagost[ií]n|muscle|clo[iï]ss|calamar|s[ií]pia|pop\b|popet|cigala|navall|berberec|mariisc|peix|marisc|arengada|sardina/i},
+  {id:'🍗 Aus i conill', re:/pollastre|conill|\baus\b|[àa]nec|guatlla|gall dindi|perdiu|gallina|pavo|pit de pollastre|muslos de pollastre/i},
+  {id:'🍖 Carn', re:/vedella|ternera|porc\b|llom\b|xai|corder|cordero|botifarr|pernil|fuet|salchich|salsitx|chorizo|xori[cç]|morcilla|panceta|cansalada|bac[oó]|costell|costill|xulleta|chulet|hamburgues|carn\b|carn picada|cap i pota|capipota|rabo|cua de bou|cervell|fetge|ronyon|callos|llardons|sobrassada/i},
+  {id:'🫘 Llegums', re:/cigron|llenti|fesol\b|fesols|monget(es|a) (blanqu|negre|roge|sequ)|jud[ií]a blanca|fava\b|faves\b|p[eè]sol(s)?\b/i},
+  {id:'🥬 Verdures', re:/tom[aà]quet|ceb(a|es|olla)|all(s|\b)|pastanag|patat|pebrot|carbass[oó]|carbass|alberg[ií]ni|espinac|bleda|enciam|escarol|end[ií]via|carxof|esp[aà]rrec|br[oò]quil|col\b|coliflor|col llombard|porro|p[eè]sol|mongeta verda|jud[ií]a verde|champiny[oó]|xampiny[oó]|bolet|moixernon|cogombr|remolatx|rave\b|api\b|cal[cç]ot|sugar|carbass|ciurb|ble\b|ortig|samfaina|escalivad|pisto|trinxat/i},
+  {id:'🍝 Arròs i pasta', re:/arr[oò]z?|arr[oò]s|espaguet|macarr[oó]|fideu|tallar[ií]n|canelon|lasany|lasa[nñ]|cusc[uú]s|quinoa|noodles|penne|pasta\b/i},
+  {id:'🥔 Tubercles i cereals', re:/patat|moniato|boniato|trumfa|polenta|mill\b/i},
+  {id:'🥚 Ous', re:/\bou(s)?\b|huevo|yema|clara de/i},
+  {id:'🍰 Dolç', re:/sucre|xocolat|cacau|mel\b|canela|gelat[ií]|nata muntada|mascarpone|galeta|melmelada|melmelad|confitura|alm[ií]bar|van[ií]l·l|vanill|llimonada|crema catalana|mat[oó] de monja/i},
+  {id:'🌶️ Picant', re:/cayena|xili|chili|pebrot picant|pebre de cayena|harissa|tabasc|\bpicant/i},
+];
+const HEALTHY_FISH=/bacall[aà]|salm[oó]|tonyina|llu[cç]|merlu[çz]|rape|sardin|gamb|muscle|clo[iï]ss|peix|marisc/i;
+const HEALTHY_FAT=/frit|arrebossat|panxeta|bacon|cansalada|foie|crema de llet|nata|xocolat|manteiga|mantega|brandy|licor|alcohol/i;
+const FRIED=/bunyol|croquet|frit|arrebossat|pastís|ensalada russa|carbonara|brisé|fullada/i;
+
+function computeTags(r){
+  const ings=(r.ingredients||[]).map(i=>String(i.name||'').toLowerCase()).join(' · ');
+  const hay=r.name+' '+ings;
+  const tags=[];
+  TAG_RULES.forEach(t=>{ if(t.re.test(hay)) tags.push(t.id); });
+  /* Dolç: també si la categoria ho diu */
+  if(!tags.includes('🍰 Dolç')&&/postres|dol[cç]|postre/i.test(r.category||'')) tags.push('🍰 Dolç');
+  /* Saludable: proteïna magra o verdura dominant + sense fregits/greixos/postres */
+  const isDessert=tags.includes('🍰 Dolç')||/postres|dol[cç]/i.test(r.category||'');
+  const isFried=FRIED.test(r.name);
+  const lean=HEALTHY_FISH.test(ings)||tags.includes('🫘 Llegums')||tags.includes('🥬 Verdures');
+  const heavyFat=HEALTHY_FAT.test(ings);
+  const isSauce=/salsa|alioli|alliol|beixamel|bechamel|maionesa|romesco/i.test(r.name);
+  if(!isDessert&&!isFried&&!isSauce&&lean&&!heavyFat) tags.push('🥗 Saludable');
+  /* Vegetarià: cap carn, cap peix, cap aus */
+  const meaty=tags.some(t=>['🍖 Carn','🍗 Aus i conill','🐟 Peix i marisc'].includes(t));
+  if(!meaty&&!isDessert&&!isSauce) tags.push('🌱 Vegetarià');
+  /* Ràpid: temps <=25 min */
+  if(r.time&&parseFloat(r.time)<=25) tags.push('⚡ Ràpid');
+  return tags;
+}
+function ensureTags(r){
+  if(!Array.isArray(r.tags)||!r.tags.length) r.tags=computeTags(r);
+  return r.tags;
+}
+
+const TAGS={__fish:'🐟 Peix i marisc',__meat:'🍖 Carn',__poultry:'🍗 Aus i conill',__legume:'🫘 Llegums',__veg:'🥬 Verdures',__rice:'🍝 Arròs i pasta',__healthy:'🥗 Saludable',__vegatarian:'🌱 Vegetarià',__quick:'⚡ Ràpid',__sweet:'🍰 Dolç',__spicy:'🌶️ Picant'};
   function matchTag(r){
     if(activeTag==='__all')return true;
-    if(activeTag==='__rice')return /arròs|arros|rossejat|fideu|pasta|espaguet|macarr/i.test(r.name+' '+r.ingredients.map(i=>i.name).join(' '));
-    if(activeTag==='__corpus')return !!(r.source&&String(r.source).indexOf('Corpus')===0);
-    if(activeTag==='__healthy')return ['peix i marisc','llegums','verdures','amanides','sopes','Aus i conill'===r.category?'':'x'].filter(x=>x).includes(r.category)||['🐟 peix','🫘 llegums','🥬 verdures'].includes(quickTag(r))||(r.bankCategory&&/peix|llegum|verdur|amanid/.test(r.bankCategory));
-    const t=TAGS[activeTag];
-    return t&&quickTag(r)===t;
+    const tags=ensureTags(r);
+    if(activeTag==='__corpus')return r.book==='CORPUS';
+    const map={__fish:'🐟 Peix i marisc',__meat:'🍖 Carn',__poultry:'🍗 Aus i conill',__legume:'🫘 Llegums',
+      __veg:'🥬 Verdures',__rice:'🍝 Arròs i pasta',__healthy:'🥗 Saludable',__vegatarian:'🌱 Vegetarià',
+      __quick:'⚡ Ràpid',__sweet:'🍰 Dolç',__spicy:'🌶️ Picant'};
+    const want=map[activeTag];
+    return want?tags.includes(want):true;
   }
   function draw(f){
     f=(f||'').toLowerCase();
@@ -423,7 +511,9 @@ function renderRecipes(){
     +'<h3>'+esc(r.name)+'</h3>'
     +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
     +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
-    +(r.book==='CORPUS'?'<span class="tag book-chip">🏛️ CORPUS</span>':r.book==='ARGUIÑANO'?'<span class="tag book-chip">📖 ARGUIÑANO</span>':r.book==='GASTROTECA'?'<span class="tag book-chip">🌿 GASTROTECA</span>':'')+'</div>'
+    +(r.book==='CORPUS'?'<span class="tag book-chip">🏛️ CORPUS</span>':r.book==='ARGUIÑANO'?'<span class="tag book-chip">📖 ARGUIÑANO</span>':r.book==='GASTROTECA'?'<span class="tag book-chip">🌿 GASTROTECA</span>':'')
+    +'</div>'
+    +'<div class="card-tags">'+(ensureTags(r)||[]).slice(0,3).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')+'</div>'
     +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
     +(r.ingredients.length>4?' …':'')+'</div>'
     +'<div class="recipe-actions">'
@@ -458,7 +548,8 @@ function viewRecipe(id){
   const bookChip=r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':(r.source?'<span class="tag">'+esc(String(r.source).split('·')[0].trim())+'</span>':'');
   openModal('<h2>'+esc(r.name)+'</h2>'
     +(r.image?'<img class="recipe-photo" src="'+esc(r.image)+'" alt="'+esc(r.name)+'" loading="lazy">':'')
-    +'<div class="meta" style="margin:10px 0"><span class="tag cat">'+esc(r.category||'Altres')+'</span>'
+    +'<div class="meta" style="margin:10px 0;flex-wrap:wrap">'
+    +(ensureTags(r)||[]).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')
     +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+bookChip+'</div>'
     +'<h3>Ingredients</h3><ul>'+r.ingredients.map(i=>'<li>'+esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))+'</li>').join('')+'</ul>'
     +(r.steps&&r.steps.length?'<h3>Preparació</h3><ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
