@@ -38,7 +38,8 @@ function toast(msg,ms){
 
 /* modal */
 function openModal(html){
-  $('#modalBox').innerHTML=html;
+  $('#modalBox').innerHTML='<button class="modal-close" id="modalClose" aria-label="Tanca">✕</button>'+html;
+  $('#modalClose').addEventListener('click',closeModal);
   $('#modalBg').classList.remove('hidden');
 }
 function closeModal(){$('#modalBg').classList.add('hidden');$('#modalBox').innerHTML='';}

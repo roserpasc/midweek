@@ -185,7 +185,8 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   .weekbar .spacer{display:none}
   .weekbar .pill{min-height:40px;font-size:13px}
   #prevWeek,#nextWeek,#todayWeek{min-height:40px}
-  #proposeBtn{flex:1 1 48%;min-height:42px;font-size:13px}
+  #proposeBtn{flex:1 1 48%;min-height:42px;font-size:13px}
+
   .weekbar>span.muted{margin-left:2px}
   #genShopBtn{flex-basis:100%;min-height:44px}
   #printMenuBtn{flex-basis:100%;min-height:40px}
@@ -213,3 +214,8 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   .shop-item label{font-size:14px}
   input,select,textarea{font-size:16px}
 }
+
+/* botó tancar modal ✕ */
+.modal{position:relative}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#EDF3EE;color:#26312B;font-size:16px;line-height:1;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:#DDE9E0}
