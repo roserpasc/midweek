@@ -94,7 +94,7 @@ function flashSync(ok){
 const TAG_RULES=[
   {id:'🐟 Peix i marisc', re:/bacall[aà]|salm[oó]|tonyina|bon[ií]tol|llu[cç]|merlu[çz]|pescadill|rape|llenguado|llobarro|dorada|verat|jurel|sardin|seit[oó]|anxov|truita|gall de mar|galera|llam[aà]ntol|escamarlan|gamb|llagost[ií]n|muscle|clo[iï]ss|calamar|s[ií]pia|pop\b|popet|cigala|navall|berberec|marisc|peix|arengada/i},
   {id:'🍗 Aus i conill', re:/pollastre|conill|\baus\b|[àa]nec|guatlla|gall dindi|perdiu|gallina|pavo/i},
-  {id:'🍖 Carn', re:/vedella|ternera|porc\b|llom\b|xai|corder|botifarr|pernil|fuet|salsitx|xori[cç]|morcilla|panceta|cansalada|bac[oó]\b|costell|xulleta|hamburgues|carn\b|capipota|cua de bou|cervell|fetge|ronyon|callos|llardons|sobrassada/i},
+  {id:'🍖 Carn', re:/vedella|ternera|porc\b|llom\b|xai|corder|botifarr|pernil|fuet|salsitx|xori[cç]|morcilla|panceta|cansalada|bac[oó](?![a-zà-ÿ])|costell|xulleta|hamburgues|carn\b|capipota|cua de bou|cervell|fetge|ronyon|callos|llardons|sobrassada/i},
   {id:'🫘 Llegums', re:/cigron|llenti|fesol\b|fesols|monget(es|a) (blanqu|negre|roge|sequ)|jud[ií]a blanca|fava\b|faves\b|p[eè]sol(s)?\b/i},
   {id:'🥬 Verdures', re:/tom[aà]quet|ceb(a|es|olla)|all(s|\b)|pastanag|patat|pebrot|carbass[oó]?|alberg[ií]ni|espinac|bleda|enciam|escarol|end[ií]via|carxof|esp[aà]rrec|br[oò]quil|col\b|coliflor|porro|mongeta verda|jud[ií]a verde|champiny[oó]|xampiny[oó]|bolet|moixernon|cogombr|remolatx|api\b|cal[cç]ot|samfaina|escalivad|pisto|trinxat/i},
   {id:'🍝 Arròs i pasta', re:/arr[oò]s|espaguet|macarr[oó]|fideu|tallar[ií]n|canelon|lasany|cusc[uú]s|quinoa|pasta\b/i},
@@ -117,7 +117,8 @@ function computeTags(r){
   const isFried=FRIED.test(r.name||'');
   const isSauce=/salsa|alioli|alliol|beixamel|maionesa|romesco/i.test(r.name||'');
   const lean=HEALTHY_FISH.test(ings)||tags.includes('🫘 Llegums')||tags.includes('🥬 Verdures');
-  const heavyFat=HEALTHY_FAT.test(ings);
+  const heavyFat=HEALTHY_FAT.test(ings)
+    ||(r.ingredients||[]).some(i=>/oli|mantega|maionesa/i.test(i.name||'')&&typeof i.qty==='number'&&i.qty>=100);
   if(!isDessert&&!isFried&&!isSauce&&lean&&!heavyFat) tags.push('🥗 Saludable');
   const meaty=tags.some(t=>['🍖 Carn','🍗 Aus i conill','🐟 Peix i marisc'].includes(t));
   if(!meaty&&!isDessert&&!isSauce) tags.push('🌱 Vegetarià');
@@ -305,7 +306,8 @@ function computeTags(r){
   const isDessert=tags.includes('🍰 Dolç')||/postres|dol[cç]/i.test(r.category||'');
   const isFried=FRIED.test(r.name);
   const lean=HEALTHY_FISH.test(ings)||tags.includes('🫘 Llegums')||tags.includes('🥬 Verdures');
-  const heavyFat=HEALTHY_FAT.test(ings);
+  const heavyFat=HEALTHY_FAT.test(ings)
+    ||(r.ingredients||[]).some(i=>/oli|mantega|maionesa/i.test(i.name||'')&&typeof i.qty==='number'&&i.qty>=100);
   const isSauce=/salsa|alioli|alliol|beixamel|bechamel|maionesa|romesco/i.test(r.name);
   if(!isDessert&&!isFried&&!isSauce&&lean&&!heavyFat) tags.push('🥗 Saludable');
   /* Vegetarià: cap carn, cap peix, cap aus */
