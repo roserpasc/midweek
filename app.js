@@ -250,7 +250,6 @@ function addMealFlow(key){
     +'<button class="btn btn-sm tag-filter" data-tag="__rice">🍝 arròs i pasta</button>'
     +'<button class="btn btn-sm tag-filter" data-tag="__vegatarian">🌱 vegetarià</button>'
     +'<button class="btn btn-sm tag-filter" data-tag="__quick">⚡ ràpid</button>'
-    +'<button class="btn btn-sm tag-filter" data-tag="__corpus">🏛️ tradicional</button>'
     +'<button class="btn btn-sm tag-filter" data-tag="__sweet">🍰 dolç</button>'
     +'</div>'
     +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:44vh;overflow-y:auto;margin-top:10px"></div>'
