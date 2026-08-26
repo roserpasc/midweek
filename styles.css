@@ -170,3 +170,46 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 
 .tag-auto{background:#EAF2EC;color:#26312B;border:1px solid var(--verd-clar);font-size:11px;padding:2px 8px}
 .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 2px}
+
+
+/* ================= RESPONSIVE MÒBIL ================= */
+@media(max-width:640px){
+  /* header: logo a la 1a fila, pestanyes a la 2a fila completa */
+  header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px}
+  header.app h1{font-size:18px;margin:0 8px 0 0}
+  nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px}
+  nav.tabs button{flex:1 0 auto;padding:0 6px;font-size:12px;min-height:42px;white-space:nowrap}
+  .syncwrap{display:none}
+  /* weekbar: 2 files compactes */
+  .weekbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .weekbar .spacer{display:none}
+  .weekbar .pill{min-height:40px;font-size:13px}
+  #prevWeek,#nextWeek,#todayWeek{min-height:40px}
+  #proposeBtn{flex:1 1 48%;min-height:42px;font-size:13px}
+  .weekbar>span.muted{margin-left:2px}
+  #genShopBtn{flex-basis:100%;min-height:44px}
+  #printMenuBtn{flex-basis:100%;min-height:40px}
+  /* taula del menú: columnes amples i lliscables */
+  #menuTable{table-layout:fixed;min-width:980px}
+  table.menu th{font-size:13px;padding:4px 2px 6px}
+  td.slot{min-height:92px;padding:6px 4px}
+  td.slot .meal-name{font-size:12px;line-height:1.35;word-break:break-word}
+  td.slot .meal-diners{font-size:11px}
+  /* controls tàctils */
+  .btn,.btn-sm,.btn-primary,.pill{min-height:42px;padding:8px 10px;font-size:14px}
+  /* toolbar de receptes */
+  #tab-recipes .toolbar #recipeSearch{max-width:none;width:100%;flex-basis:100%;min-height:44px}
+  #tab-recipes .toolbar #recipeCatFilter{max-width:none;flex:1;min-height:44px}
+  #tab-recipes .toolbar #newRecipeBtn{flex-basis:100%;min-height:44px}
+  /* graella de receptes: 2 columnes */
+  .recipes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .recipe-card h3{font-size:13px}
+  /* modals pantalla completa */
+  .modal{max-width:100%;max-height:96vh;border-radius:14px;padding:14px}
+  .modal h2{font-size:17px}
+  #modalBox li{font-size:14px;line-height:1.5}
+  /* compra */
+  .shop-item{min-height:44px}
+  .shop-item label{font-size:14px}
+  input,select,textarea{font-size:16px}
+}
