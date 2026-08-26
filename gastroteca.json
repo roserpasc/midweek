@@ -49,7 +49,10 @@
    }
   ],
   "steps": [
-   "Talleu les albergínies en talls d’un centímetre de gruix.\nBarregeu els tomàquets trossejats amb l’all i el julivert trinxats, oli d’oliva verge extra, sal i pebre.\nEn una plata poseu a coure les albergínies al forn, amb una cullerada del tomàquet preparat al damunt de cada tall.\nUna mica abans d’acabar la cocció hi afegiu el formatge ratllat i ho gratineu."
+   "Talleu les albergínies en talls d’un centímetre de gruix.",
+   "Barregeu els tomàquets trossejats amb l’all i el julivert trinxats, oli d’oliva verge extra, sal i pebre.",
+   "En una plata poseu a coure les albergínies al forn, amb una cullerada del tomàquet preparat al damunt de cada tall.",
+   "Una mica abans d’acabar la cocció hi afegiu el formatge ratllat i ho gratineu."
   ],
   "servings": 4
  },
@@ -59,7 +62,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Alberginies-farcides-Verdures-v5-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=7xdqDoJyizY",
   "ingredients": [
    {
     "qty": 4.0,
@@ -118,8 +121,19 @@
    }
   ],
   "steps": [
-   "Partiu les albergínies pel llarg i feu-hi uns talls a la carn.\nFregiu-les fins que estiguin rosses.\nTraieu-ne la polpa i piqueu-la.\nFregiu la ceba, afegiu-hi la carn picada i sofregiu-ho tot junt.\nAfegiu-hi l’ou, el pa ratllat i la llet, i deixeu-ho coure.\nEn l’últim moment hi afegiu l’albergínia picada.\nSalpebreu i farciu les albergínies.\nPoseu-hi formatge ratllat per sobre i gratineu-les.",
-   "Variacions:\nEs pot fer només amb carn de porc.\nEn lloc de carn, es pot farcir de samfaina.\nEs pot afegir tomàquet al sofregit.\nS’hi pot fer una reducció de vi blanc o vi ranci.\nS’hi pot afegir panses i pinyons.\nEs pot afegir beixamel al farcit.\nEs pot servir amb una base de salsa de tomàquet."
+   "Partiu les albergínies pel llarg i feu-hi uns talls a la carn.",
+   "Fregiu-les fins que estiguin rosses.",
+   "Traieu-ne la polpa i piqueu-la.",
+   "Fregiu la ceba, afegiu-hi la carn picada i sofregiu-ho tot junt.",
+   "Afegiu-hi l’ou, el pa ratllat i la llet, i deixeu-ho coure.",
+   "En l’últim moment hi afegiu l’albergínia picada.",
+   "Salpebreu i farciu les albergínies.",
+   "Poseu-hi formatge ratllat per sobre i gratineu-les.",
+   "Variacions:",
+   "Es pot fer només amb carn de porc.",
+   "En lloc de carn, es pot farcir de samfaina.",
+   "Es pot afegir tomàquet al sofregit.",
+   "S’hi pot fer una reducció de vi blanc o vi ranci."
   ],
   "servings": 4
  },
@@ -148,8 +162,12 @@
    }
   ],
   "steps": [
-   "En un morter amb una mica de sal, piqueu els alls fins a fer-ne una pasta molt fina.\nA continuació, afegiu-hi l’oli d’oliva verge extra gota a gota i aneu-ho remenant sense parar amb la mà de morter, sempre en el mateix sentit, fins a aconseguir una salsa ben espessa i compacta.",
-   "Variacions:\nPodeu afegir-hi un rovell d’ou abans de començar a muntar la salsa.\nEs pot fer amb batedora elèctrica.\nPodeu afegir-hi un raig de suc d’una taronja agra durant l’elaboració de l’allioli o bé al final."
+   "En un morter amb una mica de sal, piqueu els alls fins a fer-ne una pasta molt fina.",
+   "A continuació, afegiu-hi l’oli d’oliva verge extra gota a gota i aneu-ho remenant sense parar amb la mà de morter, sempre en el mateix sentit, fins a aconseguir una salsa ben espessa i compacta.",
+   "Variacions:",
+   "Podeu afegir-hi un rovell d’ou abans de començar a muntar la salsa.",
+   "Es pot fer amb batedora elèctrica.",
+   "Podeu afegir-hi un raig de suc d’una taronja agra durant l’elaboració de l’allioli o bé al final."
   ],
   "servings": 4
  },
@@ -159,7 +177,7 @@
   "source": "Gastroteca",
   "category": "Amanides",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Amanida-Catalana-Amanides-i-plats-freds.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=3CwimchpnDk",
   "ingredients": [
    {
     "qty": 4.0,
@@ -239,7 +257,9 @@
   ],
   "steps": [
    "Es netegen i es tallen totes les verdures, s’amaneixen amb oli d’oliva verge extra, sal i una mica de vinagre, i s’acompanyen amb la resta d’ingredients a banda.",
-   "Variants:\nEs pot fer amb ceba seca en comptes de tendra.\nS’hi poden afegir tonyina o sardines de llauna."
+   "Variants:",
+   "Es pot fer amb ceba seca en comptes de tendra.",
+   "S’hi poden afegir tonyina o sardines de llauna."
   ],
   "servings": 4
  },
@@ -249,7 +269,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-amanida-darengada-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=Z8bigoMjQig",
   "ingredients": [
    {
     "qty": 4.0,
@@ -308,7 +328,13 @@
    }
   ],
   "steps": [
-   "Escaldeu la col amb aigua salada i una mica de vinagre.\nEscorreu-la, talleu-la petita i amaniu-la amb vinagre.\nBulliu els naps pelats i tallats a trossos llargs.\nBulliu les patates amb pell, peleu-les i talleu-les a rodanxes.\nPrepareu l’arengada a la porta, deixant-la a filets, sense pell ni espines.\nPoseu al plat la col, el nap, les mongetes, les patates, el pebrot i les olives.\nPoseu-hi les arengades per sobre i amaniu-ho amb la vinagreta."
+   "Escaldeu la col amb aigua salada i una mica de vinagre.",
+   "Escorreu-la, talleu-la petita i amaniu-la amb vinagre.",
+   "Bulliu els naps pelats i tallats a trossos llargs.",
+   "Bulliu les patates amb pell, peleu-les i talleu-les a rodanxes.",
+   "Prepareu l’arengada a la porta, deixant-la a filets, sense pell ni espines.",
+   "Poseu al plat la col, el nap, les mongetes, les patates, el pebrot i les olives.",
+   "Poseu-hi les arengades per sobre i amaniu-ho amb la vinagreta."
   ],
   "servings": 4
  },
@@ -362,8 +388,17 @@
    }
   ],
   "steps": [
-   "Bulliu les patates, amb pell, en aigua i sal.\nPeleu-les i talleu-les a rodanxes.\nEn una plata poseu els ingredients per capes començant per les patates i continuant amb el bacallà, la ceba, el tomàquet i el pebrot.\nAfegiu-hi les olives i amaniu-ho amb força oli d’oliva verge extra i sal.",
-   "Variacions:\nS’hi pot posar ou dur trinxat.\nTambé s’hi pot afegir pebrot verd a més del vermell.\nTambé es fa amb olives negres o verdes.\nEs pot adornar amb botifarra negra i blanca i coliflor confitada amb vinagre.\nEs pot acompanyar d’escarola i enciam.\nPer amanir-ho, s’hi poden afegir unes gotes de vinagre."
+   "Bulliu les patates, amb pell, en aigua i sal.",
+   "Peleu-les i talleu-les a rodanxes.",
+   "En una plata poseu els ingredients per capes començant per les patates i continuant amb el bacallà, la ceba, el tomàquet i el pebrot.",
+   "Afegiu-hi les olives i amaniu-ho amb força oli d’oliva verge extra i sal.",
+   "Variacions:",
+   "S’hi pot posar ou dur trinxat.",
+   "També s’hi pot afegir pebrot verd a més del vermell.",
+   "També es fa amb olives negres o verdes.",
+   "Es pot adornar amb botifarra negra i blanca i coliflor confitada amb vinagre.",
+   "Es pot acompanyar d’escarola i enciam.",
+   "Per amanir-ho, s’hi poden afegir unes gotes de vinagre."
   ],
   "servings": 4
  },
@@ -373,7 +408,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Amanida-de-bolets-i-llenties-Amanides-i-plats-freds-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=jAqnRJ5rvEQ",
   "ingredients": [
    {
     "qty": 300.0,
@@ -453,7 +488,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Amanida-de-faves-i-pernil-amb-menta-Amanides-i-plats-freds-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=FSJuBhDSNjY",
   "ingredients": [
    {
     "qty": 600.0,
@@ -487,8 +522,12 @@
    }
   ],
   "steps": [
-   "Feu bullir les faves amb un ramet de menta, escorreu-les i refredeu-les dins un bol amb aigua freda.\nA part, talleu unes fulles d’enciam i el pernil a la juliana.\nBarregeu-ho tot i amaniu-ho amb la vinagreta, feta dins el morter amb fulles de menta picades.",
-   "Variacions:\nS’hi pot afegir ceba tendra.\nS’hi poden afegir tomàquets tallats a daus."
+   "Feu bullir les faves amb un ramet de menta, escorreu-les i refredeu-les dins un bol amb aigua freda.",
+   "A part, talleu unes fulles d’enciam i el pernil a la juliana.",
+   "Barregeu-ho tot i amaniu-ho amb la vinagreta, feta dins el morter amb fulles de menta picades.",
+   "Variacions:",
+   "S’hi pot afegir ceba tendra.",
+   "S’hi poden afegir tomàquets tallats a daus."
   ],
   "servings": 4
  },
@@ -522,8 +561,12 @@
    }
   ],
   "steps": [
-   "Feu bullir les ametlles, el sucre i l’aigua sense parar de remenar.\nQuan comencin a esclatar les ametlles, traieu la cassola del foc i no deixeu de remenar fins que el sucre estigui sec.\nFeu aquesta operació unes quantes vegades, fins que les ametlles quedin daurades.\nEsteneu les ametlles sobre un marbre untat amb oli d’oliva verge extra.",
-   "Variacions:\nEs pot fer el mateix amb avellanes."
+   "Feu bullir les ametlles, el sucre i l’aigua sense parar de remenar.",
+   "Quan comencin a esclatar les ametlles, traieu la cassola del foc i no deixeu de remenar fins que el sucre estigui sec.",
+   "Feu aquesta operació unes quantes vegades, fins que les ametlles quedin daurades.",
+   "Esteneu les ametlles sobre un marbre untat amb oli d’oliva verge extra.",
+   "Variacions:",
+   "Es pot fer el mateix amb avellanes."
   ],
   "servings": 4
  },
@@ -533,7 +576,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Arròs-a-la-cubana-Arrossos-i-pastes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=8mkVR15oUn8",
   "ingredients": [
    {
     "qty": null,
@@ -572,8 +615,14 @@
    }
   ],
   "steps": [
-   "Poseu a bullir l’arròs en una olla amb aigua i sal.\nEscorreu-lo i col·loqueu-lo en una safata o en plats individuals.\nPoseu-hi per damunt els ous ferrats i la salsa de tomàquet.\nFregiu els plàtans, pelats i tallats al llarg, i guarniu el plat.",
-   "Variacions:\nEs pot bullir l’arròs amb uns alls i un ramet de julivert, llorer, etc.\nUna vegada l’arròs està bullit, es pot saltar amb una mica de llard o oli d’oliva verge extra i uns grans d’all picats perquè quedi més solt.\nEs pot fer sense plàtan fregit."
+   "Poseu a bullir l’arròs en una olla amb aigua i sal.",
+   "Escorreu-lo i col·loqueu-lo en una safata o en plats individuals.",
+   "Poseu-hi per damunt els ous ferrats i la salsa de tomàquet.",
+   "Fregiu els plàtans, pelats i tallats al llarg, i guarniu el plat.",
+   "Variacions:",
+   "Es pot bullir l’arròs amb uns alls i un ramet de julivert, llorer, etc.",
+   "Una vegada l’arròs està bullit, es pot saltar amb una mica de llard o oli d’oliva verge extra i uns grans d’all picats perquè quedi més solt.",
+   "Es pot fer sense plàtan fregit."
   ],
   "servings": 4
  },
@@ -642,8 +691,15 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb l’oli d’oliva verge extra, la ceba, el pebrot verd i el tomàquet.\nAfegiu-hi l’arròs i remeneu-ho un parell de minuts.\nAfegiu-hi l’aigua bullent i, al cap d’un moment, els pèsols i el bacallà.\nDeixeu-ho bullir uns 18 minuts aproximadament.\nQuan faltin 5 minuts per acabar la cocció, hi afegiu la picada deixatada amb una mica de suc de la cocció.",
-   "Variacions:\nEs pot afegir el bacallà al sofregit, abans de posar-hi l’aigua.\nEs poden afegir carxofes tallades al sofregit.\nEs poden posar un brins de safrà a la picada."
+   "Feu un sofregit amb l’oli d’oliva verge extra, la ceba, el pebrot verd i el tomàquet.",
+   "Afegiu-hi l’arròs i remeneu-ho un parell de minuts.",
+   "Afegiu-hi l’aigua bullent i, al cap d’un moment, els pèsols i el bacallà.",
+   "Deixeu-ho bullir uns 18 minuts aproximadament.",
+   "Quan faltin 5 minuts per acabar la cocció, hi afegiu la picada deixatada amb una mica de suc de la cocció.",
+   "Variacions:",
+   "Es pot afegir el bacallà al sofregit, abans de posar-hi l’aigua.",
+   "Es poden afegir carxofes tallades al sofregit.",
+   "Es poden posar un brins de safrà a la picada."
   ],
   "servings": 4
  },
@@ -653,7 +709,7 @@
   "source": "Gastroteca",
   "category": "Postres i dolços",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Arròs-amb-llet-Postres-i-dolços.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ejYUZDhbiZ8",
   "ingredients": [
    {
     "qty": 1.0,
@@ -682,8 +738,14 @@
    }
   ],
   "steps": [
-   "Poseu a bullir la llet amb la canyella, el sucre i la pela de llimona.\nQuan arrenqui el bull, afegiu-hi l’arròs i remeneu-ho de tant en tant perquè no s’enganxi.\nDeixeu-ho coure fins que quedi una mica pastós.\nRetireu la branca de canyella i la pela de llimona.",
-   "Variacions:\nEs pot fer amb llet d’ametlles en comptes de llet de vaca.\nEs pot empolsar una mica de canyella per sobre a l’hora de servir-lo.\nEs pot servir en plat individual o en plata."
+   "Poseu a bullir la llet amb la canyella, el sucre i la pela de llimona.",
+   "Quan arrenqui el bull, afegiu-hi l’arròs i remeneu-ho de tant en tant perquè no s’enganxi.",
+   "Deixeu-ho coure fins que quedi una mica pastós.",
+   "Retireu la branca de canyella i la pela de llimona.",
+   "Variacions:",
+   "Es pot fer amb llet d’ametlles en comptes de llet de vaca.",
+   "Es pot empolsar una mica de canyella per sobre a l’hora de servir-lo.",
+   "Es pot servir en plat individual o en plata."
   ],
   "servings": 4
  },
@@ -693,7 +755,7 @@
   "source": "Gastroteca",
   "category": "Sopes",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Arròs-caldós-de-llamàntol-Arrossos-i-pastes-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ESBHIOfAK84",
   "ingredients": [
    {
     "qty": 400.0,
@@ -713,7 +775,7 @@
    {
     "qty": 2.0,
     "unit": "",
-    "name": "tomàquets madurs"
+    "name": "tom àquets madurs"
    },
    {
     "qty": 1.0,
@@ -723,7 +785,7 @@
    {
     "qty": 1.0,
     "unit": "",
-    "name": "copeta vi blanc"
+    "name": "copeta de vi blanc"
    },
    {
     "qty": null,
@@ -752,8 +814,13 @@
    }
   ],
   "steps": [
-   "En una cassola feu un sofregit amb la ceba, el tomàquet, l’all i el julivert.\nAfegiu-hi el pebre vermell i la copa de vi, que deixareu reduir.\nAboqueu-hi el brou de peix i, quan arrenqui el bull, tireu-hi l’arròs i el llamàntol.\nDeixeu-ho bullir 12 minuts, apagueu el foc i que s’acabi de fer a l’olla.",
-   "Variacions:\nEs pot fer amb llagosta o amb altres crustacis en comptes de llamàntol.\nPerquè sigui més gustós s’ha de marcar el llamàntol per la part de la carn en oli d’oliva verge extra roent, reservar-lo i en el mateix oli fer-hi el sofregit."
+   "En una cassola feu un sofregit amb la ceba, el tomàquet, l’all i el julivert.",
+   "Afegiu-hi el pebre vermell i la copa de vi, que deixareu reduir.",
+   "Aboqueu-hi el brou de peix i, quan arrenqui el bull, tireu-hi l’arròs i el llamàntol.",
+   "Deixeu-ho bullir 12 minuts, apagueu el foc i que s’acabi de fer a l’olla.",
+   "Variacions:",
+   "Es pot fer amb llagosta o amb altres crustacis en comptes de llamàntol.",
+   "Perquè sigui més gustós s’ha de marcar el llamàntol per la part de la carn en oli d’oliva verge extra roent, reservar-lo i en el mateix oli fer-hi el sofregit."
   ],
   "servings": 4
  },
@@ -763,7 +830,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Arròs-cremós-de-galeres-Arrossos-i-pastes-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=eN8w7zmzq7E",
   "ingredients": [
    {
     "qty": 300.0,
@@ -894,13 +961,13 @@
    },
    {
     "qty": 2.0,
-    "unit": "grans",
-    "name": "alls picats"
+    "unit": "",
+    "name": "grans d'alls picats"
    },
    {
     "qty": 2.0,
     "unit": "",
-    "name": "tomàquets madurs ratllats"
+    "name": "tom àquets madurs ratllats"
    },
    {
     "qty": 100.0,
@@ -934,8 +1001,8 @@
    },
    {
     "qty": 1.0,
-    "unit": "gra",
-    "name": "all"
+    "unit": "",
+    "name": "gra d'all"
    },
    {
     "qty": null,
@@ -944,7 +1011,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEn el sofregit s’hi pot afegir pebrot verd o pebrot vermell.\nEn el sofregit s’hi poden afegir unes gotes de conyac.\nS’hi poden afegir altres tipus de verdures: mongeta tendra, carxofes, etc.\nS’hi pot afegir pebrot vermell escalivat.\nS’hi pot afegir algun tipus de bolets (rossinyols, carreretes).\nS’hi pot afegir pollastre o substituir el conill per pollastre.\nA més o en comptes de la costella s’hi poden posar cap de costella o salsitxes.\nS’hi poden afegir cansalada i pernil."
+   "En una cassola amb oli d’oliva verge extra fregiu els trossos de conill i de costella de porc fins que estiguin ben daurats i els retireu.",
+   "En el mateix oli d’oliva verge extra feu un sofregit amb la ceba, l’all i el tomàquet.",
+   "Quan el sofregit estigui ben fosc, reincorporeu-hi els trossos de carn i remeneu-ho tot.",
+   "Afegiu-hi l’arròs, barregeu-lo amb el sofregit remenant un parell de minuts i tireu-hi l’aigua bullent.",
+   "Al cap d’un moment, afegiu-hi els pèsols i la picada deixatada amb una mica de caldo de la cocció.",
+   "Deixeu-ho bullir 15 minuts aproximadament.",
+   "Si a mig coure veieu que hi falta aigua, afegiu-n’hi, sempre bullent.",
+   "Variacions:",
+   "En el sofregit s’hi pot afegir pebrot verd o pebrot vermell.",
+   "En el sofregit s’hi poden afegir unes gotes de conyac.",
+   "S’hi poden afegir altres tipus de verdures: mongeta tendra, carxofes, etc.",
+   "S’hi pot afegir pebrot vermell escalivat.",
+   "S’hi pot afegir algun tipus de bolets (rossinyols, carreretes)."
   ],
   "servings": 4
  },
@@ -1058,7 +1137,16 @@
    }
   ],
   "steps": [
-   "Variacions:\nEn comptes de pèsols s’hi pot posar carxofa o mongeta tendra.\nEn lloc d’aigua s’hi pot posar brou de carn o de peix."
+   "En una paella salteu tota la carn fins que quedi ben rossa i reserveu-la.",
+   "En el mateix oli d’oliva verge extra feu un sofregit amb la ceba, els alls, els pebrots i els tomàquets.",
+   "Un cop ben cuit el sofregit, afegiu-hi el calamar i la sípia.",
+   "A banda, netegeu i obriu els musclos al vapor i traieu-ne les cloves.",
+   "Quan s’hagi evaporat l’aigua del calamar i la sèpia, afegiu la carn, l’arròs i els pèsols, i remeneu-ho.",
+   "Afegiu-hi l’aigua bullent i la picada; saleu-ho.",
+   "Deixeu-ho coure un quart d’hora i repartiu-hi per sobre les gambes pelades i els musclos sense closca, i deixeu-ho 3 minuts més.",
+   "Variacions:",
+   "En comptes de pèsols s’hi pot posar carxofa o mongeta tendra.",
+   "En lloc d’aigua s’hi pot posar brou de carn o de peix."
   ],
   "servings": 4
  },
@@ -1068,7 +1156,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bacallà-amb-samfaina-Peixos-i-mariscs.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=JesQCd41mNc",
   "ingredients": [
    {
     "qty": 800.0,
@@ -1097,8 +1185,12 @@
    }
   ],
   "steps": [
-   "Enfarineu el bacallà, fregiu-lo poc i quan estigui mig cuit poseu-lo en una cassola.\nCol·loqueu la samfaina damunt del bacallà, afegiu-hi una mica d’aigua i deixeu-ho que acabi de coure tot junt.",
-   "Variacions:\nEn algunes comarques hi afegeixen olives.\nS’hi pot afegir un bitxo.\nEs pot arrebossar el bacallà amb farina i ou en lloc d’enfarinar-lo."
+   "Enfarineu el bacallà, fregiu-lo poc i quan estigui mig cuit poseu-lo en una cassola.",
+   "Col·loqueu la samfaina damunt del bacallà, afegiu-hi una mica d’aigua i deixeu-ho que acabi de coure tot junt.",
+   "Variacions:",
+   "En algunes comarques hi afegeixen olives.",
+   "S’hi pot afegir un bitxo.",
+   "Es pot arrebossar el bacallà amb farina i ou en lloc d’enfarinar-lo."
   ],
   "servings": 4
  },
@@ -1108,7 +1200,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Barreja-de-bolets-amb-botifarra-Bolets-i-cargols.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=1iNfEoi5b94",
   "ingredients": [
    {
     "qty": 1.0,
@@ -1157,9 +1249,18 @@
    }
   ],
   "steps": [
-   "Salteu les botifarres en una paella amb oli d’oliva verge extra i reserveu-les.\nEn el mateix oli d’oliva verge extra ofegueu els bolets nets, trossejats i salats.\nReincorporeu-hi les botifarres, afegiu-hi una picada d’all i julivert i ho deixeu una estona més que es cogui tot junt.",
-   "Variacions:\nEn lloc de la picada, s’hi pot posar ceba ofegada.\nEs pot fer amb botifarra esparracada.\nS’hi poden afegir pinyons.\nS’hi pot posar, a més, cansalada del coll.\nS’hi pot afegir llom a daus.\nS’hi pot afegir pa ratllat i gratinar-ho.",
-   "Comentaris:\nEls bolets poden ser cames de perdiu, trompetes de la mort, rossinyols, fredolics, etc."
+   "Salteu les botifarres en una paella amb oli d’oliva verge extra i reserveu-les.",
+   "En el mateix oli d’oliva verge extra ofegueu els bolets nets, trossejats i salats.",
+   "Reincorporeu-hi les botifarres, afegiu-hi una picada d’all i julivert i ho deixeu una estona més que es cogui tot junt.",
+   "Variacions:",
+   "En lloc de la picada, s’hi pot posar ceba ofegada.",
+   "Es pot fer amb botifarra esparracada.",
+   "S’hi poden afegir pinyons.",
+   "S’hi pot posar, a més, cansalada del coll.",
+   "S’hi pot afegir llom a daus.",
+   "S’hi pot afegir pa ratllat i gratinar-ho.",
+   "Comentaris:",
+   "Els bolets poden ser cames de perdiu, trompetes de la mort, rossinyols, fredolics, etc."
   ],
   "servings": 4
  },
@@ -1169,7 +1270,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Barretets-Postres-i-dolços-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ZNHu8AcZNEE",
   "ingredients": [
    {
     "qty": 6.0,
@@ -1193,8 +1294,14 @@
    }
   ],
   "steps": [
-   "Bateu les clares i el sucre fins que facin un fil brillant.\nEscaldeu i peleu els ametllons, torreu-los i talleu-los a trossos.\nBarregeu-ho amb les clares i ompliu fins a la meitat uns motlles rectangulars.\nPoseu-los al forn fort i quan vegeu que han pujat i canvien de color traieu-los.",
-   "Variacions:\nEn comptes d’ametllons, es poden fer servir ametlles torrades, que es piquen i es barregen amb la clara i el sucre.\nS’hi pot afegir coco ratllat.\nEn lloc de clares, es poden fer servir rovells."
+   "Bateu les clares i el sucre fins que facin un fil brillant.",
+   "Escaldeu i peleu els ametllons, torreu-los i talleu-los a trossos.",
+   "Barregeu-ho amb les clares i ompliu fins a la meitat uns motlles rectangulars.",
+   "Poseu-los al forn fort i quan vegeu que han pujat i canvien de color traieu-los.",
+   "Variacions:",
+   "En comptes d’ametllons, es poden fer servir ametlles torrades, que es piquen i es barregen amb la clara i el sucre.",
+   "S’hi pot afegir coco ratllat.",
+   "En lloc de clares, es poden fer servir rovells."
   ],
   "servings": 4
  },
@@ -1204,7 +1311,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bledes-amb-cansalada-Verdures-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=kZV0PKUcKew",
   "ingredients": [
    {
     "qty": 1.5,
@@ -1233,7 +1340,10 @@
    }
   ],
   "steps": [
-   "Renteu i talleu les bledes.\nBulliu-les amb aigua i sal.\nEn una paella fregiu la cansalada tallada a daus.\nQuan estigui enrossida, afegiu-hi les bledes escorregudes i ho deixeu coure un moment tot junt."
+   "Renteu i talleu les bledes.",
+   "Bulliu-les amb aigua i sal.",
+   "En una paella fregiu la cansalada tallada a daus.",
+   "Quan estigui enrossida, afegiu-hi les bledes escorregudes i ho deixeu coure un moment tot junt."
   ],
   "servings": 4
  },
@@ -1243,7 +1353,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Botifarra-amb-peres-Carns.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=fG8xwT0SGjo",
   "ingredients": [
    {
     "qty": 600.0,
@@ -1267,7 +1377,11 @@
    }
   ],
   "steps": [
-   "En una cassola amb el llard rostiu les peres a foc lent.\nQuan estiguin enrossides, afegiu-hi una mica de sucre i deixeu que caramel·litzi.\nEn una paella a part feu les botifarres, afegiu-les a la cassola de les peres i deixeu-ho coure tot junt una estona.\nAfegiu-hi una mica d’aigua, si fa falta.\nDeixeu-ho reposar abans de servir."
+   "En una cassola amb el llard rostiu les peres a foc lent.",
+   "Quan estiguin enrossides, afegiu-hi una mica de sucre i deixeu que caramel·litzi.",
+   "En una paella a part feu les botifarres, afegiu-les a la cassola de les peres i deixeu-ho coure tot junt una estona.",
+   "Afegiu-hi una mica d’aigua, si fa falta.",
+   "Deixeu-ho reposar abans de servir."
   ],
   "servings": 4
  },
@@ -1277,7 +1391,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Braç-de-gitano-Amanides-i-plats-freds.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=U11iEoAImnQ",
   "ingredients": [
    {
     "qty": 1.0,
@@ -1286,8 +1400,8 @@
    },
    {
     "qty": 1.0,
-    "unit": "llauna",
-    "name": "tonyina en oli d'oliva verge extra"
+    "unit": "",
+    "name": "llauna de tonyina en oli d'oliva verge extra"
    },
    {
     "qty": 2.0,
@@ -1297,7 +1411,7 @@
    {
     "qty": 1.0,
     "unit": "",
-    "name": "tassa maionesa"
+    "name": "tassa de maionesa"
    },
    {
     "qty": 2.0,
@@ -1321,8 +1435,14 @@
    }
   ],
   "steps": [
-   "Bulliu les patates i feu-ne un puré.\nQuan sigui fred, esteneu el puré sobre un paper vegetal i aplaneu-lo fins que tingui un dit de gruix.\nPoseu-hi al damunt la tonyina, escorreguda i barrejada amb una mica de maionesa.\nEnrotlleu-ho, ajudant-vos del paper, per formar un braç.\nCobriu-lo de maionesa i adorneu-lo amb l’ou dur tallat a rodelles, el pebrot tallat a tires i les olives.",
-   "Variacions:\nEn el farciment també s’hi poden posar pèsols cuits, pebrot vermell escalivat i ou dur.\nEl farciment pot ser de carn de vedella o de porc rostida."
+   "Bulliu les patates i feu-ne un puré.",
+   "Quan sigui fred, esteneu el puré sobre un paper vegetal i aplaneu-lo fins que tingui un dit de gruix.",
+   "Poseu-hi al damunt la tonyina, escorreguda i barrejada amb una mica de maionesa.",
+   "Enrotlleu-ho, ajudant-vos del paper, per formar un braç.",
+   "Cobriu-lo de maionesa i adorneu-lo amb l’ou dur tallat a rodelles, el pebrot tallat a tires i les olives.",
+   "Variacions:",
+   "En el farciment també s’hi poden posar pèsols cuits, pebrot vermell escalivat i ou dur.",
+   "El farciment pot ser de carn de vedella o de porc rostida."
   ],
   "servings": 4
  },
@@ -1366,7 +1486,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEn comptes de nata s’hi pot posar crema o trufa.\nEs pot afegir aigua o almívar de fruites als rovells d’ou.\nEs pot posat llevat en pols a la farina."
+   "Separeu les clares dels rovells.",
+   "Munteu els rovells d’ou amb la meitat del sucre; afegiu-hi l’aigua de mica en mica fins que la massa dobli el volum.",
+   "Munteu les clares a punt de neu amb l’altra meitat del sucre.",
+   "Barregeu les clares amb els rovells.",
+   "Afegiu-hi la farina fins a aconseguir una massa llisa.",
+   "Poseu la massa en una mànega pastissera i esteneu-la sobre un paper vegetal.",
+   "Coeu la massa al forn fort durant 10 minuts.",
+   "Deixeu-la refredar tapada amb un drap humit.",
+   "Traieu el drap, cobriu-la amb la nata, enrotlleu-ho i poseu-hi sucre de llustre per sobre.",
+   "Variacions:",
+   "En comptes de nata s’hi pot posar crema o trufa.",
+   "Es pot afegir aigua o almívar de fruites als rovells d’ou.",
+   "Es pot posat llevat en pols a la farina."
   ],
   "servings": 4
  },
@@ -1376,7 +1508,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Brandada-de-bacallà-Amanides-i-plats-freds.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=9mrlPJ9xrrU",
   "ingredients": [
    {
     "qty": 400.0,
@@ -1415,8 +1547,14 @@
    }
   ],
   "steps": [
-   "Fregiu lleugerament els alls amb l’oli d’oliva verge extra i coleu-lo.\nEscaldeu el bacallà i traieu-ne la pell i les espines.\nA la mateixa aigua bulliu-hi la patata i retireu-la.\nPoseu el bacallà i la patata en una batedora elèctrica i aneu tirant-hi a poc a poc l’oli d’oliva verge extra i la llet calenta.\nEmulsioneu-ho tot fins a lligar-ho com si fos una maionesa.",
-   "Variacions:\nEs pot fer sense patata.\nEs pot fer amb crema de llet en lloc de llet."
+   "Fregiu lleugerament els alls amb l’oli d’oliva verge extra i coleu-lo.",
+   "Escaldeu el bacallà i traieu-ne la pell i les espines.",
+   "A la mateixa aigua bulliu-hi la patata i retireu-la.",
+   "Poseu el bacallà i la patata en una batedora elèctrica i aneu tirant-hi a poc a poc l’oli d’oliva verge extra i la llet calenta.",
+   "Emulsioneu-ho tot fins a lligar-ho com si fos una maionesa.",
+   "Variacions:",
+   "Es pot fer sense patata.",
+   "Es pot fer amb crema de llet en lloc de llet."
   ],
   "servings": 4
  },
@@ -1426,7 +1564,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bròquil-arrebossat-Verdures-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=B2mBSaP-wpE",
   "ingredients": [
    {
     "qty": null,
@@ -1460,8 +1598,12 @@
    }
   ],
   "steps": [
-   "Renteu el bròquil, trossegeu-lo a ramets i feu-lo bullir amb aigua i sal.\nEscorreu-lo, eixugueu-lo, passeu els ramets per farina i ou batut, i fregiu-los amb oli d’oliva verge extra ben calent.",
-   "Variacions:\nAquest sistema es pot utilitzar amb altres verdures: carbassons, calçots, albergínies, coliflor, ceba, carxofes…\nTambé es poden arrebossar amb pa ratllat.\nUna altra opció és enfarinar-les, mullar-les amb aigua freda i fregir-les seguidament amb oli d’oliva verge extra molt calent. Un cop eixugats els ramets de bròquil, passeu-los per farina, suqueu cada tall en aigua freda i passeu-los directament a l’oli d’oliva verge extra calent."
+   "Renteu el bròquil, trossegeu-lo a ramets i feu-lo bullir amb aigua i sal.",
+   "Escorreu-lo, eixugueu-lo, passeu els ramets per farina i ou batut, i fregiu-los amb oli d’oliva verge extra ben calent.",
+   "Variacions:",
+   "Aquest sistema es pot utilitzar amb altres verdures: carbassons, calçots, albergínies, coliflor, ceba, carxofes…",
+   "També es poden arrebossar amb pa ratllat.",
+   "Una altra opció és enfarinar-les, mullar-les amb aigua freda i fregir-les seguidament amb oli d’oliva verge extra molt calent. Un cop eixugats els ramets de bròquil, passeu-los per farina, suqueu cada tall en aigua freda i passeu-los directament a l’oli d’oliva verge extra calent."
   ],
   "servings": 4
  },
@@ -1525,8 +1667,13 @@
    }
   ],
   "steps": [
-   "Poseu una olla al foc amb les carns cobertes d’aigua freda.\nQuan arrenqui el bull, abaixeu el foc i desgreixeu el brou.\nAl cap d’una hora, aproximadament afegiu-hi les verdures i deixeu-ho bullir una hora més.\nColeu-ho i deixeu-ho refredar.",
-   "Variacions:\nS’hi poden posar ossos de porc i de xai.\nS’hi poden posar altres tipus de verdures."
+   "Poseu una olla al foc amb les carns cobertes d’aigua freda.",
+   "Quan arrenqui el bull, abaixeu el foc i desgreixeu el brou.",
+   "Al cap d’una hora, aproximadament afegiu-hi les verdures i deixeu-ho bullir una hora més.",
+   "Coleu-ho i deixeu-ho refredar.",
+   "Variacions:",
+   "S’hi poden posar ossos de porc i de xai.",
+   "S’hi poden posar altres tipus de verdures."
   ],
   "servings": 4
  },
@@ -1536,7 +1683,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Brou-de-gallina-Sopes-i-cremes-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=kAzwVzJMrDE",
   "ingredients": [
    {
     "qty": null,
@@ -1585,8 +1732,13 @@
    }
   ],
   "steps": [
-   "Poseu a bullir la gallina i els ossos en una olla amb aigua freda.\nDeixeu-ho bullir durant una hora, tot desgreixant-ho de tant en tant.\nAfegiu-hi les verdures i ho deixeu bullir una altra hora.\nSaleu-ho i coleu-ho.",
-   "Variacions:\nEn comptes de gallina es pot fer amb carcanades de gallina o de pollastre escaldades.\nEs pot fer només amb pollastre."
+   "Poseu a bullir la gallina i els ossos en una olla amb aigua freda.",
+   "Deixeu-ho bullir durant una hora, tot desgreixant-ho de tant en tant.",
+   "Afegiu-hi les verdures i ho deixeu bullir una altra hora.",
+   "Saleu-ho i coleu-ho.",
+   "Variacions:",
+   "En comptes de gallina es pot fer amb carcanades de gallina o de pollastre escaldades.",
+   "Es pot fer només amb pollastre."
   ],
   "servings": 4
  },
@@ -1596,7 +1748,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Brou-de-peix-Sopes-i-cremes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=gpaX4I0SYEI",
   "ingredients": [
    {
     "qty": null,
@@ -1630,8 +1782,15 @@
    }
   ],
   "steps": [
-   "Poseu a bullir amb aigua freda el peix.\nQuan arrenqui el bull, desescumeu i afegiu-hi les verdures.\nDeixeu-ho bullir uns 30 minuts.",
-   "Variacions:\nS’hi poden afegir uns grans de pebre negre.\nEs pot fer només amb peix, sense verdures.\nS’hi pot afegir una fulla de llorer.\nS’hi pot fer una reducció de vi blanc.\nS’hi poden afegir crancs, galeres, escórpora i altres peixos."
+   "Poseu a bullir amb aigua freda el peix.",
+   "Quan arrenqui el bull, desescumeu i afegiu-hi les verdures.",
+   "Deixeu-ho bullir uns 30 minuts.",
+   "Variacions:",
+   "S’hi poden afegir uns grans de pebre negre.",
+   "Es pot fer només amb peix, sense verdures.",
+   "S’hi pot afegir una fulla de llorer.",
+   "S’hi pot fer una reducció de vi blanc.",
+   "S’hi poden afegir crancs, galeres, escórpora i altres peixos."
   ],
   "servings": 4
  },
@@ -1641,7 +1800,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bunyols-de-bacallà-Peixos-i-mariscs-v5-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=9klwaMnD34Y",
   "ingredients": [
    {
     "qty": 250.0,
@@ -1690,7 +1849,17 @@
    }
   ],
   "steps": [
-   "Variacions:\nPodeu aprofitar l’aigua d’escaldar el bacallà per fer la pasta.\nEn lloc d’aigua es pot fer la pasta amb llet.\nEs pot posar llard en lloc de mantega."
+   "Escaldeu el bacallà i escorreu-lo.",
+   "Escalfeu ¼ de litre d’aigua amb la mantega i un pessic de sal.",
+   "Quan bulli aboqueu-hi de cop la farina sense parar de remenar fins que la massa faci una bola que es desenganxi de les parets del pot.",
+   "Fora del foc, afegiu-hi els ous un per un tot remenant amb la cullera, amb cura de no afegir-ne un altre fins que el primer no estigui incorporat a la massa.",
+   "Afegiu-hi el bacallà trinxat amb força all i julivert.",
+   "Aneu agafant parts de la pasta i fregint-la en una paella fonda amb molt oli d’oliva verge extra calent.",
+   "Quan els bunyols estiguin rossos, poseu-los sobre un paper absorbent.",
+   "Variacions:",
+   "Podeu aprofitar l’aigua d’escaldar el bacallà per fer la pasta.",
+   "En lloc d’aigua es pot fer la pasta amb llet.",
+   "Es pot posar llard en lloc de mantega."
   ],
   "servings": 4
  },
@@ -1700,7 +1869,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bunyols-de-boniato-Postres-i-dolços2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=BJOkO5miDsw",
   "ingredients": [
    {
     "qty": 500.0,
@@ -1766,7 +1935,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bunyols-de-carbassó-Verdures-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=7hN4OlWIeIQ",
   "ingredients": [
    {
     "qty": null,
@@ -1805,8 +1974,14 @@
    }
   ],
   "steps": [
-   "Talleu el carbassó, sense pelar, a daus petits, saleu-lo i poseu-lo a escórrer una estona.\nAfegiu-hi l’all picat i remeneu-ho.\nA banda, barregeu l’ou, el sobre de gasosa i la sal.\nSeguidament afegiu-hi la farina que admeti fins que quedi una massa no gaire espessa.\nAfegiu-hi el carbassó escorregut i barregeu-ho bé.\nAneu formant bunyols i fregiu-los en oli d’oliva verge extra calent.",
-   "Variacions:\nEn lloc del sobre de gasosa s’hi pot posar sifó o un altre llevat en pols."
+   "Talleu el carbassó, sense pelar, a daus petits, saleu-lo i poseu-lo a escórrer una estona.",
+   "Afegiu-hi l’all picat i remeneu-ho.",
+   "A banda, barregeu l’ou, el sobre de gasosa i la sal.",
+   "Seguidament afegiu-hi la farina que admeti fins que quedi una massa no gaire espessa.",
+   "Afegiu-hi el carbassó escorregut i barregeu-ho bé.",
+   "Aneu formant bunyols i fregiu-los en oli d’oliva verge extra calent.",
+   "Variacions:",
+   "En lloc del sobre de gasosa s’hi pot posar sifó o un altre llevat en pols."
   ],
   "servings": 4
  },
@@ -1816,7 +1991,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Bunyols-de-vent-Postres-i-dolços-1-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=PvV8BDtWAPw",
   "ingredients": [
    {
     "qty": 125.0,
@@ -1855,9 +2030,16 @@
    }
   ],
   "steps": [
-   "Variacions:\nEs poden farcir de crema."
+   "Feu bullir l’aigua amb la mantega i la sal.",
+   "Quan bulli aboqueu-hi de cop la farina i remeneu-ho fins que es faci una bola de pasta que es desenganxi de les parets del pot.",
+   "Fora del foc, remeneu per tal que es refredi i agafi consistència.",
+   "Aneu-hi incorporant els ous d’un en un, sense deixar de remenar, fins que quedi una massa llisa.",
+   "Poseu la massa en una màniga, talleu porcions de pasta i tireu-les en oli d’oliva verge extra abundant i calent.",
+   "Traieu els bunyols quan agafin color i empolseu-los amb força sucre.",
+   "Variacions:",
+   "Es poden farcir de crema."
   ],
-  "servings": 8217
+  "servings": 4
  },
  {
   "name": "Cabrit amb moixernons",
@@ -1865,7 +2047,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Cabrit-amb-moixernons-Carns-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=wncGz8tsBDc",
   "ingredients": [
    {
     "qty": 1.0,
@@ -1929,8 +2111,12 @@
    }
   ],
   "steps": [
-   "Salpebreu el cabrit, enfarineu-lo, fregiu-lo en una cassola amb llard i reserveu-lo.\nA la mateixa cassola feu un sofregit amb la ceba, els alls, el llorer i el pebrot.\nA banda, salteu els moixernons amb all i julivert.\nUn cop cuit el sofregit, afegiu-hi el cabrit, feu-hi la reducció del vi ranci, poseu-hi els moixernons i deixeu-ho coure tot junt amb la cassola tapada a foc lent fins que el cabrit sigui tou.",
-   "Variacions:\nEs pot fer amb altres bolets."
+   "Salpebreu el cabrit, enfarineu-lo, fregiu-lo en una cassola amb llard i reserveu-lo.",
+   "A la mateixa cassola feu un sofregit amb la ceba, els alls, el llorer i el pebrot.",
+   "A banda, salteu els moixernons amb all i julivert.",
+   "Un cop cuit el sofregit, afegiu-hi el cabrit, feu-hi la reducció del vi ranci, poseu-hi els moixernons i deixeu-ho coure tot junt amb la cassola tapada a foc lent fins que el cabrit sigui tou.",
+   "Variacions:",
+   "Es pot fer amb altres bolets."
   ],
   "servings": 4
  },
@@ -1940,7 +2126,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Cabrit-rostit-Carns-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=bkNh-Ake4Eg",
   "ingredients": [
    {
     "qty": 1.0,
@@ -2004,8 +2190,14 @@
    }
   ],
   "steps": [
-   "Enrossiu el cabrit salpebrat en una cassola amb oli d’oliva verge extra i llard.\nAfegiu-hi la ceba, el tomàquet, la canyella, la farigola i els alls.\nA mitja cocció feu-hi la reducció del vi ranci i deixeu-ho acabar de coure amb la cassola tapada.\nSi cal, podeu afegir-hi aigua.",
-   "Variació:\nEs pot aromatitzar amb menta, romaní, farigola i marialluïsa.\nEs pot passar la salsa per un colador abans de servir-ho.\nEs pot acompanyar de patates rosses o patates saltades amb all i julivert."
+   "Enrossiu el cabrit salpebrat en una cassola amb oli d’oliva verge extra i llard.",
+   "Afegiu-hi la ceba, el tomàquet, la canyella, la farigola i els alls.",
+   "A mitja cocció feu-hi la reducció del vi ranci i deixeu-ho acabar de coure amb la cassola tapada.",
+   "Si cal, podeu afegir-hi aigua.",
+   "Variació:",
+   "Es pot aromatitzar amb menta, romaní, farigola i marialluïsa.",
+   "Es pot passar la salsa per un colador abans de servir-ho.",
+   "Es pot acompanyar de patates rosses o patates saltades amb all i julivert."
   ],
   "servings": 4
  },
@@ -2044,8 +2236,12 @@
    }
   ],
   "steps": [
-   "Talleu els calamars a rodanxes.\nFeu la massa d’arrebossar amb la resta d’ingredients.\nArrebosseu les rodanxes i fregiu-les en oli d’oliva verge extra calent, tot procurant que quedin obertes i rosses.",
-   "Variacions:\nEs pot afegir algun ingredient a la massa per fer-la més esponjosa: llevat en pols, sifó…\nLes anelles o rodanxes es poden enfarinar, passar per ou batut i fregir."
+   "Talleu els calamars a rodanxes.",
+   "Feu la massa d’arrebossar amb la resta d’ingredients.",
+   "Arrebosseu les rodanxes i fregiu-les en oli d’oliva verge extra calent, tot procurant que quedin obertes i rosses.",
+   "Variacions:",
+   "Es pot afegir algun ingredient a la massa per fer-la més esponjosa: llevat en pols, sifó…",
+   "Les anelles o rodanxes es poden enfarinar, passar per ou batut i fregir."
   ],
   "servings": 4
  },
@@ -2055,7 +2251,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Calamars-farcits-Peixos-i-mariscs-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=4IPWXbNMDSs",
   "ingredients": [
    {
     "qty": 8.0,
@@ -2129,7 +2325,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEs poden farcir els calamars amb la carn crua.\nEs poden farcit només amb les potes i les aletes del calamar.\nEl farciment es pot espessir amb molla de pa remullada amb llet.\nEs poden afegir al farciment rovellons o una altra mena de bolets.\nEn lloc de vi blanc s’hi pot posar vi ranci.\nEn comptes d’aigua es pot fer servir brou de peix.\nEs poden acompanyar de bolets saltats amb all i julivert.\nEs poden acompanyar de verdures."
+   "Feu un sofregit amb la ceba i el tomàquet i reserveu-lo.",
+   "Sofregiu la carn picada amb una cullerada del sofregit, afegiu-hi les potes i les aletes del calamar picades, i al cap d’una estona l’ou dur.",
+   "Farciu els calamars amb aquesta barreja i tanqueu-los amb un escuradents.",
+   "Enfarineu els calamars farcits, enrossiu-los i retireu-los.",
+   "Preneu la resta del sofregit de ceba i el tomàquet, feu la reducció del vi, afegiu-hi els calamars i mulleu-ho amb aigua.",
+   "Deixeu que coguin a foc molt suau i quan estiguin tous afegiu-hi la picada i deixeu-los coure una estona més.",
+   "Variacions:",
+   "Es poden farcir els calamars amb la carn crua.",
+   "Es poden farcit només amb les potes i les aletes del calamar.",
+   "El farciment es pot espessir amb molla de pa remullada amb llet.",
+   "Es poden afegir al farciment rovellons o una altra mena de bolets.",
+   "En lloc de vi blanc s’hi pot posar vi ranci.",
+   "En comptes d’aigua es pot fer servir brou de peix."
   ],
   "servings": 4
  },
@@ -2139,7 +2347,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Canelons-de-col-Altres-receptes-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=XLi6mTXPbuY",
   "ingredients": [
    {
     "qty": 1.0,
@@ -2193,8 +2401,15 @@
    }
   ],
   "steps": [
-   "Bulliu la carn amb les cebes, els tomàquets i sal.\nEscorreu la carn i tritureu-la.\nBulliu les fulles més tendres de la col amb aigua i sal.\nFarciu cada fulla de col amb la carn picada i emboliqueu-la en forma de caneló.\nPoseu els canelons en una safata, cobriu-los amb beixamel i gratineu-los amb formatge ratllat.",
-   "Variacions:\nEs pot aprofitar la carn d’olla de l’escudella per al farciment.\nEs pot posar una mica de beixamel en el farciment.\nEs poden aprofitar les fulles petites de la col per al farciment."
+   "Bulliu la carn amb les cebes, els tomàquets i sal.",
+   "Escorreu la carn i tritureu-la.",
+   "Bulliu les fulles més tendres de la col amb aigua i sal.",
+   "Farciu cada fulla de col amb la carn picada i emboliqueu-la en forma de caneló.",
+   "Poseu els canelons en una safata, cobriu-los amb beixamel i gratineu-los amb formatge ratllat.",
+   "Variacions:",
+   "Es pot aprofitar la carn d’olla de l’escudella per al farciment.",
+   "Es pot posar una mica de beixamel en el farciment.",
+   "Es poden aprofitar les fulles petites de la col per al farciment."
   ],
   "servings": 4
  },
@@ -2204,7 +2419,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Canelons-despinacs-Verdures-v4-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=Wne1D0yy9l4",
   "ingredients": [
    {
     "qty": 1.0,
@@ -2258,8 +2473,13 @@
    }
   ],
   "steps": [
-   "Netegeu i renteu els espinacs amb dues o tres aigües i talleu-los a trossets.\nEn una paella fregiu el pernil i els pinyons, i afegiu-hi els espinacs i les panses.\nBulliu la pasta dels canelons, refredeu-la en aigua freda i eixugueu-la. Ompliu-los amb els espinacs.\nPoseu els canalons en una safata, cobriu-los de beixamel i de formatge ratllat i gratineu-los al forn.",
-   "Variacions:\nEn lloc de beixamel s’hi pot posar salsa de tomàquet.\nEs pot afegir beixamel al farciment per lligar-lo una mica més."
+   "Netegeu i renteu els espinacs amb dues o tres aigües i talleu-los a trossets.",
+   "En una paella fregiu el pernil i els pinyons, i afegiu-hi els espinacs i les panses.",
+   "Bulliu la pasta dels canelons, refredeu-la en aigua freda i eixugueu-la. Ompliu-los amb els espinacs.",
+   "Poseu els canalons en una safata, cobriu-los de beixamel i de formatge ratllat i gratineu-los al forn.",
+   "Variacions:",
+   "En lloc de beixamel s’hi pot posar salsa de tomàquet.",
+   "Es pot afegir beixamel al farciment per lligar-lo una mica més."
   ],
   "servings": 4
  },
@@ -2269,7 +2489,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Canelons-Carns-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=-IS2EjdKYD8",
   "ingredients": [
    {
     "qty": 16.0,
@@ -2358,7 +2578,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEs pot afegir cervell de xai al farciment.\nEs pot afegir trufa ratllada al farciment.\nEs poden posar unes tires de salsa de tomàquet clàssica per sobre de la beixamel.\nEs pot afegir una mica de paté al farciment.\nEs pot variar el tipus i la proporció de les carns.\nSovint es fa a partir de sobres de rostit i de carn d’olla."
+   "En una olla amb aigua, sal i un raig d’oli d’oliva verge extra bulliu les plaques de canelons.",
+   "Refredeu-les, esteneu-les sobre un drap i assequeu-les.",
+   "Rostiu les carns salpebrades amb la canyella, els alls, la ceba i el tomàquet.",
+   "A mig rostir feu-hi la reducció del vi.",
+   "Coleu el suc, retireu la branca de canyella i passeu-ho tot per la màquina de trinxar.",
+   "Barregeu el farcit amb beixamel i repartiu-lo per sobre les plaques de canelons.",
+   "Emboliqueu els canelons, poseu-los en una placa de forn untada amb mantega, cobriu-los amb beixamel i poseu-hi per sobre el formatge ratllat i unes boletes de mantega.",
+   "Poseu-los al forn a 180º durant 15 o 20 minuts per escalfar i gratinar.",
+   "Variacions:",
+   "Es pot afegir cervell de xai al farciment.",
+   "Es pot afegir trufa ratllada al farciment.",
+   "Es poden posar unes tires de salsa de tomàquet clàssica per sobre de la beixamel.",
+   "Es pot afegir una mica de paté al farciment."
   ],
   "servings": 4
  },
@@ -2368,7 +2600,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Capipota-Carns1-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=Lj-ChgBZYXU",
   "ingredients": [
    {
     "qty": 2.0,
@@ -2437,8 +2669,15 @@
    }
   ],
   "steps": [
-   "Bulliu la pota de vedella amb aigua, ceba, llorer i sal.\nDesosseu les potes i talleu-ho tot a trossos no gaire grans.\nEn una cassola feu un sofregit amb les cebes i els tomàquets.\nAfegiu-hi el cap tallat a trossos, les potes i una mica d’aigua o brou de la cocció de les potes.\nAfegiu-hi la picada deixatada amb el vi ranci i deixeu-ho coure tot junt una estona.",
-   "Variacions:\nS’hi pot afegir tripa de vedella.\nEs pot fer amb samfaina en lloc de sofregit.\nS’hi poden afegir cigrons bullits al mateix moment que la picada i una mica de brou de la cocció dels cigrons."
+   "Bulliu la pota de vedella amb aigua, ceba, llorer i sal.",
+   "Desosseu les potes i talleu-ho tot a trossos no gaire grans.",
+   "En una cassola feu un sofregit amb les cebes i els tomàquets.",
+   "Afegiu-hi el cap tallat a trossos, les potes i una mica d’aigua o brou de la cocció de les potes.",
+   "Afegiu-hi la picada deixatada amb el vi ranci i deixeu-ho coure tot junt una estona.",
+   "Variacions:",
+   "S’hi pot afegir tripa de vedella.",
+   "Es pot fer amb samfaina en lloc de sofregit.",
+   "S’hi poden afegir cigrons bullits al mateix moment que la picada i una mica de brou de la cocció dels cigrons."
   ],
   "servings": 4
  },
@@ -2507,7 +2746,10 @@
    }
   ],
   "steps": [
-   "Enfarineu i fregiu lleugerament el bacallà en oli d’oliva verge extra ben calent.\nFeu un sofregit amb les cebes, els alls i els tomàquets.\nAfegiu-hi les patates i aigua que cobreixi, i a mitja cocció hi tireu els cargols, els ous durs i el bacallà.\nDeixeu-ho coure tot junt i al final de la cocció afegiu-hi l’allioli negat amb el suc de la cocció."
+   "Enfarineu i fregiu lleugerament el bacallà en oli d’oliva verge extra ben calent.",
+   "Feu un sofregit amb les cebes, els alls i els tomàquets.",
+   "Afegiu-hi les patates i aigua que cobreixi, i a mitja cocció hi tireu els cargols, els ous durs i el bacallà.",
+   "Deixeu-ho coure tot junt i al final de la cocció afegiu-hi l’allioli negat amb el suc de la cocció."
   ],
   "servings": 4
  },
@@ -2541,7 +2783,16 @@
    }
   ],
   "steps": [
-   "Traieu el tel dels cargols i poseu-los cap per amunt en una llauna amb sal, pebre i oli d’oliva verge extra .\nCol•loqueu la llauna sobre el foc o al forn a fi que vagin coent lentament."
+   "Traieu el tel dels cargols i poseu-los cap per amunt en una llauna amb sal, pebre i oli d’oliva verge extra .",
+   "Col•loqueu la llauna sobre el foc o al forn a fi que vagin coent lentament.",
+   "Variacions:",
+   "Hi ha qui, quan els cargols treuen la baba, hi torna a posar sal, pebre i oli d’oliva verge extra .",
+   "S’hi pot posar pebre vermell.",
+   "S’hi poden afegir herbes picades per sobre (romaní, farigola, orenga, etc.).",
+   "S’hi pot afegir una picada d’all i julivert.",
+   "Es poden flamejar amb conyac.",
+   "Es poden acompanyar amb allioli, salsa de romesco, vinagreta de tomàquet, vinagreta de sal i pebre, vinagreta de pebre vermell dolç, faves bullides, desgranades i escorregudes,",
+   "patata nova bullida amb pell."
   ],
   "servings": 4
  },
@@ -2621,7 +2872,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Ous-carxofes-i-foie-Altres-receptes-1.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=sMZCs-zhNWI",
   "ingredients": [
    {
     "qty": 2.0,
@@ -2650,7 +2901,11 @@
    }
   ],
   "steps": [
-   "Netegem i laminem les carxofes.\nPosem una cassola al foc amb oli d’oliva verge extra i tot seguit fregim les làmines de carxofa, i ho reservem.\nFem els ous fregits.\nPassem els medallons de foie d’ànec per la planxa uns 2 minuts.\nTot seguit passem a emplatar, posem la carxofa al fons del plat, damunt posem l’ou, per sobre d’aquest hi afegim el foie d’ànec i un toc de sal Maldon."
+   "Netegem i laminem les carxofes.",
+   "Posem una cassola al foc amb oli d’oliva verge extra i tot seguit fregim les làmines de carxofa, i ho reservem.",
+   "Fem els ous fregits.",
+   "Passem els medallons de foie d’ànec per la planxa uns 2 minuts.",
+   "Tot seguit passem a emplatar, posem la carxofa al fons del plat, damunt posem l’ou, per sobre d’aquest hi afegim el foie d’ànec i un toc de sal Maldon."
   ],
   "servings": 4
  },
@@ -2709,8 +2964,11 @@
    }
   ],
   "steps": [
-   "Bulliu els cervells nets de venes amb aigua, sal, ceba, llorer i farigola.\nTalleu-los a rodanxes, enfarineu-los i passeu-los per ou batut.\nFregiu les rodanxes en oli d’oliva verge extra calent.",
-   "Variacions:\nEs pot fer amb cervells de xai, però sense bullir-los."
+   "Bulliu els cervells nets de venes amb aigua, sal, ceba, llorer i farigola.",
+   "Talleu-los a rodanxes, enfarineu-los i passeu-los per ou batut.",
+   "Fregiu les rodanxes en oli d’oliva verge extra calent.",
+   "Variacions:",
+   "Es pot fer amb cervells de xai, però sense bullir-los."
   ],
   "servings": 4
  },
@@ -2720,7 +2978,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Cigrons-a-la-catalana-Llegums-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=U0tM6tQGOFQ",
   "ingredients": [
    {
     "qty": 800.0,
@@ -2779,7 +3037,12 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb la ceba i el tomàquet en una cassola.\nQuan estigui confitat poseu-hi el vi ranci i deixeu-lo reduir. Afegiu-hi la picada deixatada amb una mica d’aigua, els cigrons i una mica del seu caldo, de manera que els cobreixi lleugerament.\nAl final, afegiu-hi els ous durs partits.\nVariacions:\nS’hi pot afegir bacallà, prèviament saltat a la paella.\nS’hi poden afegir panses prèviament remullades."
+   "Feu un sofregit amb la ceba i el tomàquet en una cassola.",
+   "Quan estigui confitat poseu-hi el vi ranci i deixeu-lo reduir. Afegiu-hi la picada deixatada amb una mica d’aigua, els cigrons i una mica del seu caldo, de manera que els cobreixi lleugerament.",
+   "Al final, afegiu-hi els ous durs partits.",
+   "Variacions:",
+   "S’hi pot afegir bacallà, prèviament saltat a la paella.",
+   "S’hi poden afegir panses prèviament remullades."
   ],
   "servings": 4
  },
@@ -2789,7 +3052,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Cigrons-amb-espinacs-Llegums.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=U9nrNKSose0",
   "ingredients": [
    {
     "qty": 300.0,
@@ -2838,7 +3101,10 @@
    }
   ],
   "steps": [
-   "Netegeu i renteu els espinacs en dues o tres aigües.\nEn una paella amb oli d’oliva verge extra enrossiu la cansalada i afegiu-hi la ceba i els alls.\nQuan estigui la ceba enrossida afegiu-hi els espinacs, saleu-los i remeneu el sofregit.\nAfegiu-hi els cigrons amb una mica de caldo de la cocció i deixeu-ho coure tot junt una estona."
+   "Netegeu i renteu els espinacs en dues o tres aigües.",
+   "En una paella amb oli d’oliva verge extra enrossiu la cansalada i afegiu-hi la ceba i els alls.",
+   "Quan estigui la ceba enrossida afegiu-hi els espinacs, saleu-los i remeneu el sofregit.",
+   "Afegiu-hi els cigrons amb una mica de caldo de la cocció i deixeu-ho coure tot junt una estona."
   ],
   "servings": 4
  },
@@ -2848,7 +3114,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Cigrons-amb-gambes-Llegums-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ZZ1335SzSt8",
   "ingredients": [
    {
     "qty": 300.0,
@@ -2902,7 +3168,11 @@
    }
   ],
   "steps": [
-   "En una cassola amb oli d’oliva verge extra fregiu les gambes, salpebreu-les i retireu-les.\nEn el mateix oli d’oliva verge extra feu un sofregit amb l’all, els tomàquets i el julivert.\nAfegiu-hi els cigrons bullits i escorreguts i remeneu-los amb el sofregit a foc suau.\nPoseu-hi a sobre les gambes i afegiu-hi per damunt l’allioli negat desfet amb el suc de la cocció dels cigrons.\nAfegiu-hi brou dels cigrons i deixeu-ho acabar de coure tot junt perquè lliguin tots els gustos."
+   "En una cassola amb oli d’oliva verge extra fregiu les gambes, salpebreu-les i retireu-les.",
+   "En el mateix oli d’oliva verge extra feu un sofregit amb l’all, els tomàquets i el julivert.",
+   "Afegiu-hi els cigrons bullits i escorreguts i remeneu-los amb el sofregit a foc suau.",
+   "Poseu-hi a sobre les gambes i afegiu-hi per damunt l’allioli negat desfet amb el suc de la cocció dels cigrons.",
+   "Afegiu-hi brou dels cigrons i deixeu-ho acabar de coure tot junt perquè lliguin tots els gustos."
   ],
   "servings": 4
  },
@@ -2912,7 +3182,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Coca-de-llardons-i-pinyons-Postres-i-dolços-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=f0NrDlOUtZE",
   "ingredients": [
    {
     "qty": 4.0,
@@ -2961,8 +3231,15 @@
    }
   ],
   "steps": [
-   "Barregeu 3 ous, l’oli d’oliva verge extra, 100 g de sucre i el llevat desfet amb una mica d’aigua tèbia.\nAfegiu-hi la farina a poc a poc, fins a formar una massa homogènia.\nBarregeu-hi els llardons esmicolats i l’anís.\nEsteneu la pasta en una plata untada amb oli d’oliva verge extra.\nPinteu-la amb ou batut i escampeu-hi els pinyons i la resta del sucre per sobre.\nDeixeu-ho reposar perquè fermenti i s’espongi.\nPoseu la coca al forn a uns 180º uns 25 minuts.",
-   "Variacions:\nEs pot afegir a la massa una mica de canyella."
+   "Barregeu 3 ous, l’oli d’oliva verge extra, 100 g de sucre i el llevat desfet amb una mica d’aigua tèbia.",
+   "Afegiu-hi la farina a poc a poc, fins a formar una massa homogènia.",
+   "Barregeu-hi els llardons esmicolats i l’anís.",
+   "Esteneu la pasta en una plata untada amb oli d’oliva verge extra.",
+   "Pinteu-la amb ou batut i escampeu-hi els pinyons i la resta del sucre per sobre.",
+   "Deixeu-ho reposar perquè fermenti i s’espongi.",
+   "Poseu la coca al forn a uns 180º uns 25 minuts.",
+   "Variacions:",
+   "Es pot afegir a la massa una mica de canyella."
   ],
   "servings": 4
  },
@@ -3026,8 +3303,19 @@
    }
   ],
   "steps": [
-   "Desfeu el llevat amb aigua tèbia i afegiu-hi la sal.\nFeu un volcà amb la farina i barregeu-hi el llevat.\nTreballeu-ho fins a fer una massa homogènia i deixeu-la reposar tapada amb un drap fins que dobli de volum.\nFeu un sofregit amb la ceba i els tomàquets.\nEstireu la massa i repartiu-hi per sobre el sofregit i les verdures escalivades.\nSaleu-ho i poseu-hi a sobre les arengades i un raig d’oli d’oliva verge extra .\nEnforneu la coca fins que la massa estigui cuita.",
-   "Variacions:\nEs pot substituir l’arengada per llonganissa, salsitxes o llom.\nEs pot substituir l’arengada per anxoves, que es posen a sobre una vegada s’ha tret la coca del forn.\nEs pot posar la ceba i els tomàquets en cru sobre la massa conjuntament amb les carns i després coure-ho tot junt al forn.\nEs pot fer amb samfaina.\nEs pot afegir oli d’oliva verge extra a la massa.\nEs pot deixar llevar una segona vegada, després de posar-hi les verdures."
+   "Desfeu el llevat amb aigua tèbia i afegiu-hi la sal.",
+   "Feu un volcà amb la farina i barregeu-hi el llevat.",
+   "Treballeu-ho fins a fer una massa homogènia i deixeu-la reposar tapada amb un drap fins que dobli de volum.",
+   "Feu un sofregit amb la ceba i els tomàquets.",
+   "Estireu la massa i repartiu-hi per sobre el sofregit i les verdures escalivades.",
+   "Saleu-ho i poseu-hi a sobre les arengades i un raig d’oli d’oliva verge extra .",
+   "Enforneu la coca fins que la massa estigui cuita.",
+   "Variacions:",
+   "Es pot substituir l’arengada per llonganissa, salsitxes o llom.",
+   "Es pot substituir l’arengada per anxoves, que es posen a sobre una vegada s’ha tret la coca del forn.",
+   "Es pot posar la ceba i els tomàquets en cru sobre la massa conjuntament amb les carns i després coure-ho tot junt al forn.",
+   "Es pot fer amb samfaina.",
+   "Es pot afegir oli d’oliva verge extra a la massa."
   ],
   "servings": 4
  },
@@ -3037,7 +3325,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-coca-de-sant-joan-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=L2DyT7IQKHc",
   "ingredients": [
    {
     "qty": 250.0,
@@ -3106,7 +3394,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nAbans de col·locar-hi la fruita es pot posar una capa finíssima de massapà rebaixat amb una mica de clara d’ou.\nS’hi pot posar crema després de deixar llevar la massa amb les fruites.\nS’hi poden afegir espècies (comí, canyella, anís estrellat, etc.) a la massa, ben triturades.\nEs pot fer sense fruita confitada.\nEs pot farcir de crema, cabell d’àngel, etc."
+   "Desfeu el llevat amb la llet una mica calenta.",
+   "Afegiu-hi 3 cullerades de farina i treballeu-ho fins a fer una massa llisa; deixeu-ho reposar fins que dobli el volum.",
+   "Feu un volcà sobre el marbre amb la farina i poseu al centre la mantega, els ous, el sucre, la sal, la ratlladura de llimona i l’anís.",
+   "Treballeu amb la mà o amb una forquilla els ingredients del mig, afegiu-hi la massa fermentada i continueu treballant-ho amb la farina fins a obtenir una massa fina i compacta.",
+   "Estireu-la sobre una placa de forn untada amb oli d’oliva verge extra o mantega. Ha de tenir un gruix d’1 cm aproximadament i forma ovalada.",
+   "Pinteu-ho amb ou i col·loqueu-hi al damunt les fruites confitades, tallades a trossos, i deixeu-ho reposar fins que dobli el volum.",
+   "Repartiu-hi els pinyons per sobre, tireu-hi sucre pel damunt i coeu-ho al forn a 180º uns 20 minuts.",
+   "Variacions:",
+   "Abans de col·locar-hi la fruita es pot posar una capa finíssima de massapà rebaixat amb una mica de clara d’ou.",
+   "S’hi pot posar crema després de deixar llevar la massa amb les fruites.",
+   "S’hi poden afegir espècies (comí, canyella, anís estrellat, etc.) a la massa, ben triturades.",
+   "Es pot fer sense fruita confitada.",
+   "Es pot farcir de crema, cabell d’àngel, etc."
   ],
   "servings": 4
  },
@@ -3116,7 +3416,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Coca-de-trempó-Altres-receptes-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=xpEzCtf0Qjw",
   "ingredients": [
    {
     "qty": 4.0,
@@ -3186,7 +3486,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Còctel-de-galera-Amanides-i-plats-freds-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=2XNx8X-Hn5Q",
   "ingredients": [
    {
     "qty": 150.0,
@@ -3265,7 +3565,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Colomins-a-la-cassola-Carns-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=-vXAEF-Dpec",
   "ingredients": [
    {
     "qty": 4.0,
@@ -3339,8 +3639,15 @@
    }
   ],
   "steps": [
-   "Netegeu els colomins, partiu-los a quarts i amaniu-los amb sal i pebre.\nFregiu la cansalada, afegiu-hi els colomins, el pernil i les cebes.\nAfegiu-hi el llorer, la canyella i els tomàquets.\nQuan estigui sofregit, afegiu-hi el vi ranci i l’aiguardent.\nUna vegada estiguin reduïts, poseu-hi la farina, deixeu-la coure uns 5 minuts i afegiu-hi una mica d’aigua.\nTapeu la cassola i deixeu-ho coure a foc lent fins que la carn estigui tendra.",
-   "Variacions:\nEs pot acompanyar de bolets: moixernons, múrgoles, ous de reig, etc.\nS’hi pot afegir crancs de riu a l’últim moment."
+   "Netegeu els colomins, partiu-los a quarts i amaniu-los amb sal i pebre.",
+   "Fregiu la cansalada, afegiu-hi els colomins, el pernil i les cebes.",
+   "Afegiu-hi el llorer, la canyella i els tomàquets.",
+   "Quan estigui sofregit, afegiu-hi el vi ranci i l’aiguardent.",
+   "Una vegada estiguin reduïts, poseu-hi la farina, deixeu-la coure uns 5 minuts i afegiu-hi una mica d’aigua.",
+   "Tapeu la cassola i deixeu-ho coure a foc lent fins que la carn estigui tendra.",
+   "Variacions:",
+   "Es pot acompanyar de bolets: moixernons, múrgoles, ous de reig, etc.",
+   "S’hi pot afegir crancs de riu a l’últim moment."
   ],
   "servings": 4
  },
@@ -3350,7 +3657,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Coquetes-de-Santa-Teresa-Postres-i-dolços-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ioKHmZJuHKw",
   "ingredients": [
    {
     "qty": 1.0,
@@ -3384,8 +3691,11 @@
    }
   ],
   "steps": [
-   "Talleu el pa a llesques fines, poseu-les a remullar amb la llet i passeu-les per ou batut.\nFregiu-les en una paella amb oli d’oliva verge extra abundant.\nEscorreu-les bé i passeu-les per un bol amb sucre i canyella.",
-   "Variacions:\nEs pot bullir la llet amb una branca de canyella i una pell de llimona o de taronja, i deixar-la refredar abans de posar-hi el pa."
+   "Talleu el pa a llesques fines, poseu-les a remullar amb la llet i passeu-les per ou batut.",
+   "Fregiu-les en una paella amb oli d’oliva verge extra abundant.",
+   "Escorreu-les bé i passeu-les per un bol amb sucre i canyella.",
+   "Variacions:",
+   "Es pot bullir la llet amb una branca de canyella i una pell de llimona o de taronja, i deixar-la refredar abans de posar-hi el pa."
   ],
   "servings": 4
  },
@@ -3395,7 +3705,7 @@
   "source": "Gastroteca",
   "category": "Sopes",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Crema-de-calçots-amb-romesco-Sopes-i-cremes-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ilhRiiGehBA",
   "ingredients": [
    {
     "qty": 6.0,
@@ -3450,7 +3760,7 @@
   "source": "Gastroteca",
   "category": "Sopes",
   "image": "https://www.gastroteca.cat/wp-content/uploads/receptes-crema-de-sant-josep-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=qEHQX0_b0u0",
   "ingredients": [
    {
     "qty": 1.0,
@@ -3484,8 +3794,16 @@
    }
   ],
   "steps": [
-   "Feu bullir la llet amb la canyella i la pell de llimona.\nEn un bol barregeu els rovells d’ou amb el sucre.\nAfegiu-hi la llet colada amb el midó dissolt.\nPoseu la barreja al foc, remeneu sense parar amb el batedor fins que arrenqui el bull i traieu-la tot seguit.\nAboqueu la crema en plates o en cassoletes individuals i deixeu-la refredar.\nAbans de servir-la, espolseu-hi sucre i passeu per sobre una planxa o pala de ferro ben roent.",
-   "Variacions:\nEn lloc de midó es pot fer amb farina de blat de moro o amb una altra fècula, que afegireu als rovells barrejats amb el sucre.\nEs pot menjar sense cremar; en aquest cas, s’hi pot posar un paper d’estrassa per sobre de la crema perquè no es faci crosta.\nEs pot menjar acompanyada de galetes o de carquinyolis."
+   "Feu bullir la llet amb la canyella i la pell de llimona.",
+   "En un bol barregeu els rovells d’ou amb el sucre.",
+   "Afegiu-hi la llet colada amb el midó dissolt.",
+   "Poseu la barreja al foc, remeneu sense parar amb el batedor fins que arrenqui el bull i traieu-la tot seguit.",
+   "Aboqueu la crema en plates o en cassoletes individuals i deixeu-la refredar.",
+   "Abans de servir-la, espolseu-hi sucre i passeu per sobre una planxa o pala de ferro ben roent.",
+   "Variacions:",
+   "En lloc de midó es pot fer amb farina de blat de moro o amb una altra fècula, que afegireu als rovells barrejats amb el sucre.",
+   "Es pot menjar sense cremar; en aquest cas, s’hi pot posar un paper d’estrassa per sobre de la crema perquè no es faci crosta.",
+   "Es pot menjar acompanyada de galetes o de carquinyolis."
   ],
   "servings": 4
  },
@@ -3559,7 +3877,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Creps-farcides-de-bolets-i-gambes-Altres-receptes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=hpww8c8V4W0",
   "ingredients": [
    {
     "qty": 100.0,
@@ -3643,7 +3961,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Crestes-de-la-figuera-Altres-receptes-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=1Q4kL9vGBhc",
   "ingredients": [
    {
     "qty": null,
@@ -3654,11 +3972,6 @@
     "qty": null,
     "unit": "",
     "name": "Patates"
-   },
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Ou"
    },
    {
     "qty": null,
@@ -3682,8 +3995,13 @@
    }
   ],
   "steps": [
-   "Feu bullir les patates amb pell, peleu-les i feu-ne un puré.\nBarregeu-hi l’ou i la farina i feu una massa.\nSobre una taula untada amb una mica d’oli d’oliva verge extra, poseu-hi una cullerada de la barreja, hi doneu forma de bola i l’aplaneu, fent que quedi en forma de disc.\nPoseu-hi al mig una mica de farciment i tanqueu-ho en forma de mitja lluna.\nFregiu les crestes en oli d’oliva verge extra abundant fins que quedin rosses pels dos costats i serviu-les de seguida.",
-   "Comentaris:\nPer fer el farciment de les crestes, vegeu la recepta dels canelons."
+   "Feu bullir les patates amb pell, peleu-les i feu-ne un puré.",
+   "Barregeu-hi l’ou i la farina i feu una massa.",
+   "Sobre una taula untada amb una mica d’oli d’oliva verge extra, poseu-hi una cullerada de la barreja, hi doneu forma de bola i l’aplaneu, fent que quedi en forma de disc.",
+   "Poseu-hi al mig una mica de farciment i tanqueu-ho en forma de mitja lluna.",
+   "Fregiu les crestes en oli d’oliva verge extra abundant fins que quedin rosses pels dos costats i serviu-les de seguida.",
+   "Comentaris:",
+   "Per fer el farciment de les crestes, vegeu la recepta dels canelons."
   ],
   "servings": 4
  },
@@ -3693,7 +4011,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Croquetes-de-pernil-Altres-receptes-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=CRaJf34OLNc",
   "ingredients": [
    {
     "qty": 0.25,
@@ -3752,8 +4070,13 @@
    }
   ],
   "steps": [
-   "Sofregiu la ceba i quan estigui rossa afegiu-hi el pernil i remeneu-ho una mica.\nAfegiu el sofregit a la beixamel i remeneu-ho fins a fer una massa compacta.\nDeixeu-ho refredar a la nevera.\nAmb la massa feu croquetes i passeu-les per farina, ou batut i pa ratllat.\nFregiu-les en oli d’oliva verge extra calent i abundant.",
-   "Variacions:\nLes croquetes també es poden fer amb gallina, pollastre i sobrants dels rostits, en comptes de pernil."
+   "Sofregiu la ceba i quan estigui rossa afegiu-hi el pernil i remeneu-ho una mica.",
+   "Afegiu el sofregit a la beixamel i remeneu-ho fins a fer una massa compacta.",
+   "Deixeu-ho refredar a la nevera.",
+   "Amb la massa feu croquetes i passeu-les per farina, ou batut i pa ratllat.",
+   "Fregiu-les en oli d’oliva verge extra calent i abundant.",
+   "Variacions:",
+   "Les croquetes també es poden fer amb gallina, pollastre i sobrants dels rostits, en comptes de pernil."
   ],
   "servings": 4
  },
@@ -3797,8 +4120,13 @@
    }
   ],
   "steps": [
-   "Peleu i talleu els ous durs en forma de grills.\nAmb la beixamel una mica calenta arrebosseu els grills de l’ou de manera que quedi massa per tots els costats.\nArrebosseu-los, en forma de croqueta, amb farina, ou batut i pa ratllat, per aquest ordre.\nFregiu-los en força oli d’oliva verge extra calent.\nEscorreu les croquetes i serviu-les de seguida.",
-   "Variacions:\nUna altra manera de fer-ho és picar l’ou dur i barrejar-lo amb la beixamel. Després es fa la croqueta i se segueix el mateix procediment."
+   "Peleu i talleu els ous durs en forma de grills.",
+   "Amb la beixamel una mica calenta arrebosseu els grills de l’ou de manera que quedi massa per tots els costats.",
+   "Arrebosseu-los, en forma de croqueta, amb farina, ou batut i pa ratllat, per aquest ordre.",
+   "Fregiu-los en força oli d’oliva verge extra calent.",
+   "Escorreu les croquetes i serviu-les de seguida.",
+   "Variacions:",
+   "Una altra manera de fer-ho és picar l’ou dur i barrejar-lo amb la beixamel. Després es fa la croqueta i se segueix el mateix procediment."
   ],
   "servings": 4
  },
@@ -3808,7 +4136,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Empedrat-Amanides-i-plats-freds-v4-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=oADeuNxTLh4",
   "ingredients": [
    {
     "qty": 0.5,
@@ -3857,8 +4185,12 @@
    }
   ],
   "steps": [
-   "Barregeu el bacallà escorregut, la ceba, les olives, les mongetes, els ous durs i els tomàquets.\nAmaniu-ho amb oli d’oliva verge extra , sal i pebre.",
-   "Variacions:\nS’hi pot afegir pebrot vermell o verd.\nS’hi pot posar tonyina.\nEs pot fer amb ceba tendra."
+   "Barregeu el bacallà escorregut, la ceba, les olives, les mongetes, els ous durs i els tomàquets.",
+   "Amaniu-ho amb oli d’oliva verge extra , sal i pebre.",
+   "Variacions:",
+   "S’hi pot afegir pebrot vermell o verd.",
+   "S’hi pot posar tonyina.",
+   "Es pot fer amb ceba tendra."
   ],
   "servings": 4
  },
@@ -3868,7 +4200,7 @@
   "source": "Gastroteca",
   "category": "Amanides",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Ensalada-russa-Amanides-i-plats-freds-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=3Ev8UMktGtw",
   "ingredients": [
    {
     "qty": 500.0,
@@ -3912,8 +4244,14 @@
    }
   ],
   "steps": [
-   "Talleu les patates, les pastanagues i la mongeta tendra a daus.\nFeu-ho bullir juntament amb els pèsols.\nRefredeu-ho i barregeu-hi l’ou dur.\nDesprés afegiu-hi la maionesa.",
-   "Variacions:\nLa maionesa es pot servir a part.\nS’hi poden afegir tot tipus de verdures.\nTambé s’hi poden afegir olives i tonyina de llauna."
+   "Talleu les patates, les pastanagues i la mongeta tendra a daus.",
+   "Feu-ho bullir juntament amb els pèsols.",
+   "Refredeu-ho i barregeu-hi l’ou dur.",
+   "Després afegiu-hi la maionesa.",
+   "Variacions:",
+   "La maionesa es pot servir a part.",
+   "S’hi poden afegir tot tipus de verdures.",
+   "També s’hi poden afegir olives i tonyina de llauna."
   ],
   "servings": 4
  },
@@ -3923,7 +4261,7 @@
   "source": "Gastroteca",
   "category": "Carns",
   "image": "https://www.gastroteca.cat/wp-content/uploads/escudella-barrejada-de-arroz-y-fideos-amb-carn-dolla-foto-principal.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=TUojbPe6w64",
   "ingredients": [
    {
     "qty": 0.25,
@@ -4007,8 +4345,15 @@
    }
   ],
   "steps": [
-   "Poseu a bullir els ossos en una olla amb aigua durant mitja hora.\nAfegiu-hi la gallina, la cansalada, la careta, el jarret i els menuts, tot tallat a trossets.\nUna hora més tard afegiu-hi les verdures tallades a daus regulars rentades i escorregudes.\nDeixeu que bulli mitja hora més i hi afegiu l’arròs i els fideus.\nDeixeu-ho acabar de coure i en l’últim moment poseu-hi la botifarra.",
-   "Variacions:\nTambé s’hi poden afegir cigrons o mongetes quan es posen a bullir els ossos, o bé ja bullits en l’últim moment.\nEs pot fer una picada d’alls i safrà.\nEs pot fer amb careta i peu de porc salat."
+   "Poseu a bullir els ossos en una olla amb aigua durant mitja hora.",
+   "Afegiu-hi la gallina, la cansalada, la careta, el jarret i els menuts, tot tallat a trossets.",
+   "Una hora més tard afegiu-hi les verdures tallades a daus regulars rentades i escorregudes.",
+   "Deixeu que bulli mitja hora més i hi afegiu l’arròs i els fideus.",
+   "Deixeu-ho acabar de coure i en l’últim moment poseu-hi la botifarra.",
+   "Variacions:",
+   "També s’hi poden afegir cigrons o mongetes quan es posen a bullir els ossos, o bé ja bullits en l’últim moment.",
+   "Es pot fer una picada d’alls i safrà.",
+   "Es pot fer amb careta i peu de porc salat."
   ],
   "servings": 4
  },
@@ -4052,8 +4397,11 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb els alls i els tomàquets.\nA mitja cocció afegiu-hi les espardenyes i saleu-ho.\nDeixeu-ho acabar de coure i afegiu-hi el julivert.",
-   "Variacions:\nEs poden saltar les espardenyes i afegir-hi el sofregit."
+   "Feu un sofregit amb els alls i els tomàquets.",
+   "A mitja cocció afegiu-hi les espardenyes i saleu-ho.",
+   "Deixeu-ho acabar de coure i afegiu-hi el julivert.",
+   "Variacions:",
+   "Es poden saltar les espardenyes i afegir-hi el sofregit."
   ],
   "servings": 4
  },
@@ -4122,8 +4470,12 @@
    }
   ],
   "steps": [
-   "Saleu, empebreu i ruixeu amb oli d’oliva verge extra les espatlles, i poseu-les al forn.\nUn cop estiguin enrossides, afegiu-hi la ceba, els alls, els tomàquets, la fulla de llorer, el romaní i el timó.\nDeixeu que se sofregeixi la verdura i feu-hi la reducció del vi.\nAneu afegint-hi llossades d’aigua i deixeu-ho coure fins que les espatlles siguin cuites per dins i cruixents per fora.",
-   "Variacions:\nEs pot acompanyar de bolets."
+   "Saleu, empebreu i ruixeu amb oli d’oliva verge extra les espatlles, i poseu-les al forn.",
+   "Un cop estiguin enrossides, afegiu-hi la ceba, els alls, els tomàquets, la fulla de llorer, el romaní i el timó.",
+   "Deixeu que se sofregeixi la verdura i feu-hi la reducció del vi.",
+   "Aneu afegint-hi llossades d’aigua i deixeu-ho coure fins que les espatlles siguin cuites per dins i cruixents per fora.",
+   "Variacions:",
+   "Es pot acompanyar de bolets."
   ],
   "servings": 4
  },
@@ -4133,7 +4485,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-esqueixada-de-bacalla-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=PK2MpiRiNkg",
   "ingredients": [
    {
     "qty": 500.0,
@@ -4167,8 +4519,14 @@
    }
   ],
   "steps": [
-   "Escorreu el bacallà i barregeu-lo amb els tomàquets i les olives.\nAmaniu-ho amb oli d’oliva verge extra abundant, sal i pebre.",
-   "Variacions:\nS’hi poden afegir herbes aromàtiques (julivert, orenga, etc).\nS’hi pot afegir un ou dur trinxat.\nS’hi pot afegir pebrot vermell o pebrot verd.\nS’hi pot afegir ceba dolça o ceba tendra.\nS’hi pot afegir all trinxat."
+   "Escorreu el bacallà i barregeu-lo amb els tomàquets i les olives.",
+   "Amaniu-ho amb oli d’oliva verge extra abundant, sal i pebre.",
+   "Variacions:",
+   "S’hi poden afegir herbes aromàtiques (julivert, orenga, etc).",
+   "S’hi pot afegir un ou dur trinxat.",
+   "S’hi pot afegir pebrot vermell o pebrot verd.",
+   "S’hi pot afegir ceba dolça o ceba tendra.",
+   "S’hi pot afegir all trinxat."
   ],
   "servings": 4
  },
@@ -4247,8 +4605,19 @@
    }
   ],
   "steps": [
-   "Salteu la vedella salpebrada en una cassola amb oli d’oliva verge extra .\nAfegiu-hi les verdures tallades a trossos grans, els alls sencers, les herbes i uns grans de pebre.\nRemeneu-ho unes quantes vegades, afegiu-hi el vi i deixeu-lo reduir.\nTapeu la cassola i poseu un plat fondo amb aigua a sobre de la tapa.\nDeixeu-ho estofar fins que el tall estigui tendre, tot afegint-hi aigua perquè no s’enganxi.\nPoseu-ho a punt de sal i pebre.",
-   "Variacions:\nEs pot acompanyar de patates, que s’afegeixen a la cassola quan la carn està gairebé cuita.\nLes patates es poden posar gairebé al final, tallades a daus i fregides.\nEs pot posar una mica de farina abans del vi, perquè la salsa quedi més lligada.\nS’hi poden afegir pèsols, juntament amb la resta de verdures.\nEn comptes de vi blanc, s’hi pot posar conyac o vi ranci.\nEs pot acompanyar amb olives."
+   "Salteu la vedella salpebrada en una cassola amb oli d’oliva verge extra .",
+   "Afegiu-hi les verdures tallades a trossos grans, els alls sencers, les herbes i uns grans de pebre.",
+   "Remeneu-ho unes quantes vegades, afegiu-hi el vi i deixeu-lo reduir.",
+   "Tapeu la cassola i poseu un plat fondo amb aigua a sobre de la tapa.",
+   "Deixeu-ho estofar fins que el tall estigui tendre, tot afegint-hi aigua perquè no s’enganxi.",
+   "Poseu-ho a punt de sal i pebre.",
+   "Variacions:",
+   "Es pot acompanyar de patates, que s’afegeixen a la cassola quan la carn està gairebé cuita.",
+   "Les patates es poden posar gairebé al final, tallades a daus i fregides.",
+   "Es pot posar una mica de farina abans del vi, perquè la salsa quedi més lligada.",
+   "S’hi poden afegir pèsols, juntament amb la resta de verdures.",
+   "En comptes de vi blanc, s’hi pot posar conyac o vi ranci.",
+   "Es pot acompanyar amb olives."
   ],
   "servings": 4
  },
@@ -4267,13 +4636,13 @@
    },
    {
     "qty": 4.0,
-    "unit": "talls",
-    "name": "cansalada viada tallada"
+    "unit": "",
+    "name": "talls de cansalada viada tallada"
    },
    {
     "qty": 1.0,
-    "unit": "tros",
-    "name": "bull"
+    "unit": "",
+    "name": "tros de bull"
    },
    {
     "qty": 1.0,
@@ -4288,12 +4657,12 @@
    {
     "qty": 1.0,
     "unit": "",
-    "name": "ramell menta fresca"
+    "name": "ramell de menta fresca"
    },
    {
     "qty": 1.0,
-    "unit": "fulla",
-    "name": "llorer"
+    "unit": "",
+    "name": "fulla de llorer"
    },
    {
     "qty": null,
@@ -4317,8 +4686,18 @@
    }
   ],
   "steps": [
-   "En una olla rossegeu la cansalada, els alls i la ceba.\nUn cop sofregits, afegiu-hi les faves, les herbes i el bull.\nAfegiu-hi una tassa d’aigua i salpebreu-ho.\nTapeu-ho amb un plat fondo amb aigua i deixeu-ho a foc fluix fins que les faves estiguin cuites.",
-   "Variacions:\nEs pot fer amb cebes i alls secs.\nAl sofregit s’hi pot afegir tomàquet madur i costella de porc.\nEs pot fer amb pèsols a més de faves (pèsols i faves ofegats).\nS’hi pot posar marduix a més de la menta.\nTambé es fa amb les faves tendres amb tavella, desfilades i trossejades.\nAl final de la cocció s’hi pot tirar un raig d’anís o mitja copeta de barreja (moscatell i aiguardent).\nS’hi pot afegir un tros de xoriço o sobrassada."
+   "En una olla rossegeu la cansalada, els alls i la ceba.",
+   "Un cop sofregits, afegiu-hi les faves, les herbes i el bull.",
+   "Afegiu-hi una tassa d’aigua i salpebreu-ho.",
+   "Tapeu-ho amb un plat fondo amb aigua i deixeu-ho a foc fluix fins que les faves estiguin cuites.",
+   "Variacions:",
+   "Es pot fer amb cebes i alls secs.",
+   "Al sofregit s’hi pot afegir tomàquet madur i costella de porc.",
+   "Es pot fer amb pèsols a més de faves (pèsols i faves ofegats).",
+   "S’hi pot posar marduix a més de la menta.",
+   "També es fa amb les faves tendres amb tavella, desfilades i trossejades.",
+   "Al final de la cocció s’hi pot tirar un raig d’anís o mitja copeta de barreja (moscatell i aiguardent).",
+   "S’hi pot afegir un tros de xoriço o sobrassada."
   ],
   "servings": 4
  },
@@ -4328,7 +4707,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Fesols-amb-bacallà-Llegums1-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=iyUtSoEbTCM",
   "ingredients": [
    {
     "qty": 400.0,
@@ -4367,8 +4746,13 @@
    }
   ],
   "steps": [
-   "Enfarineu i fregiu el bacallà, i retireu-lo.\nEn el mateix oli d’oliva verge extra feu un sofregit amb l’all, el julivert, el tomàquet i el pebre roig.\nHo cobriu de brou i ho deixeu bullir a foc suau.\nComproveu el punt de sal.\nTireu-hi les mongetes i el bacallà, i deixeu que bulli tot junt una estona.",
-   "Variacions:\nEn comptes de brou podeu posar-hi aigua o el suc de bullir les mongetes."
+   "Enfarineu i fregiu el bacallà, i retireu-lo.",
+   "En el mateix oli d’oliva verge extra feu un sofregit amb l’all, el julivert, el tomàquet i el pebre roig.",
+   "Ho cobriu de brou i ho deixeu bullir a foc suau.",
+   "Comproveu el punt de sal.",
+   "Tireu-hi les mongetes i el bacallà, i deixeu que bulli tot junt una estona.",
+   "Variacions:",
+   "En comptes de brou podeu posar-hi aigua o el suc de bullir les mongetes."
   ],
   "servings": 4
  },
@@ -4427,8 +4811,19 @@
    }
   ],
   "steps": [
-   "En una paella sofregiu a foc viu els escamarlans i les gambes, i retireu-los.\nEn el mateix oli d’oliva verge extra feu un sofregit amb la ceba, els alls i el tomàquet.\nAfegiu-hi la sípia i, quan estigui cuita, mulleu-ho amb l’aigua.\nQuan arrenqui el bull afegiu-hi els fideus, deixeu que bullin a foc suau i, en l’últim moment, hi poseu a sobre els escamarlans i les gambes.",
-   "Variacions:\nEs pot fer el sofregit sense ceba.\nEls fideus poden ser de cabell d’àngel o foradats.\nLa sípia es pot substituir, del tot o en part, per calamar.\nEs pot fer amb brou de peix en comptes d’aigua.\nS’hi pot fer una reducció de vi blanc abans de posar-hi l’aigua.\nEs pot fer també amb sardines, seitons, galeres, bacallà, etc.\nS’hi pot afegir allioli negat amb julivert.\nUna mica abans d’acabar s’hi pot afegir una picada."
+   "En una paella sofregiu a foc viu els escamarlans i les gambes, i retireu-los.",
+   "En el mateix oli d’oliva verge extra feu un sofregit amb la ceba, els alls i el tomàquet.",
+   "Afegiu-hi la sípia i, quan estigui cuita, mulleu-ho amb l’aigua.",
+   "Quan arrenqui el bull afegiu-hi els fideus, deixeu que bullin a foc suau i, en l’últim moment, hi poseu a sobre els escamarlans i les gambes.",
+   "Variacions:",
+   "Es pot fer el sofregit sense ceba.",
+   "Els fideus poden ser de cabell d’àngel o foradats.",
+   "La sípia es pot substituir, del tot o en part, per calamar.",
+   "Es pot fer amb brou de peix en comptes d’aigua.",
+   "S’hi pot fer una reducció de vi blanc abans de posar-hi l’aigua.",
+   "Es pot fer també amb sardines, seitons, galeres, bacallà, etc.",
+   "S’hi pot afegir allioli negat amb julivert.",
+   "Una mica abans d’acabar s’hi pot afegir una picada."
   ],
   "servings": 4
  },
@@ -4438,7 +4833,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Fideus-amb-pop-i-pèsols-Arrossos-i-pastes-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=y9H0CUU0WTo",
   "ingredients": [
    {
     "qty": 300.0,
@@ -4507,8 +4902,12 @@
    }
   ],
   "steps": [
-   "Bulliu el pop amb aigua i sal.\nFeu un sofregit amb la ceba, el tomàquet i el pebre vermell.\nAfegiu-hi els fideus, el pop trossejat i la picada, i sofregiu-ho tot junt un moment.\nMulleu-ho amb aigua calenta i, quan arrenqui el bull, afegiu-hi els pèsols i deixeu-ho bullir fins que els fideus estiguin cuits.",
-   "Variacions:\nEn lloc d’aigua s’hi pot posar brou de peix."
+   "Bulliu el pop amb aigua i sal.",
+   "Feu un sofregit amb la ceba, el tomàquet i el pebre vermell.",
+   "Afegiu-hi els fideus, el pop trossejat i la picada, i sofregiu-ho tot junt un moment.",
+   "Mulleu-ho amb aigua calenta i, quan arrenqui el bull, afegiu-hi els pèsols i deixeu-ho bullir fins que els fideus estiguin cuits.",
+   "Variacions:",
+   "En lloc d’aigua s’hi pot posar brou de peix."
   ],
   "servings": 4
  },
@@ -4542,8 +4941,14 @@
    }
   ],
   "steps": [
-   "Fregiu els fideus fins que siguin rossos i escorreu l’excés d’oli d’oliva verge extra.\nAfegiu-hi el caldo calent i deixeu-ho coure fins que els fideus estiguin al seu punt.\nSi fa falta, afegiu-hi més brou durant la cocció.",
-   "Variacions:\nEs pot fer amb pistons en comptes de fideus (pistonat).\nEs poden fregir uns quants alls amb els fideus.\nS’hi pot afegir una picada al final.\nEl plat es pot acompanyar amb allioli."
+   "Fregiu els fideus fins que siguin rossos i escorreu l’excés d’oli d’oliva verge extra.",
+   "Afegiu-hi el caldo calent i deixeu-ho coure fins que els fideus estiguin al seu punt.",
+   "Si fa falta, afegiu-hi més brou durant la cocció.",
+   "Variacions:",
+   "Es pot fer amb pistons en comptes de fideus (pistonat).",
+   "Es poden fregir uns quants alls amb els fideus.",
+   "S’hi pot afegir una picada al final.",
+   "El plat es pot acompanyar amb allioli."
   ],
   "servings": 4
  },
@@ -4553,7 +4958,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Fricandó-amb-moixernons-Carns-v2-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=cSP23plj4YA",
   "ingredients": [
    {
     "qty": 1.0,
@@ -4627,7 +5032,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEl sofregit es pot fer sense tomàquet.\nS’hi poden afegir olives sense pinyol.\nEn lloc d’aigua, es pot fer servir brou de carn.\nA la picada s’hi pot afegir una nyora, una mica de xocolata i uns carquinyolis.\nEs pot acompanyar el plat amb tota classe de bolets i verdures.\nEn comptes de carn de vedella, s’hi pot posar pit de gall dindi, carn magra de porc (fricandó de carn magra de porc) o de corder (fricandó de carn de corder)."
+   "Deixeu els moixernons en remull un parell d’hores.",
+   "Salpebreu, enfarineu i fregiu la carn en una cassola amb oli d’oliva verge extra , i reserveu-la.",
+   "En el mateix oli d’oliva verge extra feu un sofregit concentrat amb la ceba i el tomàquet.",
+   "Afegiu-hi la carn, flamegeu-la amb el brandi i tot seguit tireu-hi el vi blanc i deixeu-lo reduir.",
+   "Mulleu-ho amb aigua fins a cobrir i deixeu-ho coure a foc suau fins que la carn sigui tendra.",
+   "Escorreu els bolets, passeu-los lleugerament per la paella i afegiu-los a la cassola.",
+   "Quan faltin 10 minuts per acabar, afegiu-hi la picada.",
+   "Variacions:",
+   "El sofregit es pot fer sense tomàquet.",
+   "S’hi poden afegir olives sense pinyol.",
+   "En lloc d’aigua, es pot fer servir brou de carn.",
+   "A la picada s’hi pot afegir una nyora, una mica de xocolata i uns carquinyolis.",
+   "Es pot acompanyar el plat amb tota classe de bolets i verdures."
   ],
   "servings": 4
  },
@@ -4637,7 +5054,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Gall-de-Sant-Pere-amb-patates-Peixos-i-mariscs-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=gKcXM-P5rbI",
   "ingredients": [
    {
     "qty": 800.0,
@@ -4686,8 +5103,11 @@
    }
   ],
   "steps": [
-   "Fregiu la ceba, els porros, els alls i els tomàquets, per aquest ordre.\nSaleu-ho i quan estigui fet afegiu-hi les patates i brou de peix fins que les cobreixi.\nUna mica abans d’acabar la cocció de les patates afegiu-hi el peix prèviament salat i deixeu-ho al foc fins que estigui al seu punt.",
-   "Variacions:\nS’hi pot afegir allioli per damunt."
+   "Fregiu la ceba, els porros, els alls i els tomàquets, per aquest ordre.",
+   "Saleu-ho i quan estigui fet afegiu-hi les patates i brou de peix fins que les cobreixi.",
+   "Una mica abans d’acabar la cocció de les patates afegiu-hi el peix prèviament salat i deixeu-ho al foc fins que estigui al seu punt.",
+   "Variacions:",
+   "S’hi pot afegir allioli per damunt."
   ],
   "servings": 4
  },
@@ -4697,7 +5117,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Guisat-de-tonyina-Peixos-i-mariscs-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=Z4bZWyFuQBM",
   "ingredients": [
    {
     "qty": 4.0,
@@ -4746,7 +5166,9 @@
    }
   ],
   "steps": [
-   "Salteu el talls de tonyina prèviament salats i reserveu-los.\nFregiu el pebrot verd, afegiu-hi les patates esqueixades i aigua que cobreixi, i saleu-ho.\nQuan les patates estiguin gairebé cuites afegiu-hi la picada i, en l’últim moment, la tonyina i deixeu-ho coure fins que les patates estiguin fetes."
+   "Salteu el talls de tonyina prèviament salats i reserveu-los.",
+   "Fregiu el pebrot verd, afegiu-hi les patates esqueixades i aigua que cobreixi, i saleu-ho.",
+   "Quan les patates estiguin gairebé cuites afegiu-hi la picada i, en l’últim moment, la tonyina i deixeu-ho coure fins que les patates estiguin fetes."
   ],
   "servings": 4
  },
@@ -4756,7 +5178,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Llenties-estofades-amb-costella-de-porc-Llegums-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=0BBFR38OyWs",
   "ingredients": [
    {
     "qty": 300.0,
@@ -4810,7 +5232,9 @@
    }
   ],
   "steps": [
-   "En una cassola, sofregiu la cansalada i la costella amb poc oli d’oliva verge extra i, a mig enrossir, afegiu-hi la ceba, la cabeça d’alls, els tomàquets i el manat d’herbes.\nQuan estigui ben sofregit, hi afegiu les llenties esbandides i aigua fins a cobrir-ho.\nSaleu-ho i deixeu-ho coure tapat a poc a poc fins que les llenties estiguin cuites."
+   "En una cassola, sofregiu la cansalada i la costella amb poc oli d’oliva verge extra i, a mig enrossir, afegiu-hi la ceba, la cabeça d’alls, els tomàquets i el manat d’herbes.",
+   "Quan estigui ben sofregit, hi afegiu les llenties esbandides i aigua fins a cobrir-ho.",
+   "Saleu-ho i deixeu-ho coure tapat a poc a poc fins que les llenties estiguin cuites."
   ],
   "servings": 4
  },
@@ -4820,7 +5244,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Llet-dametlla-Altres-receptes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=gXyZFxsljm8",
   "ingredients": [
    {
     "qty": 600.0,
@@ -4868,7 +5292,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Macarrons-de-làvia-Arrossos-i-pastes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=CLU8LPIjzQk",
   "ingredients": [
    {
     "qty": 320.0,
@@ -4922,7 +5346,19 @@
    }
   ],
   "steps": [
-   "Bulliu els macarrons amb aigua, sal, llorer i un rajolí d’oli d’oliva verge extra .\nEnrossiu la carn amb oli d’oliva verge extra, afegiu-hi la ceba, l’all i els tomàquets, i ho feu coure tot junt fins que la carn estigui cuita.\nSi abans que la carn quedi cuita s’ha evaporat tot el líquid, hi podeu afegir una mica d’aigua de bullir els macarrons.\nBarregeu-ho amb els macarrons i gratineu-ho amb el formatge ratllat per sobre."
+   "Bulliu els macarrons amb aigua, sal, llorer i un rajolí d’oli d’oliva verge extra .",
+   "Enrossiu la carn amb oli d’oliva verge extra, afegiu-hi la ceba, l’all i els tomàquets, i ho feu coure tot junt fins que la carn estigui cuita.",
+   "Si abans que la carn quedi cuita s’ha evaporat tot el líquid, hi podeu afegir una mica d’aigua de bullir els macarrons.",
+   "Barregeu-ho amb els macarrons i gratineu-ho amb el formatge ratllat per sobre.",
+   "Variacions:",
+   "En comptes de gratinar-los, es pot servir el formatge a part.",
+   "Per gratinar, es poden posar unes boles de mantega amb el formatge.",
+   "En lloc d’afegir aigua al sofregit, s’hi pot afegir una mica de llet.",
+   "Es pot fer amb trossos de pernil substituint la carn.",
+   "Es poden afegir herbes al sofregit: orenga, farigola, etc.",
+   "Si s’ha fet rostit els dies abans, va molt bé aprofitar l’oli del rostit per fer el sofregit.",
+   "També es poden aprofitar els menuts del rostit tallats molt petits.",
+   "S’hi pot afegir una mica de tòfona picada."
   ],
   "servings": 4
  },
@@ -4932,7 +5368,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Maionesa-Salses.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=6ZwtgBc4OOY",
   "ingredients": [
    {
     "qty": 1.0,
@@ -4952,7 +5388,12 @@
   ],
   "steps": [
    "Poseu el rovell d’ou en un morter amb sal i afegiu-hi l’oli d’oliva verge extra gota a gota, tot remenant sense parar amb la mà de morter, sempre en el mateix sentit, fins a aconseguir una salsa espessa i compacta.",
-   "Variacions:\nS’hi pot afegir un all, que s’ha de picar en el morter abans de posar-hi els rovells.\nS’hi poden afegir unes gotes de vinagre o de llimona.\nTambé s’hi pot posar una cullerada de mostassa groga.\nEs pot picar una mica de ceba en el morter amb la sal, després posar-hi el rovell i anar muntant la maionesa amb l’oli d’oliva verge extra.\nEs pot fer amb batedora elèctrica: es posen l’ou sencer, tot l’oli d’oliva verge extra i la sal, i es bat tot junt."
+   "Variacions:",
+   "S’hi pot afegir un all, que s’ha de picar en el morter abans de posar-hi els rovells.",
+   "S’hi poden afegir unes gotes de vinagre o de llimona.",
+   "També s’hi pot posar una cullerada de mostassa groga.",
+   "Es pot picar una mica de ceba en el morter amb la sal, després posar-hi el rovell i anar muntant la maionesa amb l’oli d’oliva verge extra.",
+   "Es pot fer amb batedora elèctrica: es posen l’ou sencer, tot l’oli d’oliva verge extra i la sal, i es bat tot junt."
   ],
   "servings": 4
  },
@@ -5041,8 +5482,17 @@
    }
   ],
   "steps": [
-   "Feu les mandonguilles amb la carn, la molla de pa, l’ou, l’all, el julivert, sal i pebre.\nEnfarineu-les i fregiu-les.\nFeu un sofregit amb la ceba i els tomàquets, afegiu-hi la sípia, remeneu-ho unes quantes vegades, mulleu-ho amb aigua i deixeu-ho coure uns minuts.\nAfegiu-hi les mandonguilles, la picada i els pèsols.\nTasteu-ho de sal i deixeu-ho coure lentament fins que estigui cuit.",
-   "Variacions:\nA vegades a la massa de les mandonguilles s’hi afegeix un polsim de canyella.\nS’hi pot posar brou en lloc d’aigua.\nPodeu afegir a la salsa una mica de melsa de la sèpia diluïda amb el suc de la cocció.\nEs poden acompanyar de carxofes, patates, mongetes o arròs.\nEs pot fer amb calamars en comptes de sípia."
+   "Feu les mandonguilles amb la carn, la molla de pa, l’ou, l’all, el julivert, sal i pebre.",
+   "Enfarineu-les i fregiu-les.",
+   "Feu un sofregit amb la ceba i els tomàquets, afegiu-hi la sípia, remeneu-ho unes quantes vegades, mulleu-ho amb aigua i deixeu-ho coure uns minuts.",
+   "Afegiu-hi les mandonguilles, la picada i els pèsols.",
+   "Tasteu-ho de sal i deixeu-ho coure lentament fins que estigui cuit.",
+   "Variacions:",
+   "A vegades a la massa de les mandonguilles s’hi afegeix un polsim de canyella.",
+   "S’hi pot posar brou en lloc d’aigua.",
+   "Podeu afegir a la salsa una mica de melsa de la sèpia diluïda amb el suc de la cocció.",
+   "Es poden acompanyar de carxofes, patates, mongetes o arròs.",
+   "Es pot fer amb calamars en comptes de sípia."
   ],
   "servings": 4
  },
@@ -5146,7 +5596,18 @@
    }
   ],
   "steps": [
-   "Variacions:\nEs poden fer de tota classe de peix i sobretot amb puntes i sobrants de peixos.\nEs poden acompanyar amb salsa de tomàquet."
+   "Trinxeu el peix sense espines ni pell.",
+   "Barregeu-lo amb el pa remullat ben espremut, el gra d’all, el julivert, l’ou, sal i pebre.",
+   "Amb aquesta massa feu les mandonguilles.",
+   "Enfarineu-les, fregiu-les amb oli d’oliva verge extra calent i reserveu-les.",
+   "Feu un sofregit amb la ceba i el tomàquet.",
+   "Afegiu-hi una cullerada de farina, remeneu-ho uns minuts i feu la reducció del vi blanc.",
+   "Mulleu-ho amb brou de peix i deixeu-ho bullir uns 20 minuts.",
+   "Coleu la salsa i poseu-la a la cassola juntament amb les mandonguilles.",
+   "Afegiu-hi la picada deixatada amb el suc de la cocció i deixeu que cogui a foc suau uns 10 minuts.",
+   "Variacions:",
+   "Es poden fer de tota classe de peix i sobretot amb puntes i sobrants de peixos.",
+   "Es poden acompanyar amb salsa de tomàquet."
   ],
   "servings": 4
  },
@@ -5205,8 +5666,14 @@
    }
   ],
   "steps": [
-   "Poseu en remull els moixernons.\nFeu un sofregit amb els alls i el julivert en una cassola amb oli d’oliva verge extra.\nAfegiu-hi els moixernons i part de l’aigua del remull colada, i deixeu-ho coure tot junt fins que els moixernons estiguin cuits.\nAfegiu-hi les mongetes amb una mica de suc de la seva cocció i la picada, i deixeu que faci un bull tot junt.",
-   "Variacions:\nEs pot fer amb cigrons en comptes de mongetes.\nEs pot afegir un rovell d’ou dur a la picada.\nEs pot fer amb altres bolets."
+   "Poseu en remull els moixernons.",
+   "Feu un sofregit amb els alls i el julivert en una cassola amb oli d’oliva verge extra.",
+   "Afegiu-hi els moixernons i part de l’aigua del remull colada, i deixeu-ho coure tot junt fins que els moixernons estiguin cuits.",
+   "Afegiu-hi les mongetes amb una mica de suc de la seva cocció i la picada, i deixeu que faci un bull tot junt.",
+   "Variacions:",
+   "Es pot fer amb cigrons en comptes de mongetes.",
+   "Es pot afegir un rovell d’ou dur a la picada.",
+   "Es pot fer amb altres bolets."
   ],
   "servings": 4
  },
@@ -5245,8 +5712,11 @@
    }
   ],
   "steps": [
-   "Fregiu la cansalada en oli d’oliva verge extra calent.\nQuan estigui enrossida, hi afegiu la botifarra de perol oberta de dalt a baix perquè s’esparraqui.\nAfegiu-hi les mongetes ben escorregudes i, a foc roent, les aneu remenant fins que s’enrosseixin una mica.",
-   "Variacions:\nPodeu acompanyar-ho de patates bullides."
+   "Fregiu la cansalada en oli d’oliva verge extra calent.",
+   "Quan estigui enrossida, hi afegiu la botifarra de perol oberta de dalt a baix perquè s’esparraqui.",
+   "Afegiu-hi les mongetes ben escorregudes i, a foc roent, les aneu remenant fins que s’enrosseixin una mica.",
+   "Variacions:",
+   "Podeu acompanyar-ho de patates bullides."
   ],
   "servings": 4
  },
@@ -5256,7 +5726,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Musclos-a-la-marinera-Peixos-i-mariscs-v4-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=ZaJjFX8dh9A",
   "ingredients": [
    {
     "qty": 0.5,
@@ -5305,8 +5775,15 @@
    }
   ],
   "steps": [
-   "Bulliu els musclos amb poca aigua, en una cassola tapada, i coleu el caldo.\nFeu un sofregit amb la ceba i el tomàquet, feu reduir el vi i afegiu-hi la farina, que es cogui una estona.\nMulleu-ho amb aigua de bullir els musclos i deixeu-ho coure durant 10 minuts.\nAfegiu-hi als musclos la salsa i la picada, i deixeu-ho coure 5 minuts tot junt.",
-   "Variacions:\nEn comptes de l’aigua de bullir els musclos, hi podeu posar brou de peix.\nLa salsa es pot triturar i passar per un colador.\nEs poden afegir ametlles a la picada.\nEs pot fer amb cloïsses en comptes de musclos."
+   "Bulliu els musclos amb poca aigua, en una cassola tapada, i coleu el caldo.",
+   "Feu un sofregit amb la ceba i el tomàquet, feu reduir el vi i afegiu-hi la farina, que es cogui una estona.",
+   "Mulleu-ho amb aigua de bullir els musclos i deixeu-ho coure durant 10 minuts.",
+   "Afegiu-hi als musclos la salsa i la picada, i deixeu-ho coure 5 minuts tot junt.",
+   "Variacions:",
+   "En comptes de l’aigua de bullir els musclos, hi podeu posar brou de peix.",
+   "La salsa es pot triturar i passar per un colador.",
+   "Es poden afegir ametlles a la picada.",
+   "Es pot fer amb cloïsses en comptes de musclos."
   ],
   "servings": 4
  },
@@ -5316,7 +5793,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Olla-de-recapte-Llegums-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=o3SXalvmGI0",
   "ingredients": [
    {
     "qty": 400.0,
@@ -5355,8 +5832,12 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb l’all, el pebre vermell i la fulla de llorer.\nA banda, bulliu les patates i les bledes, i afegiu-hi els fesols i els tronxos de carxofa.\nAfegiu el sofregit a l’olla de les verdures.",
-   "Variacions:\nA l’olla de recapte hi podeu afegir tot el que vulgueu: arròs, bacallà, etc.\nAl final de la cocció s’hi pot posar unes gotes de vinagre."
+   "Feu un sofregit amb l’all, el pebre vermell i la fulla de llorer.",
+   "A banda, bulliu les patates i les bledes, i afegiu-hi els fesols i els tronxos de carxofa.",
+   "Afegiu el sofregit a l’olla de les verdures.",
+   "Variacions:",
+   "A l’olla de recapte hi podeu afegir tot el que vulgueu: arròs, bacallà, etc.",
+   "Al final de la cocció s’hi pot posar unes gotes de vinagre."
   ],
   "servings": 4
  },
@@ -5366,7 +5847,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Olla-verda-Verdures-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=89VC5NsKp6c",
   "ingredients": [
    {
     "qty": 3.0,
@@ -5435,8 +5916,11 @@
    }
   ],
   "steps": [
-   "Feu bullir 1 hora, aproximadament, els ossos de l’espinada, el sagí treballat amb farina i la cansalada.\nRetireu els ossos, afegiu-hi les verdures, les patates i l’enciam.\nDeixeu que arrenqui el bull i afegiu-hi l’arròs i els fideus.",
-   "Variacions:\nS’hi pot afegir un tros de bacallà."
+   "Feu bullir 1 hora, aproximadament, els ossos de l’espinada, el sagí treballat amb farina i la cansalada.",
+   "Retireu els ossos, afegiu-hi les verdures, les patates i l’enciam.",
+   "Deixeu que arrenqui el bull i afegiu-hi l’arròs i els fideus.",
+   "Variacions:",
+   "S’hi pot afegir un tros de bacallà."
   ],
   "servings": 4
  },
@@ -5446,7 +5930,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Orelletes-Postres-i-dolços-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=a0Wuvc4aW58",
   "ingredients": [
    {
     "qty": 3.0,
@@ -5505,7 +5989,19 @@
    }
   ],
   "steps": [
-   "Variacions:\nEs pot donar a les boles formes diferents, allargades o rodones.\nAbans d’afegir-hi la matafaluga i el coriandre, es poden infusionar.\nEn lloc d’empolsar-hi sucre, al final s’hi pot posar mel.\nS’hi pot afegir oli d’oliva verge extra abans de pastar la massa.\nEs pot afegir ratlladura de llimona a la massa.\nEn lloc d’anís, s’hi pot posar conyac."
+   "Tamiseu la farina, feu-ne un volcà i poseu-hi al mig els ous, l’anís, el moscatell, 125 g de sucre, les herbes i el llevat desfet en aigua tèbia.",
+   "Treballeu primer els ingredients del mig i continueu treballant-ho amb la farina del voltant fins a fer una massa fina i compacta.",
+   "Deixeu reposar la massa de 4 a 5 hores en un recipient tapat amb un drap.",
+   "A continuació, feu amb la massa boles grosses com nous, tapeu-les i torneu-les a deixar reposar una estona.",
+   "Estireu les boles fins a fer-ne discs de prop d’un pam de diàmetre.",
+   "Fregiu-los en una cassola pels dos costats i empolseu-hi força sucre per sobre.",
+   "Variacions:",
+   "Es pot donar a les boles formes diferents, allargades o rodones.",
+   "Abans d’afegir-hi la matafaluga i el coriandre, es poden infusionar.",
+   "En lloc d’empolsar-hi sucre, al final s’hi pot posar mel.",
+   "S’hi pot afegir oli d’oliva verge extra abans de pastar la massa.",
+   "Es pot afegir ratlladura de llimona a la massa.",
+   "En lloc d’anís, s’hi pot posar conyac."
   ],
   "servings": 4
  },
@@ -5515,13 +6011,8 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-pa-amb-tomaquet-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=vJYQv44CKMY",
   "ingredients": [
-   {
-    "qty": null,
-    "unit": "",
-    "name": "Pa"
-   },
    {
     "qty": null,
     "unit": "",
@@ -5539,8 +6030,12 @@
    }
   ],
   "steps": [
-   "Talleu el pa a llesques.\nSuqueu el pa amb el tomàquet obert pel mig.\nAmaniu-ho amb oli d’oliva verge extra i sal i mengeu-ho de seguida perquè no s’estovi.",
-   "Variacions:\nLes llesques de pa es poden torrar primer.\nEs pot acompanyar de pernil, embotits, formatges, truites, anxoves, etc."
+   "Talleu el pa a llesques.",
+   "Suqueu el pa amb el tomàquet obert pel mig.",
+   "Amaniu-ho amb oli d’oliva verge extra i sal i mengeu-ho de seguida perquè no s’estovi.",
+   "Variacions:",
+   "Les llesques de pa es poden torrar primer.",
+   "Es pot acompanyar de pernil, embotits, formatges, truites, anxoves, etc."
   ],
   "servings": 4
  },
@@ -5550,7 +6045,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-panellets-de-pinyons-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=V6U9RXM4PZ0",
   "ingredients": [
    {
     "qty": 600.0,
@@ -5589,8 +6084,14 @@
    }
   ],
   "steps": [
-   "Feu una massa fina barrejant i treballant bé tots els ingredients.\nDeixeu-la reposar a la nevera un mínim de 24 hores, embolicada en un drap humit.\nFeu boles de massapà d’uns 20 g, arrebosseu-les amb ou i enganxeu-hi els pinyons prement-los una mica.\nPinteu els panellets amb ou.\nEn una llauna untada amb oli d’oliva verge extra poseu-los al forn a 230-250 º uns 10 minuts, fins que estiguin daurats.",
-   "Variacions:\nEn lloc de moniato es poden fer amb patata.\nEn comptes de pinyons es poden fer panellets d’ametlla , panellets de coco, panellets de cafè o panellets de codonyat."
+   "Feu una massa fina barrejant i treballant bé tots els ingredients.",
+   "Deixeu-la reposar a la nevera un mínim de 24 hores, embolicada en un drap humit.",
+   "Feu boles de massapà d’uns 20 g, arrebosseu-les amb ou i enganxeu-hi els pinyons prement-los una mica.",
+   "Pinteu els panellets amb ou.",
+   "En una llauna untada amb oli d’oliva verge extra poseu-los al forn a 230-250 º uns 10 minuts, fins que estiguin daurats.",
+   "Variacions:",
+   "En lloc de moniato es poden fer amb patata.",
+   "En comptes de pinyons es poden fer panellets d’ametlla , panellets de coco, panellets de cafè o panellets de codonyat."
   ],
   "servings": 4
  },
@@ -5600,7 +6101,7 @@
   "source": "Gastroteca",
   "category": "Arròs i pasta",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Pasta-fullada-amb-escalivada-i-anxoves-Amanides-i-plats-freds-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=hUX19XZhrz0",
   "ingredients": [
    {
     "qty": 4.0,
@@ -5659,7 +6160,10 @@
    }
   ],
   "steps": [
-   "Coeu la pasta fullada al forn a 200º.\nTalleu els pebrots, salpebreu-los i amaniu-los amb oli d’oliva verge extra .\nTalleu les anxoves de dalt a baix.\nPoseu a sobre de la pasta fullada el tomàquet ratllat, els pebrots escalivats, després les anxoves en forma de reixa i, per últim, decoreu el plat amb el mesclum, els tomàquets cirerol i l’oli de julivert."
+   "Coeu la pasta fullada al forn a 200º.",
+   "Talleu els pebrots, salpebreu-los i amaniu-los amb oli d’oliva verge extra .",
+   "Talleu les anxoves de dalt a baix.",
+   "Poseu a sobre de la pasta fullada el tomàquet ratllat, els pebrots escalivats, després les anxoves en forma de reixa i, per últim, decoreu el plat amb el mesclum, els tomàquets cirerol i l’oli de julivert."
   ],
   "servings": 4
  },
@@ -5708,7 +6212,9 @@
    }
   ],
   "steps": [
-   "Bulliu les patates amb pell, peleu-les i aixafeu-les.\nFregiu la cansalada i els alls, i quan agafin color afegiu-hi els bolets.\nQuan els bolets estiguin cuits, incorporeu-hi les patates i remeneu-ho."
+   "Bulliu les patates amb pell, peleu-les i aixafeu-les.",
+   "Fregiu la cansalada i els alls, i quan agafin color afegiu-hi els bolets.",
+   "Quan els bolets estiguin cuits, incorporeu-hi les patates i remeneu-ho."
   ],
   "servings": 4
  },
@@ -5718,7 +6224,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-patates-farcides-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=w8iaYtRlXaw",
   "ingredients": [
    {
     "qty": 8.0,
@@ -5777,8 +6283,14 @@
    }
   ],
   "steps": [
-   "Bulliu les patates amb pell, obriu-les pel mig i buideu-les; reserveu-les.\nFeu un sofregit amb la ceba i els alls, afegiu-hi la carn picada i deixeu que cogui una estona remenant perquè no es facin boles.\nTireu-hi el vi ranci, deixeu-lo reduir i afegiu-hi els ous durs.\nFarciu les patates, poseu-hi la picada per sobre i enforneu-les uns minuts.",
-   "Es poden farcir amb la carn de la pilota de l’escudella i carn d’olla.\nPodeu acabar el plat espolsant-hi farina de galeta i formatge ratllat pel damunt i gratinant-lo.\nLa polpa que es treu al buidar les patates es pot barrejar a la resta del farciment."
+   "Bulliu les patates amb pell, obriu-les pel mig i buideu-les; reserveu-les.",
+   "Feu un sofregit amb la ceba i els alls, afegiu-hi la carn picada i deixeu que cogui una estona remenant perquè no es facin boles.",
+   "Tireu-hi el vi ranci, deixeu-lo reduir i afegiu-hi els ous durs.",
+   "Farciu les patates, poseu-hi la picada per sobre i enforneu-les uns minuts.",
+   "Variacions:",
+   "Es poden farcir amb la carn de la pilota de l’escudella i carn d’olla.",
+   "Podeu acabar el plat espolsant-hi farina de galeta i formatge ratllat pel damunt i gratinant-lo.",
+   "La polpa que es treu al buidar les patates es pot barrejar a la resta del farciment."
   ],
   "servings": 4
  },
@@ -5788,7 +6300,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Peix-al-forn-Peixos-i-mariscs-v3-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=-gmIeyZiYmA",
   "ingredients": [
    {
     "qty": 1.0,
@@ -5832,9 +6344,16 @@
    }
   ],
   "steps": [
-   "En una safata de forn amb oli d’oliva verge extra calent, poseu la ceba i, quan estigui una mica cuita, afegiu-hi les patates tallades a rodanxes i després els tomàquets.\nPoseu-hi sal i pebre i feu la reducció del vi blanc.\nNetegeu i escateu el peix, i poseu-hi sal i pebre.\nPoseu el peix sobre les verdures i fiqueu-lo al forn calent, fins que estigui cuit.",
-   "Variacions:\nA la base de verdures s’hi poden afegir pebrots, alls, fonoll, etc.\nEs pot fer al forn sense capa de verdures, amanit amb oli d’oliva verge extra.",
-   "Comentaris:\nEs pot fer amb molta varietat de peix: llobarro, lluç, turbó, orada, rapets, besuc, nero.\nTambé es pot preparar amb peix blau: sardina, verat, sorell."
+   "En una safata de forn amb oli d’oliva verge extra calent, poseu la ceba i, quan estigui una mica cuita, afegiu-hi les patates tallades a rodanxes i després els tomàquets.",
+   "Poseu-hi sal i pebre i feu la reducció del vi blanc.",
+   "Netegeu i escateu el peix, i poseu-hi sal i pebre.",
+   "Poseu el peix sobre les verdures i fiqueu-lo al forn calent, fins que estigui cuit.",
+   "Variacions:",
+   "A la base de verdures s’hi poden afegir pebrots, alls, fonoll, etc.",
+   "Es pot fer al forn sense capa de verdures, amanit amb oli d’oliva verge extra.",
+   "Comentaris:",
+   "Es pot fer amb molta varietat de peix: llobarro, lluç, turbó, orada, rapets, besuc, nero.",
+   "També es pot preparar amb peix blau: sardina, verat, sorell."
   ],
   "servings": 4
  },
@@ -5873,7 +6392,10 @@
    }
   ],
   "steps": [
-   "Bateu els ous amb el sucre fins que quedin d’un color blanquinós.\nAfegiu-hi la ratlladura de llimona i la farina, i barregeu-ho amb una espàtula.\nPoseu la massa en una mànega amb un broc petit i llis i aneu-ne fent pilonets en una placa de forn untada amb mantega o coberta amb paper d’estrassa.\nPoseu-ho al forn a 180º fins que les pastes s’assequin i es daurin una mica."
+   "Bateu els ous amb el sucre fins que quedin d’un color blanquinós.",
+   "Afegiu-hi la ratlladura de llimona i la farina, i barregeu-ho amb una espàtula.",
+   "Poseu la massa en una mànega amb un broc petit i llis i aneu-ne fent pilonets en una placa de forn untada amb mantega o coberta amb paper d’estrassa.",
+   "Poseu-ho al forn a 180º fins que les pastes s’assequin i es daurin una mica."
   ],
   "servings": 4
  },
@@ -5967,8 +6489,15 @@
    }
   ],
   "steps": [
-   "Salpebreu, enfarineu i enrossiu els trossos de pollastre, i reserveu-los.\nEn el mateix oli d’oliva verge extra fregiu els escamarlans i reserveu-los.\nFeu-hi el sofregit amb la ceba i el tomàquet.\nReincorporeu-hi el pollastre, flamegeu-lo amb el brandi i cobriu-lo amb aigua.\nDeixeu-ho coure i, quan faltin 10 minuts, afegiu-hi els escamarlans i la picada desfeta amb el vi ranci.",
-   "Variacions:\nEs pot afegir a la picada mitja presa de xocolata negra.\nEs pot fer amb gambes o amb calamars en comptes d’escamarlans.\nEs pot fer amb conill en comptes de pollastre."
+   "Salpebreu, enfarineu i enrossiu els trossos de pollastre, i reserveu-los.",
+   "En el mateix oli d’oliva verge extra fregiu els escamarlans i reserveu-los.",
+   "Feu-hi el sofregit amb la ceba i el tomàquet.",
+   "Reincorporeu-hi el pollastre, flamegeu-lo amb el brandi i cobriu-lo amb aigua.",
+   "Deixeu-ho coure i, quan faltin 10 minuts, afegiu-hi els escamarlans i la picada desfeta amb el vi ranci.",
+   "Variacions:",
+   "Es pot afegir a la picada mitja presa de xocolata negra.",
+   "Es pot fer amb gambes o amb calamars en comptes d’escamarlans.",
+   "Es pot fer amb conill en comptes de pollastre."
   ],
   "servings": 4
  },
@@ -5978,7 +6507,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Pomes-del-relleno-Altres-receptes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=sHqcPOs-hMw",
   "ingredients": [
    {
     "qty": 8.0,
@@ -6067,6 +6596,7 @@
    "Farciu les pomes amb aquesta pasta, enfarineu-les per sobre i fregiu-les amb oli d’oliva verge extra i llard, sobretot per la part del farcit.",
    "Poseu-les en una cassola amb el sucre, la branca de canyella, la pell de mitja llimona, el moscatell i una mica d’aigua, i deixeu-ho coure molt a poc a poc un parell d’hores, fins que es formi un caramel i tot afegint-hi aigua, si cal.",
    "A mitja cocció, afegiu-hi la picada.",
+   "Variacions:",
    "La carn pot ser tota de porc, barrejada amb vedella o botifarra dolça.",
    "Es pot substituir el farciment de carn per galetes i melindros.",
    "A la carn del farcit s’hi pot afegir una mica de massapà.",
@@ -6083,7 +6613,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Pop_amb_patata_-_Peixos_i_mariscs1-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=bOOpWHsGLYQ",
   "ingredients": [
    {
     "qty": 800.0,
@@ -6132,8 +6662,11 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb la ceba, el tomàquet i el pebre vermell.\nFeu-hi la reducció del vi, afegiu-hi el pop, cobriu-lo d’aigua i deixeu-ho coure fins que el pop estigui gairebé cuit.\nQuan falti poc per acabar, afegiu-hi les patates esbocinades i deixeu-ho coure.",
-   "Variacions:\nEs pot acompanyar d’allioli."
+   "Feu un sofregit amb la ceba, el tomàquet i el pebre vermell.",
+   "Feu-hi la reducció del vi, afegiu-hi el pop, cobriu-lo d’aigua i deixeu-ho coure fins que el pop estigui gairebé cuit.",
+   "Quan falti poc per acabar, afegiu-hi les patates esbocinades i deixeu-ho coure.",
+   "Variacions:",
+   "Es pot acompanyar d’allioli."
   ],
   "servings": 4
  },
@@ -6143,7 +6676,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Popets_amb_ceba_-_Peixos_i_mariscs_v31-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=DSY-WXpKxxg",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6192,8 +6725,16 @@
    }
   ],
   "steps": [
-   "Netegeu, renteu i escorreu els popets.\nSalteu els popets amb l’oli d’oliva verge extra, el vi, el llorer, la sal i el pebre, i reserveu-los.\nSofregiu la ceba i, quan estigui fosca, afegiu-hi els alls i els popets.\nAmb la cassola tapada deixeu-ho estofar fins que els popets estiguin cuits, tot afegint-hi miques d’aigua si cal.",
-   "Variacions:\nEs pot posar tomàquet a la salsa.\nEs pot fer un sofregit amb la ceba, l’all, julivert i tomàquet.\nS’hi poden afegir patates una mica abans d’acabar la cocció dels popets.\nEs pot acabar el plat amb una picada d’all i julivert.\nEs pot fer amb pops més grans. En aquest cas, cal tallar-los a trossos i afegir-los quan la ceba és a mig fer. Si són molt grans, cal bullir-los prèviament."
+   "Netegeu, renteu i escorreu els popets.",
+   "Salteu els popets amb l’oli d’oliva verge extra, el vi, el llorer, la sal i el pebre, i reserveu-los.",
+   "Sofregiu la ceba i, quan estigui fosca, afegiu-hi els alls i els popets.",
+   "Amb la cassola tapada deixeu-ho estofar fins que els popets estiguin cuits, tot afegint-hi miques d’aigua si cal.",
+   "Variacions:",
+   "Es pot posar tomàquet a la salsa.",
+   "Es pot fer un sofregit amb la ceba, l’all, julivert i tomàquet.",
+   "S’hi poden afegir patates una mica abans d’acabar la cocció dels popets.",
+   "Es pot acabar el plat amb una picada d’all i julivert.",
+   "Es pot fer amb pops més grans. En aquest cas, cal tallar-los a trossos i afegir-los quan la ceba és a mig fer. Si són molt grans, cal bullir-los prèviament."
   ],
   "servings": 4
  },
@@ -6203,7 +6744,7 @@
   "source": "Gastroteca",
   "category": "Postres i dolços",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-postres-de-music-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=nmE35rK8IPI",
   "ingredients": [
    {
     "qty": 50.0,
@@ -6244,7 +6785,7 @@
   "source": "Gastroteca",
   "category": "Peix i marisc",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Rap-allagostat-Peixos-i-mariscs.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=0ZDmPFC8WS0",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6273,7 +6814,10 @@
    }
   ],
   "steps": [
-   "Separeu els dos filets de la cua, traieu l’espina i lligueu-los junts.\nUnteu-los amb oli d’oliva verge extra i arrebosseu-los amb pebre vermell.\nPoseu-los al forn en una safata sobre una base de ceba.\nUn cop cuits deixeu-los refredar i talleu-los a rodanxes."
+   "Separeu els dos filets de la cua, traieu l’espina i lligueu-los junts.",
+   "Unteu-los amb oli d’oliva verge extra i arrebosseu-los amb pebre vermell.",
+   "Poseu-los al forn en una safata sobre una base de ceba.",
+   "Un cop cuits deixeu-los refredar i talleu-los a rodanxes."
   ],
   "servings": 4
  },
@@ -6283,7 +6827,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Remenat-de-patates-i-bolets-Bolets-i-cargols.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=sNETQIDO64E",
   "ingredients": [
    {
     "qty": 400.0,
@@ -6336,7 +6880,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-salsa-beixamel-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=LfbP_xcbgkw",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6370,8 +6914,13 @@
    }
   ],
   "steps": [
-   "Foneu la mantega en una cassola fonda, barregeu-hi la farina, i remeneu fins que es cogui sense que agafi color.\nAfegiu-hi la llet calenta i bateu la mescla amb un batedor de varetes fins que comenci a bullir.\nAfluixeu el foc al mínim i deixeu coure lentament uns 30 minuts sense remenar, desescumant la superfície de tant en quan.\nAmaniu-ho amb sal, pebre i nou moscada.",
-   "Variacions:\nEs pot afegir ceba picada i sofregir-la amb la mantega abans de coure la farina.\nEs pot afegir també una mica de tomàquet juntament amb la ceba."
+   "Foneu la mantega en una cassola fonda, barregeu-hi la farina, i remeneu fins que es cogui sense que agafi color.",
+   "Afegiu-hi la llet calenta i bateu la mescla amb un batedor de varetes fins que comenci a bullir.",
+   "Afluixeu el foc al mínim i deixeu coure lentament uns 30 minuts sense remenar, desescumant la superfície de tant en quan.",
+   "Amaniu-ho amb sal, pebre i nou moscada.",
+   "Variacions:",
+   "Es pot afegir ceba picada i sofregir-la amb la mantega abans de coure la farina.",
+   "Es pot afegir també una mica de tomàquet juntament amb la ceba."
   ],
   "servings": 4
  },
@@ -6381,7 +6930,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Salsa-romesco.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=VbPEqpFR1vc",
   "ingredients": [
    {
     "qty": null,
@@ -6435,8 +6984,16 @@
    }
   ],
   "steps": [
-   "Poseu en una batedora els tomàquets sense pell ni llavors, els alls pelats, la polpa dels pebrots, les ametlles i avellanes, i el pebre vermell.\nTritureu-ho tot i aneu-hi incorporant oli d’oliva verge extra, un raig de vinagre, sal i pebre.",
-   "Variacions:\nEls alls i els tomàquets es poden fregir en comptes d’escalivar.\nEn lloc de pebrot del romesco s’hi pot posar nyora.\nEs pot espessir la salsa amb pa sec fregit o amb molla de pa xopada amb vinagre.\nS’hi poden afegir galetes.\nS’hi pot afegir una punta d’all cru.\nS’hi pot afegir bitxo.\nEs pot fer amb ametlla o avellana sola."
+   "Poseu en una batedora els tomàquets sense pell ni llavors, els alls pelats, la polpa dels pebrots, les ametlles i avellanes, i el pebre vermell.",
+   "Tritureu-ho tot i aneu-hi incorporant oli d’oliva verge extra, un raig de vinagre, sal i pebre.",
+   "Variacions:",
+   "Els alls i els tomàquets es poden fregir en comptes d’escalivar.",
+   "En lloc de pebrot del romesco s’hi pot posar nyora.",
+   "Es pot espessir la salsa amb pa sec fregit o amb molla de pa xopada amb vinagre.",
+   "S’hi poden afegir galetes.",
+   "S’hi pot afegir una punta d’all cru.",
+   "S’hi pot afegir bitxo.",
+   "Es pot fer amb ametlla o avellana sola."
   ],
   "servings": 4
  },
@@ -6446,7 +7003,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Sardines-en-escabetx-Peixos-i-mariscs-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=FFGoaFC9rVI",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6500,8 +7057,13 @@
    }
   ],
   "steps": [
-   "Netegeu les sardines de tripes i escates, eixugueu-les i col·loqueu-les en una cassola de terrissa.\nA sobre escampeu-hi els alls, la ceba, el llorer, l’orenga, el pebre i la sal.\nTot seguit cobriu-les amb l’oli d’oliva verge extra i el vinagre.\nDeixeu-ho coure a poc a poc fins que les sardines estiguin cuites.",
-   "Variacions:\nEs pot fer amb qualsevol peix.\nTambé es fa amb conill."
+   "Netegeu les sardines de tripes i escates, eixugueu-les i col·loqueu-les en una cassola de terrissa.",
+   "A sobre escampeu-hi els alls, la ceba, el llorer, l’orenga, el pebre i la sal.",
+   "Tot seguit cobriu-les amb l’oli d’oliva verge extra i el vinagre.",
+   "Deixeu-ho coure a poc a poc fins que les sardines estiguin cuites.",
+   "Variacions:",
+   "Es pot fer amb qualsevol peix.",
+   "També es fa amb conill."
   ],
   "servings": 4
  },
@@ -6511,7 +7073,7 @@
   "source": "Gastroteca",
   "category": "Sopes",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Sopa-dall-Sopes-i-cremes-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=1kQnaNR2wp8",
   "ingredients": [
    {
     "qty": 5.0,
@@ -6540,8 +7102,16 @@
    }
   ],
   "steps": [
-   "En una olla fregiu els grans d’all i després el pa.\nAfegiu-hi l’aigua i deixeu-ho bullir.\nAfineu la sopa amb un batedor.\nPoseu la sopa a punt de sal.",
-   "Variacions:\nS’hi poden afegir uns ous batuts al final.\nEs poden bullir els alls (sense fregir-los) amb l’aigua i un raig d’oli d’oliva verge extra i afegir-hi el pa, batent-ho tot junt.\nEs pot posar la llesca de pa i l’ou al plat i escaldar-los amb l’aigua bullent amb els alls fregits.\nEs pot afegir cansalada fregida amb els alls.\nEs pot fer amb alls tallats a làmines."
+   "En una olla fregiu els grans d’all i després el pa.",
+   "Afegiu-hi l’aigua i deixeu-ho bullir.",
+   "Afineu la sopa amb un batedor.",
+   "Poseu la sopa a punt de sal.",
+   "Variacions:",
+   "S’hi poden afegir uns ous batuts al final.",
+   "Es poden bullir els alls (sense fregir-los) amb l’aigua i un raig d’oli d’oliva verge extra i afegir-hi el pa, batent-ho tot junt.",
+   "Es pot posar la llesca de pa i l’ou al plat i escaldar-los amb l’aigua bullent amb els alls fregits.",
+   "Es pot afegir cansalada fregida amb els alls.",
+   "Es pot fer amb alls tallats a làmines."
   ],
   "servings": 4
  },
@@ -6551,7 +7121,7 @@
   "source": "Gastroteca",
   "category": "Sopes",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-sopa-de-carbassa-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=W0lnWceZCL4",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6595,8 +7165,15 @@
    }
   ],
   "steps": [
-   "Feu un sofregit amb la ceba i la fulla de llorer en una olla amb oli d’oliva verge extra.\nAfegiu-hi la carbassa i deixeu-la ofegar amb l’olla tapada.\nAfegiu-hi aigua i quan la carbassa estigui a mig coure afegiu-hi l’arròs.\nRectifiqueu-ho de sal i pebre.",
-   "Variacions:\nS’hi pot afegir mongetes bullides.\nS’hi poden afegir castanyes bullides.\nS’hi pot afegir llet.\nS’hi pot afegir botifarra negra."
+   "Feu un sofregit amb la ceba i la fulla de llorer en una olla amb oli d’oliva verge extra.",
+   "Afegiu-hi la carbassa i deixeu-la ofegar amb l’olla tapada.",
+   "Afegiu-hi aigua i quan la carbassa estigui a mig coure afegiu-hi l’arròs.",
+   "Rectifiqueu-ho de sal i pebre.",
+   "Variacions:",
+   "S’hi pot afegir mongetes bullides.",
+   "S’hi poden afegir castanyes bullides.",
+   "S’hi pot afegir llet.",
+   "S’hi pot afegir botifarra negra."
   ],
   "servings": 4
  },
@@ -6606,7 +7183,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Trinxat-de-la-Cerdanya-Verdures-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=i07ZHOdDWUc",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6640,8 +7217,17 @@
    }
   ],
   "steps": [
-   "Netegeu la col, renteu-la i talleu-la. Peleu les patates, esqueixeu-les i renteu-les.\nFeu bullir les patates i la col en aigua i una mica de sal fins que gairebé es desfacin.\nEn una paella amb oli d’oliva verge extra rossegeu els talls de cansalada i reserveu-los.\nEn el mateix oli d’oliva verge extra sofregiu les patates i la col ben escorregudes, remenant-les i aixafant-les.\nEn el moment de servir el plat, poseu-hi la cansalada per sobre.",
-   "Variacions:\nTambé es pot menjar sense rosta, senzillament les verdures cuites i xafades.\nEs pot acompanyar d’uns talls de botifarra negra passada per la paella o una arengada.\nEs pot posar all picat a la paella amb la cansalada.\nTambé es pot passar tot bé per la paella, deixar que es torri una mica i servir-ho com una truita.\nEs poden afegir rostillons a l’olla on s’ha bullit la col i la patata."
+   "Netegeu la col, renteu-la i talleu-la. Peleu les patates, esqueixeu-les i renteu-les.",
+   "Feu bullir les patates i la col en aigua i una mica de sal fins que gairebé es desfacin.",
+   "En una paella amb oli d’oliva verge extra rossegeu els talls de cansalada i reserveu-los.",
+   "En el mateix oli d’oliva verge extra sofregiu les patates i la col ben escorregudes, remenant-les i aixafant-les.",
+   "En el moment de servir el plat, poseu-hi la cansalada per sobre.",
+   "Variacions:",
+   "També es pot menjar sense rosta, senzillament les verdures cuites i xafades.",
+   "Es pot acompanyar d’uns talls de botifarra negra passada per la paella o una arengada.",
+   "Es pot posar all picat a la paella amb la cansalada.",
+   "També es pot passar tot bé per la paella, deixar que es torri una mica i servir-ho com una truita.",
+   "Es poden afegir rostillons a l’olla on s’ha bullit la col i la patata."
   ],
   "servings": 4
  },
@@ -6651,7 +7237,7 @@
   "source": "Gastroteca",
   "category": "Ous",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Truita-de-dijous-llarder-Altres-receptes.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=xF_QkIVFbhc",
   "ingredients": [
    {
     "qty": 8.0,
@@ -6695,8 +7281,12 @@
    }
   ],
   "steps": [
-   "Fregiu la cansalada a poc a poc, afegiu-hi les botifarres tallades a rodanxes, els alls tendres i el julivert.\nRemeneu-ho unes quantes vegades.\nAfegiu-hi els ous batuts amb una mica de sal i feu la truita rodona.",
-   "Variacions:\nTambé es fa amb botifarra d’ou.\nLa truita de Pasqua és la mateixa, però feta amb 12 ous."
+   "Fregiu la cansalada a poc a poc, afegiu-hi les botifarres tallades a rodanxes, els alls tendres i el julivert.",
+   "Remeneu-ho unes quantes vegades.",
+   "Afegiu-hi els ous batuts amb una mica de sal i feu la truita rodona.",
+   "Variacions:",
+   "També es fa amb botifarra d’ou.",
+   "La truita de Pasqua és la mateixa, però feta amb 12 ous."
   ],
   "servings": 4
  },
@@ -6706,7 +7296,7 @@
   "source": "Gastroteca",
   "category": "Verdures",
   "image": "https://www.gastroteca.cat/wp-content/uploads/Trumfada-Verdures-scaled.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=vXthrTbDaS8",
   "ingredients": [
    {
     "qty": 1.0,
@@ -6730,8 +7320,13 @@
    }
   ],
   "steps": [
-   "Bulliu les patates esbocinades.\nEscorreu-les i aixafeu-les amb una forquilla.\nIncorporeu-hi la llet fins que agafi la consistència adequada.",
-   "Variacions:\nEs poden bullir les patates senceres amb pell.\nEs pot fregir un tall de cansalada i tirar el suc per sobre de la trumfada.\nS’hi pot afegir mantega."
+   "Bulliu les patates esbocinades.",
+   "Escorreu-les i aixafeu-les amb una forquilla.",
+   "Incorporeu-hi la llet fins que agafi la consistència adequada.",
+   "Variacions:",
+   "Es poden bullir les patates senceres amb pell.",
+   "Es pot fregir un tall de cansalada i tirar el suc per sobre de la trumfada.",
+   "S’hi pot afegir mantega."
   ],
   "servings": 4
  },
@@ -6741,7 +7336,7 @@
   "source": "Gastroteca",
   "category": "Llegums",
   "image": "https://www.gastroteca.cat/wp-content/uploads/recepta-xulles-amb-fesols-1-10.jpg",
-  "youtube": null,
+  "youtube": "https://www.youtube.com/watch?v=DWzazqv70Vw",
   "ingredients": [
    {
     "qty": 400.0,
@@ -6790,8 +7385,12 @@
    }
   ],
   "steps": [
-   "Saleu i fregiu les xulles a la cassola.\nQuan siguin una mica rosses, afegiu-hi la ceba trinxada i els alls sencers, les herbes i el pebre.\nQuan tot hagi agafat color poseu-hi les mongetes amb una miqueta del seu brou i deixeu que cogui a foc lent.",
-   "Variacions:\nEs pot servir només fregit, sense suc.\nS’hi pot afegir un tros del tel del fetge del porc."
+   "Saleu i fregiu les xulles a la cassola.",
+   "Quan siguin una mica rosses, afegiu-hi la ceba trinxada i els alls sencers, les herbes i el pebre.",
+   "Quan tot hagi agafat color poseu-hi les mongetes amb una miqueta del seu brou i deixeu que cogui a foc lent.",
+   "Variacions:",
+   "Es pot servir només fregit, sense suc.",
+   "S’hi pot afegir un tros del tel del fetge del porc."
   ],
   "servings": 4
  }
