@@ -67,11 +67,109 @@ function defaultState(){
     seedDone:false
   };
 }
-let S;
-try{
-  const raw=localStorage.getItem(LS_KEY);
-  S=raw?Object.assign(defaultState(),JSON.parse(raw)):defaultState();
-}catch(e){console.error('load',e);S=defaultState();}
+/* ================= GITHUB GIST SYNC ================= */
+function pullFromGist() {
+  return fetch(`https://api.github.com/gists/${GIST_SYNC.gistId}`, {
+    headers: {
+      Authorization: `Bearer ${GIST_SYNC.token}`,
+      Accept: 'application/vnd.github+json'
+    }
+  })
+  .then(r => {
+    if (!r.ok) throw new Error(`GitHub error ${r.status}`);
+    return r.json();
+  })
+  .then(gist => {
+    const content = gist.files['midweek-state.json']?.content;
+    if (!content) throw new Error('midweek-state.json not found in gist');
+    return JSON.parse(content);
+  })
+  .catch(err => {
+    console.warn('Could not pull from Gist:', err);
+    return null;
+  });
+}
+
+function pushToGist(state) {
+  const data = JSON.stringify(state, null, 2);
+  return fetch(`https://api.github.com/gists/${GIST_SYNC.gistId}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${GIST_SYNC.token}`,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      files: {
+        'midweek-state.json': { content: data }
+      }
+    })
+  })
+  .then(r => {
+    if (!r.ok) throw new Error(`GitHub error ${r.status}`);
+    return r.json();
+  })
+  .catch(err => {
+    console.warn('Could not push to Gist:', err);
+    throw err;
+  });
+}
+
+function mergeStates(local, remote) {
+  if (!remote) return local;
+  if (!local) return remote;
+  // Use _syncedAt timestamp; higher wins
+  return (remote._syncedAt || 0) > (local._syncedAt || 0) ? remote : local;
+}
+
+let syncIntervalId = null;
+function startPeriodicSync(intervalMs = 30000) {
+  stopPeriodicSync();
+  syncIntervalId = setInterval(async () => {
+    try {
+      const remote = await pullFromGist();
+      if (remote) {
+        const merged = mergeStates(S, remote);
+        if (merged !== S) {
+          Object.assign(S, merged);
+          save(); // This will also push to Gist
+          // Notify user if we want? For now silent.
+        }
+      }
+    } catch (e) {
+      console.warn('Periodic sync error:', e);
+    }
+  }, intervalMs);
+}
+function stopPeriodicSync() {
+  if (syncIntervalId) {
+    clearInterval(syncIntervalId);
+    syncIntervalId = null;
+  }
+}
+async function initialSync() {
+  try {
+    const remote = await pullFromGist();
+    if (remote) {
+      const merged = mergeStates(S, remote);
+      if (merged !== S) {
+        Object.assign(S, merged);
+        save(); // Will push
+      }
+    }
+    // After merging, start periodic sync
+    startPeriodicSync();
+  } catch (e) {
+    console.warn('Initial sync failed:', e);
+    // Still start periodic sync in case it's a transient error
+    startPeriodicSync();
+  }
+}
+
+/* ============ estat + persistència ============ */
+
+
+
 S.shopping=S.shopping&&Array.isArray(S.shopping.items)?S.shopping:{items:[],stale:false};
 S.settings=Object.assign({apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},S.settings);
 
@@ -79,9 +177,10 @@ function save(){
   try{
     localStorage.setItem(LS_KEY,JSON.stringify(S));
     flashSync(true);
+    // Also push to Gist (non-blocking, errors just warned)
+    pushToGist(S).catch(e=>console.warn('Gist push failed:',e));
   }catch(e){console.error(e);flashSync(false);}
 }
-let flashT;
 function flashSync(ok){
   const dot=$('#syncDot'),lab=$('#syncLabel');
   if(!dot)return;
