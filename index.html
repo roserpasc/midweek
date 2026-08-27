@@ -199,7 +199,41 @@
 </div>
 <div id="toastSlot"></div>
 
-<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+<script>
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js").then(reg=>{
+    reg.addEventListener("updatefound",()=>{
+      const newWorker = reg.installing;
+      if(newWorker){
+        newWorker.addEventListener("statechange",()=>{
+          if(newWorker.state==="installed" && navigator.serviceWorker.controller){
+            // New version is waiting; notify user
+            showUpdateToast(()=>{
+              // Optionally skip waiting and reload
+              navigator.serviceWorker.controller.postMessage({type:"SKIP_WAITING"});
+              location.reload();
+            });
+          }
+        });
+      }
+    });
+  }).catch(()=>{});
+}
+function showUpdateToast(callback){
+  // Re-use existing toast system if available, else simple alert
+  if(typeof toast==="function"){
+    toast("Nova versión disponible. Fer clic per actualitzar.");
+    // We need to bind callback to toast click; for simplicity, use confirm
+    if(confirm("Nova versión disponible. Vols recarrega ara?")){
+      callback();
+    }
+  }else{
+    if(confirm("Nova versión disponible. Vols recarrega ara?")){
+      callback();
+    }
+  }
+}
+</script>
 <script src="config.js"></script>
 <script src="app.js"></script>
 <script src="receipts.js"></script>
