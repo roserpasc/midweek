@@ -175,11 +175,11 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 /* ================= RESPONSIVE MÒBIL ================= */
 @media(max-width:640px){
   /* header: logo a la 1a fila, pestanyes a la 2a fila completa */
-  header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px}
-  header.app h1{font-size:18px;margin:0 8px 0 0}
-  nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-  nav.tabs button{flex:1 0 auto;padding:0 10px;font-size:13px;min-height:44px;white-space:nowrap;touch-action:manipulation}
-  .syncwrap{display:none}
+    header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px;touch-action:manipulation}
+    header.app h1{font-size:18px;margin:0 8px 0 0}
+    nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px;-webkit-overflow-scrolling:touch;touch-action:pan-x}
+    nav.tabs button{flex:0 0 auto;min-width:max-content;padding:0 12px;font-size:13px;min-height:44px;white-space:nowrap;touch-action:manipulation}
+    .syncwrap{display:none}
   /* weekbar: 2 files compactes */
   .weekbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
   .weekbar .spacer{display:none}

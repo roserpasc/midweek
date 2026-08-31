@@ -245,9 +245,12 @@ const recipeById=id=>byId(S.recipes,id);
 const personById=id=>byId(S.people,id);
 
 /* ---------------- pestanyes ---------------- */
-$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
-  S.ui.tab=b.dataset.tab;save();renderTabs();
-}));
+$$('nav.tabs button').forEach(b=>{
+  b.style.touchAction = 'manipulation';
+  b.addEventListener('click',()=>{
+    S.ui.tab=b.dataset.tab;save();renderTabs();
+  });
+});
 function switchTab(t){S.ui.tab=t;renderTabs();}
 function renderTabs(){
   $$('nav.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===S.ui.tab));
