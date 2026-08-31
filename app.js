@@ -67,6 +67,17 @@ function defaultState(){
     seedDone:false
   };
 }
+
+/* ---------- estat inicial ---------- */
+let S;
+try {
+  const raw = localStorage.getItem(LS_KEY);
+  S = raw ? JSON.parse(raw) : defaultState();
+} catch (e) {
+  console.error(e);
+  S = defaultState();
+
+}
 /* ================= GITHUB GIST SYNC ================= */
 function pullFromGist() {
   return fetch(`https://api.github.com/gists/${GIST_SYNC.gistId}`, {

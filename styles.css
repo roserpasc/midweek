@@ -177,8 +177,8 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   /* header: logo a la 1a fila, pestanyes a la 2a fila completa */
   header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px}
   header.app h1{font-size:18px;margin:0 8px 0 0}
-  nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px}
-  nav.tabs button{flex:1 0 auto;padding:0 6px;font-size:12px;min-height:42px;white-space:nowrap}
+  nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  nav.tabs button{flex:1 0 auto;padding:0 10px;font-size:13px;min-height:44px;white-space:nowrap;touch-action:manipulation}
   .syncwrap{display:none}
   /* weekbar: 2 files compactes */
   .weekbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
@@ -196,8 +196,10 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   td.slot{min-height:92px;padding:6px 4px}
   td.slot .meal-name{font-size:12px;line-height:1.35;word-break:break-word}
   td.slot .meal-diners{font-size:11px}
-  /* controls tàctils */
-  .btn,.btn-sm,.btn-primary,.pill{min-height:42px;padding:8px 10px;font-size:14px}
+  /* controls tàctils - min 44x44px per accessibilitat */
+  .btn,.btn-sm,.btn-primary,.pill{min-height:44px;padding:10px 14px;font-size:14px;touch-action:manipulation}
+  button{min-height:44px;touch-action:manipulation}
+  .btn-sm{min-height:40px;padding:8px 12px}
   /* toolbar de receptes */
   #tab-recipes .toolbar #recipeSearch{max-width:none;width:100%;flex-basis:100%;min-height:44px}
   #tab-recipes .toolbar #recipeCatFilter{max-width:none;flex:1;min-height:44px}
@@ -205,6 +207,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   /* graella de receptes: 2 columnes */
   .recipes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .recipe-card h3{font-size:13px}
+  .recipe-card{min-height:200px}
   /* modals pantalla completa */
   .modal{max-width:100%;max-height:96vh;border-radius:14px;padding:14px}
   .modal h2{font-size:17px}
@@ -212,10 +215,57 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   /* compra */
   .shop-item{min-height:44px}
   .shop-item label{font-size:14px}
-  input,select,textarea{font-size:16px}
+  input,select,textarea{font-size:16px} /* evita zoom a iOS */
+  /* extra add inputs */
+  .extra-add{flex-direction:column;align-items:stretch}
+  .extra-add input{flex:1 1 100%}
+  .extra-add select{flex:1 1 100%}
+  .extra-add button{flex:1 1 100%}
+  /* receipts grid: stack columns */
+  .grid-2{grid-template-columns:1fr}
+  /* scan box buttons stacked */
+  .scan-box .row{flex-direction:column;align-items:stretch}
+  .scan-box .row .btn{flex:1 1 100%}
+  /* people pills */
+  .person-pill{flex:1 1 100%;justify-content:space-between}
+  .person-pill input[type=text]{flex:1}
+  /* split chips */
+  .splits{flex-direction:column}
+  .split-chip{min-width:0;width:100%}
+  /* table scroll */
+  .card[style*='overflow-x']{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* menu table horizontal scroll indicator */
+  .card:has(#menuTable){overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* modal close button larger touch target */
+  .modal-close{width:44px;height:44px;font-size:18px}
+}
+
+/* Extra small phones (<=380px) */
+@media(max-width:380px){
+  .recipes-grid{grid-template-columns:1fr}
+  .recipe-card h3{font-size:14px}
+  .weekbar .pill{font-size:12px;padding:4px 8px}
+  #proposeBtn{flex:1 1 100%}
+  .meal-chip .t{font-size:11.5px}
+  .meal-chip .s{font-size:10px}
+  .modal{padding:12px}
+  .modal h2{font-size:16px}
+}
+
+/* Landscape phones */
+@media(max-height:500px) and (orientation:landscape){
+  header.app{height:48px;padding:0 12px}
+  header.app h1{font-size:16px}
+  nav.tabs{padding-bottom:4px}
+  nav.tabs button{min-height:38px;padding:0 8px}
+  .weekbar{gap:4px}
+  .weekbar .pill{min-height:36px}
+  #genShopBtn{min-height:40px}
+  .modal{max-height:90vh;padding:10px}
+  .modal h2{font-size:16px}
 }
 
 /* botó tancar modal ✕ */
 .modal{position:relative}
-.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#EDF3EE;color:#26312B;font-size:16px;line-height:1;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#EDF3EE;color:#26312B;font-size:16px;line-height:1;cursor:pointer;z-index:5;display:flex;align-items:center;justify_content:center}
 .modal-close:hover{background:#DDE9E0}
