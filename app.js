@@ -245,12 +245,25 @@ const recipeById=id=>byId(S.recipes,id);
 const personById=id=>byId(S.people,id);
 
 /* ---------------- pestanyes ---------------- */
-$$('nav.tabs button').forEach(b=>{
-  b.style.touchAction = 'manipulation';
-  b.addEventListener('click',()=>{
-    S.ui.tab=b.dataset.tab;save();renderTabs();
+function initTabs(){
+  if(typeof S==='undefined' || !S.ui){
+    // S no inicialitzat encara (receipts.js encara no ha cridat boot)
+    setTimeout(initTabs, 50);
+    return;
+  }
+  $$('nav.tabs button').forEach(b=>{
+    b.style.touchAction = 'manipulation';
+    b.addEventListener('click',()=>{
+      S.ui.tab=b.dataset.tab;save();renderTabs();
+    });
   });
-});
+}
+// Assegura't que el DOM està llest (per si SW serveix HTML vell amb JS nou)
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initTabs);
+}else{
+  initTabs();
+}
 function switchTab(t){S.ui.tab=t;renderTabs();}
 function renderTabs(){
   $$('nav.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===S.ui.tab));
