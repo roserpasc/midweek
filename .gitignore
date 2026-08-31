@@ -8,3 +8,6 @@ twa-manifest.json
 android/
 app-release-unsigned.apk
 node_modules/
+_test_*.js
+_server.js
+node_modules/

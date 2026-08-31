@@ -218,4 +218,9 @@ function openProposalModal(){
     if(b){closeModal();generateProposal(b.dataset.mode);}
   });
 }
-$('#proposeBtn').onclick=openProposalModal;
+/* el botó Proposa existeix a l'HTML; $ es defineix a app.js (carrega després).
+   Esperem a que estigui disponible per no trencar la càrrega en cascada. */
+(function bindProposeBtn(){
+  if(typeof $==='function'){$('#proposeBtn').onclick=openProposalModal;return;}
+  document.addEventListener('DOMContentLoaded',()=>{try{$('#proposeBtn').onclick=openProposalModal;}catch(e){console.error(e);}});
+})();

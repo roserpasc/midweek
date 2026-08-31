@@ -459,6 +459,21 @@ $('#testKeyBtn').onclick=async()=>{
     }else out.textContent='✗ Error HTTP '+res.status+' — revisa la clau.';
   }catch(e){out.textContent='✗ Error de xarxa: '+e.message;}
 };
+
+/* ---- credencials de sincronització Gist (per dispositiu) ---- */
+function renderGistCfg(){
+  const cfg=(typeof getGistCfg==='function')?getGistCfg():null;
+  $('#gistIdInput').value=(cfg&&cfg.gistId)||'';
+  $('#gistTokenInput').value=(cfg&&cfg.token)||'';
+  $('#gistStatus').textContent=cfg?'✓ Sincronització activa amb aquest Gist.':'Sense credencials: cada dispositiu va per lliure.';
+}
+$('#gistSaveBtn').onclick=()=>{
+  const id=$('#gistIdInput').value.trim(), tok=$('#gistTokenInput').value.trim();
+  if(!id||!tok){toast('Cal ID i token.');return;}
+  localStorage.setItem('midweek_gist',JSON.stringify({gistId:id,token:tok}));
+  toast('Credencials desades — sincronitzant…');
+  location.reload(); /* re-inicialitza el mòdul de sync amb les noves credencials */
+};
 function renderCatChips(){
   $('#catChips').innerHTML=S.categories.map((c,i)=>
     '<span class="chip">'+esc(c)+'<button data-catdel="'+i+'">✕</button></span>').join('');
@@ -558,7 +573,8 @@ function seed(){
    BOOT
    ============================================================ */
 function boot(doSeed){
-  if(doSeed)seed();
+  if(doSeed)seed();
+
   try{S.recipes.forEach(ensureTags);}catch(e){}
   try{if(typeof migrateCorpusCategories==='function')migrateCorpusCategories();}catch(e){}
   /* deep-link opcional: ?tab=receipts */
@@ -578,6 +594,7 @@ function boot(doSeed){
   renderReceipts();
   renderBalance();
   renderCatChips();
+  try{renderGistCfg();}catch(e){}
   const info=$('#storageInfo');
   if(info){
     let bytes=0;
@@ -586,6 +603,8 @@ function boot(doSeed){
   }
 }
 boot(true);
+/* sincronització Gist en arrencar (no-op si no hi ha credencials) */
+if(typeof initialSync==='function')initialSync();
 
 /* ---------------- self-test (?test=1) ---------------- */
 (function selfTest(){

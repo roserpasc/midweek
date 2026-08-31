@@ -76,13 +76,54 @@ try {
 } catch (e) {
   console.error(e);
   S = defaultState();
-
 }
+
+/* ---------- migracions defensives (estats vells del localStorage) ---------- */
+try{
+  if(!S.ui || typeof S.ui!=='object') S.ui={tab:'menu',weekStart:null};
+  if(!S.shopping || !Array.isArray(S.shopping.items)) S.shopping={items:[],stale:false};
+  if(!Array.isArray(S.people)) S.people=defaultState().people;
+  if(!Array.isArray(S.categories)||!S.categories.length) S.categories=defaultState().categories;
+  if(!Array.isArray(S.recipes)) S.recipes=[];
+  if(typeof S.menu!=='object'||!S.menu) S.menu={};
+  if(!Array.isArray(S.receipts)) S.receipts=[];
+  if(!Array.isArray(S.settlements)) S.settlements=[];
+  if(!S.settings||typeof S.settings!=='object') S.settings={};
+}catch(e){console.error('migration error',e);}
+
 /* ================= GITHUB GIST SYNC ================= */
+/* Les credencials van incrustades aquí perquè config.js (amb .gitignore) no es
+   publica a GitHub Pages: així la PWA desplegada també sincronitza. Si config.js
+   existeix (dev local), s'utilitzen les seves credencials. */
+/* Credencials Gist: es desen UN COP per dispositiu a localStorage (Opcions les pregunta).
+   En dev local, config.js també funciona. Mai van incrustades al codi (GitHub ho bloqueja). */
+function getGistCfg(){
+  try{
+    const ls=JSON.parse(localStorage.getItem('midweek_gist')||'null');
+    if(ls&&ls.gistId&&ls.token)return ls;
+  }catch(e){}
+  if(typeof GIST_SYNC!=='undefined'&&GIST_SYNC&&GIST_SYNC.gistId&&GIST_SYNC.token)return GIST_SYNC;
+  return null;
+}
+const GIST_CFG=getGistCfg();
+const GIST_OK=!!(GIST_CFG&&GIST_CFG.gistId&&GIST_CFG.token&&typeof fetch==='function');
+
+/* còpia lleugera per al gist: sense fotos ni passos (límit ~1MB per fitxer) */
+function syncPayload(state){
+  try{
+    const p=JSON.parse(JSON.stringify(state));
+    delete p.ui;
+    (p.receipts||[]).forEach(r=>{if(r.photo)r.photo=null;});
+    (p.recipes||[]).forEach(r=>{if(r.steps)delete r.steps;if(r.photo)r.photo=null;});
+    return p;
+  }catch(e){return state;}
+}
+
 function pullFromGist() {
-  return fetch(`https://api.github.com/gists/${GIST_SYNC.gistId}`, {
+  if(!GIST_OK)return Promise.resolve(null);
+  return fetch(`https://api.github.com/gists/${GIST_CFG.gistId}`, {
     headers: {
-      Authorization: `Bearer ${GIST_SYNC.token}`,
+      Authorization: `Bearer ${GIST_CFG.token}`,
       Accept: 'application/vnd.github+json'
     }
   })
@@ -92,7 +133,7 @@ function pullFromGist() {
   })
   .then(gist => {
     const content = gist.files['midweek-state.json']?.content;
-    if (!content) throw new Error('midweek-state.json not found in gist');
+    if (!content) return null;
     return JSON.parse(content);
   })
   .catch(err => {
@@ -102,11 +143,12 @@ function pullFromGist() {
 }
 
 function pushToGist(state) {
-  const data = JSON.stringify(state, null, 2);
-  return fetch(`https://api.github.com/gists/${GIST_SYNC.gistId}`, {
+  if(!GIST_OK)return Promise.resolve(null);
+  const data = JSON.stringify(syncPayload(state));
+  return fetch(`https://api.github.com/gists/${GIST_CFG.gistId}`, {
     method: 'PATCH',
     headers: {
-      Authorization: `Bearer ${GIST_SYNC.token}`,
+      Authorization: `Bearer ${GIST_CFG.token}`,
       Accept: 'application/vnd.github+json',
       'Content-Type': 'application/json'
     },
@@ -126,11 +168,64 @@ function pushToGist(state) {
   });
 }
 
+/* merge intel·ligent per claus: cap dispositiu esborra el que l'altre ha afegit */
 function mergeStates(local, remote) {
   if (!remote) return local;
   if (!local) return remote;
-  // Use _syncedAt timestamp; higher wins
-  return (remote._syncedAt || 0) > (local._syncedAt || 0) ? remote : local;
+  const rNewer=(remote._syncedAt||0)>=(local._syncedAt||0);
+  const out=JSON.parse(JSON.stringify(local));
+  /* menú: unió de claus; mateixa clau modificada als dos -> guanya el més recent */
+  const menu=Object.assign({},local.menu||{});
+  Object.keys(remote.menu||{}).forEach(k=>{
+    if(!menu[k])menu[k]=remote.menu[k];
+    else if(JSON.stringify(menu[k])!==JSON.stringify(remote.menu[k])) menu[k]=rNewer?remote.menu[k]:menu[k];
+  });
+  out.menu=menu;
+  /* receptes: unió per id (duplicat -> es queda la versió local) */
+  const ids=new Set((local.recipes||[]).map(r=>r.id));
+  const recipes=(local.recipes||[]).slice();
+  (remote.recipes||[]).forEach(r=>{if(!ids.has(r.id)){recipes.push(r);ids.add(r.id);}});
+  out.recipes=recipes;
+  /* tiquets: unió per id */
+  const rids=new Set((local.receipts||[]).map(r=>r.id));
+  const receipts=(local.receipts||[]).slice();
+  (remote.receipts||[]).forEach(r=>{if(!rids.has(r.id)){receipts.push(r);rids.add(r.id);}});
+  receipts.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  out.receipts=receipts;
+  /* liquidacions: unió */
+  const skey=st=>[st.date,st.fromId,st.toId,st.amount].join('|');
+  const skeys=new Set((local.settlements||[]).map(skey));
+  const settlements=(local.settlements||[]).slice();
+  (remote.settlements||[]).forEach(st=>{if(!skeys.has(skey(st))){settlements.push(st);skeys.add(skey(st));}});
+  out.settlements=settlements;
+  /* llista de la compra: unió per id; done si qualsevol dispositiu la marca */
+  const iMap={};
+  ((local.shopping&&local.shopping.items)||[]).forEach(i=>iMap[i.id]=i);
+  ((remote.shopping&&remote.shopping.items)||[]).forEach(i=>{
+    if(!iMap[i.id])iMap[i.id]=i;
+    else if(i.done&&!iMap[i.id].done)iMap[i.id].done=true;
+  });
+  out.shopping={items:Object.values(iMap),stale:!!((local.shopping&&local.shopping.stale)||(remote.shopping&&remote.shopping.stale))};
+  /* categories: unió */
+  const cats=(local.categories||[]).slice();
+  (remote.categories||[]).forEach(c=>{if(!cats.includes(c))cats.push(c);});
+  out.categories=cats;
+  /* camps simples: guanya l'estat més recent */
+  out.diners=rNewer?(remote.diners||local.diners):local.diners;
+  out.people=rNewer?(remote.people||local.people):local.people;
+  out._syncedAt=Math.max(local._syncedAt||0,remote._syncedAt||0);
+  return out;
+}
+
+/* aplica l'estat remot fusionat; retorna true si hi ha hagut canvi real */
+function applyRemote(remote){
+  if(!remote)return false;
+  const merged=mergeStates(S,remote);
+  const sig=o=>JSON.stringify([o.menu,o.recipes&&o.recipes.length,o.receipts,o.settlements,o.shopping,o.categories,o.diners,(o.people||[]).map(p=>p.id+p.name)]);
+  if(sig(merged)===sig(S))return false;
+  Object.keys(merged).forEach(k=>{if(k!=='ui')S[k]=merged[k];});
+  save(); /* desa localment + puja la fusió perquè l'altre dispositiu convergir */
+  return true;
 }
 
 let syncIntervalId = null;
@@ -139,13 +234,8 @@ function startPeriodicSync(intervalMs = 30000) {
   syncIntervalId = setInterval(async () => {
     try {
       const remote = await pullFromGist();
-      if (remote) {
-        const merged = mergeStates(S, remote);
-        if (merged !== S) {
-          Object.assign(S, merged);
-          save(); // This will also push to Gist
-          // Notify user if we want? For now silent.
-        }
+      if (remote && applyRemote(remote)) {
+        try{boot(false);}catch(e){}
       }
     } catch (e) {
       console.warn('Periodic sync error:', e);
@@ -161,20 +251,13 @@ function stopPeriodicSync() {
 async function initialSync() {
   try {
     const remote = await pullFromGist();
-    if (remote) {
-      const merged = mergeStates(S, remote);
-      if (merged !== S) {
-        Object.assign(S, merged);
-        save(); // Will push
-      }
+    if (remote && applyRemote(remote)) {
+      try{boot(false);}catch(e){}
     }
-    // After merging, start periodic sync
-    startPeriodicSync();
   } catch (e) {
     console.warn('Initial sync failed:', e);
-    // Still start periodic sync in case it's a transient error
-    startPeriodicSync();
   }
+  startPeriodicSync();
 }
 
 /* ============ estat + persistència ============ */
@@ -186,12 +269,14 @@ S.settings=Object.assign({apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvid
 
 function save(){
   try{
+    S._syncedAt=Date.now();
     localStorage.setItem(LS_KEY,JSON.stringify(S));
     flashSync(true);
-    // Also push to Gist (non-blocking, errors just warned)
-    pushToGist(S).catch(e=>console.warn('Gist push failed:',e));
-  }catch(e){console.error(e);flashSync(false);}
+    /* push al Gist només si hi ha credencials; mai bloqueja ni trenca el clic */
+    if(GIST_OK)pushToGist(S).catch(e=>console.warn('Gist push failed:',e));
+  }catch(e){console.error(e);try{flashSync(false);}catch(e2){}}
 }
+let flashT=null;
 function flashSync(ok){
   const dot=$('#syncDot'),lab=$('#syncLabel');
   if(!dot)return;
@@ -254,7 +339,11 @@ function initTabs(){
   $$('nav.tabs button').forEach(b=>{
     b.style.touchAction = 'manipulation';
     b.addEventListener('click',()=>{
-      S.ui.tab=b.dataset.tab;save();renderTabs();
+      /* cada pas protegit: cap excepció pot impedir el canvi de pestanya */
+      try{S.ui.tab=b.dataset.tab;}catch(e){console.error(e);}
+      try{save();}catch(e){console.error('save failed',e);}
+      try{renderTabs();}catch(e){console.error('render failed',e);}
+      try{window.scrollTo(0,0);}catch(e){}
     });
   });
 }

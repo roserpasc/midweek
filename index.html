@@ -170,6 +170,15 @@
     </div>
     <div id="keyTestResult" class="muted" style="margin-top:8px"></div>
     <hr class="sep">
+    <h3>Sincronització entre dispositius (Gist)</h3>
+    <p class="muted">Dues pestanyes comparteixen el mateix Gist. Enganxa aquí el mateix ID i token a cada dispositiu (es guarda només en aquest navegador).</p>
+    <div class="row">
+      <div class="grow"><label>ID del Gist</label><input id="gistIdInput" placeholder="gist id" autocomplete="off"></div>
+      <div class="grow"><label>Token de GitHub (permís gist)</label><input type="password" id="gistTokenInput" placeholder="ghp_…" autocomplete="off"></div>
+      <div style="align-self:end"><button class="btn btn-primary" id="gistSaveBtn">Desa</button></div>
+    </div>
+    <p class="muted" id="gistStatus"></p>
+    <hr class="sep">
     <h3>Categories de productes</h3>
     <div class="chip-list" id="catChips"></div>
     <div class="row" style="margin-top:10px">
@@ -235,7 +244,7 @@ function showUpdateToast(callback){
 }
 </script>
 <script src="config.js"></script>
+<script src="proposals.js"></script>
 <script src="traditional-bank.js"></script>
 <script src="app.js"></script>
-<script src="proposals.js"></script>
 <script src="receipts.js"></script>
