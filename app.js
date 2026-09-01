@@ -773,8 +773,10 @@ function renderRecipes(){
   renderRecipeFilters();
   const q=($('#recipeSearch').value||'').toLowerCase();
   const catF=$('#recipeCatFilter').value;
+  const bookF=window.__bookFilter||'';
   const list=S.recipes.filter(r=>{
     if(catF&&r.category!==catF)return false;
+    if(bookF&&r.book!==bookF)return false;
     if(!q)return true;
     return r.name.toLowerCase().indexOf(q)>=0||r.ingredients.some(i=>i.name.toLowerCase().indexOf(q)>=0);
   });
@@ -785,7 +787,7 @@ function renderRecipes(){
     +'<h3>'+esc(r.name)+'</h3>'
     +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
     +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
-    +(r.book==='CORPUS'?'<span class="tag book-chip">🏛️ CORPUS</span>':r.book==='ARGUIÑANO'?'<span class="tag book-chip">📖 ARGUIÑANO</span>':r.book==='GASTROTECA'?'<span class="tag book-chip">🌿 GASTROTECA</span>':'')
+    +(r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':'')
     +'</div>'
     +'<div class="card-tags">'+(ensureTags(r)||[]).slice(0,3).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')+'</div>'
     +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
@@ -816,7 +818,7 @@ $('#recipesGrid').addEventListener('click',e=>{
 $('#recipeSearch').oninput=debounce(renderRecipes,150);
 $('#recipeCatFilter').onchange=renderRecipes;
 
-const BOOK_LABEL={CORPUS:'🏛️ CORPUS',ARGUIÑANO:'📖 ARGUIÑANO',GASTROTECA:'🌿 GASTROTECA'};
+const BOOK_LABEL={CORPUS:'🏛️ CORPUS',ARGUIÑANO:'📖 ARGUIÑANO',GASTROTECA:'🌿 GASTROTECA','MASIA LA MORERA':'🏡 MASIA LA MORERA'};
 function viewRecipe(id){
   const r=recipeById(id);if(!r)return;
   const bookChip=r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':(r.source?'<span class="tag">'+esc(String(r.source).split('·')[0].trim())+'</span>':'');
