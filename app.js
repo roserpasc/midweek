@@ -381,6 +381,17 @@ function mealRecipe(m){
   return null;
 }
 
+/* barra de cerca compacta al fer scroll (amaga filtres de llibre) */
+let __stickyCollapsed=false;
+window.addEventListener('scroll',()=>{
+  const bar=document.querySelector('#tab-recipes .sticky-bar');
+  if(!bar)return;
+  const collapsed=window.scrollY>40;
+  if(collapsed===__stickyCollapsed)return;
+  __stickyCollapsed=collapsed;
+  bar.classList.toggle('collapsed',collapsed);
+}, {passive:true});
+
 /* alçada real del header -> variable CSS per a barres sticky (mobil: 2 files) */
 function syncHeaderH(){
   const h=document.querySelector('header.app');
