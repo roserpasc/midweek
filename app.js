@@ -120,6 +120,10 @@ function syncPayload(state){
     if(Array.isArray(p.recipes)) p.recipes=p.recipes.filter(r=>!r.book);
     (p.receipts||[]).forEach(r=>{if(r.photo)r.photo=null;});
     (p.recipes||[]).forEach(r=>{if(r.steps)delete r.steps;if(r.photo)r.photo=null;});
+    /* mapa id->nom perquè l'altre dispositiu pugui resoldre recipeIds que no té
+       (els IDs del banc de biblioteca són aleatoris per dispositiu) */
+    p._recipeNames={};
+    (state.recipes||[]).forEach(r=>{p._recipeNames[r.id]=r.name;});
     return p;
   }catch(e){return state;}
 }
@@ -220,6 +224,9 @@ function mergeStates(local, remote) {
   out.diners=rNewer?(remote.diners||local.diners):local.diners;
   out.people=rNewer?(remote.people||local.people):local.people;
   out._syncedAt=Math.max(local._syncedAt||0,remote._syncedAt||0);
+  /* mapa de noms: local + remot, per resoldre recipeIds aliens en render */
+  const names=Object.assign({},remote._recipeNames||{},local._recipeNames||{});
+  out._recipeNames=names;
   return out;
 }
 
@@ -334,6 +341,26 @@ function ensureTags(r){
 
 const recipeById=id=>byId(S.recipes,id);
 const personById=id=>byId(S.people,id);
+/* resol una recepta d'un àpat: primer per id; si no hi és (banc importat amb IDs
+   aleatoris a cada dispositiu), busca-la pel nom recordat a _recipeNames */
+function mealRecipe(m){
+  if(!m)return null;
+  let r=byId(S.recipes,m.recipeId);
+  if(r)return r;
+  const nm=(S._recipeNames||{})[m.recipeId];
+  if(nm){
+    r=S.recipes.find(x=>x.name===nm);
+    if(r){
+      /* re-liga la recepta local per evitar la cerca a cada render */
+      m.recipeId=r.id;
+      return r;
+    }
+    /* aquest dispositiu no té la recepta (banc no importat): mostra'n el nom,
+       sense extracte ni fitxa; quan importi el banc es re-ligarà sola */
+    return {name:nm,ingredients:[],steps:null,_ghost:true};
+  }
+  return null;
+}
 
 /* ---------------- pestanyes ---------------- */
 function initTabs(){
@@ -400,11 +427,18 @@ function renderMenu(){
       const meals=S.menu[key]||[];
       let chips='';
       meals.forEach((m,idx)=>{
-        const r=recipeById(m.recipeId);
+        const r=mealRecipe(m);
         const name=r?r.name:(m.note||'(àpat lliure)');
         const emo=window.dishEmoji?dishEmoji(r):'🍽️';
+        /* extracte: 2 primers ingredients; el nom és un enllaç a la fitxa */
+        let excerpt='';
+        if(r&&r.ingredients&&r.ingredients.length){
+          excerpt=r.ingredients.slice(0,2).map(i=>i.name).join(' · ')
+            +(r.ingredients.length>2?' · …':'');
+        }
         chips+='<div class="meal-chip" draggable="true" data-key="'+key+'" data-idx="'+idx+'" data-id="open-meal">'
-          +'<span class="t">'+emo+' '+esc(name)+'</span>'
+          +'<span class="t">'+emo+' '+((r&&!r._ghost)?'<a class="meal-link" data-recipe="'+r.id+'" title="Obre la fitxa de la recepta">'+esc(name)+'</a>':esc(name))+'</span>'
+          +(excerpt?'<span class="x2 tiny muted">'+esc(excerpt)+'</span>':'')
           +'<span class="s">👥 '+m.diners+(r?'':' · 📝')+'</span>'
           +'<button class="x" data-del-key="'+key+'" data-del-idx="'+idx+'" title="Elimina">✕</button></div>';
       });
@@ -610,8 +644,8 @@ function openFreeMeal(key,idx){
 /* editar àpat existent (recepta o lliure) */
 function openMealEditor(key,idx){
   const m=(S.menu[key]||[])[idx];if(!m)return;
-  if(!m.recipeId){openFreeMeal(key,idx);return;}
-  const r=recipeById(m.recipeId);
+  if(!m.recipeId&&!m.note){openFreeMeal(key,idx);return;}
+  const r=mealRecipe(m);
   openModal('<h2>'+(r?esc(r.name):'Àpat')+'</h2>'
     +'<label>Comensals d\'aquest àpat</label>'
     +'<input type="number" min="1" max="12" id="mealDiners" value="'+m.diners+'" style="max-width:110px">'
@@ -620,9 +654,13 @@ function openMealEditor(key,idx){
     +(r&&r.steps?'<ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
     +'</details>'
     +'<div class="modal-foot"><button class="btn btn-danger btn-sm" id="mealDel">Elimina àpat</button>'
-    +'<button class="btn btn-primary" id="mealOk">D\'acord</button></div>');
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
+    +(r&&!r._ghost?'<button class="btn" id="mealView">📖 Veure recepta</button>':'')
+    +'<button class="btn btn-primary" id="mealOk">D\'acord</button></div></div>');
   $('#mealOk').onclick=()=>{m.diners=Math.max(1,parseInt($('#mealDiners').value,10)||2);save();renderMenu();markStale();closeModal();};
   $('#mealDel').onclick=()=>{removeMeal(key,idx);closeModal();};
+  const mv=$('#mealView');
+  if(mv)mv.onclick=()=>{closeModal();viewRecipe(r.id);};
 }
 
 /* events taula menú (delegació) */
@@ -631,6 +669,8 @@ $('#menuTable').addEventListener('click',e=>{
   if(del){removeMeal(del.dataset.delKey,+del.dataset.delIdx);return;}
   const add=e.target.closest('[data-add-key]');
   if(add){addMealFlow(add.dataset.addKey);return;}
+  const mealLink=e.target.closest('.meal-link');
+  if(mealLink){viewRecipe(mealLink.dataset.recipe);return;}
   const chip=e.target.closest('.meal-chip');
   if(chip&&!e.target.closest('.x'))openMealEditor(chip.dataset.key,+chip.dataset.idx);
 });
@@ -699,7 +739,7 @@ $('#printMenuBtn').onclick=()=>{
     let cells='';
     for(let i=0;i<7;i++){
       const key=iso(new Date(weekStart.getTime()+i*86400000))+'|'+sl.id;
-      const txt=(S.menu[key]||[]).map(m=>{const r=recipeById(m.recipeId);return r?(r.name+' (×'+m.diners+')'):('📝 '+esc(m.note||'Àpat')+' (×'+m.diners+')');}).join('<br>')||'—';
+      const txt=(S.menu[key]||[]).map(m=>{const r=mealRecipe(m);return r?(r.name+' (×'+m.diners+')'):('📝 '+esc(m.note||'Àpat')+' (×'+m.diners+')');}).join('<br>')||'—';
       cells+='<td style="border:1px solid #999;padding:4px 6px;font-size:12px">'+txt+'</td>';
     }
     rows+='<tr><td style="border:1px solid #999;padding:4px 6px;font-weight:bold">'+sl.l+'</td>'+cells+'</tr>';
@@ -948,7 +988,7 @@ function collectMenuIngredients(){
   const map=new Map(); /* key base|unit -> {qty total, variants[], recipes[]} */
   Object.keys(S.menu).forEach(key=>{
     (S.menu[key]||[]).forEach(meal=>{
-      const r=recipeById(meal.recipeId);if(!r)return; /* àpats lliures: res a comprar */
+      const r=mealRecipe(meal);if(!r)return; /* àpats lliures: res a comprar */
       const factor=meal.diners/(r.servings||meal.diners||2);
       r.ingredients.forEach(ing=>{
         const rawName=ing.name.trim();
@@ -995,7 +1035,7 @@ function regenerateShoppingList(){
   const pantryUsed=new Set();
   Object.keys(S.menu).forEach(key=>{
     (S.menu[key]||[]).forEach(meal=>{
-      const r=recipeById(meal.recipeId);if(!r)return;
+      const r=mealRecipe(meal);if(!r)return;
       (r.ingredients||[]).forEach(ing=>{ if(isPantryItem(ing.name)) pantryUsed.add(foodBase(ing.name)); });
     });
   });
