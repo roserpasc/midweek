@@ -292,7 +292,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 
 /* cercador de receptes SEMPRE visible en fer scroll:
    un sol contenidor sticky (toolbar + filtres de llibre) sota el header (58px) */
-#tab-recipes .sticky-bar{position:sticky;top:58px;z-index:40;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid rgba(38,49,43,.12);margin-bottom:4px}
+#tab-recipes .sticky-bar{position:sticky;top:var(--headerH,58px);z-index:40;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid rgba(38,49,43,.12);margin-bottom:4px}
 #tab-recipes .sticky-bar .toolbar{margin-bottom:4px}
 
 /* select del model de visió: mai surt de pantalla */

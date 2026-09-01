@@ -381,6 +381,18 @@ function mealRecipe(m){
   return null;
 }
 
+/* alçada real del header -> variable CSS per a barres sticky (mobil: 2 files) */
+function syncHeaderH(){
+  const h=document.querySelector('header.app');
+  if(!h||!h.offsetHeight)return;
+  document.documentElement.style.setProperty('--headerH', h.offsetHeight+'px');
+}
+window.addEventListener('resize',syncHeaderH);
+window.addEventListener('load',syncHeaderH);
+document.addEventListener('DOMContentLoaded',syncHeaderH);
+try{syncHeaderH();}catch(e){}
+setInterval(syncHeaderH,3000); /* el header pot canviar (tabs wrap a mobil) */
+
 /* ---------------- pestanyes ---------------- */
 function initTabs(){
   if(typeof S==='undefined' || !S.ui){
