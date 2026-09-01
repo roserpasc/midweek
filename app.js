@@ -483,20 +483,22 @@ function removeMeal(key,idx){
 }
 function markStale(){
   if(S.shopping.items.length){
-    S.shopping.stale=true;save();
-    updateShopStatus();
+    S.shopping.stale=true;
   }
+  /* les llistes generades des del menú queden desfasades quan el menú canvia */
+  let touched=false;
+  (S.shoppingLists||[]).forEach(l=>{
+    if(l._fromMenu&&(l.items||[]).some(i=>!i.done)){l._stale=true;touched=true;}
+  });
+  if(touched||S.shopping.stale){save();updateShopStatus();renderLists();}
 }
 function updateShopStatus(){
   const el=$('#shopStatus');if(!el)return;
-  const cur=curList();
-  if(S.shopping.stale&&cur&&(cur.items||[]).length){
-    el.textContent='⚠ El menú ha canviat — regenera la llista';
+  const staleLists=(S.shoppingLists||[]).filter(l=>l._fromMenu&&l._stale&&(l.items||[]).some(i=>!i.done));
+  if(staleLists.length){
+    el.textContent='⚠ '+staleLists.length+' llista'+(staleLists.length>1?'s':'')+' desfasada'+(staleLists.length>1?'s':'')+' (el menú ha canviat)';
     el.style.color='var(--danger)';
-  }else{
-    el.textContent='';
-    el.style.color='';
-  }
+  }else{el.textContent='';el.style.color='';}
 }
 
 /* etiqueta ràpida d'una recepta per als filtres del picker */
@@ -817,7 +819,6 @@ function renderRecipes(){
     +'<div class="recipe-actions">'
     +'<button class="btn btn-sm" data-view="'+r.id+'">Veure</button>'
     +'<button class="btn btn-sm" data-edit="'+r.id+'">Edita</button>'
-    +'<button class="btn btn-sm btn-danger" data-del="'+r.id+'">✕</button>'
     +'</div></div>'
   ).join('');
 }
@@ -827,15 +828,6 @@ $('#recipesGrid').addEventListener('click',e=>{
   if(v){viewRecipe(v.dataset.view);return;}
   const ed=e.target.closest('[data-edit]');
   if(ed){openRecipeModal(ed.dataset.edit);return;}
-  const dl=e.target.closest('[data-del]');
-  if(dl){
-    const r=recipeById(dl.dataset.del);
-    if(r&&confirm('Eliminar la recepta «'+r.name+'»? També desapareixerà del menú.')){
-      S.recipes=S.recipes.filter(x=>x.id!==r.id);
-      Object.keys(S.menu).forEach(k=>{S.menu[k]=(S.menu[k]||[]).filter(m=>m.recipeId!==r.id);if(!S.menu[k].length)delete S.menu[k];});
-      save();renderRecipes();renderMenu();markStale();
-    }
-  }
 });
 $('#recipeSearch').oninput=debounce(renderRecipes,150);
 $('#recipeCatFilter').onchange=renderRecipes;
@@ -881,7 +873,9 @@ function openRecipeModal(id,onSaved){
     +'<details class="steps"><summary>Passos de preparació (opcional)</summary>'
     +'<textarea id="rSteps" rows="5" style="width:100%;margin-top:8px" placeholder="Un pas per línia…">'+esc(r?(r.steps||[]).join('\n'):'')+'</textarea></details>'
     +'<div class="modal-foot"><span class="muted tiny">Arrossegable al menú un cop desada</span>'
-    +'<div style="display:flex;gap:8px"><button class="btn" id="rCancel">Cancel·la</button>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
+    +(r?'<button class="btn btn-danger btn-sm" id="rDel">🗑 Elimina</button>':'')
+    +'<button class="btn" id="rCancel">Cancel·la</button>'
     +'<button class="btn btn-primary" id="rSave">Desa</button></div></div>');
 
   const rows=$('#ingRows');
@@ -899,6 +893,14 @@ function openRecipeModal(id,onSaved){
   $('#addIng').onclick=()=>addIngRow(null);
 
   $('#rCancel').onclick=closeModal;
+  const rDel=$('#rDel');
+  if(rDel)rDel.onclick=()=>{
+    if(!confirm('Eliminar la recepta «'+r.name+'»? També desapareixerà del menú.'))return;
+    S.recipes=S.recipes.filter(x=>x.id!==r.id);
+    Object.keys(S.menu).forEach(k=>{S.menu[k]=(S.menu[k]||[]).filter(m=>m.recipeId!==r.id);if(!S.menu[k].length)delete S.menu[k];});
+    save();renderRecipes();renderMenu();markStale();closeModal();
+    toast('Recepta eliminada');
+  };
   $('#rSave').onclick=()=>{
     const name=$('#rName').value.trim();
     if(!name){alert('Posa-li un nom a la recepta.');return;}
@@ -1090,7 +1092,7 @@ function regenerateShoppingList(){
       if(!still)items.push(o);
     }
   });
-  l.items=items;
+  l.items=items;l._fromMenu=true;l._stale=false;
   S.shopping.stale=false;
   save();renderLists();updateShopBadge();updateShopStatus();
   toast('Llista «'+l.name+'» generada: '+items.length+' productes');
@@ -1301,7 +1303,7 @@ function openGenerateListModal(){
         });
       });
     });
-    l.items=items;l.pantry=[...pantry];
+    l.items=items;l.pantry=[...pantry];l._fromMenu=true;l._stale=false;
     curListId=l.id;save();renderLists();updateShopBadge();
     closeModal();
     toast('Llista «'+l.name+'»: '+items.length+' productes de '+selDays.length+' dies');

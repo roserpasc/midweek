@@ -167,8 +167,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 
 .pantry-line{margin-top:14px;padding:10px 12px;background:#F2F5F1;border:1px dashed #AAC9B6;border-radius:10px;font-size:13px;color:#26312B}
 
-/* toolbar de receptes fixa en fer scroll (sota el header, 58px) */
-#tab-recipes .toolbar{position:sticky;top:58px;z-index:40;background:var(--bg);padding:10px 0;margin-bottom:6px;border-bottom:1px solid rgba(38,49,43,.12)}
+
 
 .tag-auto{background:#EAF2EC;color:#26312B;border:1px solid var(--verd-clar);font-size:11px;padding:2px 8px}
 .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 2px}
@@ -291,10 +290,10 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .meal-chip .x{width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;top:2px;right:2px}
 .meal-chip .t{padding-right:2px;overflow-wrap:break-word;word-break:break-word}
 
-/* toolbar de receptes: sticky SENCER des de dalt de la llista (0) sota el header */
-#tab-recipes .toolbar{position:sticky;top:0;z-index:40;background:var(--bg);padding:10px 0 8px;margin-bottom:4px;border-bottom:1px solid rgba(38,49,43,.12)}
-/* els filtres de llibre també acompanyen el cercador */
-#tab-recipes .book-filters{position:sticky;top:56px;z-index:39;background:var(--bg);padding:6px 0;margin-bottom:8px}
+/* cercador de receptes SEMPRE visible en fer scroll:
+   un sol contenidor sticky (toolbar + filtres de llibre) sota el header (58px) */
+#tab-recipes .sticky-bar{position:sticky;top:58px;z-index:40;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid rgba(38,49,43,.12);margin-bottom:4px}
+#tab-recipes .sticky-bar .toolbar{margin-bottom:4px}
 
 /* select del model de visió: mai surt de pantalla */
 #tab-settings .row{align-items:flex-end}
