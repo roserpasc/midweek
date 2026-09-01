@@ -176,6 +176,11 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 
 /* ================= RESPONSIVE MÒBIL ================= */
 @media(max-width:640px){
+  /* modal de recepta: files apilades, res desborda */
+  .modal .row{flex-direction:column;align-items:stretch}
+  .modal .row>div{min-width:0!important;width:100%!important}
+  .modal .frow{grid-template-columns:1fr 60px 84px 34px}
+  .modal select,.modal input{max-width:100%}
   /* header: logo a la 1a fila, pestanyes a la 2a fila completa */
     header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px;touch-action:manipulation}
     header.app h1{font-size:18px;margin:0 8px 0 0}
@@ -275,3 +280,27 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 /* enllaç de recepta dins la pastilla del menú */
 .meal-link{color:inherit;text-decoration:underline;text-decoration-color:rgba(94,135,114,.5);text-underline-offset:2px}
 .meal-link:hover{color:var(--accent)}
+
+/* ================= FILTRES DE LLIBRE ================= */
+.book-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.book-filter{cursor:pointer;font-size:12.5px;padding:5px 12px}
+.book-filter.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+/* pastilla de menú: la X mai solapa el text */
+.meal-chip{padding-right:26px}
+.meal-chip .x{width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;top:2px;right:2px}
+.meal-chip .t{padding-right:2px;overflow-wrap:break-word;word-break:break-word}
+
+/* toolbar de receptes: sticky SENCER des de dalt de la llista (0) sota el header */
+#tab-recipes .toolbar{position:sticky;top:0;z-index:40;background:var(--bg);padding:10px 0 8px;margin-bottom:4px;border-bottom:1px solid rgba(38,49,43,.12)}
+/* els filtres de llibre també acompanyen el cercador */
+#tab-recipes .book-filters{position:sticky;top:56px;z-index:39;background:var(--bg);padding:6px 0;margin-bottom:8px}
+
+/* select del model de visió: mai surt de pantalla */
+#tab-settings .row{align-items:flex-end}
+#tab-settings select{max-width:100%}
+@media(max-width:640px){
+  #tab-settings .row{flex-direction:column;align-items:stretch}
+  #tab-settings .row>div{min-width:0!important;width:100%}
+  #tab-settings .row select{width:100%}
+}

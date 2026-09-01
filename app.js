@@ -757,7 +757,18 @@ function renderRecipeFilters(){
   const cur=sel.value;
   sel.innerHTML='<option value="">Totes les categories</option>'
     +S.categories.map(c=>'<option'+(c===cur?' selected':'')+' value="'+esc(c)+'">'+esc(c)+'</option>').join('');
+  /* chips de filtre per llibre/col·lecció */
+  const wrap=$('#bookFilters');
+  if(!wrap)return;
+  const books=Object.keys(BOOK_LABEL).filter(b=>S.recipes.some(r=>r.book===b));
+  const curB=window.__bookFilter||'';
+  wrap.innerHTML=books.map(b=>'<button class="pill book-filter'+(curB===b?' active':'')+'" data-book="'+esc(b)+'">'+BOOK_LABEL[b]+'</button>').join('')
+    +(curB?'<button class="pill book-filter" data-book="">✕ Treu el filtre</button>':'');
 }
+document.addEventListener('click',e=>{
+  const bf=e.target.closest('.book-filter');
+  if(bf){window.__bookFilter=bf.dataset.book||'';renderRecipes();}
+});
 function renderRecipes(){
   renderRecipeFilters();
   const q=($('#recipeSearch').value||'').toLowerCase();
@@ -834,8 +845,12 @@ function openRecipeModal(id,onSaved){
     +'<div class="row"><div class="grow"><label>Nom</label><input id="rName" value="'+esc(r?r.name:'')+'"></div>'
     +'<div style="width:110px"><label>Racions</label><input type="number" min="1" max="12" id="rServ" value="'+(r?r.servings:S.diners)+'"></div>'
     +'<div style="width:100px"><label>Minuts</label><input type="number" min="0" id="rTime" value="'+(r&&r.time?r.time:'')+'"></div></div>'
-    +'<div class="row" style="margin-top:8px"><div style="min-width:220px"><label>Categoria</label>'
-    +'<select id="rCat">'+cats.map(c=>'<option'+(r&&r.category===c?' selected':'')+'>'+esc(c)+'</option>').join('')+'</select></div></div>'
+    +'<div class="row" style="margin-top:8px"><div style="min-width:180px"><label>Categoria</label>'
+    +'<select id="rCat">'+cats.map(c=>'<option'+(r&&r.category===c?' selected':'')+'>'+esc(c)+'</option>').join('')+'</select></div>'
+    +'<div style="min-width:190px"><label>Llibre / col·lecció</label>'
+    +'<select id="rBook"><option value="">— Cap —</option>'
+    +Object.keys(BOOK_LABEL).map(b=>'<option value="'+b+'"'+(r&&r.book===b?' selected':'')+'>'+BOOK_LABEL[b]+'</option>').join('')
+    +'</select></div></div>'
     +'<h3 style="margin-top:14px">Ingredients</h3>'
     +'<div id="ingRows"></div>'
     +'<button class="btn btn-sm" id="addIng">+ ingredient</button>'
@@ -870,11 +885,13 @@ function openRecipeModal(id,onSaved){
     })).filter(i=>i.name);
     if(!ingredients.length){alert('Afegeix com a mínim un ingredient.');return;}
     const steps=$('#rSteps').value.split('\n').map(x=>x.trim()).filter(Boolean);
+    const bookSel=$('#rBook');
     const data={
       name:name,
       servings:Math.max(1,parseInt($('#rServ').value,10)||2),
       time:parseInt($('#rTime').value,10)||null,
       category:$('#rCat').value,
+      book:$('#rBook').value||null,
       ingredients:ingredients,
       steps:steps
     };
