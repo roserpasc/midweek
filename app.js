@@ -60,6 +60,7 @@ function defaultState(){
     recipes:[],
     menu:{},                 /* "YYYY-MM-DD|slot" -> [{recipeId,diners}] */
     shopping:{items:[],stale:false},
+    shoppingLists:[],        /* {id,name,createdBy,items:[{id,name,qty,unit,category,done,from[]}],createdAt} */
     receipts:[],             /* {id,date,store,payerId,total,items:[{name,qty,unit,price}],photo} */
     settlements:[],          /* {date,fromId,toId,amount} */
     settings:{apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},
@@ -88,6 +89,7 @@ try{
   if(typeof S.menu!=='object'||!S.menu) S.menu={};
   if(!Array.isArray(S.receipts)) S.receipts=[];
   if(!Array.isArray(S.settlements)) S.settlements=[];
+  if(!Array.isArray(S.shoppingLists)) S.shoppingLists=[];
   if(!S.settings||typeof S.settings!=='object') S.settings={};
 }catch(e){console.error('migration error',e);}
 
@@ -208,6 +210,23 @@ function mergeStates(local, remote) {
   const settlements=(local.settlements||[]).slice();
   (remote.settlements||[]).forEach(st=>{if(!skeys.has(skey(st))){settlements.push(st);skeys.add(skey(st));}});
   out.settlements=settlements;
+  /* llistes de compra independents: unió per id; items per id amb done-union */
+  const lmap={};
+  (local.shoppingLists||[]).forEach(l=>lmap[l.id]=JSON.parse(JSON.stringify(l)));
+  (remote.shoppingLists||[]).forEach(rl=>{
+    if(!lmap[rl.id]){lmap[rl.id]=JSON.parse(JSON.stringify(rl));return;}
+    const L=lmap[rl.id];
+    const im={};
+    (L.items||[]).forEach(i=>im[i.id]=i);
+    (rl.items||[]).forEach(i=>{
+      if(!im[i.id])im[i.id]=i;
+      else if(i.done&&!im[i.id].done)im[i.id].done=true;
+    });
+    L.items=Object.values(im);
+    if(rl.createdBy&&!L.createdBy)L.createdBy=rl.createdBy;
+    L.name=L.name||rl.name;
+  });
+  out.shoppingLists=Object.values(lmap);
   /* llista de la compra: unió per id; done si qualsevol dispositiu la marca */
   const iMap={};
   ((local.shopping&&local.shopping.items)||[]).forEach(i=>iMap[i.id]=i);
@@ -396,8 +415,10 @@ function renderTabs(){
   updateShopBadge();
 }
 function updateShopBadge(){
-  const n=S.shopping.items.filter(i=>!i.done).length;
-  $('#tabShopCount').textContent=n?(' '+n):'';
+  let n=0;
+  (S.shoppingLists||[]).forEach(l=>{n+=(l.items||[]).filter(i=>!i.done).length;});
+  const el=$('#tabShopCount');
+  if(el)el.textContent=n?(' '+n):'';
 }
 
 /* ============================================================
@@ -468,13 +489,14 @@ function markStale(){
 }
 function updateShopStatus(){
   const el=$('#shopStatus');if(!el)return;
-  if(S.shopping.stale&&S.shopping.items.length){
-    el.textContent='⚠ El menú ha canviat — «Actualitza quantitats»';
+  const cur=curList();
+  if(S.shopping.stale&&cur&&(cur.items||[]).length){
+    el.textContent='⚠ El menú ha canviat — regenera la llista';
     el.style.color='var(--danger)';
-  }else if(S.shopping.items.length){
-    el.textContent='✓ sincronitzada amb el menú';
-    el.style.color='var(--accent)';
-  }else{el.textContent='';}
+  }else{
+    el.textContent='';
+    el.style.color='';
+  }
 }
 
 /* etiqueta ràpida d'una recepta per als filtres del picker */
@@ -1003,9 +1025,10 @@ function isPantryItem(name){
   });
 }
 
-function collectMenuIngredients(){
+function collectMenuIngredients(dayFilter){
   const map=new Map(); /* key base|unit -> {qty total, variants[], recipes[]} */
   Object.keys(S.menu).forEach(key=>{
+    if(dayFilter&&dayFilter.length&&!dayFilter.includes(key.split('|')[0]))return;
     (S.menu[key]||[]).forEach(meal=>{
       const r=mealRecipe(meal);if(!r)return; /* àpats lliures: res a comprar */
       const factor=meal.diners/(r.servings||meal.diners||2);
@@ -1033,7 +1056,10 @@ function collectMenuIngredients(){
 function capFirst(x){return x?x.charAt(0).toUpperCase()+x.slice(1):x;}
 
 function regenerateShoppingList(){
-  const prev=new Map(S.shopping.items.map(i=>[i.name.toLowerCase()+'|'+(i.unit||''),i]));
+  /* regenera la llista ACTUAL des de tot el menú (botó legacy/selftest) */
+  let l=curList();
+  if(!l)l=ensureList();
+  const prev=new Map((l.items||[]).map(i=>[i.name.toLowerCase()+'|'+(i.unit||''),i]));
   const collected=collectMenuIngredients();
   const items=[];
   collected.forEach(c=>{
@@ -1050,7 +1076,6 @@ function regenerateShoppingList(){
       note:c.note||[]
     });
   });
-  /* recompte de despensa (no són ítems): per a la línia final */
   const pantryUsed=new Set();
   Object.keys(S.menu).forEach(key=>{
     (S.menu[key]||[]).forEach(meal=>{
@@ -1058,18 +1083,17 @@ function regenerateShoppingList(){
       (r.ingredients||[]).forEach(ing=>{ if(isPantryItem(ing.name)) pantryUsed.add(foodBase(ing.name)); });
     });
   });
-  S.shopping.pantry=[...pantryUsed];
-  /* mantén els extra manuals que ja no venen del menú */
-  S.shopping.items.forEach(o=>{
+  l.pantry=[...pantryUsed];
+  (l.items||[]).forEach(o=>{
     if(o.extra){
       const still=items.some(i=>i.id===o.id);
       if(!still)items.push(o);
     }
   });
-  S.shopping.items=items;
+  l.items=items;
   S.shopping.stale=false;
-  save();renderShopping();updateShopBadge();updateShopStatus();
-  toast('Llista generada: '+items.length+' productes');
+  save();renderLists();updateShopBadge();updateShopStatus();
+  toast('Llista «'+l.name+'» generada: '+items.length+' productes');
 }
 function roundQty(q){
   if(!q)return null;
@@ -1092,9 +1116,50 @@ function guessCategory(name){
   return 'Altres';
 }
 
+/* ============ LLISTES DE COMPRA INDEPENDENTS ============ */
+let curListId=null;
+function curList(){return byId(S.shoppingLists||[],curListId)||null;}
+function ensureList(name,createdBy){
+  const l={id:uid(),name:name||('Llista '+(S.shoppingLists.length+1)),createdBy:createdBy||'',items:[],createdAt:Date.now()};
+  S.shoppingLists.push(l);curListId=l.id;save();renderLists();return l;
+}
+function renderLists(){
+  const wrap=$('#listsWrap');if(!wrap)return;
+  const ls=S.shoppingLists||[];
+  if(!ls.length){
+    wrap.innerHTML='<div class="card"><p class="empty-hint">Encara no hi ha llistes. Crea «+ Llista nova» o «✨ Generar des del menú».</p></div>';
+    $('#listDetailCard').classList.add('hidden');
+    return;
+  }
+  wrap.innerHTML=ls.map(l=>{
+    const pend=(l.items||[]).filter(i=>!i.done).length;
+    const by=l.createdBy?'<span class="src-note">· per '+esc(l.createdBy)+'</span>':'';
+    return '<div class="card list-card'+(l.id===curListId?' sel':'')+'" data-list="'+l.id+'" style="cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 16px">'
+      +'<span class="dotc" style="background:'+(l.id===curListId?'var(--accent)':'var(--line)')+'"></span>'
+      +'<div style="flex:1;min-width:0"><b>'+esc(l.name)+'</b> '+by
+      +'<div class="tiny muted">'+l.items.length+' productes · '+pend+' pendents</div></div>'
+      +'<button class="btn btn-sm" data-openlist="'+l.id+'">Obre</button></div>';
+  }).join('');
+  const cur=curList();
+  $('#listDetailCard').classList.toggle('hidden',!cur);
+  if(cur){
+    $('#listNameInput').value=cur.name;
+    fillCreatedBy();
+    $('#listCreatedBy').value=cur.createdBy||'';
+    renderShopping();
+  }
+}
+function fillCreatedBy(){
+  const sel=$('#listCreatedBy');
+  const cur=curList();
+  const opts='<option value="">— creada per —</option>'+S.people.map(p=>'<option'+(cur&&cur.createdBy===p.name?' selected':'')+'>'+esc(p.name)+'</option>').join('');
+  sel.innerHTML=opts;
+}
 function renderShopping(){
+  const cur=curList();
+  if(!cur){$('#listDetailCard').classList.add('hidden');return;}
   const wrap=$('#shopList');
-  const items=S.shopping.items;
+  const items=cur.items||[];
   $('#shopEmpty').classList.toggle('hidden',items.length>0);
   updateShopStatus();
   const cats=S.categories.filter(c=>items.some(i=>(i.category||'Altres')===c));
@@ -1115,7 +1180,7 @@ function renderShopping(){
         +'</div>').join('')
       +'</div>';
   }).join('');
-  const pan=(S.shopping.pantry||[]).filter(Boolean);
+  const pan=(cur.pantry||[]).filter(Boolean);
   if(pan.length){
     wrap.innerHTML+='<div class="pantry-line"><b>No cal comprar (despensa):</b> '
       +esc(capFirst(pan.join(' · ')))+'</div>';
@@ -1123,39 +1188,59 @@ function renderShopping(){
 }
 function fmtQty(i){return String(i.qty).replace('.',',');}
 
+$('#listsWrap').addEventListener('click',e=>{
+  const open=e.target.closest('[data-openlist]');
+  const card=e.target.closest('.list-card');
+  if(open||card){
+    curListId=(open||card).dataset.list||(card&&card.dataset.list);
+    save();renderLists();
+  }
+});
+$('#newListBtn').onclick=()=>{ensureList();toast('Llista creada — posa-li nom');};
+$('#listNameInput').oninput=e=>{
+  const l=curList();if(!l)return;
+  const v=e.target.value.trim();if(!v||v===l.name)return;
+  clearTimeout(window.__listNameT);
+  window.__listNameT=setTimeout(()=>{l.name=v;save();renderListsCardsOnly(l);},400);
+};
+/* actualitza només les targetes de llistes, sense repintar l'input en edició */
+function renderListsCardsOnly(l){
+  const card=document.querySelector('.list-card[data-list="'+l.id+'"] b');
+  if(card)card.textContent=l.name;
+}
+$('#listCreatedBy').onchange=e=>{const l=curList();if(l){l.createdBy=e.target.value;save();renderLists();}};
+$('#delListBtn').onclick=()=>{
+  const l=curList();if(!l)return;
+  if(!confirm('Eliminar la llista «'+l.name+'»?'))return;
+  S.shoppingLists=S.shoppingLists.filter(x=>x.id!==l.id);
+  curListId=null;save();renderLists();updateShopBadge();
+};
+$('#printListBtn').onclick=()=>{
+  const l=curList();if(!l||!l.items.length){toast('La llista és buida.');return;}
+  $('#printArea').innerHTML='<h2>Àppats — '+esc(l.name)+'</h2><ul style="font-size:14px;line-height:1.9">'
+    +l.items.map(i=>'<li'+(i.done?' style="opacity:.45;text-decoration:line-through"':'')+'>'+(i.qty?'<b>'+fmtQty(i)+(i.unit?' '+esc(i.unit):'')+'</b> ':'')+esc(i.name)+'</li>').join('')+'</ul>';
+  window.print();
+};
+$('#toListBtn').onclick=()=>{
+  const l=curList();if(!l)return;
+  const pending=(l.items||[]).filter(i=>!i.done);
+  if(!pending.length){toast('Marca primer els productes que has comprat.');switchTab('receipts');return;}
+  startDraftFromCart(pending,l);
+};
+
 $('#shopList').addEventListener('click',e=>{
+  const cur=curList();if(!cur)return;
   const chk=e.target.closest('[data-check]');
   if(chk){
-    const it=byId(S.shopping.items,chk.dataset.check);
-    it.done=!it.done;save();renderShopping();updateShopBadge();return;
+    const it=byId(cur.items,chk.dataset.check);
+    it.done=!it.done;save();renderShopping();renderLists();updateShopBadge();return;
   }
   const del=e.target.closest('[data-delshop]');
   if(del){
-    S.shopping.items=S.shopping.items.filter(i=>i.id!==del.dataset.delshop);
-    save();renderShopping();updateShopBadge();
+    cur.items=cur.items.filter(i=>i.id!==del.dataset.delshop);
+    save();renderShopping();renderLists();updateShopBadge();
   }
 });
-$('#genShopBtn').onclick=regenerateShoppingList;
-$('#clearShopBtn').onclick=()=>{
-  if(confirm('Buidar tota la llista de la compra?')){
-    S.shopping={items:[],stale:false};save();renderShopping();updateShopBadge();
-  }
-};
-$('#updateQtyBtn').onclick=regenerateShoppingList;
-$('#printShopBtn').onclick=()=>{
-  const items=S.shopping.items;
-  if(!items.length){toast('La llista és buida.');return;}
-  $('#printArea').innerHTML='<h2>Midweek — Llista de la compra</h2><ul style="font-size:14px;line-height:1.9">'
-    +items.map(i=>'<li'+(i.done?' style="opacity:.45;text-decoration:line-through"':'')+'>'
-      +(i.qty?'<b>'+fmtQty(i)+(i.unit?' '+esc(i.unit):'')+'</b> ':'')+esc(i.name)
-      +(i.from&&i.from.length?' <small>('+esc(i.from.join(', '))+')</small>':'')+'</li>').join('')+'</ul>';
-  window.print();
-};
-$('#toReceiptBtn').onclick=()=>{
-  const pending=S.shopping.items.filter(i=>!i.done);
-  if(!pending.length){toast('Marca primer els productes que has comprat.');switchTab('receipts');return;}
-  startDraftFromCart(pending);
-};
 
 /* extra manual */
 function fillExtraCat(){
@@ -1163,10 +1248,66 @@ function fillExtraCat(){
   sel.innerHTML=S.categories.map(c=>'<option>'+esc(c)+'</option>').join('');
 }
 $('#addExtraBtn').onclick=()=>{
+  const l=curList();
+  if(!l){toast('Crea o obre una llista primer.');return;}
   const name=$('#extraName').value.trim();
   if(!name)return;
-  S.shopping.items.push({id:uid(),name:name,qty:null,unit:'',category:$('#extraCat').value,done:false,extra:true,from:[]});
-  $('#extraName').value='';save();renderShopping();updateShopBadge();
+  l.items.push({id:uid(),name:name,qty:null,unit:'',category:$('#extraCat').value,done:false,extra:true,from:[]});
+  $('#extraName').value='';save();renderShopping();renderLists();updateShopBadge();
   toast('Afegit a la llista');
 };
+$('#extraName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#addExtraBtn').click();});
+
+/* ============ GENERAR LLISTA DES DEL MENÚ (setmana o dies) ============ */
+function openGenerateListModal(){
+  const mon=weekStart;
+  const days=DAYS.map((d,i)=>{
+    const dt=new Date(mon.getTime()+i*86400000);
+    return {iso:iso(dt),label:DAY_LONG[d]+' '+fmtDate(dt)};
+  });
+  openModal('<h2>✨ Generar llista de compra</h2>'
+    +'<p class="muted">Tria els dies del menú que vols comprar. Crea una llista nova independent.</p>'
+    +'<label style="margin-top:6px"><input type="checkbox" id="genAll" checked style="accent-color:var(--accent)"> Tota la setmana</label>'
+    +'<div id="genDays" style="margin:10px 0">'+days.map((d,i)=>
+      '<label style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #EDF2EE">'
+      +'<input type="checkbox" class="gen-day" data-iso="'+d.iso+'" checked style="accent-color:var(--accent)">'
+      +'<span>'+esc(d.label)+'</span></label>').join('')+'</div>'
+    +'<div class="row"><div class="grow"><label>Nom de la llista (opcional)</label><input id="genListName" placeholder="ex. Compra dissabte"></div>'
+    +'<div style="min-width:140px"><label>Creada per</label><select id="genListBy"><option value="">— opcional —</option>'+S.people.map(p=>'<option>'+esc(p.name)+'</option>').join('')+'</select></div></div>'
+    +'<div class="modal-foot"><span></span><button class="btn btn-primary" id="genOk">Genera la llista</button></div>');
+  $('#genAll').onchange=e=>{
+    $$('#genDays .gen-day').forEach(cb=>cb.checked=e.target.checked);
+  };
+  $('#genOk').onclick=()=>{
+    const selDays=$$('#genDays .gen-day').filter(cb=>cb.checked).map(cb=>cb.dataset.iso);
+    if(!selDays.length){toast('Tria almenys un dia.');return;}
+    const name=$('#genListName').value.trim()||('Compra '+fmtDate(new Date(mon.getTime()+7*86400000)));
+    const by=$('#genListBy').value;
+    const l=ensureList(name,by);
+    const collected=collectMenuIngredients(selDays);
+    const prev=new Map((l.items||[]).map(i=>[i.name.toLowerCase()+'|'+i.unit,i]));
+    const items=collected.map(c=>{
+      const key=c.name.toLowerCase()+'|'+c.unit;
+      const old=prev.get(key);
+      return {id:old?old.id:uid(),name:c.name,unit:c.unit,qty:roundQty(c.qty),
+        category:old?old.category:guessCategory(c.name),done:false,from:Array.from(c.from),note:c.note||[]};
+    });
+    const pantry=new Set();
+    selDays.forEach(d=>{
+      SLOTS.forEach(sl=>{
+        (S.menu[d+'|'+sl.id]||[]).forEach(meal=>{
+          const r=mealRecipe(meal);if(!r)return;
+          (r.ingredients||[]).forEach(ing=>{if(isPantryItem(ing.name))pantry.add(foodBase(ing.name));});
+        });
+      });
+    });
+    l.items=items;l.pantry=[...pantry];
+    curListId=l.id;save();renderLists();updateShopBadge();
+    closeModal();
+    toast('Llista «'+l.name+'»: '+items.length+' productes de '+selDays.length+' dies');
+    switchTab('shop');
+  };
+}
+$('#genShopBtn').onclick=openGenerateListModal;
+$('#genListBtn').onclick=openGenerateListModal;
 $('#extraName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#addExtraBtn').click();});

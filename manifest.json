@@ -1,7 +1,7 @@
 {
-  "name": "Midweek — Menú setmanal i compres",
-  "short_name": "Midweek",
-  "description": "Planificador de menú setmanal, receptes, llista de la compra i escaneig de tiquets per a dos.",
+  "name": "Àppats — Menú setmanal i compres",
+  "short_name": "Àppats",
+  "description": "Planificador de menú setmanal, receptari, llistes de la compra i escaneig de tiquets.",
   "lang": "ca",
   "start_url": "./index.html",
   "scope": "./",

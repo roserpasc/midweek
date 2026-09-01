@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#5E8772">
-<title>Midweek · Menú setmanal per a dos</title>
+<title>Àppats · Menú setmanal i compres</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <body>
 
 <header class="app">
-  <h1>🥕 Midweek<span class="dot">.</span></h1>
+  <h1><img src="logo.svg" alt="" style="height:26px;vertical-align:-6px;margin-right:6px">Àppats<span class="dot">.</span></h1>
   <nav class="tabs" id="tabs">
     <button data-tab="menu" class="active">Menú</button>
     <button data-tab="recipes">Receptes</button>
@@ -41,7 +41,7 @@
     <button class="pill" id="dinersBtn" title="Nombre de persones per defecte del menú">👥 <b id="dinersVal">2</b></button>
     <button class="btn-sm" id="proposeBtn" title="Genera una proposta de menú">✨ Proposa</button>
     <button class="btn-sm btn-danger" id="clearMenuBtn" title="Esborra tots els àpats d'aquesta setmana">🗑 Buida setmana</button>
-    <button class="btn-primary btn-sm" id="genShopBtn">Generar llista de compra</button>
+    <button class="btn-primary btn-sm" id="genShopBtn">✨ Generar llista</button>
     <button class="btn-sm" id="printMenuBtn">🖨 Imprimir menú</button>
   </div>
   <div class="card" style="overflow-x:auto">
@@ -66,23 +66,30 @@
 <!-- ================= COMPRA ================= -->
 <section id="tab-shop" class="hidden">
   <div class="toolbar">
-    <h2 style="margin:0">Llista de la compra</h2>
+    <h2 style="margin:0">Compres</h2>
     <span class="muted" id="shopStatus"></span>
     <div class="spacer"></div>
-    <button class="btn-sm" id="updateQtyBtn">Actualitza quantitats</button>
-    <button class="btn-sm btn-danger" id="clearShopBtn">Buida</button>
-    <button class="btn-sm" id="printShopBtn">🖨 Imprimir</button>
-    <button class="btn-primary btn-sm" id="toReceiptBtn">Registrar compra →</button>
+    <button class="btn-sm btn-primary" id="newListBtn">+ Llista nova</button>
+    <button class="btn-sm" id="genListBtn">✨ Generar des del menú</button>
   </div>
-  <div class="card">
+  <div id="listsWrap"></div>
+  <div class="card hidden" id="listDetailCard">
+    <div class="toolbar" style="margin-bottom:6px">
+      <input id="listNameInput" style="font-weight:600;max-width:260px" placeholder="Nom de la llista">
+      <select id="listCreatedBy" style="max-width:150px"></select>
+      <div class="spacer"></div>
+      <button class="btn-sm" id="printListBtn">🖨 Imprimir</button>
+      <button class="btn-sm" id="toListBtn">→ Registrar tiquet</button>
+      <button class="btn-sm btn-danger" id="delListBtn">🗑 Elimina llista</button>
+    </div>
     <div class="extra-add">
-      <input id="extraName" placeholder="Afegeix un producte extra (ex. paper higiènic)…">
+      <input id="extraName" placeholder="Afegeix un producte (ex. paper higiènic)…">
       <select id="extraCat" style="max-width:180px"></select>
       <button class="btn-primary" id="addExtraBtn">Afegeix</button>
     </div>
     <hr class="sep">
     <div class="shop-cols" id="shopList"></div>
-    <p class="empty-hint hidden" id="shopEmpty">La llista és buida. Genera-la des del Menú o afegeix productes extra.</p>
+    <p class="empty-hint hidden" id="shopEmpty">Llista buida. Genera-la des del menú o afegeix productes.</p>
   </div>
 </section>
 

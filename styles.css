@@ -304,3 +304,6 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   #tab-settings .row>div{min-width:0!important;width:100%}
   #tab-settings .row select{width:100%}
 }
+
+/* llistes de compra */
+.list-card.sel{border-color:var(--accent);box-shadow:0 2px 12px rgba(94,135,114,.18)}

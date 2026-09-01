@@ -49,11 +49,12 @@ $('#addPersonBtn').onclick=()=>{
 let draft=null;
 /* draft = {photo(dataURL|null), date, store, payerId, items:[{name,qty,unit,price}], ai:{model,msec,warn}} */
 
-function startDraftFromCart(items){
+function startDraftFromCart(items,list){
   draft={
     photo:null,date:todayIso(),store:'',
     payerId:(S.people[0]||{}).id,
     items:items.map(i=>({name:i.name,qty:i.qty,unit:i.unit||'',price:null})),
+    fromLists:list?[list.id]:[],
     ai:null
   };
   switchTab('receipts');renderDraft();
@@ -117,7 +118,7 @@ $('#draftTable').addEventListener('click',e=>{
   const tr=e.target.closest('tr[data-idx]');
   draft.items.splice(+tr.dataset.idx,1);renderDraft();
 });
-$('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
+$('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
 $('#discardDraftBtn').onclick=()=>{
   if(draft&&draft.items.length&&!confirm('Descartar l\'esborrany actual?'))return;
   draft=null;renderDraft();
@@ -138,23 +139,60 @@ $('#saveReceiptBtn').onclick=()=>{
   if(!draft||!draft.items.length){toast('L\'esborrany és buit.');return;}
   const items=draft.items.filter(i=>i.name.trim());
   if(!items.length){toast('Totes les línies són buides.');return;}
+  /* si hi ha llistes de compra: demanar per a quines és el tiquet */
+  const lists=S.shoppingLists||[];
+  if(lists.length&&!draft.fromLists){
+    openReceiptListsModal(lists,items);
+    return;
+  }
+  commitReceipt(items,draft.fromLists||[]);
+};
+
+/* modal: triar llistes destinatàries del tiquet */
+function openReceiptListsModal(lists,items){
+  openModal('<h2>A quines llistes va aquest tiquet?</h2>'
+    +'<p class="muted">Els productes que coincideixin es marcaran com a comprats a les llistes triades.</p>'
+    +lists.map(l=>'<label style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #EDF2EE">'
+      +'<input type="checkbox" class="rc-list" data-id="'+l.id+'" style="accent-color:var(--accent)">'
+      +'<span><b>'+esc(l.name)+'</b>'+(l.createdBy?' <span class="tiny muted">· per '+esc(l.createdBy)+'</span>':'')+'</span></label>').join('')
+    +'<div class="modal-foot"><button class="btn" id="rcListsNone">Cap llista</button>'
+    +'<button class="btn btn-primary" id="rcListsOk">Desa el tiquet</button></div>');
+  $('#rcListsNone').onclick=()=>{closeModal();finishReceipt(items,[]);};
+  $('#rcListsOk').onclick=()=>{
+    const ids=$$('#modalBox .rc-list').filter(cb=>cb.checked).map(cb=>cb.dataset.id);
+    closeModal();finishReceipt(items,ids);
+  };
+}
+function commitReceipt(items,listIds){
+  if((S.shoppingLists||[]).length&&!listIds.length&&!draft.fromLists){
+    openReceiptListsModal(S.shoppingLists,items);
+    return;
+  }
+  finishReceipt(items,listIds);
+}
+function finishReceipt(items,listIds){
   const receipt={
     id:uid(),date:draft.date||todayIso(),
     store:draft.store||'',payerId:draft.payerId||(S.people[0]||{}).id,
     items:items,
+    listIds:listIds||[],
     photo:draft.photo||null,
     ai:draft.ai?{model:draft.ai.model}:null
   };
   receipt.total=items.reduce((a,i)=>a+(Number(i.price)||0),0);
   S.receipts.unshift(receipt);
-  /* treu de la llista els productes comprats que hi coincidien */
+  /* marca com a comprats els productes coincidents a les llistes triades */
   const boughtNames=items.map(i=>i.name.trim().toLowerCase());
-  S.shopping.items=S.shopping.items.filter(si=>!boughtNames.includes(si.name.toLowerCase()));
-  S.shopping.stale=false;
+  (listIds||[]).forEach(lid=>{
+    const l=byId(S.shoppingLists||[],lid);if(!l)return;
+    (l.items||[]).forEach(si=>{
+      if(!si.done&&boughtNames.includes(si.name.toLowerCase()))si.done=true;
+    });
+  });
   save();
-  draft=null;renderDraft();renderShopping();updateShopBadge();renderReceipts();renderBalance();
+  draft=null;renderDraft();renderLists();updateShopBadge();renderReceipts();renderBalance();
   toast('Compra desada ✓ '+eur(receipt.total));
-};
+}
 
 /* ============================================================
    FOTO → IA (OpenRouter, model de visió)
@@ -240,7 +278,7 @@ async function scanImage(dataUrl){
       price:parseNum(i.price)
     })).filter(i=>i.name);
     if(!items.length)throw new Error('No s\'ha detectat cap article llegible.');
-    if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],ai:null};
+    if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
     if(draft.photo&&draft.photo!==dataUrl)draft.items=[];
     draft.photo=dataUrl;
     draft.store=parsed.store||draft.store||'';
@@ -280,7 +318,7 @@ async function handleImageInput(file){
   if(!file||!file.type.startsWith('image/')){toast('Això no sembla una imatge.');return;}
   const raw=await readImageFile(file);
   const small=await downscaleDataUrl(raw,1400);
-  if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],ai:null};
+  if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
   draft.photo=small;
   await scanImage(small);
 }
@@ -403,10 +441,28 @@ function renderBalance(){
 }
 $('#settleBtn').onclick=()=>{
   if(!S.receipts.length){toast('Encara no hi ha compres.');return;}
-  const spent={},shareEach=S.receipts.reduce((a,r)=>a+r.total,0)/(S.people.length||2);
-  S.people.forEach(p=>spent[p.id]=0);
+  /* tria abast: totals o només algunes persones */
+  openModal('<h2>Liquidar comptes</h2>'
+    +'<p class="muted">Tria per a qui vols liquidar (deixa-ho tot en blanc = tothom).</p>'
+    +S.people.map(p=>'<label style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #EDF2EE">'
+      +'<input type="checkbox" class="st-person" data-id="'+p.id+'" style="accent-color:var(--accent)">'
+      +'<span class="dotc" style="background:'+esc(p.color)+'"></span>'+esc(p.name)+'</label>').join('')
+    +'<div class="modal-foot"><span></span>'
+    +'<button class="btn btn-primary" id="stScope">Continua</button></div>');
+  $('#stScope').onclick=()=>{
+    const ids=$$('#modalBox .st-person').filter(cb=>cb.checked).map(cb=>cb.dataset.id);
+    openSettlement(ids.length?ids:null);
+  };
+};
+function openSettlement(scopeIds){
+  const people=scopeIds&&scopeIds.length?S.people.filter(p=>scopeIds.includes(p.id)):S.people;
+  /* part que correspon a cada persona: total compartit / nombre total de persones
+     (les compres són de la casa; l'abast només limita QUI es liquida) */
+  const shareEach=p=>S.receipts.reduce((a,r)=>a+r.total,0)/(S.people.length||2);
+  const spent={};
+  people.forEach(p=>spent[p.id]=0);
   S.receipts.forEach(r=>{if(spent[r.payerId]!=null)spent[r.payerId]+=r.total;});
-  const rows=S.people.map(p=>({p,bal:spent[p.id]-shareEach+settledDeltaFor(p.id)}));
+  const rows=people.map(p=>({p,bal:spent[p.id]-shareEach(p)+settledDeltaFor(p.id)}));
   const debtors=rows.filter(r=>r.bal<-0.01).sort((a,b)=>a.bal-b.bal);
   const creditors=rows.filter(r=>r.bal>0.01).sort((a,b)=>b.bal-a.bal);
   let transfers=[],di=0,ci=0;
@@ -437,7 +493,7 @@ $('#settleBtn').onclick=()=>{
     transfers.forEach(t=>S.settlements.push({date:todayIso(),fromId:t.from.id,toId:t.to.id,amount:t.amount}));
     save();renderBalance();closeModal();toast('Comptes liquidats ✓');
   };
-};
+}
 
 /* ============================================================
    OPCIONS
@@ -595,6 +651,7 @@ function boot(doSeed){
   renderBalance();
   renderCatChips();
   try{renderGistCfg();}catch(e){}
+  try{renderLists();}catch(e){}
   const info=$('#storageInfo');
   if(info){
     let bytes=0;
@@ -627,20 +684,23 @@ if(typeof initialSync==='function')initialSync();
     const key=iso(new Date())+'|dinars';
     pushMeal(key,{recipeId:S.recipes[0].id,diners:2});
     assert('meal-added',(S.menu[key]||[]).length>=1);
-    /* 5. generar llista de la compra */
+    /* 5. generar llista de la compra (llista independent) */
+    ensureList('Test','Roser');
     regenerateShoppingList();
-    assert('shopping-generated',S.shopping.items.length>0,String(S.shopping.items.length));
+    const L=curList();
+    assert('shopping-generated',L&&L.items.length>0,L&&L.items.length);
     /* 6. quantitats escalades per comensals: arròs 160g base/2 racions -> factor 1 => 160 */
-    const arr=S.shopping.items.find(i=>/arròs/i.test(i.name));
+    const arr=L.items.find(i=>/arròs/i.test(i.name));
     assert('shopping-has-rice',!!arr,arr&&arr.qty);
     /* 7. marcar done i extra */
-    S.shopping.items[0].done=true;
-    S.shopping.items.push({id:uid(),name:'paper higiènic',qty:null,unit:'',category:'Neteja',done:false,extra:true,from:[]});
-    assert('shopping-extra',S.shopping.items.some(i=>i.extra));
+    L.items[0].done=true;
+    L.items.push({id:uid(),name:'paper higiènic',qty:null,unit:'',category:'Neteja',done:false,extra:true,from:[]});
+    assert('shopping-extra',L.items.some(i=>i.extra));
     /* 8. esborrany manual amb 2 línies i repartiment */
-    startDraftFromCart([]);
+    startDraftFromCart([],L);
     draft.items=[{name:'test A',qty:1,unit:'',price:6},{name:'test B',qty:1,unit:'',price:4}];
     draft.payerId=S.people[0].id;
+    draft.fromLists=[L.id];
     renderDraft();
     assert('draft-total',$('#draftTotal').textContent.indexOf('10,00')>=0,$('#draftTotal').textContent);
     /* 9. desar la compra i comprovar balanç */
