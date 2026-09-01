@@ -108,11 +108,16 @@ function getGistCfg(){
 const GIST_CFG=getGistCfg();
 const GIST_OK=!!(GIST_CFG&&GIST_CFG.gistId&&GIST_CFG.token&&typeof fetch==='function');
 
-/* còpia lleugera per al gist: sense fotos ni passos (límit ~1MB per fitxer) */
+/* còpia lleugera per al gist (límit 1MB/fitxer):
+   - les receptes de BIBLIOTECA (Corpus/Arguiñano/Gastroteca) NO viatgen:
+     són idèntiques a tot arreu (cada dispositiu les importa de traditional-bank.js)
+   - sense fotos ni passos; només dades pròpies de l'usuari */
 function syncPayload(state){
   try{
     const p=JSON.parse(JSON.stringify(state));
     delete p.ui;
+    delete p.seedDone;
+    if(Array.isArray(p.recipes)) p.recipes=p.recipes.filter(r=>!r.book);
     (p.receipts||[]).forEach(r=>{if(r.photo)r.photo=null;});
     (p.recipes||[]).forEach(r=>{if(r.steps)delete r.steps;if(r.photo)r.photo=null;});
     return p;
@@ -181,10 +186,11 @@ function mergeStates(local, remote) {
     else if(JSON.stringify(menu[k])!==JSON.stringify(remote.menu[k])) menu[k]=rNewer?remote.menu[k]:menu[k];
   });
   out.menu=menu;
-  /* receptes: unió per id (duplicat -> es queda la versió local) */
+  /* receptes pròpies: unió per id (duplicat -> es queda la versió local).
+     Les de biblioteca NO s'importen del gist (hi han pogut arribar en payloads vells). */
   const ids=new Set((local.recipes||[]).map(r=>r.id));
   const recipes=(local.recipes||[]).slice();
-  (remote.recipes||[]).forEach(r=>{if(!ids.has(r.id)){recipes.push(r);ids.add(r.id);}});
+  (remote.recipes||[]).forEach(r=>{if(!ids.has(r.id)&&!r.book){recipes.push(r);ids.add(r.id);}});
   out.recipes=recipes;
   /* tiquets: unió per id */
   const rids=new Set((local.receipts||[]).map(r=>r.id));
