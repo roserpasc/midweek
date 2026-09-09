@@ -52,8 +52,8 @@ function defaultState(){
   return {
     version:1,
     people:[
-      {id:uid(),name:'Roser',color:'#5E8772'},
-      {id:uid(),name:'Paolo',color:'#C77D46'}
+      {id:uid(),name:'Roser',color:'#5E8772',pin:''},
+      {id:uid(),name:'Paolo',color:'#C77D46',pin:''}
     ],
     diners:2,
     categories:['Fruita i verdura','Carn i peix','Làctics i ous','Pa i fornats','Despensa','Begudes','Congelats','Neteja','Altres'],

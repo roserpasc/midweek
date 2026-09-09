@@ -33,9 +33,14 @@ function renderPeople(){
     '<div class="person-pill" data-id="'+p.id+'">'
     +'<input type="color" value="'+esc(p.color)+'" data-pcolor>'
     +'<input type="text" value="'+esc(p.name)+'" data-pname>'
+    +'<input type="text" value="'+esc(p.pin||'')+'" data-ppin placeholder="PIN" title="PIN opcional (buit = sense)" style="width:64px">'
     +'<button data-pdel title="Elimina">✕</button></div>').join('');
 }
 $('#peopleRow').addEventListener('change',e=>{
+  if(e.target.dataset.ppin){
+    personById(e.target.closest('.person-pill').dataset.id).pin=e.target.value.trim();
+    save();return;
+  }
   if(e.target.dataset.pcolor){
     personById(e.target.closest('.person-pill').dataset.id).color=e.target.value;
     save();renderPeople();renderReceipts();renderBalance();
@@ -44,7 +49,7 @@ $('#peopleRow').addEventListener('change',e=>{
 $('#peopleRow').addEventListener('input',debounce(e=>{
   if(e.target.dataset.pname){
     personById(e.target.closest('.person-pill').dataset.id).name=e.target.value.trim()||'?';
-    save();renderPayerSelect();renderBalance();
+    save();renderPayerSelect();renderBalance();try{syncIdentityName();renderIdentity();}catch(err){}
   }
 },300));
 $('#peopleRow').addEventListener('click',e=>{
@@ -58,7 +63,7 @@ $('#peopleRow').addEventListener('click',e=>{
 });
 $('#addPersonBtn').onclick=()=>{
   const colors=['#5E8772','#C77D46','#7B6CA8','#4E8EA8','#A85D74'];
-  S.people.push({id:uid(),name:'Persona '+(S.people.length+1),color:colors[S.people.length%colors.length]});
+  S.people.push({id:uid(),name:'Persona '+(S.people.length+1),color:colors[S.people.length%colors.length],pin:''});
   save();renderPeople();renderPayerSelect();
 };
 
@@ -74,6 +79,7 @@ function startDraftFromCart(items,list){
     payerId:(S.people[0]||{}).id,
     items:items.map(i=>({name:i.name,qty:i.qty,unit:i.unit||'',price:null})),
     fromLists:list?[list.id]:[],
+    hidden:false,splitWith:'',
     ai:null
   };
   switchTab('receipts');renderDraft();
@@ -476,8 +482,7 @@ function renderBalance(){
       +'<td class="num"><b style="color:'+(bal>=0.005?'#2F6A46':bal<-0.005?'#93392F':'inherit')+'">'
       +(bal>=0.005?'+':bal<-0.005?'−':'')+eur(Math.abs(bal))+'</b></td></tr>';
   }).join('')+'</tbody></table>'
-  +'<p class="muted tiny" style="margin:8px 0 0">Despesa total compartida: <b>'+eur(S.receipts.reduce((a,r)=>a+r.total,0))+'</b> · '
-  +eur(shareEach)+' per persona</p>';
+  +'<p class="muted tiny" style="margin:8px 0 0">Despesa visible: <b>'+eur(visible.reduce((a,r)=>a+r.total,0))+'</b></p>';
 }
 $('#settleBtn').onclick=()=>{
   if(!S.receipts.length){toast('Encara no hi ha compres.');return;}
@@ -552,6 +557,73 @@ $('#apiKeyInput').oninput=debounce(e=>{
 },400);
 $('#modelSelect').value=S.settings.model||'google/gemma-3-27b-it:free';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
+/* ============================================================
+   IDENTITAT: registre unic amb memoria al dispositiu
+   ============================================================ */
+const IDENTITY_KEY='midweek_identity';
+function getMyIdentity(){
+  try{const v=JSON.parse(localStorage.getItem(IDENTITY_KEY));if(v&&v.id)return v;}catch(e){}
+  return null;
+}
+function setMyIdentity(id){
+  const p=personById(id);
+  if(!p){localStorage.removeItem(IDENTITY_KEY);S.currentViewer='';}
+  else{
+    localStorage.setItem(IDENTITY_KEY,JSON.stringify({id:p.id,name:p.name,pin:p.pin||''}));
+    S.currentViewer=p.id;
+  }
+  save();renderIdentity();renderViewerSelect();renderReceipts();renderBalance();
+}
+function renderIdentity(){
+  const btn=$('#identityBtn');
+  if(!btn)return;
+  const me=getMyIdentity();
+  const p=me?personById(me.id):null;
+  btn.classList.toggle('hidden',!p);
+  if(p){
+    $('#identityName').textContent=p.name;
+    $('#identityDot').style.background=p.color;
+  }
+}
+/* modal: 'Qui ets?' — apareix si no hi ha identitat guardada al dispositiu */
+function openIdentityModal(){
+  openModal('<h2>👋 Qui ets?</h2>'
+    +'<p class="muted">Tria el teu nom. Es recordarà en aquest dispositiu.</p>'
+    +'<div class="welcome-list">'
+    +S.people.map(p=>'<button data-me="'+p.id+'">'
+      +'<span class="dotc" style="background:'+esc(p.color)+'"></span>'
+      +'<span style="flex:1;text-align:left"><b>'+esc(p.name)+'</b>'+(p.pin?' <span class="tiny muted">🔒</span>':'')+'</span>'
+      +'<span class="tiny muted">entra →</span></button>').join('')
+    +'</div>'
+    +'<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="idNoAsk" style="accent-color:var(--accent)"> '
+    +'<span class="muted tiny">Entrar sense identitat (compartit, sense accés als tiquets ocults)</span></label>'
+    +'<div class="modal-foot"><button class="btn btn-primary" id="idSkip">Continua</button></div>');
+  $$('#modalBox [data-me]').forEach(b=>b.onclick=()=>{
+    const p=personById(b.dataset.me);
+    if(p&&p.pin){
+      const pin=prompt('PIN de '+p.name+':');
+      if(pin!==p.pin){toast('PIN incorrecte');return;}
+    }
+    setMyIdentity(p.id);
+    closeModal();
+    toast('Hola, '+p.name+' 👋');
+  });
+  $('#idSkip').onclick=()=>{
+    S.currentViewer='';S.identitySkipped=true;save();
+    localStorage.setItem(IDENTITY_KEY,JSON.stringify({skipped:true}));
+    closeModal();
+  };
+}
+/* si canvien els noms a Opcions, sincronitza la identitat guardada */
+function syncIdentityName(){
+  const me=getMyIdentity();
+  if(!me)return;
+  const p=personById(me.id);
+  if(p&&p.name!==me.name){me.name=p.name;localStorage.setItem(IDENTITY_KEY,JSON.stringify(me));}
+  if(!p){localStorage.removeItem(IDENTITY_KEY);S.currentViewer='';}
+}
+$('#identityBtn').onclick=()=>openIdentityModal();
+
 /* selector 'veure com a' (privacitat) */
 function renderViewerSelect(){
   const sel=$('#viewerSelect');
@@ -710,6 +782,13 @@ function boot(doSeed){
   renderCatChips();
   try{renderGistCfg();}catch(e){}
   try{renderViewerSelect();}catch(e){}
+  /* identitat: auto-entrada si el dispositiu ja la coneix; modal si no */
+  try{
+    syncIdentityName();
+    const me=getMyIdentity();
+    if(me&&personById(me.id)){S.currentViewer=me.id;renderViewerSelect();}
+    else if(!S.identitySkipped){openIdentityModal();}
+  }catch(e){}
   try{renderLists();}catch(e){}
   const info=$('#storageInfo');
   if(info){

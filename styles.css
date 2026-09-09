@@ -339,3 +339,16 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   }
   #draftCard .items td:last-child::before{display:none}
 }
+
+/* identitat al header */
+.identity{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
+  border-radius:20px;padding:5px 14px;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer}
+.identity:hover{border-color:var(--accent)}
+.identity.hidden{display:none}
+@media(max-width:640px){
+  .identity{order:3;margin-left:auto;padding:4px 10px;font-size:12.5px}
+}
+/* modal de registre */
+.welcome-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.welcome-list button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px}
+.welcome-list button:hover{background:var(--verd-clar)}
