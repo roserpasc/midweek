@@ -237,7 +237,7 @@ async function scanImage(dataUrl){
     alert('Primer configura la teva clau d\'OpenRouter a la pestanya Opcions.');
     switchTab('settings');return;
   }
-  const model=S.settings.model||'google/gemini-2.5-flash';
+  const model=S.settings.model||'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free';
   const t0=Date.now();
   $('#scanProgress').classList.remove('hidden');
   setProgress(15,'Enviant imatge…');
@@ -502,7 +502,7 @@ $('#apiKeyInput').value=S.settings.apiKey||'';
 $('#apiKeyInput').oninput=debounce(e=>{
   S.settings.apiKey=e.target.value.trim();save();
 },400);
-$('#modelSelect').value=S.settings.model||'google/gemini-2.5-flash';
+$('#modelSelect').value=S.settings.model||'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
 $('#testKeyBtn').onclick=async()=>{
   const out=$('#keyTestResult');
