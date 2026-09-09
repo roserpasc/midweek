@@ -76,11 +76,11 @@ function renderDraft(){
   const rows=draft.items.map((it,idx)=>{
     total+=Number(it.price)||0;
     return '<tr data-idx="'+idx+'">'
-      +'<td style="min-width:130px"><input value="'+esc(it.name)+'" data-f="name"></td>'
-      +'<td style="width:64px"><input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal"></td>'
-      +'<td style="width:70px"><select data-f="unit">'+['','g','kg','ml','l','unitats','llauna','paquet'].map(u=>'<option'+((it.unit||'')===u?' selected':'')+'>'+u+'</option>').join('')+'</select></td>'
-      +'<td style="width:86px"><input class="w60" placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal"></td>'
-      +'<td style="width:30px"><button class="del" data-delrow>✕</button></td></tr>';
+      +'<td data-label="Producte" style="min-width:130px"><input value="'+esc(it.name)+'" data-f="name"></td>'
+      +'<td data-label="Quant." style="width:64px"><input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal"></td>'
+      +'<td data-label="Unit." style="width:70px"><select data-f="unit">'+['','g','kg','ml','l','unitats','llauna','paquet'].map(u=>'<option'+((it.unit||'')===u?' selected':'')+'>'+u+'</option>').join('')+'</select></td>'
+      +'<td data-label="Preu €" style="width:86px"><input class="w60" placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal"></td>'
+      +'<td data-label="" style="width:30px"><button class="del" data-delrow>✕</button></td></tr>';
   }).join('');
   $('#draftTable').innerHTML=(draft.items.length
     ?'<thead><tr><th>Producte</th><th>Quant.</th><th>Unit.</th><th>Preu €</th><th></th></tr></thead>'+rows
@@ -131,8 +131,15 @@ function renderPayerSelect(){
   const cur=draft?draft.payerId:(S.people[0]||{}).id;
   sel.innerHTML=S.people.map(p=>'<option value="'+p.id+'"'+(p.id===cur?' selected':'')+'>'+esc(p.name)+'</option>').join('')
     ||'<option value="">—</option>';
+  /* splitWith: amb qui es comparteix la compra */
+  const sel2=$('#draftSplitWith');
+  const opts='<option value="">amb tothom</option>'
+    +'<option value="none"'+(draft&&draft.splitWith==='none'?' selected':'')+'>amb ningú</option>'
+    +S.people.map(p=>'<option value="'+p.id+'"'+(draft&&draft.splitWith===p.id?' selected':'')+'>'+esc(p.name)+'</option>').join('');
+  sel2.innerHTML=opts;
 }
 $('#draftPayer').onchange=e=>{if(draft)draft.payerId=e.target.value;};
+$('#draftSplitWith').onchange=e=>{if(draft)draft.splitWith=e.target.value||'';};
 
 /* desar compra */
 $('#saveReceiptBtn').onclick=()=>{
@@ -174,6 +181,7 @@ function finishReceipt(items,listIds){
   const receipt={
     id:uid(),date:draft.date||todayIso(),
     store:draft.store||'',payerId:draft.payerId||(S.people[0]||{}).id,
+    splitWith:draft.splitWith||'',
     items:items,
     listIds:listIds||[],
     photo:draft.photo||null,
@@ -237,7 +245,7 @@ async function scanImage(dataUrl){
     alert('Primer configura la teva clau d\'OpenRouter a la pestanya Opcions.');
     switchTab('settings');return;
   }
-  const model=S.settings.model||'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free';
+  const model=S.settings.model||'google/gemma-3-27b-it:free';
   const t0=Date.now();
   $('#scanProgress').classList.remove('hidden');
   setProgress(15,'Enviant imatge…');
@@ -426,11 +434,25 @@ function renderBalance(){
   if(!S.receipts.length&&!S.settlements.length){
     el.innerHTML='<p class="empty-hint">Sense compres encara.</p>';return;
   }
-  const spent={},shareEach=S.receipts.reduce((a,r)=>a+r.total,0)/(S.people.length||2);
-  S.people.forEach(p=>spent[p.id]=0);
-  S.receipts.forEach(r=>{if(spent[r.payerId]!=null)spent[r.payerId]+=r.total;});
+  /* splitWith logic */
+  function isInvolved(r, personId) {
+    if (!r.splitWith || r.splitWith === '') return true;
+    if (r.splitWith === 'none') return r.payerId === personId;
+    return r.payerId === personId || r.splitWith === personId;
+  }
+  function shareCount(r) {
+    if (!r.splitWith || r.splitWith === '') return S.people.length || 2;
+    if (r.splitWith === 'none') return 1;
+    return 2;
+  }
+  const spent = {}, share = {};
+  S.people.forEach(p => { spent[p.id] = 0; share[p.id] = 0; });
+  S.receipts.forEach(r => {
+    if (spent[r.payerId] != null) spent[r.payerId] += r.total;
+    S.people.forEach(p => { if (isInvolved(r, p.id)) share[p.id] += r.total / shareCount(r); });
+  });
   el.innerHTML='<table class="items"><tbody>'+S.people.map(p=>{
-    const bal=spent[p.id]-shareEach+settledDeltaFor(p.id);
+    const bal=spent[p.id]-share[p.id]+settledDeltaFor(p.id);
     return '<tr><td><span class="dotc" style="background:'+esc(p.color)+'"></span>'+esc(p.name)+'</td>'
       +'<td class="num muted tiny">ha pagat '+eur(spent[p.id])+'</td>'
       +'<td class="num"><b style="color:'+(bal>=0.005?'#2F6A46':bal<-0.005?'#93392F':'inherit')+'">'
@@ -456,13 +478,34 @@ $('#settleBtn').onclick=()=>{
 };
 function openSettlement(scopeIds){
   const people=scopeIds&&scopeIds.length?S.people.filter(p=>scopeIds.includes(p.id)):S.people;
-  /* part que correspon a cada persona: total compartit / nombre total de persones
-     (les compres són de la casa; l'abast només limita QUI es liquida) */
-  const shareEach=p=>S.receipts.reduce((a,r)=>a+r.total,0)/(S.people.length||2);
-  const spent={};
-  people.forEach(p=>spent[p.id]=0);
-  S.receipts.forEach(r=>{if(spent[r.payerId]!=null)spent[r.payerId]+=r.total;});
-  const rows=people.map(p=>({p,bal:spent[p.id]-shareEach(p)+settledDeltaFor(p.id)}));
+  /* Calcula balance per persona tenint compte de splitWith per cada tiquet:
+     - splitWith === "" (empty) -> compartit per tothom
+     - splitWith === "none" -> només qui ha pagat (payer)
+     - splitWith === personId -> compartit entre payer i aquella persona
+  */
+  function isInvolved(r, personId) {
+    if (!r.splitWith || r.splitWith === '') return true; // tothom
+    if (r.splitWith === 'none') return r.payerId === personId; // només payer
+    return r.payerId === personId || r.splitWith === personId; // payer + 1 persona
+  }
+  function shareCount(r) {
+    if (!r.splitWith || r.splitWith === '') return S.people.length || 2;
+    if (r.splitWith === 'none') return 1;
+    return 2; // payer + 1 persona
+  }
+  // Filtrar tiquets on estigui involucrat algun dels 'people' seleccionats
+  const relevantReceipts = S.receipts.filter(r => 
+    people.some(p => isInvolved(r, p.id))
+  );
+  const spent = {};
+  const share = {};
+  people.forEach(p => { spent[p.id] = 0; share[p.id] = 0; });
+  relevantReceipts.forEach(r => {
+    if (spent[r.payerId] != null) spent[r.payerId] += r.total;
+    const cnt = shareCount(r);
+    people.forEach(p => { if (isInvolved(r, p.id)) share[p.id] += r.total / cnt; });
+  });
+  const rows = people.map(p => ({p, bal: spent[p.id] - share[p.id] + settledDeltaFor(p.id)}));
   const debtors=rows.filter(r=>r.bal<-0.01).sort((a,b)=>a.bal-b.bal);
   const creditors=rows.filter(r=>r.bal>0.01).sort((a,b)=>b.bal-a.bal);
   let transfers=[],di=0,ci=0;
@@ -502,7 +545,7 @@ $('#apiKeyInput').value=S.settings.apiKey||'';
 $('#apiKeyInput').oninput=debounce(e=>{
   S.settings.apiKey=e.target.value.trim();save();
 },400);
-$('#modelSelect').value=S.settings.model||'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free';
+$('#modelSelect').value=S.settings.model||'google/gemma-3-27b-it:free';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
 $('#testKeyBtn').onclick=async()=>{
   const out=$('#keyTestResult');

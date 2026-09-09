@@ -311,3 +311,31 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 
 /* llistes de compra */
 .list-card.sel{border-color:var(--accent);box-shadow:0 2px 12px rgba(94,135,114,.18)}
+
+/* draft table responsive: scroll horizontal on mobile, card layout option */
+@media(max-width:640px){
+  #draftCard .items{display:block;overflow-x:auto;white-space:nowrap;margin:0 -12px;padding:0 12px}
+  #draftCard .items thead{display:none}
+  #draftCard .items tbody{display:flex;flex-direction:column;gap:8px;white-space:normal}
+  #draftCard .items tr{
+    display:flex;flex-wrap:wrap;gap:6px;background:var(--card);border:1px solid var(--line);
+    border-radius:8px;padding:10px;align-items:flex-end
+  }
+  #draftCard .items td{
+    display:flex;flex-direction:column;min-width:0;flex:1 1 120px
+  }
+  #draftCard .items td:last-child{flex:none;align-self:flex-start}
+  #draftCard .items label{font-size:11px;color:var(--muted);margin-bottom:2px}
+  #draftCard .items input,#draftCard .items select{min-height:36px;font-size:15px}
+}
+
+/* mobile card view for draft table - show data-label as pseudo-element */
+@media(max-width:640px){
+  #draftCard .items td{position:relative;padding-left:80px}
+  #draftCard .items td::before{
+    content:attr(data-label);
+    position:absolute;left:8px;top:2px;
+    font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap
+  }
+  #draftCard .items td:last-child::before{display:none}
+}
