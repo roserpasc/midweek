@@ -91,6 +91,8 @@ try{
   if(!Array.isArray(S.receipts)) S.receipts=[];
   if(!Array.isArray(S.settlements)) S.settlements=[];
   if(!Array.isArray(S.shoppingLists)) S.shoppingLists=[];
+  if(typeof S.anonymous!=='boolean') S.anonymous=true;
+  if(S.currentViewer!==undefined){S.currentUser=S.currentViewer||'';delete S.currentViewer;}
   if(!S.settings||typeof S.settings!=='object') S.settings={};
 }catch(e){console.error('migration error',e);}
 
