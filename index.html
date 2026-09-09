@@ -99,6 +99,10 @@
 <section id="tab-receipts" class="hidden">
   <div class="grid-2">
     <div>
+      <div class="toolbar" style="margin-bottom:8px">
+        <label style="white-space:nowrap">Veure com a:</label>
+        <select id="viewerSelect" style="max-width:220px"><option value="">Tothom (compartit)</option></select>
+      </div>
       <div class="card scan-box">
         <h2 style="margin-top:0">📸 Escaneja un tiquet</h2>
         <p>Fes una foto del tiquet o puja-la. La IA n'extreu articles i preus; tu ho revises abans de desar.</p>
@@ -127,6 +131,11 @@
         </div>
         <div class="row" style="margin:10px 0">
           <div class="grow"><label>Comparteix amb</label><select id="draftSplitWith"></select></div>
+        </div>
+        <div class="row" style="margin:10px 0">
+          <div class="grow"><label>Ocult</label>
+            <select id="draftHidden"><option value="">No (visible a tothom)</option><option value="1">Sí (només pagador + compartits)</option></select>
+          </div>
         </div>
         <table class="items"><tbody id="draftTable"></tbody></table>
         <button class="btn btn-sm" id="addDraftItemBtn">+ línia</button>

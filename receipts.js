@@ -8,6 +8,25 @@
 /* ============================================================
    PERSONES
    ============================================================ */
+/* ---- visibilitat de tiquets ocults ---- */
+/* un tiquet ocult el veuen: qui el va escanejar (payer) i la persona que impliqua el splitWith */
+function canSeeReceipt(rc,viewerId){
+  if(!rc.hidden)return true;
+  if(!viewerId)return false; /* 'tothom (compartit)' no veu ocults */
+  if(rc.payerId===viewerId)return true;
+  if(rc.splitWith===viewerId)return true;
+  return false;
+}
+function receiptInvolved(rc,personId){
+  if(!rc.splitWith||rc.splitWith==='')return true;
+  if(rc.splitWith==='none')return rc.payerId===personId;
+  return rc.payerId===personId||rc.splitWith===personId;
+}
+function receiptShareCount(rc){
+  if(!rc.splitWith||rc.splitWith==='')return S.people.length||2;
+  if(rc.splitWith==='none')return 1;
+  return 2;
+}
 function renderPeople(){
   const row=$('#peopleRow');
   row.innerHTML=S.people.map(p=>
@@ -139,7 +158,8 @@ function renderPayerSelect(){
   sel2.innerHTML=opts;
 }
 $('#draftPayer').onchange=e=>{if(draft)draft.payerId=e.target.value;};
-$('#draftSplitWith').onchange=e=>{if(draft)draft.splitWith=e.target.value||'';};
+$('#draftSplitWith').onchange=e=>{if(draft)draft.splitWith=e.target.value||''};
+$('#draftHidden').onchange=e=>{if(draft)draft.hidden=e.target.value==='1';};
 
 /* desar compra */
 $('#saveReceiptBtn').onclick=()=>{
@@ -182,6 +202,7 @@ function finishReceipt(items,listIds){
     id:uid(),date:draft.date||todayIso(),
     store:draft.store||'',payerId:draft.payerId||(S.people[0]||{}).id,
     splitWith:draft.splitWith||'',
+    hidden:draft.hidden||false,
     items:items,
     listIds:listIds||[],
     photo:draft.photo||null,
@@ -357,7 +378,13 @@ function renderReceipts(){
     wrap.innerHTML='<div class="card"><p class="empty-hint">Encara no hi ha compres desades. Escaneja el primer tiquet 👆</p></div>';
     return;
   }
-  wrap.innerHTML=S.receipts.map(rc=>{
+  const viewer=S.currentViewer||'';
+  const visible=S.receipts.filter(r=>canSeeReceipt(r,viewer));
+  if(!visible.length&&S.receipts.length){
+    wrap.innerHTML='<div class="card"><p class="empty-hint">Cap compra visible amb aquest filtre de privacitat.</p></div>';
+    return;
+  }
+  wrap.innerHTML=visible.map(rc=>{
     const payer=personById(rc.payerId);
     return '<div class="card">'
       +'<div class="toolbar" style="margin-bottom:8px">'
@@ -380,12 +407,12 @@ function fmtLongDate(ds){
   catch(e){return ds;}
 }
 function splitFor(receipt){
-  const n=S.people.length||2;
+  const n=receiptShareCount(receipt);
   const share=receipt.total/n;
-  return S.people.map(p=>({
-    person:p,
-    amount:p.id===receipt.payerId?(receipt.total-share):( -share)
-  }));
+  return S.people.map(p=>{
+    if(!receiptInvolved(receipt,p.id))return {person:p,amount:0};
+    return {person:p,amount:p.id===receipt.payerId?(receipt.total-share):(-share)};
+  });
 }
 function renderSplitChips(rc){
   const parts=splitFor(rc);
@@ -431,25 +458,16 @@ function settledDeltaFor(id){
 }
 function renderBalance(){
   const el=$('#balanceBody');
-  if(!S.receipts.length&&!S.settlements.length){
+  const viewer=S.currentViewer||'';
+  const visible=S.receipts.filter(r=>canSeeReceipt(r,viewer));
+  if(!visible.length&&!S.settlements.length){
     el.innerHTML='<p class="empty-hint">Sense compres encara.</p>';return;
-  }
-  /* splitWith logic */
-  function isInvolved(r, personId) {
-    if (!r.splitWith || r.splitWith === '') return true;
-    if (r.splitWith === 'none') return r.payerId === personId;
-    return r.payerId === personId || r.splitWith === personId;
-  }
-  function shareCount(r) {
-    if (!r.splitWith || r.splitWith === '') return S.people.length || 2;
-    if (r.splitWith === 'none') return 1;
-    return 2;
   }
   const spent = {}, share = {};
   S.people.forEach(p => { spent[p.id] = 0; share[p.id] = 0; });
-  S.receipts.forEach(r => {
+  visible.forEach(r => {
     if (spent[r.payerId] != null) spent[r.payerId] += r.total;
-    S.people.forEach(p => { if (isInvolved(r, p.id)) share[p.id] += r.total / shareCount(r); });
+    S.people.forEach(p => { if (receiptInvolved(r, p.id)) share[p.id] += r.total / receiptShareCount(r); });
   });
   el.innerHTML='<table class="items"><tbody>'+S.people.map(p=>{
     const bal=spent[p.id]-share[p.id]+settledDeltaFor(p.id);
@@ -478,32 +496,19 @@ $('#settleBtn').onclick=()=>{
 };
 function openSettlement(scopeIds){
   const people=scopeIds&&scopeIds.length?S.people.filter(p=>scopeIds.includes(p.id)):S.people;
-  /* Calcula balance per persona tenint compte de splitWith per cada tiquet:
-     - splitWith === "" (empty) -> compartit per tothom
-     - splitWith === "none" -> només qui ha pagat (payer)
-     - splitWith === personId -> compartit entre payer i aquella persona
-  */
-  function isInvolved(r, personId) {
-    if (!r.splitWith || r.splitWith === '') return true; // tothom
-    if (r.splitWith === 'none') return r.payerId === personId; // només payer
-    return r.payerId === personId || r.splitWith === personId; // payer + 1 persona
-  }
-  function shareCount(r) {
-    if (!r.splitWith || r.splitWith === '') return S.people.length || 2;
-    if (r.splitWith === 'none') return 1;
-    return 2; // payer + 1 persona
-  }
-  // Filtrar tiquets on estigui involucrat algun dels 'people' seleccionats
-  const relevantReceipts = S.receipts.filter(r => 
-    people.some(p => isInvolved(r, p.id))
+  /* Calcula balance per persona tenint compte de splitWith per cada tiquet,
+     i NOMÉS amb els tiquets que el visor actual pot veure (privacitat) */
+  const viewer=S.currentViewer||'';
+  const relevantReceipts = S.receipts.filter(r =>
+    canSeeReceipt(r,viewer) && people.some(p => receiptInvolved(r, p.id))
   );
   const spent = {};
   const share = {};
   people.forEach(p => { spent[p.id] = 0; share[p.id] = 0; });
   relevantReceipts.forEach(r => {
     if (spent[r.payerId] != null) spent[r.payerId] += r.total;
-    const cnt = shareCount(r);
-    people.forEach(p => { if (isInvolved(r, p.id)) share[p.id] += r.total / cnt; });
+    const cnt = receiptShareCount(r);
+    people.forEach(p => { if (receiptInvolved(r, p.id)) share[p.id] += r.total / cnt; });
   });
   const rows = people.map(p => ({p, bal: spent[p.id] - share[p.id] + settledDeltaFor(p.id)}));
   const debtors=rows.filter(r=>r.bal<-0.01).sort((a,b)=>a.bal-b.bal);
@@ -547,6 +552,16 @@ $('#apiKeyInput').oninput=debounce(e=>{
 },400);
 $('#modelSelect').value=S.settings.model||'google/gemma-3-27b-it:free';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
+/* selector 'veure com a' (privacitat) */
+function renderViewerSelect(){
+  const sel=$('#viewerSelect');
+  if(!sel)return;
+  const cur=S.currentViewer||'';
+  sel.innerHTML='<option value="">Tothom (compartit)</option>'
+    +S.people.map(p=>'<option value="'+p.id+'"'+(p.id===cur?' selected':'')+'>'+esc(p.name)+'</option>').join('');
+}
+$('#viewerSelect').onchange=e=>{S.currentViewer=e.target.value;save();renderViewerSelect();renderReceipts();renderBalance();};
+
 $('#testKeyBtn').onclick=async()=>{
   const out=$('#keyTestResult');
   out.textContent='Provant…';
@@ -694,6 +709,7 @@ function boot(doSeed){
   renderBalance();
   renderCatChips();
   try{renderGistCfg();}catch(e){}
+  try{renderViewerSelect();}catch(e){}
   try{renderLists();}catch(e){}
   const info=$('#storageInfo');
   if(info){
