@@ -642,14 +642,8 @@ $('#logoutBtn').onclick=()=>{
 
 /* NO hi ha selector 'veure com a' — el filtre és el teu propi usuari */
 function dummyViewerSelect(){}
-function renderViewerSelect(){
-  const sel=$('#viewerSelect');
-  if(!sel)return;
-  const cur=S.currentViewer||'';
-  sel.innerHTML='<option value="">Tothom (compartit)</option>'
-    +S.people.map(p=>'<option value="'+p.id+'"'+(p.id===cur?' selected':'')+'>'+esc(p.name)+'</option>').join('');
-}
-$('#viewerSelect').onchange=e=>{S.currentViewer=e.target.value;save();renderViewerSelect();renderReceipts();renderBalance();};
+/* NO hi ha selector 'veure com a' — el filtre és el teu propi usuari */
+function dummyViewerSelect(){}
 
 $('#testKeyBtn').onclick=async()=>{
   const out=$('#keyTestResult');
@@ -798,12 +792,11 @@ function boot(doSeed){
   renderBalance();
   renderCatChips();
   try{renderGistCfg();}catch(e){}
-  try{renderViewerSelect();}catch(e){}
     /* identitat: auto-login si el dispositiu ja la coneix; modal si no */
     try{
       const u=getMyIdentity();
       if(u&&personById(u.id)){setIdentity(u.id);}
-      else if(!S.anonymous){openIdentityModal();}
+      else {openIdentityModal();}
     }catch(e){}
   try{renderLists();}catch(e){}
   const info=$('#storageInfo');
