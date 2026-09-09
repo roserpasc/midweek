@@ -16,10 +16,11 @@
 
 <header class="app">
   <h1><img src="logo.svg" alt="" style="height:26px;vertical-align:-6px;margin-right:6px">Àppats<span class="dot">.</span></h1>
-  <button id="identityBtn" class="identity hidden" title="Canvia l'identitat">
+  <div id="identityArea" class="identity hidden">
     <span class="dotc" id="identityDot" style="background:#5E8772"></span>
     <span id="identityName"></span>
-  </button>
+    <button id="logoutBtn" class="btn btn-sm" style="padding:2px 8px;font-size:11px" title="Tanca sessió">✕</button>
+  </div>
   <nav class="tabs" id="tabs">
     <button data-tab="menu" class="active">Menú</button>
     <button data-tab="recipes">Receptes</button>
@@ -103,10 +104,6 @@
 <section id="tab-receipts" class="hidden">
   <div class="grid-2">
     <div>
-      <div class="toolbar" style="margin-bottom:8px">
-        <label style="white-space:nowrap">Veure com a:</label>
-        <select id="viewerSelect" style="max-width:220px"><option value="">Tothom (compartit)</option></select>
-      </div>
       <div class="card scan-box">
         <h2 style="margin-top:0">📸 Escaneja un tiquet</h2>
         <p>Fes una foto del tiquet o puja-la. La IA n'extreu articles i preus; tu ho revises abans de desar.</p>

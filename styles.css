@@ -352,3 +352,9 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .welcome-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
 .welcome-list button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px}
 .welcome-list button:hover{background:var(--verd-clar)}
+
+/* logout button dins identityArea */
+#identityArea{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 12px 4px 14px;font-size:13.5px;font-weight:600;color:var(--ink)}
+#identityArea.hidden{display:none}
+#logoutBtn{padding:2px 6px;font-size:11px;line-height:1}
+@media(max-width:640px){#identityArea{order:3;margin-left:auto;padding:3px 8px;font-size:12px}}

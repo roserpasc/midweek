@@ -33,14 +33,9 @@ function renderPeople(){
     '<div class="person-pill" data-id="'+p.id+'">'
     +'<input type="color" value="'+esc(p.color)+'" data-pcolor>'
     +'<input type="text" value="'+esc(p.name)+'" data-pname>'
-    +'<input type="text" value="'+esc(p.pin||'')+'" data-ppin placeholder="PIN" title="PIN opcional (buit = sense)" style="width:64px">'
     +'<button data-pdel title="Elimina">✕</button></div>').join('');
 }
 $('#peopleRow').addEventListener('change',e=>{
-  if(e.target.dataset.ppin){
-    personById(e.target.closest('.person-pill').dataset.id).pin=e.target.value.trim();
-    save();return;
-  }
   if(e.target.dataset.pcolor){
     personById(e.target.closest('.person-pill').dataset.id).color=e.target.value;
     save();renderPeople();renderReceipts();renderBalance();
@@ -384,7 +379,7 @@ function renderReceipts(){
     wrap.innerHTML='<div class="card"><p class="empty-hint">Encara no hi ha compres desades. Escaneja el primer tiquet 👆</p></div>';
     return;
   }
-  const viewer=S.currentViewer||'';
+  const viewer=S.currentUser||'';
   const visible=S.receipts.filter(r=>canSeeReceipt(r,viewer));
   if(!visible.length&&S.receipts.length){
     wrap.innerHTML='<div class="card"><p class="empty-hint">Cap compra visible amb aquest filtre de privacitat.</p></div>';
@@ -464,7 +459,7 @@ function settledDeltaFor(id){
 }
 function renderBalance(){
   const el=$('#balanceBody');
-  const viewer=S.currentViewer||'';
+  const viewer=S.currentUser||'';
   const visible=S.receipts.filter(r=>canSeeReceipt(r,viewer));
   if(!visible.length&&!S.settlements.length){
     el.innerHTML='<p class="empty-hint">Sense compres encara.</p>';return;
@@ -503,7 +498,7 @@ function openSettlement(scopeIds){
   const people=scopeIds&&scopeIds.length?S.people.filter(p=>scopeIds.includes(p.id)):S.people;
   /* Calcula balance per persona tenint compte de splitWith per cada tiquet,
      i NOMÉS amb els tiquets que el visor actual pot veure (privacitat) */
-  const viewer=S.currentViewer||'';
+  const viewer=S.currentUser||'';
   const relevantReceipts = S.receipts.filter(r =>
     canSeeReceipt(r,viewer) && people.some(p => receiptInvolved(r, p.id))
   );
@@ -558,73 +553,95 @@ $('#apiKeyInput').oninput=debounce(e=>{
 $('#modelSelect').value=S.settings.model||'google/gemma-3-27b-it:free';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
 /* ============================================================
-   IDENTITAT: registre unic amb memoria al dispositiu
+   IDENTITAT: login/anònim/crear — sense PIN, memòria per dispositiu
    ============================================================ */
 const IDENTITY_KEY='midweek_identity';
 function getMyIdentity(){
   try{const v=JSON.parse(localStorage.getItem(IDENTITY_KEY));if(v&&v.id)return v;}catch(e){}
   return null;
 }
-function setMyIdentity(id){
-  const p=personById(id);
-  if(!p){localStorage.removeItem(IDENTITY_KEY);S.currentViewer='';}
-  else{
-    localStorage.setItem(IDENTITY_KEY,JSON.stringify({id:p.id,name:p.name,pin:p.pin||''}));
-    S.currentViewer=p.id;
+function setIdentity(id){
+  const p=id?personById(id):null;
+  if(p){
+    localStorage.setItem(IDENTITY_KEY,JSON.stringify({id:p.id,name:p.name}));
+    S.currentUser=p.id;
+    S.anonymous=false;
+  }else{
+    localStorage.removeItem(IDENTITY_KEY);
+    S.currentUser='';
+    S.anonymous=true;
   }
-  save();renderIdentity();renderViewerSelect();renderReceipts();renderBalance();
+  save();renderIdentity();renderReceipts();renderBalance();
+}
+function clearIdentity(){
+  localStorage.removeItem(IDENTITY_KEY);
+  S.currentUser='';
+  S.anonymous=true;
+  save();renderIdentity();renderReceipts();renderBalance();
 }
 function renderIdentity(){
-  const btn=$('#identityBtn');
-  if(!btn)return;
-  const me=getMyIdentity();
-  const p=me?personById(me.id):null;
-  btn.classList.toggle('hidden',!p);
+  const area=$('#identityArea');
+  if(!area)return;
+  const u=getMyIdentity();
+  const p=u?personById(u.id):null;
+  area.classList.toggle('hidden',!p);
   if(p){
     $('#identityName').textContent=p.name;
     $('#identityDot').style.background=p.color;
   }
 }
-/* modal: 'Qui ets?' — apareix si no hi ha identitat guardada al dispositiu */
 function openIdentityModal(){
   openModal('<h2>👋 Qui ets?</h2>'
-    +'<p class="muted">Tria el teu nom. Es recordarà en aquest dispositiu.</p>'
+    +'<p class="muted">Selecciona el teu usuari o crea-ne un de nou.</p>'
     +'<div class="welcome-list">'
     +S.people.map(p=>'<button data-me="'+p.id+'">'
       +'<span class="dotc" style="background:'+esc(p.color)+'"></span>'
-      +'<span style="flex:1;text-align:left"><b>'+esc(p.name)+'</b>'+(p.pin?' <span class="tiny muted">🔒</span>':'')+'</span>'
+      +'<span style="flex:1;text-align:left"><b>'+esc(p.name)+'</b></span>'
       +'<span class="tiny muted">entra →</span></button>').join('')
+    +'<button data-me="__anon" style="border-style:dashed;justify-content:center">🕵️ Continuar anònim</button>'
+    +'<button data-me="__new" style="border-style:dashed;justify-content:center;background:var(--verd-clar)">➕ Crear usuari nou</button>'
     +'</div>'
-    +'<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="idNoAsk" style="accent-color:var(--accent)"> '
-    +'<span class="muted tiny">Entrar sense identitat (compartit, sense accés als tiquets ocults)</span></label>'
-    +'<div class="modal-foot"><button class="btn btn-primary" id="idSkip">Continua</button></div>');
+    +'<div class="modal-foot"><button class="btn" id="idCancel">Cancel·la</button></div>');
   $$('#modalBox [data-me]').forEach(b=>b.onclick=()=>{
-    const p=personById(b.dataset.me);
-    if(p&&p.pin){
-      const pin=prompt('PIN de '+p.name+':');
-      if(pin!==p.pin){toast('PIN incorrecte');return;}
+    if(b.dataset.me==='__anon'){
+      setIdentity(null); // anònim
+      closeModal();toast('Mode anònim — els teus canvis no es guardaran com a teus');
+    }else if(b.dataset.me==='__new'){
+      closeModal();
+      openCreateUserModal();
+    }else{
+      setIdentity(b.dataset.me);
+      closeModal();toast('Hola, '+personById(b.dataset.me).name+' 👋');
     }
-    setMyIdentity(p.id);
-    closeModal();
-    toast('Hola, '+p.name+' 👋');
   });
-  $('#idSkip').onclick=()=>{
-    S.currentViewer='';S.identitySkipped=true;save();
-    localStorage.setItem(IDENTITY_KEY,JSON.stringify({skipped:true}));
-    closeModal();
+  $('#idCancel').onclick=closeModal;
+}
+function openCreateUserModal(){
+  openModal('<h2>➕ Crear usuari nou</h2>'
+    +'<p class="muted">El nou usuari apareixerà a "Qui sou?" i podrà ser seleccionat.</p>'
+    +'<div class="row"><div class="grow"><label>Nom</label><input id="newUserName" placeholder="ex. Maria"></div></div>'
+    +'<div class="row"><div class="grow"><label>Color</label><input type="color" id="newUserColor" value="#5E8772"></div></div>'
+    +'<div class="modal-foot"><span></span>'
+    +'<button class="btn" id="nuCancel">Cancel·la</button>'
+    +'<button class="btn btn-primary" id="nuCreate">Crea usuari</button></div>');
+  $('#nuCancel').onclick=()=>openIdentityModal();
+  $('#nuCreate').onclick=()=>{
+    const name=$('#newUserName').value.trim();
+    if(!name){toast('Posa un nom');return;}
+    const color=$('#newUserColor').value;
+    const p={id:uid(),name:name,color:color,pin:''};
+    S.people.push(p);save();renderPeople();renderIdentity();
+    closeModal();setIdentity(p.id);toast('Usuari '+name+' creat 👋');
   };
 }
-/* si canvien els noms a Opcions, sincronitza la identitat guardada */
-function syncIdentityName(){
-  const me=getMyIdentity();
-  if(!me)return;
-  const p=personById(me.id);
-  if(p&&p.name!==me.name){me.name=p.name;localStorage.setItem(IDENTITY_KEY,JSON.stringify(me));}
-  if(!p){localStorage.removeItem(IDENTITY_KEY);S.currentViewer='';}
-}
-$('#identityBtn').onclick=()=>openIdentityModal();
+$('#logoutBtn').onclick=()=>{
+  if(confirm('Tancar sessió? Tornaràs a la pantalla de benvinguda.')){
+    clearIdentity();
+  }
+};
 
-/* selector 'veure com a' (privacitat) */
+/* NO hi ha selector 'veure com a' — el filtre és el teu propi usuari */
+function dummyViewerSelect(){}
 function renderViewerSelect(){
   const sel=$('#viewerSelect');
   if(!sel)return;
@@ -782,13 +799,12 @@ function boot(doSeed){
   renderCatChips();
   try{renderGistCfg();}catch(e){}
   try{renderViewerSelect();}catch(e){}
-  /* identitat: auto-entrada si el dispositiu ja la coneix; modal si no */
-  try{
-    syncIdentityName();
-    const me=getMyIdentity();
-    if(me&&personById(me.id)){S.currentViewer=me.id;renderViewerSelect();}
-    else if(!S.identitySkipped){openIdentityModal();}
-  }catch(e){}
+    /* identitat: auto-login si el dispositiu ja la coneix; modal si no */
+    try{
+      const u=getMyIdentity();
+      if(u&&personById(u.id)){setIdentity(u.id);}
+      else if(!S.anonymous){openIdentityModal();}
+    }catch(e){}
   try{renderLists();}catch(e){}
   const info=$('#storageInfo');
   if(info){
