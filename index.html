@@ -16,10 +16,9 @@
 
 <header class="app">
   <h1><img src="logo.svg" alt="" style="height:26px;vertical-align:-6px;margin-right:6px">Àppats<span class="dot">.</span></h1>
-  <div id="identityArea" class="identity hidden">
-    <span class="dotc" id="identityDot" style="background:#5E8772"></span>
-    <span id="identityName"></span>
-    <button id="logoutBtn" class="btn btn-sm" style="padding:2px 8px;font-size:11px" title="Tanca sessió">✕</button>
+  <div id="identityArea" class="identity hidden" style="display:flex;align-items:center;gap:8px">
+    <span id="identityName" style="font-weight:600;font-size:14px"></span>
+    <button id="logoutBtn" class="btn" style="padding:2px 8px;font-size:11px;background:none;border:none;color:var(--ink);opacity:.7" title="Tanca sessió">✕</button>
   </div>
   <nav class="tabs" id="tabs">
     <button data-tab="menu" class="active">Menú</button>
@@ -174,51 +173,96 @@
 <!-- ================= OPCIONS ================= -->
 <section id="tab-settings" class="hidden">
   <div class="card" style="max-width:680px">
-    <h2>IA per escanejar tiquets</h2>
-    <p class="muted">Les fotos dels tiquets s'envien a un model de visió via OpenRouter per extreure'n articles, preus i total. La clau es guarda només en aquest navegador.</p>
-    <div class="row">
-      <div class="grow"><label>Clau d'API OpenRouter (sk-or-…)</label>
-        <input type="password" id="apiKeyInput" placeholder="sk-or-v1-…" autocomplete="off">
-      </div>
-      <div style="min-width:250px"><label>Model de visió</label>
-        <select id="modelSelect">
-          <option value="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free">Nemotron 3 Nano Omni 30B — gratuït (recomanat)</option>
-          <option value="google/gemma-4-26b-a4b-it:free">Gemma 4 26B — gratuït</option>
-          <option value="google/gemini-2.5-flash">Gemini 2.5 Flash (ràpid, de pagament)</option>
-          <option value="google/gemini-2.5-pro">Gemini 2.5 Pro (precís, de pagament)</option>
-          <option value="openai/gpt-4o-mini">GPT-4o mini (de pagament)</option>
-        </select>
-      </div>
-      <div style="align-self:end"><button class="btn" id="testKeyBtn">Prova</button></div>
-    </div>
-    <div id="keyTestResult" class="muted" style="margin-top:8px"></div>
-    <hr class="sep">
-    <h3>Sincronització entre dispositius (Gist)</h3>
-    <p class="muted">Dues pestanyes comparteixen el mateix Gist. Enganxa aquí el mateix ID i token a cada dispositiu (es guarda només en aquest navegador).</p>
-    <div class="row">
-      <div class="grow"><label>ID del Gist</label><input id="gistIdInput" placeholder="gist id" autocomplete="off"></div>
-      <div class="grow"><label>Token de GitHub (permís gist)</label><input type="password" id="gistTokenInput" placeholder="ghp_…" autocomplete="off"></div>
-      <div style="align-self:end"><button class="btn btn-primary" id="gistSaveBtn">Desa</button></div>
-    </div>
-    <p class="muted" id="gistStatus"></p>
-    <hr class="sep">
-    <h3>Categories de productes</h3>
-    <div class="chip-list" id="catChips"></div>
-    <div class="row" style="margin-top:10px">
-      <input id="newCatInput" placeholder="Nova categoria…" style="max-width:230px">
-      <button class="btn btn-sm" id="addCatBtn">Afegeix categoria</button>
-    </div>
-    <hr class="sep">
-    <h3>Dades</h3>
-    <div class="row">
-      <button class="btn" id="exportBtn">Exportar JSON</button>
-      <label class="btn file-btn-outline">Importar JSON<input type="file" accept=".json,application/json" id="importFile"></label>
-      <button class="btn" id="importBankBtn">📚 Importa la biblioteca de receptes (1.070)</button>
+    <h2>Opcions</h2>
+    
+    <!-- Accordion 1: IA per escanejar tiquets -->
+    <details class="accordion" open>
+      <summary class="accordion-header">
+        <h3>🤖 IA per escanejar tiquets</h3>
+        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="accordion-content">
+        <p class="muted">Les fotos dels tiquets s'envien a un model de visió via OpenRouter per extreure'n articles, preus i total. La clau es guarda només en aquest navegador.</p>
+        <div class="row">
+          <div class="grow"><label>Clau d'API OpenRouter (sk-or-…)</label>
+            <input type="password" id="apiKeyInput" placeholder="sk-or-v1-…" autocomplete="off">
+          </div>
+          <div style="min-width:250px"><label>Model de visió</label>
+            <select id="modelSelect">
+              <option value="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free">Nemotron 3 Nano Omni 30B — gratuït (recomanat)</option>
+              <option value="google/gemma-4-26b-a4b-it:free">Gemma 4 26B — gratuït</option>
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash (ràpid, de pagament)</option>
+              <option value="google/gemini-2.5-pro">Gemini 2.5 Pro (precís, de pagament)</option>
+              <option value="openai/gpt-4o-mini">GPT-4o mini (de pagament)</option>
+            </select>
+          </div>
+          <div style="align-self:end"><button class="btn" id="testKeyBtn">Prova</button></div>
+        </div>
+        <div id="keyTestResult" class="muted" style="margin-top:8px"></div>
+      </details>
 
-      <button class="btn" id="restoreBankBtn">🔄 Restaura biblioteca traduïda (esborra i reimporta)</button>
-      <button class="btn btn-danger" id="wipeBtn">Esborra-ho tot</button>
+      <!-- Accordion 2: Sincronització entre dispositius -->
+      <details class="accordion">
+        <summary class="accordion-header">
+          <h3>☁️ Sincronització entre dispositius (Gist)</h3>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="accordion-content">
+          <p class="muted">Dues pestanyes comparteixen el mateix Gist. Enganxa aquí el mateix ID i token a cada dispositiu (es guarda només en aquest navegador).</p>
+          <div class="row">
+            <div class="grow"><label>ID del Gist</label><input id="gistIdInput" placeholder="gist id" autocomplete="off"></div>
+            <div class="grow"><label>Token de GitHub (permís gist)</label><input type="password" id="gistTokenInput" placeholder="ghp_…" autocomplete="off"></div>
+            <div style="align-self:end"><button class="btn btn-primary" id="gistSaveBtn">Desa</button></div>
+          </div>
+          <p class="muted" id="gistStatus"></p>
+        </details>
+
+      <!-- Accordion 3: Qui sou? -->
+      <details class="accordion">
+        <summary class="accordion-header">
+          <h3>👥 Qui sou?</h3>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="accordion-content">
+          <p class="muted">Gestiona les persones de la unitat convivencial. El color identifica cada persona als repartiments.</p>
+          <div class="people-row" id="peopleRow"></div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn btn-sm" id="addPersonBtn">+ persona</button>
+            <span class="muted tiny">El color identifica cada persona als repartiments</span>
+          </div>
+        </details>
+
+      <!-- Accordion 3: Categories de productes -->
+      <details class="accordion">
+        <summary class="accordion-header">
+          <h3>🏷️ Categories de productes</h3>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="accordion-content">
+          <div class="chip-list" id="catChips"></div>
+          <div class="row" style="margin-top:10px">
+            <input id="newCatInput" placeholder="Nova categoria…" style="max-width:230px">
+            <button class="btn btn-sm" id="addCatBtn">Afegeix categoria</button>
+          </div>
+        </details>
+
+      <!-- Accordion 4: Dades -->
+      <details class="accordion">
+        <summary class="accordion-header">
+          <h3>💾 Dades</h3>
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="accordion-content">
+          <div class="row">
+            <button class="btn" id="exportBtn">Exportar JSON</button>
+            <label class="btn file-btn-outline">Importar JSON<input type="file" accept=".json,application/json" id="importFile"></label>
+            <button class="btn" id="importBankBtn">📚 Importa la biblioteca de receptes (1.070)</button>
+            <button class="btn" id="restoreBankBtn">🔄 Restaura biblioteca traduïda (esborra i reimporta)</button>
+            <button class="btn btn-danger" id="wipeBtn">Esborra-ho tot</button>
+          </div>
+          <p class="muted" style="margin-top:10px" id="storageInfo"></p>
+        </details>
     </div>
-    <p class="muted" style="margin-top:10px" id="storageInfo"></p>
   </div>
 </section>
 

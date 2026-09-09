@@ -44,7 +44,7 @@ $('#peopleRow').addEventListener('change',e=>{
 $('#peopleRow').addEventListener('input',debounce(e=>{
   if(e.target.dataset.pname){
     personById(e.target.closest('.person-pill').dataset.id).name=e.target.value.trim()||'?';
-    save();renderPayerSelect();renderBalance();try{syncIdentityName();renderIdentity();}catch(err){}
+    save();renderPayerSelect();renderBalance();renderIdentity();
   }
 },300));
 $('#peopleRow').addEventListener('click',e=>{

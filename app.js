@@ -559,7 +559,7 @@ function addMealFlow(key){
     +'<option value="__sweet">🍰 dolç</option>'
     +'</select></div></div>'
     +(S.recipes.length?'<input id="pickerSearch" placeholder="Cerca recepta…"><div id="pickerList" style="max-height:44vh;overflow-y:auto;margin-top:10px"></div>'
-      :'<p class="muted">Encara no hi ha receptes. Pots afegir un àpat lliure o crear-ne una a la pestanya Receptes.</p>'));
+              :'<p class="muted">Encara no hi ha receptes. Pots afegir un àpat lliure o crear-ne una a la pestanya Receptes.</p>'));
   $('#pickerFree').onclick=()=>openFreeMeal(key,null);
   $('#pickerRandom').onclick=()=>{
     if(!S.recipes.length){toast('Encara no hi ha receptes.');return;}
@@ -1338,3 +1338,5 @@ function openGenerateListModal(){
 $('#genShopBtn').onclick=openGenerateListModal;
 $('#genListBtn').onclick=openGenerateListModal;
 $('#extraName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#addExtraBtn').click();});
+
+initialSync();

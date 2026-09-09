@@ -340,9 +340,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   #draftCard .items td:last-child::before{display:none}
 }
 
-/* identitat al header */
-.identity{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
-  border-radius:20px;padding:5px 14px;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer}
+
 .identity:hover{border-color:var(--accent)}
 .identity.hidden{display:none}
 @media(max-width:640px){
@@ -353,8 +351,60 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .welcome-list button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px}
 .welcome-list button:hover{background:var(--verd-clar)}
 
-/* logout button dins identityArea */
-#identityArea{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 12px 4px 14px;font-size:13.5px;font-weight:600;color:var(--ink)}
+/* identitat al header - inline styles on element */
 #identityArea.hidden{display:none}
-#logoutBtn{padding:2px 6px;font-size:11px;line-height:1}
-@media(max-width:640px){#identityArea{order:3;margin-left:auto;padding:3px 8px;font-size:12px}}
+@media(max-width:640px){#identityArea{order:3;margin-left:auto;font-size:13px}}
+
+
+/* Accordion sections in Settings */
+.accordion {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--card);
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  user-select: none;
+}
+.accordion-header:hover { background: var(--verd-clar); }
+.accordion-header h3, .accordion-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.accordion-chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.accordion[open] .accordion-chevron {
+  transform: rotate(180deg);
+}
+.accordion-content {
+  padding: 16px;
+  animation: accordion-down 0.25s ease;
+}
+@keyframes accordion-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.accordion[open] .accordion-content {
+  animation: accordion-down 0.25s ease;
+}
+.accordion:not([open]) .accordion-content {
+  display: none;
+}
