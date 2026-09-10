@@ -280,7 +280,7 @@ async function scanImage(dataUrl){
     alert('Primer configura la teva clau d\'OpenRouter a la pestanya Opcions.');
     switchTab('settings');return;
   }
-  const model=S.settings.model||'google/gemma-3-27b-it:free';
+  const model=S.settings.model||'google/gemini-2.5-flash';
   const t0=Date.now();
   $('#scanProgress').classList.remove('hidden');
   setProgress(15,'Enviant imatge…');
@@ -460,20 +460,6 @@ $('#receiptsList').addEventListener('click',e=>{
   }
 });
 
-function computeBalances(){
-  const paid={},owes={};
-  S.people.forEach(p=>{paid[p.id]=0;owes[p.id]=0;});
-  S.receipts.forEach(rc=>{
-    const share=rc.total/(S.people.length||2);
-    if(paid[rc.payerId]!=null)paid[rc.payerId]+=rc.total;
-    S.people.forEach(p=>{owes[p.id]+=share;});
-  });
-  S.settlements.forEach(st=>{
-    owes[st.fromId]-=st.amount;
-    if(owes[st.toId]!=null)owes[st.toId]-=st.amount*-1;
-  });
-  return S.people.map(p=>({person:p,balance:paid[p.id]-owes[p.id]+settledDeltaFor(p.id, viewer)}));
-}
 function settledDeltaFor(id, viewer){
   /* liquidacions JA FETES: resten del balanç pendent.
      qui VA REBRE diners (toId): el seu crèdit baixa; qui VA PAGAR (fromId): el seu deute baixa */

@@ -64,7 +64,7 @@ function defaultState(){
     shoppingLists:[],
     receipts:[],             /* {id,date,store,payerId,total,items:[{name,qty,unit,price}],photo} */
     settlements:[],          /* {date,fromId,toId,amount} */
-    settings:{apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},
+    settings:{apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'google/gemini-2.5-flash'},
     ui:{tab:'menu',weekStart:null},
     seedDone:false
   };
@@ -300,7 +300,9 @@ async function initialSync() {
 
 
 S.shopping=S.shopping&&Array.isArray(S.shopping.items)?S.shopping:{items:[],stale:false};
-S.settings=Object.assign({apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free'},S.settings);
+S.settings=Object.assign({apiKey:(window.MIDWEEK_OPENROUTER_KEY||''),model:'google/gemini-2.5-flash'},S.settings);
+/* models trencats desats -> gemini 2.5 flash (única opció vàlida) */
+if(['nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free','google/gemma-4-26b-a4b-it:free','google/gemma-3-27b-it:free'].indexOf(S.settings.model)>=0){S.settings.model='google/gemini-2.5-flash';}
 
 function save(){
   try{
