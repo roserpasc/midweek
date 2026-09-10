@@ -13,3 +13,4 @@ _server.js
 node_modules/
 _mob*
 _*.png
+preview/

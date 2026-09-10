@@ -312,35 +312,6 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 /* llistes de compra */
 .list-card.sel{border-color:var(--accent);box-shadow:0 2px 12px rgba(94,135,114,.18)}
 
-/* draft table responsive: scroll horizontal on mobile, card layout option */
-@media(max-width:640px){
-  #draftCard .items{display:block;overflow-x:auto;white-space:nowrap;margin:0 -12px;padding:0 12px}
-  #draftCard .items thead{display:none}
-  #draftCard .items tbody{display:flex;flex-direction:column;gap:8px;white-space:normal}
-  #draftCard .items tr{
-    display:flex;flex-wrap:wrap;gap:6px;background:var(--card);border:1px solid var(--line);
-    border-radius:8px;padding:10px;align-items:flex-end
-  }
-  #draftCard .items td{
-    display:flex;flex-direction:column;min-width:0;flex:1 1 120px
-  }
-  #draftCard .items td:last-child{flex:none;align-self:flex-start}
-  #draftCard .items label{font-size:11px;color:var(--muted);margin-bottom:2px}
-  #draftCard .items input,#draftCard .items select{min-height:36px;font-size:15px}
-}
-
-/* mobile card view for draft table - show data-label as pseudo-element */
-@media(max-width:640px){
-  #draftCard .items td{position:relative;padding-left:80px}
-  #draftCard .items td::before{
-    content:attr(data-label);
-    position:absolute;left:8px;top:2px;
-    font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap
-  }
-  #draftCard .items td:last-child::before{display:none}
-}
-
-
 /* identitat: fixed top-right de la pantalla (mai tapa el menú, sempre visible) */
 #identityArea{
   position:fixed;
@@ -439,35 +410,40 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .rs-total{font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;margin-left:auto}
 .receipt-detail{padding:4px 14px 14px;border-top:1px solid var(--line)}
 
-/* taula esborrany: fila única per producte, amb tres columnes */
-#draftCard .items{border-collapse:separate;border-spacing:0 6px}
-#draftCard .items td{padding:0;vertical-align:middle;border:none}
-#draftCard .items input{width:100%;min-height:40px;padding:8px 10px;font-size:15px;background:#fff;border:1.5px solid var(--line);border-radius:8px}
-#draftCard .items td[data-label="Producte"] input{font-size:15px}
-/* Quant. column: qty + unit side by side */
-#draftCard .items td[data-label="Quant."]{display:flex;gap:6px}
-#draftCard .items td[data-label="Quant."] input{flex:1 1 auto;min-width:0}
-/* unit input: same flex but we'll let it shrink */
-#draftCard .items td[data-label="Quant."] input[data-f=unit]{flex:0 0 60px;/* fixed width for unit */}
-/* Preu € column: make it 25% shorter than before */
-#draftCard .items td[data-label="Preu €"]{width:80px;/* was 100px, now 25% shorter */}
-#draftCard .items td[data-label="Preu €"] input{text-align:right}
-#draftCard .items .del-cell{width:26px;text-align:right;vertical-align:bottom}
-#draftCard .items .del-cell .del{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;padding:2px 4px;min-height:0;min-width:0;line-height:1}
-#draftCard .items .del-cell .del:hover{color:var(--danger)}
-/* títols: columnes de la fila amb etiqueta visible a sobre */
-#draftCard .items td[data-label]::before{
-  content:attr(data-label);
-  display:block;font-size:10.5px;font-weight:700;letter-spacing:.5px;
-  text-transform:uppercase;color:var(--muted);margin-bottom:3px
+/* ================= ESBORRANY DE COMPRA: un requadre per producte ================= */
+.draft-items{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.draft-item{
+  position:relative;background:#fff;border:1.5px solid var(--line);border-radius:12px;
+  padding:10px 12px 12px;box-shadow:0 1px 2px rgba(38,49,43,.04)
 }
-#draftCard .items td[data-label="Producte"]::before{margin-bottom:3px}
-/* placeholders: quant buit → sense text; unit buit → sense text */
-#draftCard .items input[data-f=qty][placeholder=""]{/* already empty */}
-/* remove default unit placeholder; we'll keep empty */
+.di-field{display:block;min-width:0}
+/* títol de columna: amb espai real respecte del requadre de sota */
+.di-label{
+  display:block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--muted);margin:0 0 7px
+}
+.draft-item input{
+  width:100%;min-height:40px;padding:8px 10px;font-size:15px;
+  background:#fff;border:1.5px solid var(--line);border-radius:8px
+}
+/* fila 2: Quant. (qty + unitat) | Preu €  — deixa 26px lliures a la dreta per a la X */
+.di-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 60px;gap:10px;
+  margin-top:10px;padding-right:26px
+}
+.di-qty{display:flex;gap:6px}
+.di-qty input[data-f="qty"]{flex:0 0 64px}
+.di-qty input[data-f="unit"]{flex:1 1 auto;min-width:0}
+.di-price input{text-align:right;padding:8px 6px}
+/* X petita, a baix a la dreta, sense marge extra */
+.di-del{
+  position:absolute;right:4px;bottom:5px;background:none;border:none;color:var(--muted);
+  font-size:11px;line-height:1;padding:2px 4px;min-height:0;min-width:0;width:auto;
+  border-radius:6px;cursor:pointer
+}
+.di-del:hover{color:var(--danger);background:#F7E4E2}
 @media(max-width:640px){
-  #draftCard .items td[data-label="Quant."]{flex-wrap:wrap}
-  #draftCard .items td[data-label="Quant."] input{flex:0 0 70px;}
-  #draftCard .items td[data-label="Quant."] input[data-f=unit]{flex:0 0 50px;}
-  #draftCard .items td[data-label="Preu €"]{width:60px;}
+  .di-grid{grid-template-columns:minmax(0,1fr) 58px;padding-right:24px}
+  .draft-item input{min-height:44px;font-size:16px} /* evita zoom a iOS */
+  .di-qty input[data-f="qty"]{flex:0 0 70px}
 }

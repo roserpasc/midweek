@@ -95,19 +95,25 @@ function renderDraft(){
   let total=0;
     const rows = draft.items.map((it, idx) => {
   total += Number(it.price) || 0;
-  return `<tr data-idx="${idx}" class="draft-row">
-    <td data-label="Producte"><input value="${esc(it.name)}" data-f="name" placeholder="Producte"></td>
-    <td data-label="Quant.">
-      <input value="${it.qty != null ? it.qty : ''}" data-f="qty" inputmode="decimal" placeholder="">
-      <input value="${esc(it.unit || '')}" data-f="unit" placeholder="">
-    </td>
-    <td data-label="Preu €"><input placeholder="0,00" value="${it.price != null ? String(it.price).replace('.',',') : ''}" data-f="price" inputmode="decimal" style="text-align:right; width:70px;"></td>
-    <td class="del-cell"><button class="del" data-delrow title="Elimina">✕</button></td>
-  </tr>`;
+  /* UN sol requadre per producte: nom a dalt; Quant.+unitat i Preu a sota; X petita baix-dreta */
+  return '<div class="draft-item" data-idx="'+idx+'">'
+    +'<div class="di-field"><span class="di-label">Producte</span>'
+      +'<input value="'+esc(it.name)+'" data-f="name" placeholder="Producte" autocomplete="off"></div>'
+    +'<div class="di-grid">'
+      +'<div class="di-field"><span class="di-label">Quant.</span>'
+        +'<div class="di-qty">'
+          +'<input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal" placeholder="">'
+          +'<input value="'+esc(it.unit||'')+'" data-f="unit" placeholder="">'
+        +'</div></div>'
+      +'<div class="di-field di-price"><span class="di-label">Preu €</span>'
+        +'<input value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal" placeholder="0,00"></div>'
+    +'</div>'
+    +'<button class="di-del" data-delrow title="Elimina aquest producte">✕</button>'
+    +'</div>';
 }).join('');
     $('#draftTable').innerHTML=(draft.items.length
       ?rows
-      :'<tr><td colspan="2" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
+      :'<p class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</p>');
   $('#draftTotal').textContent=eur(total);
   $('#draftHint').textContent=draft.items.length+' línies · revisa els preus abans de desar';
   /* banner IA */
@@ -123,20 +129,22 @@ function renderDraft(){
 /* inputs de l'esborrany (delegació) */
 $('#draftTable').addEventListener('input',e=>{
   const inp=e.target.closest('input,select');if(!inp)return;
-  const tr=inp.closest('tr[data-idx]');if(!tr)return;
-  const it=draft.items[+tr.dataset.idx];
-  if(inp.dataset.f==='name'){it.name=inp.value.trim();}
+  const item=inp.closest('[data-idx]');if(!item||!draft)return;
+  const it=draft.items[+item.dataset.idx];if(!it)return;
+  if(inp.dataset.f==='name'){it.name=inp.value;}
   else if(inp.dataset.f==='qty'){it.qty=inp.value===''?null:+inp.value;}
-  else if(inp.dataset.f==='unit'){it.unit=inp.value.trim();}
+  else if(inp.dataset.f==='unit'){it.unit=inp.value;}
   else if(inp.dataset.f==='price'){it.price=inp.value===''?null:+inp.value.replace(',','.');}
-  renderDraft();
+  /* NO re-render complet: així el camp no perd el focus mentre s'escriu */
+  const total=draft.items.reduce((a,i)=>a+(Number(i.price)||0),0);
+  $('#draftTotal').textContent=eur(total);
 });
 $('#draftTable').addEventListener('click',e=>{
   const del=e.target.closest('[data-delrow]');
   if(!del)return;
-  const tr=del.closest('tr[data-idx]');
-  if(!tr||!tr.dataset.idx)return;
-  draft.items.splice(+tr.dataset.idx,1);renderDraft();
+  const item=del.closest('[data-idx]');
+  if(!item||!draft)return;
+  draft.items.splice(+item.dataset.idx,1);renderDraft();
 });
 $('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
 $('#discardDraftBtn').onclick=()=>{
@@ -165,7 +173,8 @@ $('#draftHidden').onchange=e=>{if(draft)draft.hidden=e.target.value==='1';};
 /* desar compra */
 $('#saveReceiptBtn').onclick=()=>{
   if(!draft||!draft.items.length){toast('L\'esborrany és buit.');return;}
-  const items=draft.items.filter(i=>i.name.trim());
+  const items=draft.items.filter(i=>i.name.trim())
+    .map(i=>Object.assign({},i,{name:i.name.trim(),unit:(i.unit||'').trim()}));
   if(!items.length){toast('Totes les línies són buides.');return;}
   /* si hi ha llistes de compra: demanar per a quines és el tiquet */
   const lists=S.shoppingLists||[];
