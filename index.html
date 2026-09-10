@@ -16,9 +16,12 @@
 
 <header class="app">
   <h1><img src="logo.svg" alt="" style="height:26px;vertical-align:-6px;margin-right:6px">Àppats<span class="dot">.</span></h1>
-  <div id="identityArea" class="identity hidden" style="display:flex;align-items:center;gap:8px">
-    <span id="identityName" style="font-weight:600;font-size:14px"></span>
-    <button id="logoutBtn" class="btn" style="padding:2px 8px;font-size:11px;background:none;border:none;color:var(--ink);opacity:.7" title="Tanca sessió">✕</button>
+  <div id="identityArea" class="identity hidden">
+    <span class="identity-chip" id="identityChip">
+      <span class="dotc" id="identityDot" style="background:#5E8772"></span>
+      <span id="identityName"></span>
+    </span>
+    <button id="logoutBtn" class="identity-x" title="Tanca sessió">✕</button>
   </div>
   <nav class="tabs" id="tabs">
     <button data-tab="menu" class="active">Menú</button>
@@ -153,14 +156,6 @@
 
     <div>
       <div class="card">
-        <h2>Qui sou?</h2>
-        <div class="people-row" id="peopleRow"></div>
-        <div class="row" style="margin-top:10px">
-          <button class="btn btn-sm" id="addPersonBtn">+ persona</button>
-          <span class="muted tiny">El color identifica cada persona als repartiments</span>
-        </div>
-      </div>
-      <div class="card">
         <h2>Balanç</h2>
         <div id="balanceBody"><p class="empty-hint">Sense compres encara.</p></div>
         <p class="muted tiny">Verd = t'han de tornar · Vermell = has de pagar</p>
@@ -176,7 +171,7 @@
     <h2>Opcions</h2>
     
     <!-- Accordion 1: IA per escanejar tiquets -->
-    <details class="accordion" open>
+    <details class="accordion">
       <summary class="accordion-header">
         <h3>🤖 IA per escanejar tiquets</h3>
         <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>

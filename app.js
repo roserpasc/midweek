@@ -487,6 +487,7 @@ function renderMenu(){
           +'<span class="t">'+emo+' '+((r&&!r._ghost)?'<a class="meal-link" data-recipe="'+r.id+'" title="Obre la fitxa de la recepta">'+esc(name)+'</a>':esc(name))+'</span>'
           +(excerpt?'<span class="x2 tiny muted">'+esc(excerpt)+'</span>':'')
           +'<span class="s">👥 '+m.diners+(r?'':' · 📝')+'</span>'
+          +(m.by&&personById(m.by)?'<span class="by-chip" title="Posat per '+esc(personById(m.by).name)+'"><span class="dotc" style="background:'+esc(personById(m.by).color)+'"></span>'+esc(personById(m.by).name)+'</span>':'')
           +'<button class="x" data-del-key="'+key+'" data-del-idx="'+idx+'" title="Elimina">✕</button></div>';
       });
       html+='<td class="slot'+(meals.length?'':' empty')+'" data-drop-key="'+key+'">'+chips
@@ -498,6 +499,11 @@ function renderMenu(){
 }
 
 function pushMeal(key,meal){
+  /* marca qui ha posat l'àpat (usuari actiu; anònim queda sense marca) */
+  if(S.currentUser){
+    const me=personById(S.currentUser);
+    if(me){meal.by=S.currentUser;}
+  }
   (S.menu[key]=S.menu[key]||[]).push(meal);
   save();renderMenu();markStale();
 }

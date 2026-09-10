@@ -36,13 +36,13 @@ function renderPeople(){
     +'<button data-pdel title="Elimina">✕</button></div>').join('');
 }
 $('#peopleRow').addEventListener('change',e=>{
-  if(e.target.dataset.pcolor){
+  if(e.target.dataset.pcolor!==undefined){
     personById(e.target.closest('.person-pill').dataset.id).color=e.target.value;
     save();renderPeople();renderReceipts();renderBalance();
   }
 });
 $('#peopleRow').addEventListener('input',debounce(e=>{
-  if(e.target.dataset.pname){
+  if(e.target.dataset.pname!==undefined){
     personById(e.target.closest('.person-pill').dataset.id).name=e.target.value.trim()||'?';
     save();renderPayerSelect();renderBalance();renderIdentity();
   }

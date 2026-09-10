@@ -341,19 +341,17 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 }
 
 
-.identity:hover{border-color:var(--accent)}
-.identity.hidden{display:none}
-@media(max-width:640px){
-  .identity{order:3;margin-left:auto;padding:4px 10px;font-size:12.5px}
-}
-/* modal de registre */
-.welcome-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.welcome-list button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px}
-.welcome-list button:hover{background:var(--verd-clar)}
-
-/* identitat al header - inline styles on element */
+/* identitat al header: mateixa fila que el logo, alineat a la dreta, sense borde */
+#identityArea{display:flex;align-items:center;gap:6px;margin-left:auto}
 #identityArea.hidden{display:none}
-@media(max-width:640px){#identityArea{order:3;margin-left:auto;font-size:13px}}
+.identity-chip{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:14px;
+  font-size:13px;font-weight:600;color:var(--ink)}
+.identity-x{background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;padding:2px 5px;line-height:1}
+.identity-x:hover{color:var(--danger)}
+@media(max-width:640px){
+  #identityArea{order:3;margin-left:auto}
+  .identity-chip{font-size:12px;padding:2px 8px}
+}
 
 
 /* Accordion sections in Settings */
@@ -408,3 +406,14 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .accordion:not([open]) .accordion-content {
   display: none;
 }
+
+/* modal de registre */
+.welcome-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.welcome-list button{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px}
+.welcome-list button:hover{background:var(--verd-clar)}
+
+/* autor de l'àpat al calendari */
+.meal-chip .by-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;
+  color:var(--ink);background:rgba(38,49,43,.06);border-radius:8px;padding:1px 6px;max-width:100%;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meal-chip .by-chip .dotc{width:8px;height:8px;flex-shrink:0}
