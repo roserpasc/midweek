@@ -139,7 +139,7 @@ $('#draftTable').addEventListener('click',e=>{
   const tr=e.target.closest('tr[data-idx]');
   draft.items.splice(+tr.dataset.idx,1);renderDraft();
 });
-$('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
+$('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
 $('#discardDraftBtn').onclick=()=>{
   if(draft&&draft.items.length&&!confirm('Descartar l\'esborrany actual?'))return;
   draft=null;renderDraft();
@@ -221,7 +221,12 @@ function finishReceipt(items,listIds){
     });
   });
   save();
-  draft=null;renderDraft();renderLists();updateShopBadge();renderReceipts();renderBalance();
+  draft=null;
+  try{renderDraft();}catch(e){console.error(e);}
+  try{renderLists();}catch(e){console.error(e);}
+  try{updateShopBadge();}catch(e){console.error(e);}
+  try{renderReceipts();}catch(e){console.error(e);}
+  try{renderBalance();}catch(e){console.error(e);}
   toast('Compra desada ✓ '+eur(receipt.total));
 }
 
@@ -309,7 +314,7 @@ async function scanImage(dataUrl){
       price:parseNum(i.price)
     })).filter(i=>i.name);
     if(!items.length)throw new Error('No s\'ha detectat cap article llegible.');
-    if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
+    if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
     if(draft.photo&&draft.photo!==dataUrl)draft.items=[];
     draft.photo=dataUrl;
     draft.store=parsed.store||draft.store||'';
@@ -349,7 +354,7 @@ async function handleImageInput(file){
   if(!file||!file.type.startsWith('image/')){toast('Això no sembla una imatge.');return;}
   const raw=await readImageFile(file);
   const small=await downscaleDataUrl(raw,1400);
-  if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
+  if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};
   draft.photo=small;
   await scanImage(small);
 }
@@ -388,21 +393,30 @@ function renderReceipts(){
   }
   wrap.innerHTML=visible.map(rc=>{
     const payer=personById(rc.payerId);
-    return '<div class="card">'
-      +'<div class="toolbar" style="margin-bottom:8px">'
-      +'<div><h3 style="margin:0">'+esc(rc.store||'Compra')+'</h3>'
-      +'<span class="muted tiny">'+esc(fmtLongDate(rc.date))+' · pagat per '
-      +(payer?'<span class="dotc" style="background:'+esc(payer.color)+'"></span>'+esc(payer.name):'—')
-      +(rc.ai?' · 🤖 '+esc(rc.ai.model):'')+'</span></div>'
-      +'<div class="spacer"></div>'
-      +(rc.photo?'<img class="receipt-photo" src="'+rc.photo+'" alt="tiquet" data-viewphoto="'+rc.id+'">':'')
-      +'<span class="big-total">'+eur(rc.total)+'</span></div>'
+    const total=rc.total||0;
+    return '<details class="card receipt-row">'
+      +'<summary class="receipt-summary">'
+      +'<span class="rs-store">'+esc(rc.store||'Compra')+'</span>'
+      +'<span class="rs-meta">'+esc(fmtShortDate(rc.date))+'</span>'
+      +(payer?'<span class="rs-payer"><span class="dotc" style="background:'+esc(payer.color)+'"></span>'+esc(payer.name)+'</span>':'<span class="rs-meta">—</span>')
+      +'<span class="rs-total">'+eur(total)+'</span>'
+      +(rc.hidden?'<span class="tag" title="Tiquet ocult">🔒</span>':'')
+      +'</summary>'
+      +'<div class="receipt-detail">'
+      +'<div class="muted tiny" style="margin-bottom:6px">'+esc(fmtLongDate(rc.date))
+      +(rc.ai?' · 🤖 '+esc(rc.ai.model):'')+'</div>'
       +renderSplitChips(rc)
       +'<details style="margin-top:8px"><summary class="muted tiny" style="cursor:pointer">'+rc.items.length+' articles</summary>'
       +'<table class="items"><tbody>'+rc.items.map(i=>'<tr><td>'+esc(i.name)+(i.qty?' <span class="muted tiny">×'+i.qty+(i.unit?' '+esc(i.unit):'')+'</span>':'')+'</td><td class="num">'+(i.price!=null?eur(i.price):'—')+'</td></tr>').join('')+'</tbody></table></details>'
+      +(rc.photo?'<div style="margin-top:8px"><img class="receipt-photo" src="'+rc.photo+'" alt="tiquet" data-viewphoto="'+rc.id+'" style="max-width:180px"></div>':'')
       +'<div style="text-align:right;margin-top:8px"><button class="btn btn-danger btn-sm" data-delrc="'+rc.id+'">Elimina compra</button></div>'
-      +'</div>';
+      +'</div>'
+      +'</details>';
   }).join('');
+}
+function fmtShortDate(ds){
+  try{return new Date(ds+'T00:00:00').toLocaleDateString('ca-ES',{day:'numeric',month:'short'});}
+  catch(e){return ds;}
 }
 function fmtLongDate(ds){
   try{return new Date(ds+'T00:00:00').toLocaleDateString('ca-ES',{weekday:'long',day:'numeric',month:'long'});}
@@ -556,7 +570,7 @@ $('#apiKeyInput').value=S.settings.apiKey||'';
 $('#apiKeyInput').oninput=debounce(e=>{
   S.settings.apiKey=e.target.value.trim();save();
 },400);
-$('#modelSelect').value=S.settings.model||'google/gemma-3-27b-it:free';
+$('#modelSelect').value=S.settings.model||'google/gemini-2.5-flash';
 $('#modelSelect').onchange=e=>{S.settings.model=e.target.value;save();toast('Model: '+e.target.value);};
 /* ============================================================
    IDENTITAT: login/anònim/crear — sense PIN, memòria per dispositiu

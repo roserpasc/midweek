@@ -23,7 +23,7 @@ label{font-size:13px;opacity:.85;display:block;margin-bottom:3px}
 .hidden{display:none!important}
 
 /* header */
-header.app{position:sticky;top:0;z-index:50;background:var(--accent);color:#fff;padding:0 18px;display:flex;align-items:center;gap:14px;height:58px;box-shadow:var(--shadow);position:relative}
+header.app{position:sticky;top:0;z-index:50;background:var(--accent);color:#fff;padding:0 18px;display:flex;align-items:center;gap:14px;height:58px;box-shadow:var(--shadow)}
 header.app h1{font-size:21px;margin:0;letter-spacing:.3px;white-space:nowrap}
 header.app h1 .dot{color:var(--highlight)}
 nav.tabs{display:flex;gap:4px;height:100%;align-items:stretch;margin-left:8px;overflow-x:auto;margin-right:120px}
@@ -341,15 +341,15 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 }
 
 
-/* identitat al header: posicio absoluta top-right, MAI baixa */
+/* identitat: fixed top-right de la pantalla (mai tapa el menú, sempre visible) */
 #identityArea{
-  position:absolute;
+  position:fixed;
   top:8px;
   right:18px;
   display:flex;
   align-items:center;
   gap:6px;
-  z-index:60
+  z-index:100
 }
 #identityArea.hidden{display:none}
 .identity-chip{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:14px;
@@ -358,7 +358,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .identity-x{background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;padding:2px 5px;line-height:1}
 .identity-x:hover{color:var(--danger)}
 @media(max-width:640px){
-  header.app{position:relative;padding-top:8px;padding-right:100px} /* espai per al chip */
+  header.app h1{margin-right:90px} /* espai per al chip fixed */
   #identityArea{top:6px;right:10px}
   .identity-chip{font-size:12px;padding:2px 8px}
 }
@@ -427,3 +427,30 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   color:var(--ink);background:rgba(38,49,43,.06);border-radius:8px;padding:1px 6px;max-width:100%;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .meal-chip .by-chip .dotc{width:8px;height:8px;flex-shrink:0}
+
+/* historial de tiquets: fila compacta clicable */
+.receipt-row{padding:0;overflow:hidden}
+.receipt-summary{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;list-style:none;flex-wrap:wrap}
+.receipt-summary::-webkit-details-marker{display:none}
+.receipt-summary:hover{background:var(--verd-clar)}
+.rs-store{font-weight:600;font-size:14.5px;flex:1;min-width:100px}
+.rs-meta{font-size:12px;color:var(--muted);white-space:nowrap}
+.rs-payer{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600}
+.rs-total{font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;margin-left:auto}
+.receipt-detail{padding:4px 14px 14px;border-top:1px solid var(--line)}
+
+/* taula esborrany: ben posada, inputs amples i alineats */
+#draftCard .items th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);text-align:left;padding:6px 8px 4px}
+#draftCard .items td{padding:4px 6px;vertical-align:middle}
+#draftCard .items input{width:100%;min-height:38px;padding:6px 10px}
+#draftCard .items td[data-label="Producte"] input{min-width:160px}
+#draftCard .items td[data-label="Quant."] input{width:70px;display:inline-block;margin-right:6px}
+#draftCard .items td[data-label="Quant."] input[data-f=unit]{width:64px;margin-right:0}
+#draftCard .items td[data-label="Preu €"]{width:100px}
+#draftCard .items td[data-label="Preu €"] input{text-align:right}
+@media(max-width:640px){
+  #draftCard .items td{display:flex;align-items:center;gap:8px;padding:8px 6px;border-bottom:1px dashed var(--line)}
+  #draftCard .items td::before{font-size:11px;color:var(--muted);font-weight:600;min-width:72px}
+  #draftCard .items td[data-label="Quant."] input{width:80px}
+  #draftCard .items td[data-label="Quant."] input[data-f=unit]{width:90px}
+}
