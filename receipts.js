@@ -134,11 +134,9 @@ $('#draftTable').addEventListener('input',e=>{
 $('#draftTable').addEventListener('click',e=>{
   const del=e.target.closest('[data-delrow]');
   if(!del)return;
-  /* la X viu a la sub-fila: troba la fila principal anterior amb data-idx */
-  let el=del.closest('tr');
-  if(!el.dataset.idx)el=el.previousElementSibling;
-  if(!el||!el.dataset.idx)return;
-  draft.items.splice(+el.dataset.idx,1);renderDraft();
+  const tr=del.closest('tr[data-idx]');
+  if(!tr||!tr.dataset.idx)return;
+  draft.items.splice(+tr.dataset.idx,1);renderDraft();
 });
 $('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
 $('#discardDraftBtn').onclick=()=>{
