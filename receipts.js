@@ -95,17 +95,19 @@ function renderDraft(){
   let total=0;
     const rows=draft.items.map((it,idx)=>{
       total+=Number(it.price)||0;
-      return '<tr data-idx="'+idx+'">'
-        +'<td data-label="Producte" style="min-width:130px"><input value="'+esc(it.name)+'" data-f="name"></td>'
-        +'<td data-label="Quant." style="min-width:140px">'
-          +'<input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal" style="width:70px">'
-          +'<input value="'+esc(it.unit||'')+'" data-f="unit" placeholder="u., L, Kg..." style="width:60px"></td>'
-        +'<td data-label="Preu €" style="width:86px"><input class="w60" placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal"></td>'
-        +'<td data-label="" style="width:30px"><button class="del" data-delrow>✕</button></td></tr>';
+      /* Fila 1: producte (ample) · Fila 2: quant+unitat | preu · X petita baix-dreta */
+      return '<tr data-idx="'+idx+'" class="draft-row">'
+        +'<td colspan="2" data-label="Producte"><input value="'+esc(it.name)+'" data-f="name" placeholder="Producte"></td>'
+        +'<tr class="draft-sub"><td data-label="Quant.">'
+          +'<input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal" placeholder="cant." style="width:72px">'
+          +'<input value="'+esc(it.unit||'')+'" data-f="unit" placeholder="u., L, Kg" style="width:64px">'
+        +'</td>'
+        +'<td data-label="Preu €"><input placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal" style="text-align:right"></td>'
+        +'<td class="del-cell"><button class="del" data-delrow title="Elimina">✕</button></td></tr>';
     }).join('');
     $('#draftTable').innerHTML=(draft.items.length
-      ?'<thead><tr><th>Producte</th><th>Quant.</th><th>Preu €</th><th></th></tr></thead>'+rows
-      :'<tr><td colspan="4" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
+      ?rows
+      :'<tr><td colspan="2" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
   $('#draftTotal').textContent=eur(total);
   $('#draftHint').textContent=draft.items.length+' línies · revisa els preus abans de desar';
   /* banner IA */
@@ -121,7 +123,9 @@ function renderDraft(){
 /* inputs de l'esborrany (delegació) */
 $('#draftTable').addEventListener('input',e=>{
   const inp=e.target.closest('input,select');if(!inp)return;
-  const tr=e.target.closest('tr[data-idx]');if(!tr)return;
+  let tr=inp.closest('tr[data-idx]');
+  if(!tr){const p=inp.closest('tr');tr=p&&p.previousElementSibling&&p.previousElementSibling.dataset?p.previousElementSibling:null;}
+  if(!tr||!tr.dataset.idx)return;
   const it=draft.items[+tr.dataset.idx];
   const f=inp.dataset.f;
   if(f==='name')it.name=inp.value;
@@ -136,8 +140,11 @@ $('#draftTable').addEventListener('input',e=>{
 $('#draftTable').addEventListener('click',e=>{
   const del=e.target.closest('[data-delrow]');
   if(!del)return;
-  const tr=e.target.closest('tr[data-idx]');
-  draft.items.splice(+tr.dataset.idx,1);renderDraft();
+  /* la X viu a la sub-fila: troba la fila principal anterior amb data-idx */
+  let el=del.closest('tr');
+  if(!el.dataset.idx)el=el.previousElementSibling;
+  if(!el||!el.dataset.idx)return;
+  draft.items.splice(+el.dataset.idx,1);renderDraft();
 });
 $('#addDraftItemBtn').onclick=()=>{if(!draft)draft={photo:null,date:todayIso(),store:'',payerId:S.currentUser||(S.people[0]||{}).id,items:[],fromLists:[],ai:null};draft.items.push({name:'',qty:null,unit:'',price:null});renderDraft();};
 $('#discardDraftBtn').onclick=()=>{
@@ -468,12 +475,12 @@ function computeBalances(){
   return S.people.map(p=>({person:p,balance:paid[p.id]-owes[p.id]+settledDeltaFor(p.id, viewer)}));
 }
 function settledDeltaFor(id, viewer){
+  /* liquidacions JA FETES: resten del balanç pendent.
+     qui VA REBRE diners (toId): el seu crèdit baixa; qui VA PAGAR (fromId): el seu deute baixa */
   let d=0;
   S.settlements.forEach(st=>{
-    // només compta liquidacions de tiquets que el viewer pot veure
-    // (perquè el balanç només mostra tiquets visibles)
-    if(st.toId===id)d+=st.amount;
-    if(st.fromId===id)d-=st.amount;
+    if(st.toId===id)d-=st.amount;
+    if(st.fromId===id)d+=st.amount;
   });
   return d;
 }

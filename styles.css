@@ -439,18 +439,26 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .rs-total{font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;margin-left:auto}
 .receipt-detail{padding:4px 14px 14px;border-top:1px solid var(--line)}
 
-/* taula esborrany: ben posada, inputs amples i alineats */
-#draftCard .items th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);text-align:left;padding:6px 8px 4px}
-#draftCard .items td{padding:4px 6px;vertical-align:middle}
-#draftCard .items input{width:100%;min-height:38px;padding:6px 10px}
-#draftCard .items td[data-label="Producte"] input{min-width:160px}
-#draftCard .items td[data-label="Quant."] input{width:70px;display:inline-block;margin-right:6px}
-#draftCard .items td[data-label="Quant."] input[data-f=unit]{width:64px;margin-right:0}
-#draftCard .items td[data-label="Preu €"]{width:100px}
+/* taula esborrany 2 files: fila 1 producte, fila 2 quant+unit | preu | X */
+#draftCard .items{border-collapse:separate;border-spacing:0 6px}
+#draftCard .items td{padding:0;vertical-align:middle;border:none}
+#draftCard .items input{width:100%;min-height:40px;padding:8px 10px;font-size:15px;background:#fff;border:1.5px solid var(--line);border-radius:8px}
+#draftCard .items td[data-label="Producte"] input{font-size:15px}
+#draftCard .items td[data-label="Quant."] input{width:calc(45% - 4px);display:inline-block;margin-right:8px}
+#draftCard .items td[data-label="Quant."] input[data-f=unit]{width:calc(45% - 4px);margin-right:0}
 #draftCard .items td[data-label="Preu €"] input{text-align:right}
+#draftCard .items .del-cell{width:26px;text-align:right;vertical-align:bottom}
+#draftCard .items .del-cell .del{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;padding:2px 4px;min-height:0;min-width:0;line-height:1}
+#draftCard .items .del-cell .del:hover{color:var(--danger)}
+/* títols: columnes de la sub-fila amb etiqueta visible a sobre */
+#draftCard .items td[data-label]::before{
+  content:attr(data-label);
+  display:block;font-size:10.5px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:3px
+}
+#draftCard .items td[data-label="Producte"]::before{margin-bottom:3px}
+#draftCard .items tr.draft-sub td{padding-top:0}
 @media(max-width:640px){
-  #draftCard .items td{display:flex;align-items:center;gap:8px;padding:8px 6px;border-bottom:1px dashed var(--line)}
-  #draftCard .items td::before{font-size:11px;color:var(--muted);font-weight:600;min-width:72px}
-  #draftCard .items td[data-label="Quant."] input{width:80px}
-  #draftCard .items td[data-label="Quant."] input[data-f=unit]{width:90px}
+  #draftCard .items td[data-label="Quant."] input{width:calc(48% - 4px)}
+  #draftCard .items td[data-label="Quant."] input[data-f=unit]{width:calc(48% - 4px)}
 }
