@@ -93,18 +93,19 @@ function renderDraft(){
   renderPayerSelect();
   $('#draftStatus').className='status-tag hidden';
   let total=0;
-  const rows=draft.items.map((it,idx)=>{
-    total+=Number(it.price)||0;
-    return '<tr data-idx="'+idx+'">'
-      +'<td data-label="Producte" style="min-width:130px"><input value="'+esc(it.name)+'" data-f="name"></td>'
-      +'<td data-label="Quant." style="width:64px"><input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal"></td>'
-      +'<td data-label="Unit." style="width:70px"><select data-f="unit">'+['','g','kg','ml','l','unitats','llauna','paquet'].map(u=>'<option'+((it.unit||'')===u?' selected':'')+'>'+u+'</option>').join('')+'</select></td>'
-      +'<td data-label="Preu €" style="width:86px"><input class="w60" placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal"></td>'
-      +'<td data-label="" style="width:30px"><button class="del" data-delrow>✕</button></td></tr>';
-  }).join('');
-  $('#draftTable').innerHTML=(draft.items.length
-    ?'<thead><tr><th>Producte</th><th>Quant.</th><th>Unit.</th><th>Preu €</th><th></th></tr></thead>'+rows
-    :'<tr><td colspan="5" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
+    const rows=draft.items.map((it,idx)=>{
+      total+=Number(it.price)||0;
+      return '<tr data-idx="'+idx+'">'
+        +'<td data-label="Producte" style="min-width:130px"><input value="'+esc(it.name)+'" data-f="name"></td>'
+        +'<td data-label="Quant." style="min-width:140px">'
+          +'<input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal" style="width:70px">'
+          +'<input value="'+esc(it.unit||'')+'" data-f="unit" placeholder="u., L, Kg..." style="width:60px"></td>'
+        +'<td data-label="Preu €" style="width:86px"><input class="w60" placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal"></td>'
+        +'<td data-label="" style="width:30px"><button class="del" data-delrow>✕</button></td></tr>';
+    }).join('');
+    $('#draftTable').innerHTML=(draft.items.length
+      ?'<thead><tr><th>Producte</th><th>Quant.</th><th>Preu €</th><th></th></tr></thead>'+rows
+      :'<tr><td colspan="4" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
   $('#draftTotal').textContent=eur(total);
   $('#draftHint').textContent=draft.items.length+' línies · revisa els preus abans de desar';
   /* banner IA */
@@ -450,11 +451,16 @@ function computeBalances(){
     owes[st.fromId]-=st.amount;
     if(owes[st.toId]!=null)owes[st.toId]-=st.amount*-1;
   });
-  return S.people.map(p=>({person:p,balance:paid[p.id]-owes[p.id]+settledDeltaFor(p.id)}));
+  return S.people.map(p=>({person:p,balance:paid[p.id]-owes[p.id]+settledDeltaFor(p.id, viewer)}));
 }
-function settledDeltaFor(id){
+function settledDeltaFor(id, viewer){
   let d=0;
-  S.settlements.forEach(st=>{if(st.toId===id)d+=st.amount;if(st.fromId===id)d-=st.amount;});
+  S.settlements.forEach(st=>{
+    // només compta liquidacions de tiquets que el viewer pot veure
+    // (perquè el balanç només mostra tiquets visibles)
+    if(st.toId===id)d+=st.amount;
+    if(st.fromId===id)d-=st.amount;
+  });
   return d;
 }
 function renderBalance(){
@@ -471,7 +477,7 @@ function renderBalance(){
     S.people.forEach(p => { if (receiptInvolved(r, p.id)) share[p.id] += r.total / receiptShareCount(r); });
   });
   el.innerHTML='<table class="items"><tbody>'+S.people.map(p=>{
-    const bal=spent[p.id]-share[p.id]+settledDeltaFor(p.id);
+    const bal=spent[p.id]-share[p.id]+settledDeltaFor(p.id, viewer);
     return '<tr><td><span class="dotc" style="background:'+esc(p.color)+'"></span>'+esc(p.name)+'</td>'
       +'<td class="num muted tiny">ha pagat '+eur(spent[p.id])+'</td>'
       +'<td class="num"><b style="color:'+(bal>=0.005?'#2F6A46':bal<-0.005?'#93392F':'inherit')+'">'
@@ -510,7 +516,7 @@ function openSettlement(scopeIds){
     const cnt = receiptShareCount(r);
     people.forEach(p => { if (receiptInvolved(r, p.id)) share[p.id] += r.total / cnt; });
   });
-  const rows = people.map(p => ({p, bal: spent[p.id] - share[p.id] + settledDeltaFor(p.id)}));
+  const rows = people.map(p => ({p, bal: spent[p.id] - share[p.id] + settledDeltaFor(p.id, viewer)}));
   const debtors=rows.filter(r=>r.bal<-0.01).sort((a,b)=>a.bal-b.bal);
   const creditors=rows.filter(r=>r.bal>0.01).sort((a,b)=>b.bal-a.bal);
   let transfers=[],di=0,ci=0;

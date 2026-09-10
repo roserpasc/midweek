@@ -431,7 +431,7 @@ if(document.readyState==='loading'){
 }else{
   initTabs();
 }
-function switchTab(t){S.ui.tab=t;renderTabs();}
+function switchTab(t){S.ui.tab=t;renderTabs();try{syncHeaderH();}catch(e){}}
 function renderTabs(){
   $$('nav.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===S.ui.tab));
   ['menu','recipes','shop','receipts','settings'].forEach(t=>{

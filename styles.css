@@ -26,7 +26,7 @@ label{font-size:13px;opacity:.85;display:block;margin-bottom:3px}
 header.app{position:sticky;top:0;z-index:50;background:var(--accent);color:#fff;padding:0 18px;display:flex;align-items:center;gap:14px;height:58px;box-shadow:var(--shadow);position:relative}
 header.app h1{font-size:21px;margin:0;letter-spacing:.3px;white-space:nowrap}
 header.app h1 .dot{color:var(--highlight)}
-nav.tabs{display:flex;gap:4px;height:100%;align-items:stretch;margin-left:8px;overflow-x:auto}
+nav.tabs{display:flex;gap:4px;height:100%;align-items:stretch;margin-left:8px;overflow-x:auto;margin-right:120px}
 nav.tabs button{background:transparent;border:none;color:#E8F0EA;font-size:14px;padding:0 14px;border-radius:0;position:relative;white-space:nowrap;height:100%}
 nav.tabs button.active{background:rgba(255,255,255,.14);color:#fff;font-weight:600}
 nav.tabs button.active::after{content:'';position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--highlight)}
@@ -183,7 +183,7 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   /* header: logo a la 1a fila, pestanyes a la 2a fila completa */
     header.app{height:auto;flex-wrap:wrap;padding:8px 10px 0;gap:6px;touch-action:manipulation}
     header.app h1{font-size:18px;margin:0 8px 0 0}
-    nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px;-webkit-overflow-scrolling:touch;touch-action:pan-x}
+    nav.tabs{order:2;flex-basis:100%;height:auto;overflow-x:auto;margin-left:0;padding-bottom:6px;-webkit-overflow-scrolling:touch;touch-action:pan-x;margin-right:0}
     nav.tabs button{flex:0 0 auto;min-width:max-content;padding:0 12px;font-size:13px;min-height:44px;white-space:nowrap;touch-action:manipulation}
     .syncwrap{display:none}
   /* weekbar: 2 files compactes */
