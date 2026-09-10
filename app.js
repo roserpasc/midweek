@@ -837,21 +837,22 @@ function renderRecipes(){
   });
   $('#recipesEmpty').classList.toggle('hidden',S.recipes.length>0);
   $('#recipesGrid').innerHTML=list.map(r=>
-    '<div class="recipe-card" draggable="true" data-id="'+r.id+'">'
-    +(r.image?'<img class="card-thumb" src="'+esc(r.image)+'" alt="" loading="lazy">':'')
-    +'<h3>'+esc(r.name)+'</h3>'
-    +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
-    +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
-    +(r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':'')
-    +'</div>'
-    +'<div class="card-tags">'+(ensureTags(r)||[]).slice(0,3).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')+'</div>'
-    +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
-    +(r.ingredients.length>4?' …':'')+'</div>'
-    +'<div class="recipe-actions">'
-    +'<button class="btn btn-sm" data-view="'+r.id+'">Veure</button>'
-    +'<button class="btn btn-sm" data-edit="'+r.id+'">Edita</button>'
-    +'</div></div>'
-  ).join('');
+      '<div class="recipe-card" draggable="true" data-id="'+r.id+'">'
+      +(r.image?'<img class="card-thumb" src="'+esc(r.image)+'" alt="" loading="lazy">':'')
+      +'<h3>'+esc(r.name)+'</h3>'
+      +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
+          +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
+          +(r.timeCategory?'<span class="tag time-cat">'+esc(r.timeCategory)+'</span>':'')
+          +(r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':'')
+          +'</div>'
+      +'<div class="card-tags">'+(ensureTags(r)||[]).slice(0,3).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')+'</div>'
+      +'<div class="ings">'+r.ingredients.slice(0,4).map(i=>esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))).join(' · ')
+      +(r.ingredients.length>4?' …':'')+'</div>'
+      +'<div class="recipe-actions">'
+      +'<button class="btn btn-sm" data-view="'+r.id+'">Veure</button>'
+      +'<button class="btn btn-sm" data-edit="'+r.id+'">Edita</button>'
+      +'</div></div>'
+    ).join('');
 }
 
 $('#recipesGrid').addEventListener('click',e=>{

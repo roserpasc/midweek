@@ -23,7 +23,7 @@ label{font-size:13px;opacity:.85;display:block;margin-bottom:3px}
 .hidden{display:none!important}
 
 /* header */
-header.app{position:sticky;top:0;z-index:50;background:var(--accent);color:#fff;padding:0 18px;display:flex;align-items:center;gap:14px;height:58px;box-shadow:var(--shadow)}
+header.app{position:sticky;top:0;z-index:50;background:var(--accent);color:#fff;padding:0 18px;display:flex;align-items:center;gap:14px;height:58px;box-shadow:var(--shadow);position:relative}
 header.app h1{font-size:21px;margin:0;letter-spacing:.3px;white-space:nowrap}
 header.app h1 .dot{color:var(--highlight)}
 nav.tabs{display:flex;gap:4px;height:100%;align-items:stretch;margin-left:8px;overflow-x:auto}
@@ -341,15 +341,25 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 }
 
 
-/* identitat al header: mateixa fila que el logo, alineat a la dreta, sense borde */
-#identityArea{display:flex;align-items:center;gap:6px;margin-left:auto}
+/* identitat al header: posicio absoluta top-right, MAI baixa */
+#identityArea{
+  position:absolute;
+  top:8px;
+  right:18px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  z-index:60
+}
 #identityArea.hidden{display:none}
 .identity-chip{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:14px;
-  font-size:13px;font-weight:600;color:var(--ink)}
+  font-size:13px;font-weight:600;color:var(--ink);background:var(--card);
+  box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .identity-x{background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;padding:2px 5px;line-height:1}
 .identity-x:hover{color:var(--danger)}
 @media(max-width:640px){
-  #identityArea{order:3;margin-left:auto}
+  header.app{position:relative;padding-top:8px;padding-right:100px} /* espai per al chip */
+  #identityArea{top:6px;right:10px}
   .identity-chip{font-size:12px;padding:2px 8px}
 }
 

@@ -43,6 +43,18 @@ const PROPOSAL_MODES = {
       dinars: ['Pasta amb tonyina i tomàquet', 'Amanida de llenties de llauna', 'Truita de patata feta a la planxa', 'Wok de verdures i pollastre', 'Quesadillas'],
       sopars: ['Entrepà calent de formatge', 'Crema de verdures de briock', 'Amanida de tomàquet i mozzarella', 'Hamburguesa de verdures al pa', 'Sopa instantània amb ou escalfat']
     }
+  },
+  vegetaria: {
+    label: 'Vegetarià',
+    desc: 'Sense carn ni peix: verdures, llegums, ous, formatge, cereals. Ideal per reduir proteïna animal.',
+    weights: { comfort: 0, quick: 0, veggie: 3, legume: 2.5, fish: -5, redMeat: -5, whiteMeat: -5, reuse: 0 },
+    maxTime: null,
+    quotas: { legume: 2, veggieDays: 5, redMax: 0, fishMax: 0, comfortMax: 4 },
+    freeIdeas: {
+      esmorzar: ['Iogurt amb fruita i nous', 'Torrada amb alvocat i ou', 'Cereals vegetals amb llet', 'Batut verd i fruits secs'],
+      dinars: ['Arròs amb verdures i cigrons', 'Llenties amb verdures i formatge', 'Pasta amb pesto i tomàquets cherry', 'Hamburguesa de llegums amb amanida', 'Truita d\'espinacs amb pa'],
+            sopars: ['Crema de verdures i torrada', 'Amanida completa amb ou i formatge', 'Sopa de llegums', 'Verdures al grill amb formatge', 'Truita de patata amb espinacs']
+    }
   }
 };
 

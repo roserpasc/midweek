@@ -25,6 +25,28 @@ const BANK_CAT_MAP={
 function bankCat(cat){return BANK_CAT_MAP[cat]||'Altres';}
 
 /* importa el banc (una sola vegada) com a receptes de l'usuari */
+
+/* =================== ESTIMACIÓ TEMPS DE CUINA (3 buckets) =================== */
+/* Basat en: temps explícit als pasos + heurística per categoria/pasos/ingredients */
+function estimateCookingTime(recipe){
+  const txt=(recipe.steps||[]).join(' ').toLowerCase();
+  const name=(recipe.name||'').toLowerCase();
+  let maxMin=0;
+  for(const m of txt.matchAll(/(\d+)\s*(?:a\s*\d+\s*)?(?:minuts|min\b)/g)) maxMin=Math.max(maxMin,parseInt(m[1]));
+  for(const m of txt.matchAll(/(\d+)\s*(?:a\s*\d+\s*)?(?:hores|hora)/g)) maxMin=Math.max(maxMin,parseInt(m[1])*60);
+  const base={'Amanides':10,'Salses':15,'Postres i dolços':35,'Ous':15,'Sopes':30,
+    'Verdures':30,'Llegums':45,'Arròs i pasta':25,'Peix i marisc':30,'Carns':45}[recipe.category]||30;
+  if(/amanida/.test(name) || recipe.category==='Amanides') maxMin=Math.max(maxMin,12);
+  if(/marin|repos|refreda|deixar reposar/.test(txt) && maxMin===0) maxMin=30;
+  const nIng=(recipe.ingredients||[]).length;
+  const steps=(recipe.steps||[]).length;
+  let t;
+  if(maxMin>0) t=maxMin+10;
+  else t=base+steps*4+Math.max(0,nIng-6)*2;
+  t=Math.max(10,Math.min(150,Math.round(t)));
+  return {time:t, timeCategory:t<20?'<20':(t<=40?'20-40':'>40')};
+}
+
 function importTraditionalBank(){
   let added=0;
   TRADITIONAL_BANK.forEach(t=>{
@@ -39,8 +61,9 @@ function importTraditionalBank(){
     }
     const steps=(t.steps||[]).slice(0,14);
     if(steps.length&&!steps[steps.length-1])steps.pop();
+    const est=estimateCookingTime(t);
     const nr={
-      id:uid(),name:t.name,category:bankCat(t.category),time:t.time,
+      id:uid(),name:t.name,category:bankCat(t.category),time:est.time,timeCategory:est.timeCategory,
       servings:t.servings||4,ingredients:(t.ingredients||[]).map(i=>({name:i.name,qty:i.qty,unit:i.unit||''})),
       steps:steps,
       advice:t.advice||null,
