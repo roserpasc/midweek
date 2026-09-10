@@ -814,6 +814,9 @@ function renderRecipeFilters(){
   const cur=sel.value;
   sel.innerHTML='<option value="">Totes les categories</option>'
     +S.categories.map(c=>'<option'+(c===cur?' selected':'')+' value="'+esc(c)+'">'+esc(c)+'</option>').join('');
+  /* filtre de temps */
+  const tf=$('#recipeTimeFilter');
+  if(tf && tf.value !== window.__timeFilter) tf.value=window.__timeFilter||'';
   /* chips de filtre per llibre/col·lecció */
   const wrap=$('#bookFilters');
   if(!wrap)return;
@@ -827,6 +830,9 @@ document.addEventListener('click',e=>{
   if(bf){window.__bookFilter=bf.dataset.book||'';renderRecipes();}
 });
 function renderRecipes(){
+  /* capture time filter value BEFORE renderRecipeFilters resets it */
+  const timeF=$('#recipeTimeFilter').value||'';
+  window.__timeFilter=timeF;
   renderRecipeFilters();
   const q=($('#recipeSearch').value||'').toLowerCase();
   const catF=$('#recipeCatFilter').value;
@@ -834,6 +840,7 @@ function renderRecipes(){
   const list=S.recipes.filter(r=>{
     if(catF&&r.category!==catF)return false;
     if(bookF&&r.book!==bookF)return false;
+    if(timeF&&r.timeCategory!==timeF)return false;
     if(!q)return true;
     return r.name.toLowerCase().indexOf(q)>=0||r.ingredients.some(i=>i.name.toLowerCase().indexOf(q)>=0);
   });
@@ -865,6 +872,7 @@ $('#recipesGrid').addEventListener('click',e=>{
 });
 $('#recipeSearch').oninput=debounce(renderRecipes,150);
 $('#recipeCatFilter').onchange=renderRecipes;
+$('#recipeTimeFilter').onchange=renderRecipes;
 
 const BOOK_LABEL={CORPUS:'🏛️ CORPUS',ARGUIÑANO:'📖 ARGUIÑANO',GASTROTECA:'🌿 GASTROTECA','MASIA LA MORERA':'🏡 MASIA LA MORERA'};
 function viewRecipe(id){
@@ -891,10 +899,20 @@ function viewRecipe(id){
 function openRecipeModal(id,onSaved){
   const r=id?recipeById(id):null;
   const cats=S.categories;
+  /* auto-update timeCategory label when typing minutes */
+  if(!window.__timeCatHandler){
+    window.__timeCatHandler=function(input){
+      const v=parseInt(input.value,10);
+      const label=document.getElementById('timeCatLabel');
+      if(!label)return;
+      if(!v||isNaN(v))label.textContent='';
+      else label.textContent=v<20?'<20 min':(v<=40?'20-40 min':'>40 min');
+    };
+  }
   openModal('<h2>'+(r?'Edita recepta':'Recepta nova')+'</h2>'
     +'<div class="row"><div class="grow"><label>Nom</label><input id="rName" value="'+esc(r?r.name:'')+'"></div>'
     +'<div style="width:110px"><label>Racions</label><input type="number" min="1" max="12" id="rServ" value="'+(r?r.servings:S.diners)+'"></div>'
-    +'<div style="width:100px"><label>Minuts</label><input type="number" min="0" id="rTime" value="'+(r&&r.time?r.time:'')+'"></div></div>'
+    +'<div style="width:100px"><label>Minuts</label><input type="number" min="0" id="rTime" value="'+(r&&r.time?r.time:'')+'" oninput="updateTimeCat(this)"><span id="timeCatLabel" class="muted tiny" style="display:block;margin-top:2px"></span></div></div>'
     +'<div class="row" style="margin-top:8px"><div style="min-width:180px"><label>Categoria</label>'
     +'<select id="rCat">'+cats.map(c=>'<option'+(r&&r.category===c?' selected':'')+'>'+esc(c)+'</option>').join('')+'</select></div>'
     +'<div style="min-width:190px"><label>Llibre / col·lecció</label>'
@@ -946,10 +964,13 @@ function openRecipeModal(id,onSaved){
     if(!ingredients.length){alert('Afegeix com a mínim un ingredient.');return;}
     const steps=$('#rSteps').value.split('\n').map(x=>x.trim()).filter(Boolean);
     const bookSel=$('#rBook');
+    const timeVal=parseInt($('#rTime').value,10)||null;
+    const timeCat=timeVal? (timeVal<20?'<20':(timeVal<=40?'20-40':'>40')) : null;
     const data={
       name:name,
       servings:Math.max(1,parseInt($('#rServ').value,10)||2),
-      time:parseInt($('#rTime').value,10)||null,
+      time:timeVal,
+      timeCategory:timeCat,
       category:$('#rCat').value,
       book:$('#rBook').value||null,
       ingredients:ingredients,
