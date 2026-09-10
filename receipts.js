@@ -93,18 +93,18 @@ function renderDraft(){
   renderPayerSelect();
   $('#draftStatus').className='status-tag hidden';
   let total=0;
-    const rows=draft.items.map((it,idx)=>{
-      total+=Number(it.price)||0;
-      /* Fila 1: producte (ample) · Fila 2: quant+unitat | preu · X petita baix-dreta */
-      return '<tr data-idx="'+idx+'" class="draft-row">'
-        +'<td colspan="2" data-label="Producte"><input value="'+esc(it.name)+'" data-f="name" placeholder="Producte"></td>'
-        +'<tr class="draft-sub"><td data-label="Quant.">'
-          +'<input value="'+(it.qty!=null?it.qty:'')+'" data-f="qty" inputmode="decimal" placeholder="cant." style="width:72px">'
-          +'<input value="'+esc(it.unit||'')+'" data-f="unit" placeholder="u., L, Kg" style="width:64px">'
-        +'</td>'
-        +'<td data-label="Preu €"><input placeholder="0,00" value="'+(it.price!=null?String(it.price).replace('.',','):'')+'" data-f="price" inputmode="decimal" style="text-align:right"></td>'
-        +'<td class="del-cell"><button class="del" data-delrow title="Elimina">✕</button></td></tr>';
-    }).join('');
+    const rows = draft.items.map((it, idx) => {
+  total += Number(it.price) || 0;
+  return `<tr data-idx="${idx}" class="draft-row">
+    <td data-label="Producte"><input value="${esc(it.name)}" data-f="name" placeholder="Producte"></td>
+    <td data-label="Quant.">
+      <input value="${it.qty != null ? it.qty : ''}" data-f="qty" inputmode="decimal" placeholder="">
+      <input value="${esc(it.unit || '')}" data-f="unit" placeholder="">
+    </td>
+    <td data-label="Preu €"><input placeholder="0,00" value="${it.price != null ? String(it.price).replace('.',',') : ''}" data-f="price" inputmode="decimal" style="text-align:right; width:70px;"></td>
+    <td class="del-cell"><button class="del" data-delrow title="Elimina">✕</button></td>
+  </tr>`;
+}).join('');
     $('#draftTable').innerHTML=(draft.items.length
       ?rows
       :'<tr><td colspan="2" class="empty-hint">Cap línia — afegeix-ne o escaneja un tiquet.</td></tr>');
@@ -123,19 +123,13 @@ function renderDraft(){
 /* inputs de l'esborrany (delegació) */
 $('#draftTable').addEventListener('input',e=>{
   const inp=e.target.closest('input,select');if(!inp)return;
-  let tr=inp.closest('tr[data-idx]');
-  if(!tr){const p=inp.closest('tr');tr=p&&p.previousElementSibling&&p.previousElementSibling.dataset?p.previousElementSibling:null;}
-  if(!tr||!tr.dataset.idx)return;
+  const tr=inp.closest('tr[data-idx]');if(!tr)return;
   const it=draft.items[+tr.dataset.idx];
-  const f=inp.dataset.f;
-  if(f==='name')it.name=inp.value;
-  else if(f==='qty')it.qty=parseNum(inp.value);
-  else if(f==='unit')it.unit=inp.value;
-  else if(f==='price'){
-    it.price=parseNum(inp.value);
-    let total=0;draft.items.forEach(x=>total+=Number(x.price)||0);
-    $('#draftTotal').textContent=eur(total);
-  }
+  if(inp.dataset.f==='name'){it.name=inp.value.trim();}
+  else if(inp.dataset.f==='qty'){it.qty=inp.value===''?null:+inp.value;}
+  else if(inp.dataset.f==='unit'){it.unit=inp.value.trim();}
+  else if(inp.dataset.f==='price'){it.price=inp.value===''?null:+inp.value.replace(',','.');}
+  renderDraft();
 });
 $('#draftTable').addEventListener('click',e=>{
   const del=e.target.closest('[data-delrow]');
