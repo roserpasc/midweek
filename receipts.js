@@ -471,6 +471,47 @@ function settledDeltaFor(id, viewer){
   });
   return d;
 }
+/* neteja UN COP de liquidacions velles creades quan els signes estaven invertits (bug v<48):
+   si els settlements registrats fan que el balanç total no quadri amb els tiquets
+   (suma de balances != suma pagada - suma repartida), són del bug i es descarten. */
+function cleanLegacySettlements(){
+  if(S.settlements&&!S.settlements.length)return;
+  if(S.legacySettlementsCleaned)return;
+  /* recalculem: amb els tiquets sols, la suma de balances SEMPRE ha de ser 0.
+     Amb settlements correctes també ha de ser 0. El bug vell deixava settlements
+     que desquadraven: el balanç de la parella no tornava a 0 mai. */
+  const spent={},share={};
+  S.people.forEach(p=>{spent[p.id]=0;share[p.id]=0;});
+  S.receipts.forEach(r=>{
+    if(spent[r.payerId]!=null)spent[r.payerId]+=r.total;
+    const cnt=receiptShareCount(r);
+    S.people.forEach(p=>{if(receiptInvolved(r,p.id))share[p.id]+=r.total/cnt;});
+  });
+  /* els settlements correctes satisfan: per cada st, from devia a to exactament st.amount.
+     Si algun settlement fa que la suma de |bal| creixi en lloc de disminuir, és legacy.
+   Simple i robust: els settlements de l'epoca del bug tenen data anterior al fix (v48,
+     2026-09-10). Els que siguin anteriors i coincidissin amb deutes ja saldados, es queden;
+     pero els "invertits" duplicaven deute. Heurística: si després d'aplicar-los el balanç
+     total absolut és MAJOR que sense ells, són del bug. */
+  const balSense=(id)=>0; /* sense settlements la suma sempre dona el mateix total */
+  let absAmb=0,absSens=0;
+  S.people.forEach(p=>{
+    const sense=spent[p.id]-share[p.id];
+    absSens+=Math.abs(sense);
+    const amb=sense+settledDeltaFor(p.id,'');
+    absAmb+=Math.abs(amb);
+  });
+  if(absAmb>absSens+0.01){
+    /* els settlements desquadraven -> eren del bug, fora */
+    S.settlements=[];
+    S.legacySettlementsCleaned=true;
+    save();
+    return true;
+  }
+  S.legacySettlementsCleaned=true;
+  return false;
+}
+try{cleanLegacySettlements();}catch(e){console.error(e);}
 function renderBalance(){
   const el=$('#balanceBody');
   const viewer=S.currentUser||'';
