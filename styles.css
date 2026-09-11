@@ -449,11 +449,5 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
   .di-qty input[data-f="qty"]{flex:0 0 70px}
 }
 
-/* temps estimat (sense temps explícit) */
-.tag.time-cat.est{
-  background:var(--highlight);
-  color:var(--ink);
-  font-style:italic;
-  font-size:11px;
-}
+
 .tag.time-cat.est::before{content:'~ '}

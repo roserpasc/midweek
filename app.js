@@ -866,7 +866,7 @@ function renderRecipes(){
       +(r.image?'<img class="card-thumb" src="'+esc(r.image)+'" alt="" loading="lazy">':'')
       +'<h3>'+esc(r.name)+'</h3>'
       +'<div class="meta"><span class="tag cat">'+esc(r.category||'Altres')+'</span><span class="tag">👥 '+r.servings+'</span>'
-          +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':(window.estimateCookingTime?(function(){const est=window.estimateCookingTime(r);return '<span class="tag time-cat est">~'+esc(est.timeCategory)+'</span>';})():''))
+          +(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')
 
           +(r.book&&BOOK_LABEL[r.book]?'<span class="tag book-chip">'+BOOK_LABEL[r.book]+'</span>':'')
           +'</div>'
@@ -897,7 +897,7 @@ function viewRecipe(id){
     +(r.image?'<img class="recipe-photo" src="'+esc(r.image)+'" alt="'+esc(r.name)+'" loading="lazy">':'')
     +'<div class="meta" style="margin:10px 0;flex-wrap:wrap">'
     +(ensureTags(r)||[]).map(t=>'<span class="tag tag-auto">'+esc(t)+'</span>').join('')
-    +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':(window.estimateCookingTime?(function(){const est=window.estimateCookingTime(r);return '<span class="tag time-cat est">~'+esc(est.timeCategory)+'</span>';})():''))+bookChip+'</div>'
+    +'<span class="tag">👥 '+r.servings+' racions</span>'+(r.time?'<span class="tag">⏱ '+esc(r.time)+' min</span>':'')+bookChip+'</div>'
     +'<h3>Ingredients</h3><ul>'+r.ingredients.map(i=>'<li>'+esc([i.qty,i.unit,i.name].filter(Boolean).join(' '))+'</li>').join('')+'</ul>'
     +(r.steps&&r.steps.length?'<h3>Preparació</h3><ol>'+r.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>':'')
     +(r.advice?'<div class="ai-banner"><span>💡</span><div>'+esc(r.advice)+'</div></div>':'')
