@@ -41,10 +41,32 @@ function openModal(html){
   $('#modalBox').innerHTML='<button class="modal-close" id="modalClose" aria-label="Tanca">✕</button>'+html;
   $('#modalClose').addEventListener('click',closeModal);
   $('#modalBg').classList.remove('hidden');
+  /* push history state so Android back button closes modal instead of exiting app */
+  if(!window.__modalOpen){
+    window.__modalOpen = true;
+    history.pushState({modal: true}, '', '#modal');
+  }
 }
-function closeModal(){$('#modalBg').classList.add('hidden');$('#modalBox').innerHTML='';}
+function closeModal(){
+  $('#modalBg').classList.add('hidden');
+  $('#modalBox').innerHTML='';
+  /* clean up history state */
+  if(window.__modalOpen){
+    window.__modalOpen = false;
+    /* if we're at the modal state, go back */
+    if(location.hash === '#modal'){
+      history.back();
+    }
+  }
+}
 $('#modalBg')?.addEventListener('click',e=>{if(e.target.id==='modalBg')closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+/* Android back button / browser back: close modal if open */
+window.addEventListener('popstate',function(e){
+  if(window.__modalOpen && location.hash !== '#modal'){
+    closeModal();
+  }
+});
 
 /* ---------------- estat + persistència ---------------- */
 const LS_KEY='midweek_v1';
