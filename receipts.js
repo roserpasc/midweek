@@ -563,17 +563,25 @@ function renderBalance(){
 }
 $('#settleBtn').onclick=()=>{
   if(!S.receipts.length){toast('Encara no hi ha compres.');return;}
-  /* tria abast: totals o només algunes persones */
+  /* tria abast: totals o només algunes persones + opció reiniciar */
   openModal('<h2>Liquidar comptes</h2>'
     +'<p class="muted">Tria per a qui vols liquidar (deixa-ho tot en blanc = tothom).</p>'
     +S.people.map(p=>'<label style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #EDF2EE">'
       +'<input type="checkbox" class="st-person" data-id="'+p.id+'" style="accent-color:var(--accent)">'
       +'<span class="dotc" style="background:'+esc(p.color)+'"></span>'+esc(p.name)+'</label>').join('')
     +'<div class="modal-foot"><span></span>'
+    +'<button class="btn btn-danger btn-sm" id="stReset">Reinicia balanç</button>'
     +'<button class="btn btn-primary" id="stScope">Continua</button></div>');
   $('#stScope').onclick=()=>{
     const ids=$$('#modalBox .st-person').filter(cb=>cb.checked).map(cb=>cb.dataset.id);
     openSettlement(ids.length?ids:null);
+  };
+  $('#stReset').onclick=()=>{
+    if(confirm('Reiniciar el balanç? S\'esborraran totes les liquidacions i ajustos i es recalcularà des de zero.')){
+      S.settlements=[];
+      S.balanceAdjusts=[];
+      save();renderBalance();closeModal();toast('Balanç reiniciat ✓');
+    }
   };
 };
 function openSettlement(scopeIds){

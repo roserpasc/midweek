@@ -63,7 +63,6 @@
     <div class="toolbar">
       <input id="recipeSearch" placeholder="Cerca recepta o ingredient…" style="max-width:380px">
       <select id="recipeCatFilter" style="max-width:200px"><option value="">Totes les categories</option></select>
-      <select id="recipeTimeFilter" style="max-width:110px"><option value="">Tots els temps</option><option value="<20"><20 min</option><option value="20-40">20-40 min</option><option value=">40">>40 min</option></select>
       <div class="spacer"></div>
       <button class="btn-primary" id="newRecipeBtn">+ Recepta nova</button>
     </div>
@@ -268,7 +267,7 @@
 <div id="toastSlot"></div>
 
 <script>
-const APP_VERSION='60';
+const APP_VERSION='62';
 /* Service worker: comprova actualitzacions activament (carrega + cada 5 min + al tornar a l'app) */
 if("serviceWorker" in navigator){
   const swReg=navigator.serviceWorker.register("sw.js").then(reg=>{

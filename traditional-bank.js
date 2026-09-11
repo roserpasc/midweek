@@ -46,6 +46,9 @@ function estimateCookingTime(recipe){
   t=Math.max(10,Math.min(150,Math.round(t)));
   return {time:t, timeCategory:t<20?'<20':(t<=40?'20-40':'>40')};
 }
+// exposar globalment per a app.js
+if(typeof window!=='undefined') window.estimateCookingTime = estimateCookingTime;
+
 
 function importTraditionalBank(){
   let added=0;
