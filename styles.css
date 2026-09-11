@@ -5,6 +5,12 @@
   --radius:14px;
 }
 *{box-sizing:border-box}
+
+/* ==== protecció global overflow mòbil ==== */
+img,video,svg{max-width:100%;height:auto}
+table{max-width:100%;overflow-x:auto;display:block}
+pre,code{overflow-x:auto;max-width:100%}
+* {box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
 h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:600;margin:.2em 0 .3em;line-height:1.15}
