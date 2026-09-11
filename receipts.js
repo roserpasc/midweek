@@ -456,11 +456,35 @@ $('#receiptsList').addEventListener('click',e=>{
   }
   const dl=e.target.closest('[data-delrc]');
   if(dl&&confirm('Eliminar aquesta compra del registre?')){
+    /* CONGELA el balanç: elimina el tiquet però compensa el canvi amb ajustos,
+       perquè el balanç només es mogui quan s'AFEGEIX un tiquet o es liquida. */
+    const balAbans=balanceSnapshot();
     S.receipts=S.receipts.filter(r=>r.id!==dl.dataset.delrc);
+    const despres=balanceSnapshot();
+    if(!Array.isArray(S.balanceAdjusts))S.balanceAdjusts=[];
+    S.people.forEach(p=>{
+      const delta=balAbans[p.id]-despres[p.id];
+      if(Math.abs(delta)>0.004){
+        S.balanceAdjusts.push({date:todayIso(),personId:p.id,amount:Math.round(delta*100)/100});
+      }
+    });
     save();renderReceipts();renderBalance();
   }
 });
 
+/* balanç per persona amb l'estat ACTUAL (spent-share+settlements+ajustos) */
+function balanceSnapshot(){
+  const out={};
+  const spent={},share={};
+  S.people.forEach(p=>{spent[p.id]=0;share[p.id]=0;});
+  S.receipts.forEach(r=>{
+    if(spent[r.payerId]!=null)spent[r.payerId]+=r.total;
+    const cnt=receiptShareCount(r);
+    S.people.forEach(p=>{if(receiptInvolved(r,p.id))share[p.id]+=r.total/cnt;});
+  });
+  S.people.forEach(p=>{out[p.id]=spent[p.id]-share[p.id]+settledDeltaFor(p.id,'');});
+  return out;
+}
 function settledDeltaFor(id, viewer){
   /* liquidacions JA FETES: resten del balanç pendent.
      qui VA REBRE diners (toId): el seu crèdit baixa; qui VA PAGAR (fromId): el seu deute baixa */
@@ -469,6 +493,8 @@ function settledDeltaFor(id, viewer){
     if(st.toId===id)d-=st.amount;
     if(st.fromId===id)d+=st.amount;
   });
+  /* ajustos de congelació: en eliminar un tiquet, el balanç NO canvia (hi hagi el número que hi hagi) */
+  (S.balanceAdjusts||[]).forEach(a=>{ if(a.personId===id)d+=a.amount; });
   return d;
 }
 /* neteja UN COP de liquidacions velles creades quan els signes estaven invertits (bug v<48):
@@ -511,6 +537,7 @@ function cleanLegacySettlements(){
   S.legacySettlementsCleaned=true;
   return false;
 }
+if(!Array.isArray(S.balanceAdjusts))S.balanceAdjusts=[];
 try{cleanLegacySettlements();}catch(e){console.error(e);}
 function renderBalance(){
   const el=$('#balanceBody');
@@ -588,7 +615,7 @@ function openSettlement(scopeIds){
   const rb=$('#resetBal');
   if(rb)rb.onclick=()=>{
     if(confirm('Esborrar l\'historial de liquidacions?')){
-      S.settlements=[];save();renderBalance();closeModal();toast('Balanç reiniciat');
+      S.settlements=[];S.balanceAdjusts=[];save();renderBalance();closeModal();toast('Balanç reiniciat');
     }
   };
   const ok=$('#stOk');
