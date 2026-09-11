@@ -312,15 +312,17 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 /* llistes de compra */
 .list-card.sel{border-color:var(--accent);box-shadow:0 2px 12px rgba(94,135,114,.18)}
 
-/* identitat: fixed top-right de la pantalla (mai tapa el menú, sempre visible) */
+/* identitat: a la dreta del header, mateixa fila que el logo */
+header.app{position:relative} /* containing block per al chip absolut */
 #identityArea{
-  position:fixed;
-  top:8px;
+  position:absolute;
+  top:50%;
   right:18px;
+  transform:translateY(-50%);
   display:flex;
   align-items:center;
   gap:6px;
-  z-index:100
+  z-index:60
 }
 #identityArea.hidden{display:none}
 .identity-chip{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:14px;
@@ -329,8 +331,8 @@ footer.note{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-size:12.5px;
 .identity-x{background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;padding:2px 5px;line-height:1}
 .identity-x:hover{color:var(--danger)}
 @media(max-width:640px){
-  header.app h1{margin-right:90px} /* espai per al chip fixed */
-  #identityArea{top:6px;right:10px}
+  header.app{height:auto;padding:8px 60px 8px 18px} /* espai a la dreta per al chip */
+  #identityArea{position:static;transform:none;margin-left:auto;padding-top:8px}
   .identity-chip{font-size:12px;padding:2px 8px}
 }
 
