@@ -474,7 +474,7 @@ function updateShopBadge(){
 /* ============================================================
    MENÚ SETMANAL
    ============================================================ */
-let weekStart=(S.ui.weekStart?new Date(S.ui.weekStart):mondayOf(new Date()));
+let weekStart=mondayOf(new Date()); // sempre setmana actual
 
 function renderWeekBar(){
   const end=new Date(weekStart.getTime()+6*86400000);
