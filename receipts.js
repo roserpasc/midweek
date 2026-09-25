@@ -697,12 +697,23 @@ function renderIdentity(){
   if(!area)return;
   const u=getMyIdentity();
   const p=u?personById(u.id):null;
-  area.classList.toggle('hidden',!p);
+  area.classList.toggle('hidden',false); /* SEMPRE visible: amb sessió o com a "Anònim" */
   if(p){
     $('#identityName').textContent=p.name;
     $('#identityDot').style.background=p.color;
+    area.classList.remove('anon');
+  }else{
+    $('#identityName').textContent='Anònim';
+    $('#identityDot').style.background='#9AA6A0';
+    area.classList.add('anon');
   }
 }
+/* clicar el chip d'identitat (sessió o anònim) obre el modal: triar o CREAR usuari */
+$('#identityArea').addEventListener('click',e=>{
+  if(e.target.closest('#logoutBtn'))return; /* el ✕ de tancar sessió va per l'altre path */
+  if(e.target.id==='logoutBtn')return;
+  openIdentityModal();
+});
 function openIdentityModal(){
   openModal('<h2>👋 Qui ets?</h2>'
     +'<p class="muted">Selecciona el teu usuari o crea-ne un de nou.</p>'
@@ -720,8 +731,7 @@ function openIdentityModal(){
       setIdentity(null); // anònim
       closeModal();toast('Mode anònim — els teus canvis no es guardaran com a teus');
     }else if(b.dataset.me==='__new'){
-      closeModal();
-      openCreateUserModal();
+      openCreateUserModal(); /* sense closeModal: openModal substitueix el contingut */
     }else{
       setIdentity(b.dataset.me);
       closeModal();toast('Hola, '+personById(b.dataset.me).name+' 👋');
@@ -737,7 +747,7 @@ function openCreateUserModal(){
     +'<div class="modal-foot"><span></span>'
     +'<button class="btn" id="nuCancel">Cancel·la</button>'
     +'<button class="btn btn-primary" id="nuCreate">Crea usuari</button></div>');
-  $('#nuCancel').onclick=()=>openIdentityModal();
+  $('#nuCancel').onclick=()=>openIdentityModal(); /* sense tancar: openModal substitueix */
   $('#nuCreate').onclick=()=>{
     const name=$('#newUserName').value.trim();
     if(!name){toast('Posa un nom');return;}
@@ -750,6 +760,7 @@ function openCreateUserModal(){
 $('#logoutBtn').onclick=()=>{
   if(confirm('Tancar sessió? Tornaràs a la pantalla de benvinguda.')){
     clearIdentity();
+    openIdentityModal(); /* torna a preguntar qui ets: triar o CREAR */
   }
 };
 
