@@ -223,7 +223,7 @@ function mergeStates(local, remote) {
   const recipes=(local.recipes||[]).slice();
   (remote.recipes||[]).forEach(r=>{if(!ids.has(r.id)&&!r.book){recipes.push(r);ids.add(r.id);}});
   out.recipes=recipes;
-  /* tiquets: unió per id */
+  /* tiquets: unió per id (original) */
   const rids=new Set((local.receipts||[]).map(r=>r.id));
   const receipts=(local.receipts||[]).slice();
   (remote.receipts||[]).forEach(r=>{if(!rids.has(r.id)){receipts.push(r);rids.add(r.id);}});
@@ -235,6 +235,12 @@ function mergeStates(local, remote) {
   const settlements=(local.settlements||[]).slice();
   (remote.settlements||[]).forEach(st=>{if(!skeys.has(skey(st))){settlements.push(st);skeys.add(skey(st));}});
   out.settlements=settlements;
+  /* ajustos de balanç: unió per (data|persona|import) — el congelament ha de viatjar */
+  const ak=a=>[a.date,a.personId,a.amount].join('|');
+  const akeys=new Set((local.balanceAdjusts||[]).map(ak));
+  const balAdj=(local.balanceAdjusts||[]).slice();
+  (remote.balanceAdjusts||[]).forEach(a=>{if(!akeys.has(ak(a))){balAdj.push(a);akeys.add(ak(a));}});
+  out.balanceAdjusts=balAdj;
   /* llistes de compra independents: unió per id; items per id amb done-union */
   const lmap={};
   (local.shoppingLists||[]).forEach(l=>lmap[l.id]=JSON.parse(JSON.stringify(l)));
@@ -285,7 +291,14 @@ function mergeStates(local, remote) {
 function applyRemote(remote){
   if(!remote)return false;
   const merged=mergeStates(S,remote);
-  const sig=o=>JSON.stringify([o.menu,o.recipes&&o.recipes.length,o.receipts,o.settlements,o.shopping,o.categories,o.diners,(o.people||[]).map(p=>p.id+p.name)]);
+  /* signatura: detecta canvis en TOT el que viatja —
+     people COMPLET (inclou COLOR), balanceAdjusts, llistes... recipes: length
+     (els EDITS de recepta pròpia viatgen via merge per id dins mergeStates) */
+  const sig=o=>JSON.stringify([
+    o.menu||{},o.recipes&&o.recipes.length,o.receipts||[],o.settlements||[],
+    o.shoppingLists||[],o.shopping||{},o.categories||[],o.diners,
+    (o.people||[]).map(p=>p.id+'|'+p.name+'|'+p.color),o.balanceAdjusts||[]
+  ]);
   if(sig(merged)===sig(S))return false;
   Object.keys(merged).forEach(k=>{if(k!=='ui')S[k]=merged[k];});
   save(); /* desa localment + puja la fusió perquè l'altre dispositiu convergir */

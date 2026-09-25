@@ -539,11 +539,25 @@ function cleanLegacySettlements(){
 }
 if(!Array.isArray(S.balanceAdjusts))S.balanceAdjusts=[];
 try{cleanLegacySettlements();}catch(e){console.error(e);}
+function zeroBalance(){
+  /* posa el balanç econòmic de TOTHOM a 0 (amb els ajustos de congelació:
+     eliminar tiquets després no el tornarà a moure) */
+  const bn=balanceSnapshot();
+  if(!Array.isArray(S.balanceAdjusts))S.balanceAdjusts=[];
+  S.people.forEach(p=>{
+    const cur=bn[p.id]||0;
+    if(Math.abs(cur)>0.004){
+      S.balanceAdjusts.push({date:todayIso(),personId:p.id,amount:Math.round(-cur*100)/100});
+    }
+  });
+  save();renderBalance();
+  toast('Balanç posat a 0,00 ✓');
+}
 function renderBalance(){
   const el=$('#balanceBody');
   const viewer=S.currentUser||'';
   const visible=S.receipts.filter(r=>canSeeReceipt(r,viewer));
-  if(!visible.length&&!S.settlements.length){
+  if(!visible.length&&!S.settlements.length&&!S.balanceAdjusts.length){
     el.innerHTML='<p class="empty-hint">Sense compres encara.</p>';return;
   }
   const spent = {}, share = {};
@@ -559,8 +573,17 @@ function renderBalance(){
       +'<td class="num"><b style="color:'+(bal>=0.005?'#2F6A46':bal<-0.005?'#93392F':'inherit')+'">'
       +(bal>=0.005?'+':bal<-0.005?'−':'')+eur(Math.abs(bal))+'</b></td></tr>';
   }).join('')+'</tbody></table>'
-  +'<p class="muted tiny" style="margin:8px 0 0">Despesa visible: <b>'+eur(visible.reduce((a,r)=>a+r.total,0))+'</b></p>';
+  +'<p class="muted tiny" style="margin:8px 0 0">Despesa visible: <b>'+eur(visible.reduce((a,r)=>a+r.total,0))+'</b></p>'
+  +'<button class="btn btn-sm" id="zeroBalBtn" style="margin-top:10px" title="Posa el balanç de tothom a 0,00">🧮 Balanç a 0</button>';
 }
+/* botó posar balanç a 0 (sempre disponible, independentment de les compres) */
+document.addEventListener('click',e=>{
+  const zb=e.target.closest('#zeroBalBtn');
+  if(zb){
+    if(!confirm('Posar el balanç econòmic de tothom a 0,00?'))return;
+    zeroBalance();
+  }
+});
 $('#settleBtn').onclick=()=>{
   if(!S.receipts.length){toast('Encara no hi ha compres.');return;}
   /* tria abast: totals o només algunes persones + opció reiniciar */
