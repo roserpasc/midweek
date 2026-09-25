@@ -272,12 +272,14 @@ function mergeStates(local, remote) {
   out.categories=cats;
   /* camps simples: guanya l'estat més recent */
   out.diners=rNewer?(remote.diners||local.diners):local.diners;
-  /* people: merge per ID (uneix, no reemplaça); actualitza nom/color si diferent */
+  /* people: merge per ID (uneix, no reemplaça); NOMÉS adopta el nom/color remot
+     si l'estat remot és MÉS RECENT (rNewer) — l'últim editor guanya, cap dispositiu
+     perd canvis per un gist més vell */
   const peopleMap=new Map((local.people||[]).map(p=>[p.id,p]));
   (remote.people||[]).forEach(rp=>{
     const lp=peopleMap.get(rp.id);
     if(!lp)peopleMap.set(rp.id,rp);
-    else{lp.name=rp.name;lp.color=rp.color;lp.pin=rp.pin||lp.pin;}
+    else if(rNewer){lp.name=rp.name;lp.color=rp.color;lp.pin=rp.pin||lp.pin;}
   });
   out.people=Array.from(peopleMap.values());
   out._syncedAt=Math.max(local._syncedAt||0,remote._syncedAt||0);
